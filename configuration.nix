@@ -2,21 +2,9 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, home-manager, impermanence, apple-silicon-support, ... }:
 
-let 
-  home-manager = builtins.fetchTarball {
-    url = "https://github.com/nix-community/home-manager/archive/master.tar.gz";
-  };
-  impermanence = builtins.fetchTarball {
-    url =
-      "https://github.com/nix-community/impermanence/archive/master.tar.gz";
-  };
-  apple-silicon-support = builtins.fetchTarball {
-    url = 
-      "https://github.com/tpwrules/nixos-apple-silicon/archive/main.tar.gz";
-  };
-in {
+{
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix

@@ -1,16 +1,8 @@
 # Platform-agnostic configuration
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, home-manager, impermanence, ... }:
 
-let 
-  home-manager = builtins.fetchTarball {
-    url = "https://github.com/nix-community/home-manager/archive/master.tar.gz";
-  };
-  impermanence = builtins.fetchTarball {
-    url =
-      "https://github.com/nix-community/impermanence/archive/master.tar.gz";
-  };
-in {
+{
   imports =
     [ # Include the results of the hardware scan.
       ./home.nix
@@ -70,20 +62,20 @@ in {
 
   # -- Desktop Environment --
   
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
+  # programs.hyprland = {
+  #   enable = true;
+  #   xwayland.enable = true;
+  # };
 
   # Switch to xfce for debugging
-  #services.xserver = {
-  #  enable = true;
-  #  desktopManager = {
-  #    xterm.enable = false;
-  #    xfce.enable = true;
-  #  };
-  #  displayManager.defaultSession = "xfce";
-  #};
+  services.xserver = {
+    enable = true;
+    desktopManager = {
+      xterm.enable = false;
+      xfce.enable = true;
+    };
+    displayManager.defaultSession = "xfce";
+  };
 
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
@@ -143,6 +135,14 @@ in {
     files = [
       "/etc/machine-id"
     ];
+  };
+
+  # NixOS
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
   };
 
   system.stateVersion = "24.05"; # Did you read the comment?
