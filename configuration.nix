@@ -20,6 +20,7 @@ in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./home.nix
       "${apple-silicon-support}/apple-silicon-support"
       "${home-manager}/nixos"
       "${impermanence}/nixos.nix"
@@ -54,11 +55,16 @@ in {
     XDG_DATA_HOME   = "$HOME/.local/share";
     XDG_STATE_HOME  = "$HOME/.local/state";
 
+    EDITOR = "nvim";
+    TERMINAL = "wezterm";
+
     # Not officially in the specification
     XDG_BIN_HOME    = "$HOME/.local/bin";
     PATH = [ 
       "${XDG_BIN_HOME}"
     ];
+
+    NIXOS_OZONE_WL = "1";
   };
 
   # -- User Config --
@@ -79,23 +85,15 @@ in {
         vim
         htop
         vscode
-        kitty
+        wezterm
         pulseaudio
         home-manager
         obsidian
       ];
-      
 
       openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDIhzYxT+Dociep+0p5a2xr9T8UDJYCa9wbYRNux4LN2 walt@waltmckelvie.com" ];
     };
   };
-
-  
-
-  home-manager.users.waltmck = {
-    imports = [ "${impermanence}/home-manager.nix" ./home.nix ];
-  };
-
 
   time.timeZone = "America/NewYork";
 
@@ -110,13 +108,23 @@ in {
 
   # -- Desktop Environment --
   
-  services.xserver.enable = true;
-  services.xserver.desktopManager.xfce.enable = true;
+  programs.hyprland = {
+    # package = pkgs.hyprland.override {
+    #   legacyRenderer = true; # whether to use the legacy renderer (for old GPUs). Necessary for asahi.
+    # };
 
+    enable = true;
+    #  xwayland.enable = true;
+  };
+
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   # -- Audio --
 
   hardware.bluetooth.enable = true;
+  # hardware.opengl.enable = true;
+
   sound.enable = true;
   security.rtkit.enable = true;
 
@@ -137,6 +145,18 @@ in {
     clang
     openssh
     ncdu
+    neofetch
+    pciutils
+    neovim
+    wl-clipboard
+    brightnessctl
+
+    waybar
+
+    dunst # Notifications
+    libnotify # dunst dependency
+
+    rofi-wayland # app launcher
   ];
 
   # -- SSH Configuration --
