@@ -50,12 +50,6 @@ in {
 
     wayland.windowManager.hyprland = {
       enable = true;
-
-      extraConfig = ''
-        env = MESA_GL_VERSION_OVERRIDE,3.3
-        env = MESA_GLSL_VERSION_OVERRIDE,330
-        env = MESA_GLES_VERSION_OVERRIDE,3.1
-      '';
     };
 
     home.stateVersion = "23.11";

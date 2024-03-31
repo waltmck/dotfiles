@@ -109,10 +109,6 @@ in {
   # -- Desktop Environment --
   
   programs.hyprland = {
-    # package = pkgs.hyprland.override {
-    #   legacyRenderer = true; # whether to use the legacy renderer (for old GPUs). Necessary for asahi.
-    # };
-
     enable = true;
     #  xwayland.enable = true;
   };
@@ -120,10 +116,20 @@ in {
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
+  hardware.asahi = {
+    useExperimentalGPUDriver = true;
+    experimentalGPUInstallMode = "replace";
+    setupAsahiSound = true;
+    withRust = true;
+  };
+
   # -- Audio --
 
   hardware.bluetooth.enable = true;
-  # hardware.opengl.enable = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+  };
 
   sound.enable = true;
   security.rtkit.enable = true;
