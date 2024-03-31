@@ -20,7 +20,7 @@ in {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./home.nix
+      ./shared/shared.nix
       "${apple-silicon-support}/apple-silicon-support"
       "${home-manager}/nixos"
       "${impermanence}/nixos.nix"
@@ -41,61 +41,10 @@ in {
   fileSystems."/" = {
     device = "none";
     fsType = "tmpfs";
-    options = [ "defaults" "size=2G" "mode=755" ];
+    options = [ "defaults" "size=8G" "mode=755" ];
   };
 
   boot.initrd.kernelModules = ["usb_storage" "usbhid" "dm-crypt" "xts" "encrypted_keys" "ext4" "dm-snapshot"];
-
-  
-  # -- Environment Variables --
-
-  environment.sessionVariables = rec {
-    XDG_CACHE_HOME  = "$HOME/.cache";
-    XDG_CONFIG_HOME = "$HOME/.config";
-    XDG_DATA_HOME   = "$HOME/.local/share";
-    XDG_STATE_HOME  = "$HOME/.local/state";
-
-    EDITOR = "nvim";
-    TERMINAL = "wezterm";
-
-    # Not officially in the specification
-    XDG_BIN_HOME    = "$HOME/.local/bin";
-    PATH = [ 
-      "${XDG_BIN_HOME}"
-    ];
-
-    NIXOS_OZONE_WL = "1";
-  };
-
-  # -- User Config --
-
-  nixpkgs.config.allowUnfree = true;
-
-  users.mutableUsers = false;
-
-  users.users = {
-    root.initialHashedPassword = "$6$EkkeNxXqJ8H12NTS$cgxh3gdWgQTPhZrojyO1TOGdTUH8qWm/184uLBIjTkYpfgJEOQlRXxQuoGgXvskcYAjRS1WcpO04VzzBo4WNw/";
-
-    waltmck = {
-      initialHashedPassword = "$6$EkkeNxXqJ8H12NTS$cgxh3gdWgQTPhZrojyO1TOGdTUH8qWm/184uLBIjTkYpfgJEOQlRXxQuoGgXvskcYAjRS1WcpO04VzzBo4WNw/";
-      isNormalUser = true;
-      extraGroups = ["wheel" "sudo"];
-      packages = with pkgs; [
-        firefox
-        vim
-        htop
-        vscode
-        wezterm
-        pulseaudio
-        home-manager
-        obsidian
-      ];
-
-      openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDIhzYxT+Dociep+0p5a2xr9T8UDJYCa9wbYRNux4LN2 walt@waltmckelvie.com" ];
-    };
-  };
-
-  time.timeZone = "America/NewYork";
 
   # -- Networking --
   
@@ -106,24 +55,7 @@ in {
     settings.General.EnableNetworkConfiguration = true;
   };
 
-  # -- Desktop Environment --
-  
-  programs.hyprland = {
-    enable = true;
-    #  xwayland.enable = true;
-  };
-
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-
-  hardware.asahi = {
-    useExperimentalGPUDriver = true;
-    experimentalGPUInstallMode = "replace";
-    setupAsahiSound = true;
-    withRust = true;
-  };
-
-  # -- Audio --
+  # -- Sound and GPU --
 
   hardware.bluetooth.enable = true;
   hardware.opengl = {
@@ -142,64 +74,15 @@ in {
     jack.enable = true;
   };
 
+  hardware.asahi = {
+    useExperimentalGPUDriver = true;
+    experimentalGPUInstallMode = "replace";
+    setupAsahiSound = true;
+    withRust = true;
+  };
+
   # services.jack.jackd.enable = true;
   
-  # -- System Packages --
-
-  environment.systemPackages = with pkgs; [
-    git
-    clang
-    openssh
-    ncdu
-    neofetch
-    pciutils
-    neovim
-    wl-clipboard
-    brightnessctl
-
-    waybar
-
-    dunst # Notifications
-    libnotify # dunst dependency
-
-    rofi-wayland # app launcher
-  ];
-
-  # -- SSH Configuration --
-
-  services.openssh = {
-    enable = true;
-    settings = {
-      PasswordAuthentication = false;
-      KbdInteractiveAuthentication = false;
-    };
-  };
-
-  # -- 1Password Configuration --
-  programs._1password.enable = true;
-  programs._1password-gui = {
-    enable = true;
-    polkitPolicyOwners = ["waltmck"];
-  };
-
-  environment.etc."1password/custom_allowed_browsers" = {
-    text = ''
-      firefox
-    '';
-    mode = "0755";
-  };
-  
-  # -- Persistence --
-  environment.persistence."/nix/state" = {
-    directories = [
-      "/etc/NetworkManager/system-connections"
-      "/var/lib/iwd"
-    ];
-    files = [
-      "/etc/machine-id"
-    ];
-  };
-
   system.stateVersion = "24.05"; # Did you read the comment?
 
 }
