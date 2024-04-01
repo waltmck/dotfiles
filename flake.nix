@@ -29,7 +29,7 @@
       "walt-laptop" = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
-          ./configuration.nix
+          ./hosts/laptop/default.nix
         ];
         specialArgs = { inherit inputs; };
       };
