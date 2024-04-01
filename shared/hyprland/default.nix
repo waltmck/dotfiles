@@ -87,76 +87,9 @@
     systemd.enable = true;
     xwayland.enable = true;
 
-    settings = {
-      # bind =
-      #   [
-      #     "SUPER, F, exec, ${pkgs.firefox}"
-      #     # ", Print, exec, grimblast copy area"
-      #     "SUPER, S, exec, ${pkgs.rofi-wayland} -show drun -show-icons"
-      #   ];
-
-      exec-once = [
-        "hyprctl setcursor Qogir 24"
-      ];
-
-      monitor = [
-        # "eDP-1, 1920x1080, 0x0, 1"
-        # "HDMI-A-1, 2560x1440, 1920x0, 1"
-        ",preferred,auto,1"
-      ];
-
-      general = {
-        layout = "dwindle";
-        resize_on_border = true;
-        no_cursor_warps = true;
-      };
-
-      misc = {
-        disable_splash_rendering = true;
-        force_default_wallpaper = 1;
-      };
-
-      input = {
-        follow_mouse = 1;
-        touchpad = {
-          natural_scroll = "yes";
-          disable_while_typing = true;
-          drag_lock = true;
-        };
-        sensitivity = 0;
-        float_switch_override_focus = 2;
-      };
-
-      binds = {
-        allow_workspace_cycles = true;
-      };
-
-      dwindle = {
-        pseudotile = "yes";
-        preserve_split = "yes";
-        # no_gaps_when_only = "yes";
-      };
-
-      gestures = {
-        workspace_swipe = true;
-        workspace_swipe_forever = true;
-        workspace_swipe_numbered = true;
-      };
-
-      #input = {
-      #  float_switch_override_focus = 1;
-      #  follow_mouse = 1;
-      #  natural_scroll = 0;
-      #  sensitivity = 0;
-
-      #  touchpad = {
-      #      clickfinger_behavior = 1;
-      #      disable_while_typing = 1;
-      #      natural_scroll = 1;
-      #      tap-to-click = 1;
-      #  };
-      #};
-    };
+    extraConfig = ''
+      ${builtins.readFile ./hyprland.conf}
+    '';
   };
 }
 
