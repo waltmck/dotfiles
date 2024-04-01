@@ -1,13 +1,13 @@
 # Platform-agnostic configuration
 
-{ config, lib, pkgs, home-manager, impermanence, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./home.nix
-      "${home-manager}/nixos"
-      "${impermanence}/nixos.nix"
+      "${inputs.home-manager}/nixos"
+      "${inputs.impermanence}/nixos.nix"
     ];
 
   # -- Environment Variables --

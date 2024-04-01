@@ -2,16 +2,16 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, home-manager, impermanence, apple-silicon-support, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./shared/shared.nix
-      "${apple-silicon-support}/apple-silicon-support"
-      "${home-manager}/nixos"
-      "${impermanence}/nixos.nix"
+      "${inputs.apple-silicon-support}/apple-silicon-support"
+      "${inputs.home-manager}/nixos"
+      "${inputs.impermanence}/nixos.nix"
     ];
 
   # -- Filesystem and Boot Stuff --
