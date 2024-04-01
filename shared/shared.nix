@@ -5,7 +5,6 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./home.nix
       "${inputs.home-manager}/nixos"
       "${inputs.impermanence}/nixos.nix"
     ];
@@ -73,15 +72,12 @@
   # -- System Packages --
 
   environment.systemPackages = with pkgs; [
-    firefox
     vim
     htop
     vscode
     wezterm
     pulseaudio
     home-manager
-    obsidian
-    git
     clang
     openssh
     ncdu
@@ -111,26 +107,11 @@
       KbdInteractiveAuthentication = false;
     };
   };
-
-  # -- 1Password Configuration --
-  programs._1password.enable = true;
-  programs._1password-gui = {
-    enable = true;
-    polkitPolicyOwners = ["waltmck"];
-  };
-
-  environment.etc."1password/custom_allowed_browsers" = {
-    text = ''
-      firefox
-    '';
-    mode = "0755";
-  };
   
   # -- Persistence --
   environment.persistence."/nix/state" = {
     directories = [
       "/etc/NetworkManager/system-connections"
-      "/var/lib/iwd"
     ];
     files = [
       "/etc/machine-id"
@@ -143,6 +124,23 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+  };
+
+  home-manager.users.waltmck = {
+    imports = [ "${inputs.impermanence}/home-manager.nix" ];
+
+    programs.home-manager.enable = true;
+
+    xdg.userDirs.enable = true;
+    
+    home.persistence."/nix/state/home/waltmck" = {
+      directories = [ "Downloads" "Documents" ];
+      files = [ ];
+
+      allowOther = false;
+    };
+
+    home.stateVersion = "23.11";
   };
 
   system.stateVersion = "24.05"; # Did you read the comment?

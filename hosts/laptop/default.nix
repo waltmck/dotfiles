@@ -12,26 +12,23 @@
       ../../hardware/asahi
       ../../hardware/filesystem
       ../../hardware/sound
+      ../../packages/_1password
+      ../../packages/bash
+      ../../packages/git
+      ../../packages/iwd
+      ../../packages/ssh
+      ../../packages/firefox
+      ../../packages/obsidian
+
+      ../../packages/iwd
     ];
 
-  # -- Filesystem and Boot Stuff --
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = false;
-  
   # See installation notes for how to find this
   boot.initrd.luks.devices."encrypted".device = "/dev/disk/by-uuid/0caf6fe9-a9e6-4f18-ada4-a9acc1609799";
 
-  boot.initrd.kernelModules = ["usb_storage" "usbhid" "dm-crypt" "xts" "encrypted_keys" "ext4" "dm-snapshot"];
-
-  # -- Networking --
+  # -- Set hostname --
   
-  networking.hostName = "walt-laptop"; # Define your hostname.
-  
-  networking.wireless.iwd = {
-    enable = true;
-    settings.General.EnableNetworkConfiguration = true;
-  };
+  networking.hostName = "walt-laptop";
 
   system.stateVersion = "24.05"; # Did you read the comment?
 

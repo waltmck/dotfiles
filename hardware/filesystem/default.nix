@@ -5,6 +5,8 @@
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = false;
+
+  boot.initrd.kernelModules = ["usb_storage" "usbhid" "dm-crypt" "xts" "encrypted_keys" "ext4" "dm-snapshot"];
   
   boot.initrd.luks.devices."encrypted" = {
     bypassWorkqueues = true;
