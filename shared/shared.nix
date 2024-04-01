@@ -79,6 +79,8 @@
     neovim
     wl-clipboard
     brightnessctl
+    playerctl
+    swayosd
     kitty
 
     inputs.alejandra.defaultPackage.${system}
