@@ -7,6 +7,7 @@
     [ # Include the results of the hardware scan.
       "${inputs.home-manager}/nixos"
       "${inputs.impermanence}/nixos.nix"
+      ./hyprland
     ];
 
   # -- Environment Variables --
@@ -56,18 +57,10 @@
   #   xwayland.enable = true;
   # };
 
-  # Switch to xfce for debugging
-  services.xserver = {
-    enable = true;
-    desktopManager = {
-      xterm.enable = false;
-      xfce.enable = true;
-    };
-    displayManager.defaultSession = "xfce";
-  };
-
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+
+
 
   # -- System Packages --
 
