@@ -27,6 +27,7 @@
   # Enable the notch, and swap the fn and control keys
   boot.extraModprobeConfig = ''
     options apple_dcp show_notch = 1
+    options hid_apple swap_fn_leftctrl=1
   '';
 
   # services.jack.jackd.enable = true;
