@@ -49,7 +49,7 @@
   home-manager.users.waltmck = {
     # Make ssh use 1password ssh-agent
     programs.ssh = {
-      extraConfig = ''
+      extraConfig = lib.mkOrder 0 ''
         Host *
             IdentityAgent ~/.1password/agent.sock
       '';
@@ -58,7 +58,9 @@
     # Hyprland 1password quick access
     home.file.".config/hypr/per-app/_1password.conf" = {
       text = ''
-        bind = $mainMod, T, exec, ${pkgs._1password-gui.override {polkitPolicyOwners = ["waltmck"];}}/bin/1password --quick-access
+        bind = SUPER, T, exec, ${pkgs._1password-gui.override {polkitPolicyOwners = ["waltmck"];}}/bin/1password --quick-access
+        windowrulev2 = float,class:^(1Password)$
+        windowrulev2 = stayfocused,class:^(1Password)$
       '';
     };
 

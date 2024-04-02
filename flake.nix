@@ -21,6 +21,8 @@
 
     alejandra.url = "github:kamadorueda/alejandra/3.0.0"; # codeium nix
     ags.url = "github:Aylur/ags";
+    astal.url = "github:Aylur/astal";
+    matugen.url = "github:InioX/matugen";
   };
 
   outputs = {

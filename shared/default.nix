@@ -10,7 +10,6 @@
     # Include the results of the hardware scan.
     "${inputs.home-manager}/nixos"
     "${inputs.impermanence}/nixos.nix"
-    ./hyprland
   ];
 
   # -- Environment Variables --
@@ -58,7 +57,6 @@
   environment.systemPackages = with pkgs; [
     vim
     htop
-    wezterm
     pulseaudio
     home-manager
     clang
@@ -70,12 +68,9 @@
     wl-clipboard
     brightnessctl
     playerctl
-    swayosd
     kitty
 
     inputs.alejandra.defaultPackage.${system}
-
-    waybar
 
     dunst # Notifications
     libnotify # dunst dependency
@@ -119,7 +114,7 @@
     xdg.userDirs.enable = true;
 
     home.persistence."/nix/state/home/waltmck" = {
-      directories = ["Downloads" "Documents"];
+      directories = ["Downloads" "Documents" "src"];
       files = [];
 
       allowOther = false;

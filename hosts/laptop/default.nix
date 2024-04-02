@@ -12,10 +12,11 @@
     # Include the results of the hardware scan.
     inputs.nix-colors.homeManagerModules.default
     ./hardware-configuration.nix
-    ../../shared/shared.nix
+    ../../shared
     ../../hardware/asahi
     ../../hardware/filesystem
     ../../hardware/sound
+
     ../../packages/_1password
     ../../packages/bash
     ../../packages/git
@@ -25,8 +26,13 @@
     ../../packages/obsidian
     ../../packages/vscode
     ../../packages/wofi
-
+    ../../packages/kitty
+    # ../../packages/nautilus
     ../../packages/iwd
+    ../../packages/gnome
+    ../../packages/greetd
+    ../../packages/hyprland
+    ../../packages/ags
   ];
 
   # See installation notes for how to find this

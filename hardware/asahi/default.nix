@@ -26,11 +26,17 @@
 
   # Enable the notch, and swap the fn and control keys
   boot.extraModprobeConfig = ''
-    options apple_dcp show_notch = 1
+    options apple_dcp show_notch=1
     options hid_apple swap_fn_leftctrl=1
   '';
 
   # services.jack.jackd.enable = true;
+
+  home-manager.users.waltmck.home.file.".config/hypr/per-app/asahi.conf" = {
+    text = ''
+      ${builtins.readFile ./hyprland.conf}
+    '';
+  };
 
   system.stateVersion = "24.05"; # Did you read the comment?
 }
