@@ -19,7 +19,7 @@
     # kitty shortcut
     home.file.".config/hypr/per-app/kitty.conf" = {
       text = ''
-        bind = SUPER, Q, exec, ${pkgs.kitty}/bin/kitty
+        bind = SUPER, Y, exec, ${pkgs.kitty}/bin/kitty
       '';
     };
   };

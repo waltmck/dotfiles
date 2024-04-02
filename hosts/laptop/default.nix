@@ -25,14 +25,15 @@
     ../../packages/firefox
     ../../packages/obsidian
     ../../packages/vscode
-    ../../packages/wofi
     ../../packages/kitty
-    # ../../packages/nautilus
-    ../../packages/iwd
-    ../../packages/gnome
-    ../../packages/greetd
-    ../../packages/hyprland
-    ../../packages/ags
+
+    # ../../packages/wofi
+    # ../../packages/gnome
+    # ../../packages/greetd
+    # ../../packages/hyprland
+    # ../../packages/ags
+
+    ../../packages/aylur
   ];
 
   # See installation notes for how to find this

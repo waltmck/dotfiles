@@ -68,9 +68,6 @@
     wl-clipboard
     brightnessctl
     playerctl
-    kitty
-
-    inputs.alejandra.defaultPackage.${system}
 
     dunst # Notifications
     libnotify # dunst dependency

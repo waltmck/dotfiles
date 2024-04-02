@@ -23,6 +23,17 @@
     ags.url = "github:Aylur/ags";
     astal.url = "github:Aylur/astal";
     matugen.url = "github:InioX/matugen";
+
+    stm.url = "github:Aylur/stm";
+
+    lf-icons = {
+      url = "github:gokcehan/lf";
+      flake = false;
+    };
+    firefox-gnome-theme = {
+      url = "github:rafaelmardojai/firefox-gnome-theme";
+      flake = false;
+    };
   };
 
   outputs = {
@@ -36,13 +47,19 @@
     ags,
     ...
   } @ inputs: {
+    packages.aarch64-linux.default =
+      nixpkgs.legacyPackages.aarch64-linux.callPackage ./aylur/ags {inherit inputs;};
+
     nixosConfigurations = {
-      "walt-laptop" = nixpkgs.lib.nixosSystem {
+      "walt-laptop" = nixpkgs.lib.nixosSystem rec {
         system = "aarch64-linux";
         modules = [
           ./hosts/laptop/default.nix
         ];
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+          inherit inputs;
+          asztal = self.packages.aarch64-linux.default;
+        };
       };
     };
   };

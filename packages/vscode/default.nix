@@ -3,8 +3,13 @@
   lib,
   pkgs,
   inputs,
+  system,
   ...
 }: {
+  environment.systemPackages = [
+    inputs.alejandra.defaultPackage.${pkgs.system}
+  ];
+
   home-manager.users.waltmck.programs.vscode = {
     enable = true;
 
