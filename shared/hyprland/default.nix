@@ -1,23 +1,29 @@
 # Platform-agnostic configuration
-
-{ config, lib, pkgs, inputs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      "${inputs.home-manager}/nixos"
-      "${inputs.impermanence}/nixos.nix"
-    ];
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    "${inputs.home-manager}/nixos"
+    "${inputs.impermanence}/nixos.nix"
+  ];
 
   # -- Desktop Environment --
 
   services.xserver.displayManager.startx.enable = true;
-  
+
   programs.hyprland = {
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     enable = true;
     xwayland.enable = true;
   };
+
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
   # Polkit for permissions
   security = {
@@ -28,9 +34,9 @@
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
       description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
+      wantedBy = ["graphical-session.target"];
+      wants = ["graphical-session.target"];
+      after = ["graphical-session.target"];
       serviceConfig = {
         Type = "simple";
         ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
@@ -50,9 +56,7 @@
   #   };
   #   displayManager.defaultSession = "xfce";
   # };
-  
 
-  
   services.greetd = let
     tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
     hyprland-session = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/share/wayland-sessions";
@@ -71,14 +75,14 @@
   # might be good to write about this...
   # https://www.reddit.com/r/NixOS/comments/u0cdpi/tuigreet_with_xmonad_how/
   systemd.services.greetd.serviceConfig = {
-      Type = "idle";
-      StandardInput = "tty";
-      StandardOutput = "tty";
-      StandardError = "journal"; # Without this errors will spam on screen
-      # Without these bootlogs will spam on screen
-      TTYReset = true;
-      TTYVHangup = true;
-      TTYVTDisallocate = true;
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal"; # Without this errors will spam on screen
+    # Without these bootlogs will spam on screen
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
   };
 
   home-manager.users.waltmck.wayland.windowManager.hyprland = {
@@ -92,4 +96,3 @@
     '';
   };
 }
-

@@ -1,29 +1,32 @@
 # Platform-agnostic configuration
-
-{ config, lib, pkgs, inputs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      "${inputs.home-manager}/nixos"
-      "${inputs.impermanence}/nixos.nix"
-      ./hyprland
-    ];
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    "${inputs.home-manager}/nixos"
+    "${inputs.impermanence}/nixos.nix"
+    ./hyprland
+  ];
 
   # -- Environment Variables --
 
   environment.sessionVariables = rec {
-    XDG_CACHE_HOME  = "$HOME/.cache";
+    XDG_CACHE_HOME = "$HOME/.cache";
     XDG_CONFIG_HOME = "$HOME/.config";
-    XDG_DATA_HOME   = "$HOME/.local/share";
-    XDG_STATE_HOME  = "$HOME/.local/state";
+    XDG_DATA_HOME = "$HOME/.local/share";
+    XDG_STATE_HOME = "$HOME/.local/state";
 
-    EDITOR = "nvim";
-    TERMINAL = "wezterm";
+    EDITOR = "vim";
+    TERMINAL = "kitty";
 
     # Not officially in the specification
-    XDG_BIN_HOME    = "$HOME/.local/bin";
-    PATH = [ 
+    XDG_BIN_HOME = "$HOME/.local/bin";
+    PATH = [
       "${XDG_BIN_HOME}"
     ];
 
@@ -44,23 +47,11 @@
       isNormalUser = true;
       extraGroups = ["wheel" "sudo"];
 
-      openssh.authorizedKeys.keys = [ "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDIhzYxT+Dociep+0p5a2xr9T8UDJYCa9wbYRNux4LN2 walt@waltmckelvie.com" ];
+      openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDIhzYxT+Dociep+0p5a2xr9T8UDJYCa9wbYRNux4LN2 walt@waltmckelvie.com"];
     };
   };
 
   time.timeZone = "America/NewYork";
-
-  # -- Desktop Environment --
-  
-  # programs.hyprland = {
-  #   enable = true;
-  #   xwayland.enable = true;
-  # };
-
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-
-
 
   # -- System Packages --
 
@@ -89,7 +80,7 @@
     dunst # Notifications
     libnotify # dunst dependency
 
-    rofi-wayland # app launcher
+    # rofi-wayland # app launcher
   ];
 
   # -- SSH Configuration --
@@ -101,7 +92,7 @@
       KbdInteractiveAuthentication = false;
     };
   };
-  
+
   # -- Persistence --
   environment.persistence."/nix/state" = {
     directories = [
@@ -121,15 +112,15 @@
   };
 
   home-manager.users.waltmck = {
-    imports = [ "${inputs.impermanence}/home-manager.nix" ];
+    imports = ["${inputs.impermanence}/home-manager.nix"];
 
     programs.home-manager.enable = true;
 
     xdg.userDirs.enable = true;
-    
+
     home.persistence."/nix/state/home/waltmck" = {
-      directories = [ "Downloads" "Documents" ];
-      files = [ ];
+      directories = ["Downloads" "Documents"];
+      files = [];
 
       allowOther = false;
     };
@@ -140,6 +131,4 @@
   };
 
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }
-
