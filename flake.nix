@@ -21,7 +21,6 @@
 
     alejandra.url = "github:kamadorueda/alejandra/3.0.0"; # codeium nix
     ags.url = "github:Aylur/ags";
-
   };
 
   outputs = { self, nixpkgs, home-manager, impermanence, hyprland, apple-silicon-support, alejandra, ags, ... }@inputs : {

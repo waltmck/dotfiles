@@ -67,7 +67,6 @@
   environment.systemPackages = with pkgs; [
     vim
     htop
-    vscode
     wezterm
     pulseaudio
     home-manager
@@ -134,6 +133,8 @@
 
       allowOther = false;
     };
+
+    nixpkgs.config.allowUnfree = true;
 
     home.stateVersion = "23.11";
   };

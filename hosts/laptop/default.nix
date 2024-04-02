@@ -19,6 +19,7 @@
       ../../packages/ssh
       ../../packages/firefox
       ../../packages/obsidian
+      ../../packages/vscode
 
       ../../packages/iwd
     ];
