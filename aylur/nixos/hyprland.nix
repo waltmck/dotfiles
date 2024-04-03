@@ -34,6 +34,8 @@
     loupe
     adwaita-icon-theme
     nautilus
+    geary
+    cheese
     baobab
     gnome-text-editor
     gnome-calendar
@@ -43,6 +45,7 @@
     gnome-weather
     gnome-calculator
     gnome-clocks
+    gnome-maps
     gnome-software # for flatpak
     wl-gammactl
     wl-clipboard
@@ -82,6 +85,7 @@
         enable = true;
       };
       gnome-online-accounts.enable = true;
+      sushi.enable = true;
     };
   };
 

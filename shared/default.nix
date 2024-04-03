@@ -68,6 +68,7 @@
     wl-clipboard
     brightnessctl
     playerctl
+    wirelesstools
 
     dunst # Notifications
     libnotify # dunst dependency
@@ -88,7 +89,8 @@
   # -- Persistence --
   environment.persistence."/nix/state" = {
     directories = [
-      "/etc/NetworkManager/system-connections"
+      "/etc/NetworkManager/system-connections" # WiFi Connections
+      "/var/lib/bluetooth" # Bluetooth connections
     ];
     files = [
       "/etc/machine-id"
@@ -132,10 +134,12 @@
 
     settings = {
       General = {
-        Name = "Hello";
+        Name = "walt-laptop";
         ControllerMode = "dual";
         FastConnectable = "true";
         Experimental = "true";
+
+        Enable = "Source,Sink,Media,Socket";
       };
       Policy = {
         AutoEnable = "true";
