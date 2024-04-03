@@ -1,5 +1,8 @@
-{ inputs, pkgs, ... }:
-let
+{
+  inputs,
+  pkgs,
+  ...
+}: let
   hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
   plugins = inputs.hyprland-plugins.packages.${pkgs.system};
 
@@ -11,14 +14,13 @@ let
   playerctl = "${pkgs.playerctl}/bin/playerctl";
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
-in
-{
+in {
   xdg.desktopEntries."org.gnome.Settings" = {
     name = "Settings";
     comment = "Gnome Control Center";
     icon = "org.gnome.Settings";
     exec = "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome.gnome-control-center}/bin/gnome-control-center";
-    categories = [ "X-Preferences" ];
+    categories = ["X-Preferences"];
     terminal = false;
   };
 
@@ -33,13 +35,13 @@ in
       exec-once = [
         "ags -b hypr"
         "hyprctl setcursor Qogir 24"
-        "transmission-gtk"
+        # "transmission-gtk"
       ];
 
       monitor = [
         # "eDP-1, 1920x1080, 0x0, 1"
         # "HDMI-A-1, 2560x1440, 1920x0, 1"
-        ",preferred,auto,1"
+        ",preferred,auto,2"
       ];
 
       general = {
@@ -54,12 +56,14 @@ in
       };
 
       input = {
-        kb_layout = "hu";
         follow_mouse = 1;
         touchpad = {
           natural_scroll = "yes";
           disable_while_typing = true;
           drag_lock = true;
+          tap-to-click = false;
+          scroll_factor = 0.3;
+          clickfinger_behavior = 1;
         };
         sensitivity = 0;
         float_switch_override_focus = 2;
@@ -108,48 +112,50 @@ in
         mvtows = binding "SUPER SHIFT" "movetoworkspace";
         e = "exec, ags -b hypr";
         arr = [1 2 3 4 5 6 7 8 9];
-      in [
-        "CTRL SHIFT, R,  ${e} quit; ags -b hypr"
-        "SUPER, R,       ${e} -t launcher"
-        "SUPER, Tab,     ${e} -t overview"
-        ",XF86PowerOff,  ${e} -r 'powermenu.shutdown()'"
-        ",XF86Launch4,   ${e} -r 'recorder.start()'"
-        ",Print,         ${e} -r 'recorder.screenshot()'"
-        "SHIFT,Print,    ${e} -r 'recorder.screenshot(true)'"
-        "SUPER, Return, exec, xterm" # xterm is a symlink, not actually xterm
-        "SUPER, W, exec, firefox"
-        "SUPER, E, exec, wezterm -e lf"
+      in
+        [
+          "CTRL SHIFT, R,  ${e} quit; ags -b hypr"
+          "SUPER, R,       ${e} -t launcher"
+          "SUPER, Tab,     ${e} -t overview"
+          ",XF86PowerOff,  ${e} -r 'powermenu.shutdown()'"
+          "SUPER,O,        ${e} -r 'recorder.start()'"
+          "SUPER,P,        ${e} -r 'recorder.screenshot()'"
+          "SUPER SHIFT,P,  ${e} -r 'recorder.screenshot(true)'"
+          "SUPER, Return, exec, xterm" # xterm is a symlink, not actually xterm
 
-        # youtube
-        ", XF86Launch1,  exec, ${yt}"
+          "SUPER, W, exec, firefox"
+          "SUPER, Q, exec, kitty"
 
-        "ALT, Tab, focuscurrentorlast"
-        "CTRL ALT, Delete, exit"
-        "ALT, Q, killactive"
-        "SUPER, F, togglefloating"
-        "SUPER, G, fullscreen"
-        "SUPER, O, fakefullscreen"
-        "SUPER, P, togglesplit"
+          # youtube
+          ", XF86Launch1,  exec, ${yt}"
 
-        (mvfocus "k" "u")
-        (mvfocus "j" "d")
-        (mvfocus "l" "r")
-        (mvfocus "h" "l")
-        (ws "left" "e-1")
-        (ws "right" "e+1")
-        (mvtows "left" "e-1")
-        (mvtows "right" "e+1")
-        (resizeactive "k" "0 -20")
-        (resizeactive "j" "0 20")
-        (resizeactive "l" "20 0")
-        (resizeactive "h" "-20 0")
-        (mvactive "k" "0 -20")
-        (mvactive "j" "0 20")
-        (mvactive "l" "20 0")
-        (mvactive "h" "-20 0")
-      ]
-      ++ (map (i: ws (toString i) (toString i)) arr)
-      ++ (map (i: mvtows (toString i) (toString i)) arr);
+          "SUPER, Tab, focuscurrentorlast"
+          "CTRL ALT, Delete, exit"
+          "SUPER, D, killactive"
+          "SUPER, F, togglefloating"
+          "SUPER, A, fullscreen"
+          "SUPER, S, fakefullscreen"
+          "SUPER, V, togglesplit"
+
+          (mvfocus "k" "u")
+          (mvfocus "j" "d")
+          (mvfocus "l" "r")
+          (mvfocus "h" "l")
+          (ws "left" "e-1")
+          (ws "right" "e+1")
+          (mvtows "left" "e-1")
+          (mvtows "right" "e+1")
+          (resizeactive "k" "0 -20")
+          (resizeactive "j" "0 20")
+          (resizeactive "l" "20 0")
+          (resizeactive "h" "-20 0")
+          (mvactive "k" "0 -20")
+          (mvactive "j" "0 20")
+          (mvactive "l" "20 0")
+          (mvactive "h" "-20 0")
+        ]
+        ++ (map (i: ws (toString i) (toString i)) arr)
+        ++ (map (i: mvtows (toString i) (toString i)) arr);
 
       bindle = [
         ",XF86MonBrightnessUp,   exec, ${brightnessctl} set +5%"
@@ -160,7 +166,7 @@ in
         ",XF86AudioLowerVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
       ];
 
-      bindl =  [
+      bindl = [
         ",XF86AudioPlay,    exec, ${playerctl} play-pause"
         ",XF86AudioStop,    exec, ${playerctl} pause"
         ",XF86AudioPause,   exec, ${playerctl} pause"

@@ -8,7 +8,7 @@
     ../home-manager/nvim.nix
     ../home-manager/ags.nix
     ../home-manager/blackbox.nix
-    ../home-manager/browser.nix
+    # ../home-manager/browser.nix Need to fix firefox persistence
     ##### ../home-manager/bspwm.nix
     ../home-manager/dconf.nix
     ../home-manager/distrobox.nix
@@ -24,7 +24,7 @@
     ##### ../home-manager/sway.nix
     ../home-manager/theme.nix
     ../home-manager/tmux.nix
-    ../home-manager/wezterm.nix
+    # ../home-manager/wezterm.nix
   ];
 
   news.display = "show";

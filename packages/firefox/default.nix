@@ -16,7 +16,7 @@
 
     home.file.".config/hypr/per-app/firefox.conf" = {
       text = ''
-        bind = $mainMod, F, exec, ${pkgs.firefox}/bin/firefox
+        bind = $mainMod, W, exec, ${pkgs.firefox}/bin/firefox
       '';
     };
   };

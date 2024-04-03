@@ -61,7 +61,7 @@ const options = mkOptions(OPTIONS, {
     bar: {
         flatButtons: opt(true),
         position: opt<"top" | "bottom">("top"),
-        corners: opt(true),
+        corners: opt(false),
         layout: {
             start: opt<BarWidget[]>([
                 "launcher",
@@ -81,6 +81,7 @@ const options = mkOptions(OPTIONS, {
                 "screenrecord",
                 "system",
                 "battery",
+                "date",
                 "powermenu",
             ]),
         },
@@ -91,12 +92,12 @@ const options = mkOptions(OPTIONS, {
             },
             label: {
                 colored: opt(false),
-                label: opt(" Applications"),
+                label: opt(""),
             },
             action: opt(() => App.toggleWindow("launcher")),
         },
         date: {
-            format: opt("%H:%M - %A %e."),
+            format: opt("%H:%M"),
             action: opt(() => App.toggleWindow("datemenu")),
         },
         battery: {
