@@ -111,7 +111,7 @@
     xdg.userDirs.enable = true;
 
     home.persistence."/nix/state/home/waltmck" = {
-      directories = ["Downloads" "Documents" "src"];
+      directories = ["Downloads" "Documents" "src" ".local/share/keyrings"];
       files = [];
 
       allowOther = false;
