@@ -6,6 +6,8 @@
   system,
   ...
 }: {
+  environment.enableDebugInfo = true;
+
   services.xserver.displayManager.startx.enable = true;
 
   programs.hyprland = {
