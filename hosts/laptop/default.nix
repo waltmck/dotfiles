@@ -26,6 +26,7 @@
     ../../packages/obsidian
     ../../packages/vscode
     ../../packages/kitty
+    ../../packages/spot
 
     # ../../packages/wofi
     # ../../packages/gnome

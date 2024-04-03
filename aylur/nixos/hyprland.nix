@@ -76,10 +76,14 @@
     gnome = {
       evolution-data-server.enable = true;
       glib-networking.enable = true;
-      gnome-keyring.enable = true;
+      gnome-keyring = {
+        enable = true;
+      };
       gnome-online-accounts.enable = true;
     };
   };
+
+  security.pam.services.greetd.enableGnomeKeyring = true;
 
   services.greetd = {
     enable = true;

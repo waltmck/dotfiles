@@ -61,6 +61,7 @@
     allowedUDPPortRanges = allowedTCPPortRanges;
   };
 
+  /*
   # bootloader
   boot = {
     plymouth = rec {
@@ -77,4 +78,5 @@
       ];
     };
   };
+  */
 }

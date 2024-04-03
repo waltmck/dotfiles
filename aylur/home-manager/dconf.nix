@@ -117,7 +117,7 @@ with lib.hm.gvariant; {
         "caprine.desktop"
         "teams-for-linux.desktop"
         "discord.desktop"
-        "spotify.desktop"
+        "spot.desktop"
         "com.usebottles.bottles.desktop"
         "org.gnome.Software.desktop"
       ];
@@ -132,11 +132,19 @@ with lib.hm.gvariant; {
     };
 
     "system/locale" = {
-      region = "hu_HU.UTF-8";
+      region = "en_US.UTF-8";
+    };
+
+    "org/gnome/desktop/datetime" = {
+      automatic-timezone = true;
+    };
+
+    "org/gnome/system/location" = {
+      enabled = true;
     };
 
     "com/github/stunkymonkey/nautilus-open-any-terminal" = {
-      terminal = "wezterm";
+      terminal = "kitty";
     };
 
     "org/virt-manager/virt-manager/connections" = {

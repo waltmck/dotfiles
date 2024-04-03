@@ -11,7 +11,6 @@
 
   # -- Asahi-
 
-  hardware.bluetooth.enable = true;
   hardware.opengl = {
     enable = true;
     driSupport = true;
@@ -31,6 +30,27 @@
   '';
 
   # services.jack.jackd.enable = true;
+
+  home-manager.users.waltmck.wayland.windowManager.hyprland.settings = {
+    monitor = [
+      # "eDP-1, 1920x1080, 0x0, 1"
+      # "HDMI-A-1, 2560x1440, 1920x0, 1"
+      ",preferred,auto,2"
+    ];
+
+    exec-once = [
+      "pactl set-default-sink audio_effect.j413-convolver > /home/waltmck/pactl_logs"
+    ];
+
+    input.touchpad = {
+      natural_scroll = "yes";
+      disable_while_typing = true;
+      drag_lock = true;
+      tap-to-click = false;
+      scroll_factor = 0.5;
+      clickfinger_behavior = 1;
+    };
+  };
 
   home-manager.users.waltmck.home.file.".config/hypr/per-app/asahi.conf" = {
     text = ''

@@ -71,7 +71,6 @@ const options = mkOptions(OPTIONS, {
                 "messages",
             ]),
             center: opt<BarWidget[]>([
-                "date",
             ]),
             end: opt<BarWidget[]>([
                 "media",
@@ -103,7 +102,7 @@ const options = mkOptions(OPTIONS, {
         battery: {
             bar: opt<"hidden" | "regular" | "whole">("regular"),
             charging: opt("#00D787"),
-            percentage: opt(true),
+            percentage: opt(false),
             blocks: opt(7),
             width: opt(50),
             low: opt(30),
@@ -122,12 +121,12 @@ const options = mkOptions(OPTIONS, {
         systray: {
             ignore: opt([
                 "KDE Connect Indicator",
-                "spotify-client",
+                "spot",
             ]),
         },
         media: {
             monochrome: opt(true),
-            preferred: opt("spotify"),
+            preferred: opt("spot"),
             direction: opt<"left" | "right">("right"),
             format: opt("{artists} - {title}"),
             length: opt(40),
@@ -158,7 +157,7 @@ const options = mkOptions(OPTIONS, {
                     "org.gnome.Calendar",
                     "obsidian",
                     "discord",
-                    "spotify",
+                    "spot",
                 ],
             ]),
         },

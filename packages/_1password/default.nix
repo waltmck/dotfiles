@@ -42,7 +42,7 @@
     after = ["graphical-session.target"];
 
     script = ''
-      ${pkgs._1password-gui.override {polkitPolicyOwners = ["waltmck"];}}/bin/1password --silent 2>/home/waltmck/1password-logs
+      ${pkgs._1password-gui.override {polkitPolicyOwners = ["waltmck"];}}/bin/1password --silent
     '';
   };
 

@@ -38,16 +38,13 @@ in {
         # "transmission-gtk"
       ];
 
-      monitor = [
-        # "eDP-1, 1920x1080, 0x0, 1"
-        # "HDMI-A-1, 2560x1440, 1920x0, 1"
-        ",preferred,auto,2"
-      ];
-
       general = {
         layout = "dwindle";
         resize_on_border = true;
         no_cursor_warps = true;
+
+        gaps_in = 4;
+        gaps_out = 8;
       };
 
       misc = {
@@ -57,14 +54,6 @@ in {
 
       input = {
         follow_mouse = 1;
-        touchpad = {
-          natural_scroll = "yes";
-          disable_while_typing = true;
-          drag_lock = true;
-          tap-to-click = false;
-          scroll_factor = 0.3;
-          clickfinger_behavior = 1;
-        };
         sensitivity = 0;
         float_switch_override_focus = 2;
       };
@@ -100,7 +89,10 @@ in {
         (f "xdg-desktop-portal-gnome")
         (f "transmission-gtk")
         (f "com.github.Aylur.ags")
-        "workspace 7, title:Spotify"
+
+        (f "dev.alextren.Spot")
+        (f "1Password")
+        "stayfocused,class:^(1Password)$"
       ];
 
       bind = let
@@ -119,22 +111,23 @@ in {
           "SUPER, Tab,     ${e} -t overview"
           ",XF86PowerOff,  ${e} -r 'powermenu.shutdown()'"
           "SUPER,O,        ${e} -r 'recorder.start()'"
-          "SUPER,P,        ${e} -r 'recorder.screenshot()'"
-          "SUPER SHIFT,P,  ${e} -r 'recorder.screenshot(true)'"
-          "SUPER, Return, exec, xterm" # xterm is a symlink, not actually xterm
+          "SUPER SHIFT,P,  ${e} -r 'recorder.screenshot()'"
+          "SUPER,P,        ${e} -r 'recorder.screenshot(true)'"
+          # "SUPER, Return, exec, xterm" # xterm is a symlink, not actually xterm
 
           "SUPER, W, exec, firefox"
           "SUPER, Q, exec, kitty"
+          "SUPER, E, ${e} -t datemenu"
+          "SUPER, S, exec, spot"
+          "SUPER, T, exec, 1password --quick-access"
 
-          # youtube
-          ", XF86Launch1,  exec, ${yt}"
-
-          "SUPER, Tab, focuscurrentorlast"
+          # SUPER, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"
+          "CTRL ALT, Backspace, exit"
           "SUPER, D, killactive"
           "SUPER, F, togglefloating"
           "SUPER, A, fullscreen"
-          "SUPER, S, fakefullscreen"
+          "SUPER SHIFT, A, fakefullscreen"
           "SUPER, V, togglesplit"
 
           (mvfocus "k" "u")
@@ -164,6 +157,7 @@ in {
         ",XF86KbdBrightnessDown, exec, ${brightnessctl} -d asus::kbd_backlight set  1-"
         ",XF86AudioRaiseVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ +5%"
         ",XF86AudioLowerVolume,  exec, ${pactl} set-sink-volume @DEFAULT_SINK@ -5%"
+        ",XF86AudioMute,         exec, ${pactl} set-sink-mute @DEFAULT_SINK@ toggle"
       ];
 
       bindl = [

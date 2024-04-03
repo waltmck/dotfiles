@@ -50,7 +50,7 @@
     };
   };
 
-  time.timeZone = "America/NewYork";
+  time.timeZone = "America/New_York";
 
   # -- System Packages --
 
@@ -121,6 +121,31 @@
 
     home.stateVersion = "23.11";
   };
+
+  # Networking
+
+  networking.networkmanager.enable = true;
+
+  # bluetooth
+  hardware.bluetooth = {
+    enable = true;
+
+    settings = {
+      General = {
+        Name = "Hello";
+        ControllerMode = "dual";
+        FastConnectable = "true";
+        Experimental = "true";
+      };
+      Policy = {
+        AutoEnable = "true";
+      };
+    };
+
+    powerOnBoot = true;
+  };
+
+  services.blueman.enable = true;
 
   system.stateVersion = "24.05"; # Did you read the comment?
 }

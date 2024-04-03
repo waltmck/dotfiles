@@ -1,5 +1,5 @@
 {
-  time.timeZone = "Europe/Budapest";
+  time.timeZone = "America/NewYork";
 
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
