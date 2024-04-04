@@ -91,6 +91,10 @@
 
   security.pam.services.greetd.enableGnomeKeyring = true;
 
+  # This fixes the problem of the gnome-keyring not being logged into at boot
+  # for reasons outside of my comprehension
+  security.pam.services.sddm.enableGnomeKeyring = true;
+
   services.greetd = {
     enable = true;
     settings.default_session.command = pkgs.writeShellScript "greeter" ''

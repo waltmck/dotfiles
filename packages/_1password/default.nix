@@ -55,15 +55,6 @@
       '';
     };
 
-    # Hyprland 1password quick access
-    home.file.".config/hypr/per-app/_1password.conf" = {
-      text = ''
-        bind = SUPER, T, exec, ${pkgs._1password-gui.override {polkitPolicyOwners = ["waltmck"];}}/bin/1password --quick-access
-        windowrulev2 = float,class:^(1Password)$
-        windowrulev2 = stayfocused,class:^(1Password)$
-      '';
-    };
-
     # Persist secret state
     home.persistence."/nix/state/home/waltmck" = {
       directories = [".config/1Password"];
