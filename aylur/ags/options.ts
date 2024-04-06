@@ -46,8 +46,8 @@ const options = mkOptions(OPTIONS, {
         },
 
         shadows: opt(true),
-        padding: opt(7),
-        spacing: opt(12),
+        padding: opt(3),
+        spacing: opt(5),
         radius: opt(11),
     },
 
@@ -71,6 +71,7 @@ const options = mkOptions(OPTIONS, {
                 "messages",
             ]),
             center: opt<BarWidget[]>([
+                // TODO: insert notch
             ]),
             end: opt<BarWidget[]>([
                 "media",

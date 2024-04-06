@@ -17,9 +17,9 @@
   # virtualisation
   programs.virt-manager.enable = true;
   virtualisation = {
-    podman.enable = true;
-    docker.enable = true;
-    libvirtd.enable = true;
+    #podman.enable = true;
+    #docker.enable = true;
+    #libvirtd.enable = true;
   };
 
   # dconf
@@ -40,7 +40,7 @@
       excludePackages = [pkgs.xterm];
     };
     printing.enable = true;
-    flatpak.enable = true;
+    # flatpak.enable = true;
   };
 
   # logind
