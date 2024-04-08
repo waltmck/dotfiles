@@ -32,6 +32,8 @@
           "gnomeTheme.bookmarksToolbarUnderTabs" = true;
           "gnomeTheme.normalWidthTabs" = false;
           "gnomeTheme.tabsAsHeaderbar" = false;
+          "gnomeTheme.activeTabContrast" = true;
+          "browser.toolbars.bookmarks.visibility" = false;
         };
         userChrome = ''
           @import "firefox-gnome-theme/userChrome.css";
