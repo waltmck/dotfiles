@@ -5,30 +5,33 @@ if (!dependencies("brightnessctl"))
 
 const get = (args: string) => Number(Utils.exec(`brightnessctl ${args}`))
 const screen = await bash`ls -w1 /sys/class/backlight | head -1`
-const kbd = await bash`ls -w1 /sys/class/leds | head -1`
+const kbd = "kbd_backlight" // await bash`ls -w1 /sys/class/leds | head -1`
 
 class Brightness extends Service {
     static {
         Service.register(this, {}, {
             "screen": ["float", "rw"],
-            "kbd": ["int", "rw"],
+            "kbd": ["float", "rw"],
         })
     }
 
     #kbdMax = get(`--device ${kbd} max`)
-    #kbd = get(`--device ${kbd} get`)
+    #kbd = get(`--device ${kbd} get`) / get(`--device ${kbd} max`)
     #screenMax = get("max")
     #screen = get("get") / get("max")
 
     get kbd() { return this.#kbd }
     get screen() { return this.#screen }
 
-    set kbd(value) {
-        if (value < 0 || value > this.#kbdMax)
-            return
+    set kbd(percent) {
+        if (percent < 0)
+            percent = 0
 
-        sh(`brightnessctl -d ${kbd} s ${value} -q`).then(() => {
-            this.#kbd = value
+        if (percent > 1)
+            percent = 1
+
+        sh(`brightnessctl --device ${kbd} set ${Math.floor(percent * 100)}% -q`).then(() => {
+            this.#kbd = percent
             this.changed("kbd")
         })
     }

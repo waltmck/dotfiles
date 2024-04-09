@@ -20,6 +20,7 @@
     extensions = with pkgs.vscode-extensions; [
       kamadorueda.alejandra # Nix code formatter
       bbenoist.nix # Nix code prettifier
+      piousdeer.adwaita-theme # Make it match adwaita styling
     ];
   };
 }
