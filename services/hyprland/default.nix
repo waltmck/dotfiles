@@ -172,7 +172,7 @@
 
         misc = {
           disable_splash_rendering = true;
-          force_default_wallpaper = 3;
+          force_default_wallpaper = 0;
         };
 
         input = {

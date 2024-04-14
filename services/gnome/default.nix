@@ -20,9 +20,6 @@
     #libvirtd.enable = true;
   };
 
-  # dconf
-  programs.dconf.enable = true;
-
   # kde connect
   networking.firewall = rec {
     allowedTCPPortRanges = [
@@ -35,6 +32,8 @@
   };
 
   home-manager.users.waltmck = {
+    imports = [./dconf.nix];
+
     home = {
       sessionVariables = {
         QT_XCB_GL_INTEGRATION = "none"; # kde-connect
@@ -77,15 +76,6 @@
       };
     };
 
-    imports = ["${inputs.impermanence}/home-manager.nix"];
-
     xdg.userDirs.enable = true;
-
-    home.persistence."/nix/state/home/waltmck" = {
-      directories = [".local/share/keyrings"];
-      files = [];
-
-      allowOther = false;
-    };
   };
 }

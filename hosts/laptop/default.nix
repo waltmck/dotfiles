@@ -37,7 +37,7 @@
     ../../packages/aylur
 
     ../../services/ags-laptop
-    # ../../services/gnome
+    ../../services/gnome
     ../../services/hyprland
     ../../services/nixos
     ../../services/bluetooth

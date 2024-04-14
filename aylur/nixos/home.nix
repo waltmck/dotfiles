@@ -10,7 +10,7 @@
     ../home-manager/blackbox.nix
     # ../home-manager/browser.nix Need to fix firefox persistence
     ##### ../home-manager/bspwm.nix
-    ../home-manager/dconf.nix
+    # REFACTORED ../home-manager/dconf.nix
     ../home-manager/distrobox.nix
     ##### ../home-manager/git.nix
     ##### ../home-manager/helix.nix
