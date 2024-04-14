@@ -25,7 +25,6 @@
     gimp
     transmission_4-gtk
     # discord <- no aarch64-linux support
-    teams-for-linux
     icon-library
     dconf-editor
     gnome-secrets

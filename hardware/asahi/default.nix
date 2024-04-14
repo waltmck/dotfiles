@@ -48,8 +48,14 @@
       disable_while_typing = true;
       drag_lock = true;
       tap-to-click = false;
-      scroll_factor = 0.3;
+      scroll_factor = 0.2;
       clickfinger_behavior = 1;
+    };
+
+    gestures = {
+      workspace_swipe = true;
+      workspace_swipe_forever = true;
+      workspace_swipe_numbered = true;
     };
   };
 
@@ -71,6 +77,8 @@
 
     wireplumber = {
       enable = true;
+
+      # Disable unused virtual device
       configPackages = [
         (pkgs.writeTextDir "share/wireplumber/main.lua.d/51-alsa-disable.lua" ''
           rule = {

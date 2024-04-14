@@ -49,12 +49,12 @@ in {
 
       misc = {
         disable_splash_rendering = true;
-        force_default_wallpaper = 1;
+        force_default_wallpaper = 3;
       };
 
       input = {
         follow_mouse = 1;
-        sensitivity = 0;
+        sensitivity = 0.5;
         float_switch_override_focus = 2;
       };
 
@@ -66,12 +66,6 @@ in {
         pseudotile = "yes";
         preserve_split = "yes";
         # no_gaps_when_only = "yes";
-      };
-
-      gestures = {
-        workspace_swipe = true;
-        workspace_swipe_forever = true;
-        workspace_swipe_numbered = true;
       };
 
       windowrule = let
