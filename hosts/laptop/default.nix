@@ -20,7 +20,7 @@
     ../../packages/_1password
     ../../packages/bash
     ../../packages/git
-    ../../packages/iwd
+    # ../../packages/iwd
     ../../packages/ssh
     ../../packages/firefox
     ../../packages/obsidian
@@ -35,6 +35,13 @@
     # ../../packages/ags
 
     ../../packages/aylur
+
+    ../../services/ags-laptop
+    # ../../services/gnome
+    ../../services/hyprland
+    ../../services/nixos
+    ../../services/bluetooth
+    ../../services/internet
   ];
 
   # See installation notes for how to find this

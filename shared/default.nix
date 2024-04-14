@@ -86,25 +86,6 @@
     };
   };
 
-  # -- Persistence --
-  environment.persistence."/nix/state" = {
-    directories = [
-      "/etc/NetworkManager/system-connections" # WiFi Connections
-      "/var/lib/bluetooth" # Bluetooth connections
-    ];
-    files = [
-      "/etc/machine-id"
-    ];
-  };
-
-  # NixOS
-  nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
-
   home-manager.users.waltmck = {
     imports = ["${inputs.impermanence}/home-manager.nix"];
 
@@ -123,10 +104,6 @@
 
     home.stateVersion = "23.11";
   };
-
-  # Networking
-
-  networking.networkmanager.enable = true;
 
   # bluetooth
   hardware.bluetooth = {

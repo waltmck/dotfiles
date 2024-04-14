@@ -9,7 +9,6 @@
 }: {
   imports = [
     "${inputs.home-manager}/nixos"
-    ../../aylur/nixos/nixos.nix
   ];
 
   home-manager.extraSpecialArgs = {
