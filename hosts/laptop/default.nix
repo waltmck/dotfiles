@@ -18,14 +18,14 @@
     ../../hardware/sound
 
     ../../packages/_1password
-    ../../packages/bash
+    ../../packages/sh
     ../../packages/git
-    # ../../packages/iwd
     ../../packages/ssh
     ../../packages/firefox
     ../../packages/obsidian
     ../../packages/vscode
     ../../packages/kitty
+    ../../packages/blackbox
     ../../packages/spot
 
     # ../../packages/wofi

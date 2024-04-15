@@ -17,7 +17,7 @@
     # gui
     obsidian
     (mpv.override {scripts = [mpvScripts.mpris];})
-    # libreoffice
+    libreoffice
     # spotify <- no aarch64-linux support
     # caprine-bin # <- no aarch64-linux support
     d-spy

@@ -15,12 +15,5 @@
         confirm_os_window_close = 0;
       };
     };
-
-    # kitty shortcut
-    home.file.".config/hypr/per-app/kitty.conf" = {
-      text = ''
-        bind = SUPER, Y, exec, ${pkgs.kitty}/bin/kitty
-      '';
-    };
   };
 }

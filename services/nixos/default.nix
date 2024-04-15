@@ -5,8 +5,11 @@
   asztal,
   ...
 }: {
+  # Imports and state version
+  system.stateVersion = "24.05";
   imports = [
     "${inputs.home-manager}/nixos"
+    "${inputs.impermanence}/nixos.nix"
   ];
 
   # nix
@@ -31,16 +34,6 @@
     #docker.enable = true;
     #libvirtd.enable = true;
   };
-
-  # dconf
-  programs.dconf.enable = true;
-
-  # packages
-  environment.systemPackages = with pkgs; [
-    neovim
-    git
-    wget
-  ];
 
   # services
   services = {
@@ -70,7 +63,14 @@
     allowedUDPPortRanges = allowedTCPPortRanges;
   };
 
+  home-manager.useUserPackages = true;
+  home-manager.useGlobalPkgs = true;
+
   home-manager.users.waltmck = {
+    # Imports and stateVersion
+    home.stateVersion = "23.11";
+    imports = ["${inputs.impermanence}/home-manager.nix"];
+
     programs.home-manager.enable = true;
 
     news.display = "show";
@@ -79,45 +79,6 @@
       experimental-features = ["nix-command" "flakes"];
       warn-dirty = false;
     };
-
-    home = {
-      sessionVariables = {
-        QT_XCB_GL_INTEGRATION = "none"; # kde-connect
-        NIXPKGS_ALLOW_UNFREE = "1";
-        NIXPKGS_ALLOW_INSECURE = "1";
-        BAT_THEME = "base16";
-        GOPATH = "/home/waltmck/.local/share/go";
-        GOMODCACHE = "/home/waltmck/.cache/go/pkg/mod";
-      };
-
-      sessionPath = [
-        "$HOME/.local/bin"
-      ];
-    };
-
-    gtk.gtk3.bookmarks = let
-      home = "/home/waltmck";
-    in [
-      "file://${home}/Documents"
-      "file://${home}/Music"
-      "file://${home}/Pictures"
-      "file://${home}/Videos"
-      "file://${home}/Downloads"
-      "file://${home}/Desktop"
-      "file://${home}/Work"
-      "file://${home}/Projects"
-      "file://${home}/Vault"
-      "file://${home}/Vault/School School"
-      "file://${home}/.config Config"
-      "file://${home}/.local/share Local"
-    ];
-
-    services = {
-      kdeconnect = {
-        enable = true;
-        indicator = true;
-      };
-    };
   };
 
   # -- Persistence --
@@ -125,6 +86,11 @@
     files = [
       "/etc/machine-id"
     ];
+  };
+
+  environment.sessionVariables = rec {
+    NIXOS_OZONE_WL = "1";
+    NIXPKGS_ALLOW_UNFREE = "1";
   };
 
   users.mutableUsers = false;

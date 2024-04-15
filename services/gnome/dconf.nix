@@ -144,7 +144,7 @@ with lib.hm.gvariant; {
     };
 
     "com/github/stunkymonkey/nautilus-open-any-terminal" = {
-      terminal = "kitty";
+      terminal = "blackbox";
     };
 
     "org/virt-manager/virt-manager/connections" = {
