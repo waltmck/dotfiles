@@ -15,7 +15,6 @@
     ../../shared
     ../../hardware/asahi
     ../../hardware/filesystem
-    ../../hardware/sound
 
     ../../packages/_1password
     ../../packages/sh
@@ -27,6 +26,7 @@
     ../../packages/kitty
     ../../packages/blackbox
     ../../packages/spot
+    ../../packages/fractal
 
     # ../../packages/wofi
     # ../../packages/gnome
@@ -42,6 +42,7 @@
     ../../services/nixos
     ../../services/bluetooth
     ../../services/internet
+    ../../services/audio
   ];
 
   # See installation notes for how to find this

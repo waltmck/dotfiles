@@ -42,7 +42,14 @@
     gnome-calculator
     gnome-clocks
     gnome-maps
-    gnome-software # for flatpak
+    gnome-contacts
+    gnome-power-manager
+    # gnome-secrets
+    gnome-logs # systemd logs
+    endeavour # tasks manager
+
+    evolution # Necessary to configure FastMail calendar for God knows what reason
+    # gnome-software # for flatpak
 
     # gui
     obsidian
@@ -56,7 +63,6 @@
     # discord <- no aarch64-linux support
     icon-library
     dconf-editor
-    gnome-secrets
 
     # tools
     # steam-run # fhs envs <- no aarch64 support
@@ -79,5 +85,22 @@
     # wine-staging <- no aarch64-linux support
 
     wezterm
+
+    setzer # LaTex
+    newsflash # RSS
+    passes # Passes manager
+
+    # File Readers
+
+    evince # PDF reader
+    celluloid # Video player
+    foliate # ebook reader
+
+    ## COMMUNICATION
+
+    dissent # Discord client
+    flare-signal # Signal client
+    polari # IRC client
+    paper-plane # Telegram client
   ];
 }

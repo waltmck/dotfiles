@@ -5,17 +5,15 @@
   inputs,
   ...
 }: {
-  imports = ["${inputs.home-manager}/nixos"];
-
-  environment.systemPackages = [pkgs.spot];
+  environment.systemPackages = [pkgs.fractal];
 
   home-manager.users.waltmck.wayland.windowManager.hyprland.settings.exec-once = [
-    "${pkgs.spot}/bin/spot --gapplication-service"
+    "${pkgs.fractal}/bin/fractal --gapplication-service" # To get background notifications
   ];
 
   home-manager.users.waltmck = {
     home.persistence."/nix/state/home/waltmck" = {
-      directories = [".cache/spot/librespot"];
+      directories = [".local/share/fractal"];
     };
   };
 }

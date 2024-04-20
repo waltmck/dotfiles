@@ -55,7 +55,6 @@
     gestures = {
       workspace_swipe = true;
       workspace_swipe_forever = true;
-      workspace_swipe_numbered = true;
     };
   };
 
@@ -65,37 +64,11 @@
     '';
   };
 
-  sound.enable = true;
-  security.rtkit.enable = true;
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-
-    wireplumber = {
-      enable = true;
-
-      # Disable unused virtual device
-      configPackages = [
-        (pkgs.writeTextDir "share/wireplumber/main.lua.d/51-alsa-disable.lua" ''
-          rule = {
-            matches = {
-              {
-                { "device.name", "equals", "alsa_card.platform-snd_aloop.0" },
-              },
-            },
-            apply_properties = {
-              ["device.disabled"] = true,
-            },
-          }
-
-          table.insert(alsa_monitor.rules,rule)
-        '')
-      ];
-    };
+  # -- Persistence --
+  environment.persistence."/nix/state" = {
+    files = [
+      "/sys/devices/platform/soc/231c00000.dcp/backlight/apple-panel-bl/brightness" # Persist screen brightness
+    ];
   };
 
   system.stateVersion = "24.05"; # Did you read the comment?

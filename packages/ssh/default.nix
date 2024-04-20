@@ -24,7 +24,7 @@
   };
 
   services.openssh = {
-    enable = true;
+    enable = false; # Disable ssh server (save battery, increase security)
     settings = {
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;

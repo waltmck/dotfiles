@@ -49,7 +49,7 @@
   services.logind.extraConfig = ''
     HandlePowerKey=ignore
     HandleLidSwitch=suspend
-    HandleLidSwitchExternalPower=ignore
+    HandleLidSwitchExternalPower=suspend
   '';
 
   # kde connect
@@ -83,8 +83,16 @@
 
   # -- Persistence --
   environment.persistence."/nix/state" = {
+    directories = [
+    ];
     files = [
       "/etc/machine-id"
+    ];
+  };
+
+  home-manager.users.waltmck.home.persistence."/nix/state/home/waltmck" = {
+    files = [
+      "/.local/state/wireplumber/restore-stream" # Persist volume
     ];
   };
 
@@ -101,7 +109,7 @@
     waltmck = {
       initialHashedPassword = "$6$EkkeNxXqJ8H12NTS$cgxh3gdWgQTPhZrojyO1TOGdTUH8qWm/184uLBIjTkYpfgJEOQlRXxQuoGgXvskcYAjRS1WcpO04VzzBo4WNw/";
       isNormalUser = true;
-      extraGroups = ["wheel" "sudo" "networkmanager"];
+      extraGroups = ["users" "wheel" "sudo" "networkmanager"];
 
       openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDIhzYxT+Dociep+0p5a2xr9T8UDJYCa9wbYRNux4LN2 walt@waltmckelvie.com"];
     };

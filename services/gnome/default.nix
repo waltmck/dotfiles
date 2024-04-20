@@ -66,6 +66,8 @@
         "Documents"
         "src"
         ".local/share/keyrings"
+        ".local/share/evolution" # Mail, contacts, calendar, tasks
+        ".local/share/geary"
       ];
       files = [];
 
