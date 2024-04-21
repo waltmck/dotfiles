@@ -1,4 +1,8 @@
-{ config, pkgs, ...}: let
+{
+  config,
+  pkgs,
+  ...
+}: let
   lang = icon: color: {
     symbol = icon;
     format = "[$symbol ](${color})";
@@ -34,7 +38,7 @@
       format = "  ";
     };
     continuation_prompt = "∙  ┆ ";
-    line_break = { disabled = false; };
+    line_break = {disabled = false;};
     status = {
       symbol = "✗";
       not_found_symbol = "󰍉 Not Found";
@@ -103,28 +107,30 @@
     c = lang "" "blue";
     golang = lang "" "blue";
   };
-  tomlFormat = pkgs.formats.toml { };
+  tomlFormat = pkgs.formats.toml {};
   starshipCmd = "${pkgs.starship}/bin/starship";
 in {
-  xdg.configFile."starship.toml" = {
-    source = tomlFormat.generate "starship-config" settings;
-  };
+  home-manager.users.waltmck = {
+    xdg.configFile."starship.toml" = {
+      source = tomlFormat.generate "starship-config" settings;
+    };
 
-  programs.bash.initExtra = ''
-    eval "$(${starshipCmd} init bash)"
-  '';
-
-  programs.zsh.initExtra = ''
-    eval "$(${starshipCmd} init zsh)"
-  '';
-
-  programs.nushell = {
-    extraEnv = ''
-      mkdir ${config.xdg.cacheHome}/starship
-      ${starshipCmd} init nu | save -f ${config.xdg.cacheHome}/starship/init.nu
+    programs.bash.initExtra = ''
+      eval "$(${starshipCmd} init bash)"
     '';
-    extraConfig = ''
-      use ${config.xdg.cacheHome}/starship/init.nu
+
+    programs.zsh.initExtra = ''
+      eval "$(${starshipCmd} init zsh)"
     '';
+
+    programs.nushell = {
+      extraEnv = ''
+        mkdir /home/waltmck/.cache/starship
+        ${starshipCmd} init nu | save -f /home/waltmck/.cache/starship/init.nu
+      '';
+      extraConfig = ''
+        use /home/waltmck/.cache/starship/init.nu
+      '';
+    };
   };
 }

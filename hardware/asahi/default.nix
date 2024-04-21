@@ -48,7 +48,7 @@
       disable_while_typing = true;
       drag_lock = true;
       tap-to-click = false;
-      scroll_factor = 0.4;
+      scroll_factor = 0.5;
       clickfinger_behavior = 1;
     };
 
@@ -67,7 +67,7 @@
   # -- Persistence --
   environment.persistence."/nix/state" = {
     files = [
-      "/sys/devices/platform/soc/231c00000.dcp/backlight/apple-panel-bl/brightness" # Persist screen brightness
+      # "/sys/devices/platform/soc/231c00000.dcp/backlight/apple-panel-bl/brightness" # Persist screen brightness
     ];
   };
 

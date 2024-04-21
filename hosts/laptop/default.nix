@@ -28,14 +28,14 @@
     ../../packages/spot
     ../../packages/fractal
     ../../packages/tmux
+    ../../packages/newsflash
+    ../../packages/starship
 
     # ../../packages/wofi
     # ../../packages/gnome
     # ../../packages/greetd
     # ../../packages/hyprland
     # ../../packages/ags
-
-    ../../packages/aylur
 
     ../../services/ags-laptop
     ../../services/gnome

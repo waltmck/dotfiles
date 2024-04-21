@@ -81,6 +81,11 @@
     };
   };
 
+  home-manager.extraSpecialArgs = {
+    inherit inputs;
+    inherit asztal;
+  };
+
   # -- Persistence --
   environment.persistence."/nix/state" = {
     directories = [

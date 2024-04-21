@@ -9,7 +9,7 @@
 
   home-manager.users.waltmck = {
     home.persistence."/nix/state/home/waltmck" = {
-      files = [".cache/news_flash/HSTS/hsts-storage.sqlite"];
+      directories = [".cache/news_flash"];
     };
   };
 }

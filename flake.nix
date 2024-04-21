@@ -48,7 +48,7 @@
     ...
   } @ inputs: {
     packages.aarch64-linux.default =
-      nixpkgs.legacyPackages.aarch64-linux.callPackage ./aylur/ags {inherit inputs;};
+      nixpkgs.legacyPackages.aarch64-linux.callPackage ./services/ags-laptop/ags {inherit inputs;};
 
     nixosConfigurations = {
       "walt-laptop" = nixpkgs.lib.nixosSystem rec {

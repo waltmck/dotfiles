@@ -97,7 +97,7 @@
 
     playerctl = "${pkgs.playerctl}/bin/playerctl";
     brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
-    pactl = "${pkgs.pulseaudio}/bin/pactl";
+    wpctl = "${pkgs.wireplumber}/bin/wpctl";
   in {
     enable = true;
     package = hyprland;
@@ -223,9 +223,9 @@
         ",XF86MonBrightnessDown, exec, ${brightnessctl} set  5%-"
         ",XF86KbdBrightnessUp,   exec, ${brightnessctl} -d asus::kbd_backlight set +1"
         ",XF86KbdBrightnessDown, exec, ${brightnessctl} -d asus::kbd_backlight set  1-"
-        ",XF86AudioRaiseVolume,  exec, ${pactl} set-sink-volume -l 1 @DEFAULT_SINK@ +5%"
-        ",XF86AudioLowerVolume,  exec, ${pactl} set-sink-volume -l 1 @DEFAULT_SINK@ -5%"
-        ",XF86AudioMute,         exec, ${pactl} set-sink-mute @DEFAULT_SINK@ toggle"
+        ",XF86AudioRaiseVolume,  exec, ${wpctl} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
+        ",XF86AudioLowerVolume,  exec, ${wpctl} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-"
+        ",XF86AudioMute,         exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
       ];
 
       bindl = [
@@ -234,7 +234,7 @@
         ",XF86AudioPause,   exec, ${playerctl} pause"
         ",XF86AudioPrev,    exec, ${playerctl} previous"
         ",XF86AudioNext,    exec, ${playerctl} next"
-        ",XF86AudioMicMute, exec, ${pactl} set-source-mute @DEFAULT_SOURCE@ toggle"
+        ",XF86AudioMicMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
       ];
 
       bindm = [
