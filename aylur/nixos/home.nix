@@ -5,7 +5,7 @@
   ...
 }: {
   imports = [
-    ../home-manager/nvim.nix
+    ##### ../home-manager/nvim.nix
     # REFACTORED ../home-manager/ags.nix
     # REFACTORED ../home-manager/blackbox.nix
     # ../home-manager/browser.nix Need to fix firefox persistence
@@ -23,7 +23,7 @@
     ../home-manager/stm.nix
     ##### ../home-manager/sway.nix
     # REFACTORED ../home-manager/theme.nix
-    ../home-manager/tmux.nix
+    # REFACTORED ../home-manager/tmux.nix
     # ../home-manager/wezterm.nix
 
     # REMOVED ../home-manager/distrobox.nix

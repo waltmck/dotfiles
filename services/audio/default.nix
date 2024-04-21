@@ -43,9 +43,9 @@
     };
   };
 
-  home-manager.users.waltmck.home.persistence."/nix/state/home/waltmck" = {
-    files = [
-      "/.local/state/wireplumber/restore-stream" # Persist volume
-    ];
-  };
+  #home-manager.users.waltmck.home.persistence."/nix/state/home/waltmck" = {
+  #  files = [
+  #    ".local/state/wireplumber/restore-stream" # Persist volume
+  #  ];
+  #};
 }

@@ -40,7 +40,7 @@
     ];
 
     exec-once = [
-      "pactl set-default-sink audio_effect.j413-convolver > /home/waltmck/pactl_logs"
+      "pactl set-default-sink audio_effect.j413-convolver"
     ];
 
     input.touchpad = {
@@ -48,7 +48,7 @@
       disable_while_typing = true;
       drag_lock = true;
       tap-to-click = false;
-      scroll_factor = 0.2;
+      scroll_factor = 0.4;
       clickfinger_behavior = 1;
     };
 

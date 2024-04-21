@@ -34,6 +34,8 @@
           "gnomeTheme.tabsAsHeaderbar" = false;
           "gnomeTheme.activeTabContrast" = true;
           "browser.toolbars.bookmarks.visibility" = false;
+          "mousewheel.default.delta_multiplier_y" = 75;
+          "mousewheel.default.delta_multiplier_x" = 40;
         };
         userChrome = ''
           @import "firefox-gnome-theme/userChrome.css";

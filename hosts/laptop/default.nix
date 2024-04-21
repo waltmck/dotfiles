@@ -27,6 +27,7 @@
     ../../packages/blackbox
     ../../packages/spot
     ../../packages/fractal
+    ../../packages/tmux
 
     # ../../packages/wofi
     # ../../packages/gnome

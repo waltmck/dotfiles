@@ -87,7 +87,6 @@
     wezterm
 
     setzer # LaTex
-    newsflash # RSS
     passes # Passes manager
 
     # File Readers
