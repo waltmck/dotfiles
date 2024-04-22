@@ -30,6 +30,7 @@
     ../../packages/tmux
     ../../packages/newsflash
     ../../packages/starship
+    ../../packages/dissent
 
     # ../../packages/wofi
     # ../../packages/gnome

@@ -96,7 +96,6 @@
 
     ## COMMUNICATION
 
-    dissent # Discord client
     flare-signal # Signal client
     polari # IRC client
     paper-plane # Telegram client
