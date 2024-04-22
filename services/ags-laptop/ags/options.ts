@@ -46,8 +46,8 @@ const options = mkOptions(OPTIONS, {
         },
 
         shadows: opt(true),
-        padding: opt(2),
-        spacing: opt(13),
+        padding: opt(4),
+        spacing: opt(10),
         radius: opt(11),
     },
 
@@ -101,9 +101,9 @@ const options = mkOptions(OPTIONS, {
             action: opt(() => App.toggleWindow("datemenu")),
         },
         battery: {
-            bar: opt<"hidden" | "regular" | "whole">("regular"),
+            bar: opt<"hidden" | "regular" | "whole">("hidden"),
             charging: opt("#00D787"),
-            percentage: opt(false),
+            percentage: opt(true),
             blocks: opt(7),
             width: opt(50),
             low: opt(30),

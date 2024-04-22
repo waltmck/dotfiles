@@ -46,6 +46,7 @@ export default (monitor: number) => Widget.Window({
             children: start.bind().as(s => s.map(w => widget[w]())),
         }),
         centerWidget: Widget.Box({
+            css: "min-width: 190px", // Notch
             hpack: "center",
             children: center.bind().as(c => c.map(w => widget[w]())),
         }),

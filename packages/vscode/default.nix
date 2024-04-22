@@ -25,6 +25,6 @@
 
   # Persist cache state
   home-manager.users.waltmck.home.persistence."/nix/state/home/waltmck" = {
-    directories = [".config/Code/CachedData"];
+    directories = [".config/Code"];
   };
 }

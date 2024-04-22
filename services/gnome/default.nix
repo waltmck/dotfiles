@@ -57,6 +57,8 @@
     in [
       "file://${home}/Documents"
       "file://${home}/Downloads"
+      "file://${home}/Videos"
+      "file://${home}/Pictures"
       "file://${home}/src Source"
     ];
 
@@ -64,6 +66,8 @@
       directories = [
         "Downloads"
         "Documents"
+        "Videos"
+        "Pictures"
         "src"
         ".local/share/keyrings"
         ".local/share/evolution" # Mail, contacts, calendar, tasks

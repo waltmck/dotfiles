@@ -96,8 +96,8 @@
   };
 
   home-manager.users.waltmck.home.persistence."/nix/state/home/waltmck" = {
-    files = [
-      "/.local/state/wireplumber/restore-stream" # Persist volume
+    directories = [
+      ".cache/nix" # Nix evaluation cache
     ];
   };
 

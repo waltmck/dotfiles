@@ -15,7 +15,7 @@
 
   home-manager.users.waltmck = {
     home.persistence."/nix/state/home/waltmck" = {
-      directories = [".cache/spot/librespot"];
+      directories = [".cache/spot"];
     };
   };
 }

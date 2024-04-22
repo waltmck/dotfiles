@@ -9,7 +9,12 @@
 
   home-manager.users.waltmck = {
     home.persistence."/nix/state/home/waltmck" = {
-      directories = [".cache/news_flash"];
+      directories = [
+        ".local/share/news-flash" # I'm not sure why it uses both of these directories, probably a bug?
+        ".local/share/news_flash"
+        ".cache/news_flash"
+        ".config/news-flash"
+      ];
     };
   };
 }

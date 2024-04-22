@@ -46,9 +46,11 @@
       };
     };
 
-    # Persist bookmarks, history, account, etc.
     home.persistence."/nix/state/home/waltmck" = {
-      directories = [".mozilla"];
+      directories = [
+        ".mozilla" # Bookmarks, history, account, etc.
+        ".cache/mozilla/firefox" # Cache for faster start time
+      ];
     };
   };
 }

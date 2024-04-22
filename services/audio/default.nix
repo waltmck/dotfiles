@@ -8,7 +8,7 @@
   # Audio uses PipeWire/pipewire-pulse with WirePlumber
 
   # Just for pactl
-  environment.systemPackages = [pkgs.pulseaudio];
+  # environment.systemPackages = [pkgs.pulseaudio];
 
   sound.enable = true;
   security.rtkit.enable = true;
@@ -43,9 +43,18 @@
     };
   };
 
+  # If you try to run this, it fails with
+  # Error installing file '/.local/state/wireplumber/restore-stream' outside $HOME
+
   #home-manager.users.waltmck.home.persistence."/nix/state/home/waltmck" = {
   #  files = [
   #    ".local/state/wireplumber/restore-stream" # Persist volume
   #  ];
   #};
+
+  home-manager.users.waltmck.home.persistence."/nix/state/home/waltmck" = {
+    files = [
+      "/.local/state/wireplumber/restore-stream" # Persist volume
+    ];
+  };
 }
