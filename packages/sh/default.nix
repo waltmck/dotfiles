@@ -21,6 +21,8 @@
       "rebuild-switch" = "sudo nixos-rebuild switch --flake /etc/nixos#walt-laptop --impure";
 
       "del" = "gio trash";
+
+      "top" = "${pkgs.btop}/bin/btop";
     };
   in {
     programs = {

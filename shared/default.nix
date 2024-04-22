@@ -15,7 +15,6 @@
     git
     wget
     htop
-    pulseaudio
     home-manager
     clang
     openssh
@@ -48,7 +47,7 @@
     gnome-logs # systemd logs
     endeavour # tasks manager
 
-    evolution # Necessary to configure FastMail calendar for God knows what reason
+    # evolution # Necessary to configure FastMail calendar for God knows what reason
     # gnome-software # for flatpak
 
     # gui

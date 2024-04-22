@@ -46,5 +46,9 @@
       #   accountsservice
       # ];
     };
+
+    home.persistence."/nix/state/home/waltmck" = {
+      directories = [".cache/ags"];
+    };
   };
 }
