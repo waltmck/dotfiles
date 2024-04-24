@@ -49,6 +49,13 @@
       inputs.systems.follows = "systems";
     };
 
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.hyprlang.follows = "hyprlang";
+      inputs.systems.follows = "systems";
+    };
+
     nix-colors.url = "github:kyesarri/nix-colors"; # colour themes
 
     alejandra = {
@@ -91,6 +98,7 @@
     hyprland,
     hyprlock,
     hypridle,
+    hyprpaper,
     apple-silicon-support,
     alejandra,
     ags,

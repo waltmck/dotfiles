@@ -22,7 +22,7 @@ class PowerMenu extends Service {
         [this.#cmd, this.#title] = {
             sleep: [sleep.value, "Sleep"],
             reboot: [reboot.value, "Reboot"],
-            logout: [logout.value, "Log Out"],
+            logout: [logout.value, "Lock"],
             shutdown: [shutdown.value, "Shutdown"],
         }[action]
 

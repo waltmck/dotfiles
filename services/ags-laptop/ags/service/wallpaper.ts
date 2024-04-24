@@ -21,6 +21,9 @@ class Wallpaper extends Service {
     #blockMonitor = false
 
     #wallpaper() {
+
+        return;
+        
         if (!dependencies("swww"))
             return
 
@@ -69,6 +72,8 @@ class Wallpaper extends Service {
 
     constructor() {
         super()
+        
+        return this;
 
         if (!dependencies("swww"))
             return this

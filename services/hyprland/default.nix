@@ -8,6 +8,9 @@
 }: {
   imports = [
     ./theme.nix
+    ./hyprlock.nix
+    ./hypridle.nix
+    ./hyprpaper.nix
   ];
 
   environment.enableDebugInfo = true;
@@ -42,14 +45,16 @@
     wayshot
     pavucontrol
     brightnessctl
-    swww
+    inputs.hyprlock.packages.${pkgs.system}.default
+    inputs.hypridle.packages.${pkgs.system}.default
+    inputs.hyprpaper.packages.${pkgs.system}.default
   ];
 
   services = {
     gvfs.enable = true;
-    devmon.enable = true;
-    udisks2.enable = true;
-    upower.enable = true;
+    # devmon.enable = true;
+    # udisks2.enable = true;
+    upower.enable = true; # For battery indicator
     power-profiles-daemon.enable = true;
     accounts-daemon.enable = true;
   };
@@ -90,6 +95,8 @@
     hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
     plugins = inputs.hyprland-plugins.packages.${pkgs.system};
 
+    hyprctl = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/hyprctl";
+
     yt = pkgs.writeShellScript "yt" ''
       notify-send "Opening video" "$(wl-paste)"
       mpv "$(wl-paste)"
@@ -108,7 +115,7 @@
     settings = {
       exec-once = [
         "ags -b hypr"
-        "hyprctl setcursor Qogir 24"
+        "${hyprctl} setcursor Qogir 24"
         # "transmission-gtk"
       ];
 
@@ -177,7 +184,7 @@
           "CTRL SHIFT, R,  ${e} quit; ags -b hypr"
           "SUPER, R,       ${e} -t launcher"
           "SUPER, Tab,     ${e} -t overview"
-          ",XF86PowerOff,  ${e} -r 'powermenu.shutdown()'"
+          ",XF86PowerOff,  ${e} -t powermenu"
           "SUPER,O,        ${e} -r 'recorder.start()'"
           "SUPER SHIFT,P,  ${e} -r 'recorder.screenshot()'"
           "SUPER,P,        ${e} -r 'recorder.screenshot(true)'"

@@ -4,7 +4,7 @@
   system,
   stdenv,
   cage,
-  swww,
+  # swww,
   esbuild,
   dart-sass,
   fd,
@@ -34,7 +34,7 @@
     fd
     fzf
     brightnessctl
-    swww
+    # swww
     # inputs.matugen.packages.${system}.default
     inputs.hyprland.packages.${system}.default
     slurp

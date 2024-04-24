@@ -71,11 +71,6 @@
   };
   */
 
-  boot.plymouth = {
-    enable = true;
-    theme = "breeze";
-  };
-
   fileSystems."/" = {
     device = "none";
     fsType = "tmpfs";

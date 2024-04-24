@@ -19,7 +19,7 @@
       dart-sass
       fd
       brightnessctl
-      swww
+      # swww
       # inputs.matugen.packages.${system}.default
       slurp
       wf-recorder
@@ -45,10 +45,31 @@
       # extraPackages = with pkgs; [
       #   accountsservice
       # ];
+
+      package = inputs.ags.packages.${pkgs.system}.default;
     };
 
     home.persistence."/nix/state/home/waltmck" = {
       directories = [".cache/ags"];
     };
   };
+  /*
+  systemd.user.services.ags = {
+    description = "Aylur's Gnome Widgets";
+    documentation = ["https://aylur.github.io/ags-docs"];
+    partOf = ["graphical-session.target"];
+    after = ["graphical-session.target"];
+    wantedBy = ["graphical-session.target"];
+
+    unitConfig = {
+      ConditionEnvironment = "WAYLAND_DISPLAY";
+    };
+
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${inputs.ags.packages.${pkgs.system}.default}/bin/ags -b hypr";
+      Restart = "on-failure";
+    };
+  };
+  */
 }

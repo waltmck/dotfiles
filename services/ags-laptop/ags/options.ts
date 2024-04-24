@@ -97,7 +97,7 @@ const options = mkOptions(OPTIONS, {
             action: opt(() => App.toggleWindow("launcher")),
         },
         date: {
-            format: opt("%H:%M"),
+            format: opt("%l:%M"),
             action: opt(() => App.toggleWindow("datemenu")),
         },
         battery: {
@@ -173,7 +173,7 @@ const options = mkOptions(OPTIONS, {
     powermenu: {
         sleep: opt("systemctl suspend"),
         reboot: opt("systemctl reboot"),
-        logout: opt("pkill Hyprland"),
+        logout: opt("loginctl lock-session"),
         shutdown: opt("shutdown now"),
         layout: opt<"line" | "box">("line"),
         labels: opt(true),

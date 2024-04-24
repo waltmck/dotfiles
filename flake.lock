@@ -376,6 +376,32 @@
         "type": "github"
       }
     },
+    "hyprpaper": {
+      "inputs": {
+        "hyprlang": [
+          "hyprlang"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": [
+          "systems"
+        ]
+      },
+      "locked": {
+        "lastModified": 1712919696,
+        "narHash": "sha256-93zNQy4LGFP5h/GrQJctd8cPE0VdCDsWigTOx2effrE=",
+        "owner": "hyprwm",
+        "repo": "hyprpaper",
+        "rev": "02ee7ff3bbd9cba72f26be7b09dde4a89fc31c21",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hyprwm",
+        "repo": "hyprpaper",
+        "type": "github"
+      }
+    },
     "impermanence": {
       "locked": {
         "lastModified": 1708968331,
@@ -491,6 +517,7 @@
         "hyprland-plugins": "hyprland-plugins",
         "hyprlang": "hyprlang",
         "hyprlock": "hyprlock",
+        "hyprpaper": "hyprpaper",
         "impermanence": "impermanence",
         "lf-icons": "lf-icons",
         "matugen": "matugen",
