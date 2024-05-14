@@ -402,6 +402,26 @@
         "type": "github"
       }
     },
+    "hyprspace": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ]
+      },
+      "locked": {
+        "lastModified": 1713989021,
+        "narHash": "sha256-oIpcibtKHP8e7yhYilK9+TaiOTApS4TqXQbdKqJpyWQ=",
+        "owner": "KZDKM",
+        "repo": "Hyprspace",
+        "rev": "a44d834af279f233a269d065d2e14fe4101d6f41",
+        "type": "github"
+      },
+      "original": {
+        "owner": "KZDKM",
+        "repo": "Hyprspace",
+        "type": "github"
+      }
+    },
     "impermanence": {
       "locked": {
         "lastModified": 1708968331,
@@ -518,6 +538,7 @@
         "hyprlang": "hyprlang",
         "hyprlock": "hyprlock",
         "hyprpaper": "hyprpaper",
+        "hyprspace": "hyprspace",
         "impermanence": "impermanence",
         "lf-icons": "lf-icons",
         "matugen": "matugen",

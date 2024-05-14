@@ -36,6 +36,8 @@
           "browser.toolbars.bookmarks.visibility" = false;
           "mousewheel.default.delta_multiplier_y" = 60;
           "mousewheel.default.delta_multiplier_x" = 30;
+          "browser.formfill.enable" = false;
+          "extensions.formautofill.creditCards.enabled" = false;
         };
         userChrome = ''
           @import "firefox-gnome-theme/userChrome.css";

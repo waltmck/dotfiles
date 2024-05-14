@@ -54,7 +54,11 @@
 
     gestures = {
       workspace_swipe = true;
-      workspace_swipe_forever = true;
+      workspace_swipe_forever = false;
+
+      workspace_swipe_distance = 480;
+
+      workspace_swipe_cancel_ratio = 0.3;
     };
   };
 

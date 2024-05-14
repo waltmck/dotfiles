@@ -65,12 +65,29 @@
   # for reasons outside of my comprehension
   security.pam.services.sddm.enableGnomeKeyring = true;
 
-  services.greetd = {
+  services.greetd = let
+    session = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
+    tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+    user = "waltmck";
+  in {
     enable = true;
-    settings.default_session.command = pkgs.writeShellScript "greeter" ''
+    settings = rec {
+      initial_session = {
+        command = "${session}";
+        user = "${user}";
+      };
+      default_session = {
+        command = "${tuigreet} --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd ${session}";
+        user = "greeter";
+      };
+    };
+
+    /*
+      .default_session.command = pkgs.writeShellScript "greeter" ''
       export XCURSOR_THEME=Qogir
       ${asztal}/bin/greeter
     '';
+    */
   };
 
   systemd.tmpfiles.rules = [
@@ -96,6 +113,7 @@
     plugins = inputs.hyprland-plugins.packages.${pkgs.system};
 
     hyprctl = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/hyprctl";
+    hyprlock = "${inputs.hyprlock.packages.${pkgs.system}.hyprlock}/bin/Hyprlock";
 
     yt = pkgs.writeShellScript "yt" ''
       notify-send "Opening video" "$(wl-paste)"
@@ -111,6 +129,7 @@
     systemd.enable = true;
     xwayland.enable = true;
     # plugins = with plugins; [ hyprbars borderspp ];
+    plugins = []; # [inputs.hyprspace.packages.${pkgs.system}.Hyprspace];
 
     settings = {
       exec-once = [
@@ -128,9 +147,13 @@
         gaps_out = 8;
       };
 
+      debug = {
+        disable_logs = false;
+      };
+
       misc = {
         disable_splash_rendering = true;
-        force_default_wallpaper = 0;
+        disable_hyprland_logo = true;
       };
 
       input = {

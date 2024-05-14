@@ -57,9 +57,10 @@
   systemd.user.services.ags = {
     description = "Aylur's Gnome Widgets";
     documentation = ["https://aylur.github.io/ags-docs"];
-    partOf = ["graphical-session.target"];
+    partOf = ["hyprland-session.target"];
     after = ["graphical-session.target"];
     wantedBy = ["graphical-session.target"];
+    Requires = ["hyprland-session.target"];
 
     unitConfig = {
       ConditionEnvironment = "WAYLAND_DISPLAY";
