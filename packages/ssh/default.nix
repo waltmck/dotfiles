@@ -16,11 +16,11 @@
             ForwardAgent yes
       '';
     };
+  };
 
-    # Persist known_hosts
-    home.persistence."/nix/state/home/waltmck" = {
-      files = [".ssh/known_hosts"];
-    };
+  # Persist known_hosts
+  environment.persistence."/nix/state".users.waltmck = {
+    files = [".ssh/known_hosts"];
   };
 
   services.openssh = {

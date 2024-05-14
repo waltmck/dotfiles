@@ -69,7 +69,6 @@
   home-manager.users.waltmck = {
     # Imports and stateVersion
     home.stateVersion = "23.11";
-    imports = ["${inputs.impermanence}/home-manager.nix"];
 
     programs.home-manager.enable = true;
 
@@ -88,17 +87,17 @@
 
   # -- Persistence --
   environment.persistence."/nix/state" = {
-    directories = [
-    ];
+    directories = [];
+
     files = [
       "/etc/machine-id"
     ];
-  };
 
-  home-manager.users.waltmck.home.persistence."/nix/state/home/waltmck" = {
-    directories = [
-      ".cache/nix" # Nix evaluation cache
-    ];
+    users.waltmck = {
+      directories = [
+        ".cache/nix" # Nix evaluation cache
+      ];
+    };
   };
 
   environment.sessionVariables = rec {

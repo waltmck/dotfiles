@@ -11,9 +11,7 @@
     "${pkgs.fractal}/bin/fractal --gapplication-service" # To get background notifications
   ];
 
-  home-manager.users.waltmck = {
-    home.persistence."/nix/state/home/waltmck" = {
-      directories = [".local/share/fractal"];
-    };
+  environment.persistence."/nix/state".users.waltmck = {
+    directories = [".local/share/fractal"];
   };
 }

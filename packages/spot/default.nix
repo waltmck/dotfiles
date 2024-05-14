@@ -13,9 +13,7 @@
     "${pkgs.spot}/bin/spot --gapplication-service"
   ];
 
-  home-manager.users.waltmck = {
-    home.persistence."/nix/state/home/waltmck" = {
-      directories = [".cache/spot"];
-    };
+  environment.persistence."/nix/state".users.waltmck = {
+    directories = [".cache/spot"];
   };
 }

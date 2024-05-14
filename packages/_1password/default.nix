@@ -54,10 +54,10 @@
             IdentityAgent ~/.1password/agent.sock
       '';
     };
+  };
 
-    # Persist secret state
-    home.persistence."/nix/state/home/waltmck" = {
-      directories = [".config/1Password"];
-    };
+  # Persist secret state
+  environment.persistence."/nix/state".users.waltmck = {
+    directories = [".config/1Password"];
   };
 }

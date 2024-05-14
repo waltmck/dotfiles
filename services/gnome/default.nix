@@ -62,22 +62,6 @@
       "file://${home}/src Source"
     ];
 
-    home.persistence."/nix/state/home/waltmck" = {
-      directories = [
-        "Downloads"
-        "Documents"
-        "Videos"
-        "Pictures"
-        "src"
-        ".local/share/keyrings"
-        ".local/share/evolution" # Mail, contacts, calendar, tasks
-        ".local/share/geary"
-      ];
-      files = [];
-
-      allowOther = false;
-    };
-
     services = {
       kdeconnect = {
         enable = true;
@@ -86,6 +70,20 @@
     };
 
     xdg.userDirs.enable = true;
+  };
+
+  environment.persistence."/nix/state".users.waltmck = {
+    directories = [
+      "Downloads"
+      "Documents"
+      "Videos"
+      "Pictures"
+      "src"
+      ".local/share/keyrings"
+      ".local/share/evolution" # Mail, contacts, calendar, tasks
+      ".local/share/geary"
+    ];
+    files = [];
   };
 
   # Polkit authentication agent

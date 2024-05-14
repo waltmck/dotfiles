@@ -7,12 +7,10 @@
 }: {
   environment.systemPackages = [pkgs.dissent];
 
-  home-manager.users.waltmck = {
-    home.persistence."/nix/state/home/waltmck" = {
-      directories = [
-        ".config/dissent"
-        ".cache/dissent"
-      ];
-    };
+  environment.persistence."/nix/state".users.waltmck = {
+    directories = [
+      ".config/dissent"
+      ".cache/dissent"
+    ];
   };
 }

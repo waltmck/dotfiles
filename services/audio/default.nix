@@ -46,15 +46,9 @@
   # If you try to run this, it fails with
   # Error installing file '/.local/state/wireplumber/restore-stream' outside $HOME
 
-  #home-manager.users.waltmck.home.persistence."/nix/state/home/waltmck" = {
+  #environment.persistence."/nix/state".users.waltmck = {
   #  files = [
-  #    ".local/state/wireplumber/restore-stream" # Persist volume
+  #    "/.local/state/wireplumber/restore-stream" # Persist volume
   #  ];
   #};
-
-  home-manager.users.waltmck.home.persistence."/nix/state/home/waltmck" = {
-    files = [
-      "/.local/state/wireplumber/restore-stream" # Persist volume
-    ];
-  };
 }

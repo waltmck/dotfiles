@@ -48,11 +48,12 @@
 
       package = inputs.ags.packages.${pkgs.system}.default;
     };
-
-    home.persistence."/nix/state/home/waltmck" = {
-      directories = [".cache/ags"];
-    };
   };
+
+  environment.persistence."/nix/state".users.waltmck = {
+    directories = [".cache/ags"];
+  };
+
   /*
   systemd.user.services.ags = {
     description = "Aylur's Gnome Widgets";

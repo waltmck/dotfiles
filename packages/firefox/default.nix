@@ -47,12 +47,12 @@
         '';
       };
     };
+  };
 
-    home.persistence."/nix/state/home/waltmck" = {
-      directories = [
-        ".mozilla" # Bookmarks, history, account, etc.
-        ".cache/mozilla/firefox" # Cache for faster start time
-      ];
-    };
+  environment.persistence."/nix/state".users.waltmck = {
+    directories = [
+      ".mozilla" # Bookmarks, history, account, etc.
+      ".cache/mozilla/firefox" # Cache for faster start time
+    ];
   };
 }

@@ -24,7 +24,7 @@
   };
 
   # Persist cache state
-  home-manager.users.waltmck.home.persistence."/nix/state/home/waltmck" = {
+  environment.persistence."/nix/state".users.waltmck = {
     directories = [".config/Code"];
   };
 }
