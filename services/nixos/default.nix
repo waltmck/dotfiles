@@ -2,7 +2,6 @@
   pkgs,
   inputs,
   config,
-  asztal,
   ...
 }: {
   # Imports and state version
@@ -82,7 +81,6 @@
 
   home-manager.extraSpecialArgs = {
     inherit inputs;
-    inherit asztal;
   };
 
   # -- Persistence --

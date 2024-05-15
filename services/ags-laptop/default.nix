@@ -4,7 +4,6 @@
   pkgs,
   inputs,
   system,
-  asztal,
   ...
 }: {
   home-manager.users.waltmck = {
@@ -14,7 +13,6 @@
     ];
 
     home.packages = with pkgs; [
-      asztal
       bun
       dart-sass
       fd

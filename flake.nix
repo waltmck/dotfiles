@@ -56,10 +56,10 @@
       inputs.systems.follows = "systems";
     };
 
-    hyprspace = {
-      url = "github:KZDKM/Hyprspace";
-      inputs.hyprland.follows = "hyprland";
-    };
+    #hyprspace = {
+    #  url = "github:KZDKM/Hyprspace";
+    #  inputs.hyprland.follows = "hyprland";
+    #};
 
     nix-colors.url = "github:kyesarri/nix-colors"; # colour themes
 
@@ -104,16 +104,13 @@
     hyprlock,
     hypridle,
     hyprpaper,
-    hyprspace,
+    # hyprspace,
     apple-silicon-support,
     alejandra,
     ags,
     # nixos-boot,
     ...
   } @ inputs: {
-    packages.aarch64-linux.default =
-      nixpkgs.legacyPackages.aarch64-linux.callPackage ./services/ags-laptop/ags {inherit inputs;};
-
     nixosConfigurations = {
       "walt-laptop" = nixpkgs.lib.nixosSystem rec {
         system = "aarch64-linux";
@@ -123,7 +120,6 @@
         ];
         specialArgs = {
           inherit inputs;
-          asztal = self.packages.aarch64-linux.default;
         };
       };
     };

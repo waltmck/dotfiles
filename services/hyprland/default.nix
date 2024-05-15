@@ -2,7 +2,6 @@
   pkgs,
   inputs,
   config,
-  asztal,
   system,
   ...
 }: {
@@ -80,32 +79,7 @@
         user = "greeter";
       };
     };
-
-    /*
-      .default_session.command = pkgs.writeShellScript "greeter" ''
-      export XCURSOR_THEME=Qogir
-      ${asztal}/bin/greeter
-    '';
-    */
   };
-
-  systemd.tmpfiles.rules = [
-    "d '/var/cache/greeter' - greeter greeter - -"
-  ];
-
-  system.activationScripts.wallpaper = ''
-    PATH=$PATH:${pkgs.busybox}/bin:${pkgs.jq}/bin
-    CACHE="/var/cache/greeter"
-    OPTS="$CACHE/options.json"
-    HOME="/home/$(find /home -maxdepth 1 -printf '%f\n' | tail -n 1)"
-
-    cp $HOME/.cache/ags/options.json $OPTS
-    chown greeter:greeter $OPTS
-
-    BG=$(cat $OPTS | jq -r '.wallpaper // "$HOME/.config/background"')
-    cp $BG $CACHE/background
-    chown greeter:greeter $CACHE/background
-  '';
 
   home-manager.users.waltmck.wayland.windowManager.hyprland = let
     hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
