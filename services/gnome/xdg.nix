@@ -3,6 +3,7 @@
   inputs,
   config,
   asztal,
+  lib,
   ...
 }: {
   home-manager.users.waltmck = {
@@ -39,5 +40,36 @@
     PATH = [
       "${XDG_BIN_HOME}"
     ];
+  };
+
+  xdg.mime = {
+    enable = true;
+    defaultApplications = (
+      let
+        browser = "firefox.desktop";
+        pdf = "evince.desktop";
+        video = "celluloid.desktop";
+        image = "loupe.desktop";
+        latex = "setzer.desktop";
+
+        fileformats = import ./fileformats.nix;
+        types = program: type:
+          builtins.listToAttrs (builtins.map
+            (x: {
+              name = x;
+              value = program;
+            })
+            type);
+      in
+        lib.zipAttrsWith (_: values: values) [
+          (types image fileformats.image)
+          (types browser fileformats.browser)
+          (types video fileformats.audiovideo)
+          {
+            "application/pdf" = pdf;
+            "application/tex" = latex;
+          }
+        ]
+    );
   };
 }

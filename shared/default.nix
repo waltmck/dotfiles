@@ -12,6 +12,7 @@
   with gnome; [
     vim
     neovim
+    gnome-terminal # Dependency of neovim-wrapper
     git
     wget
     htop
@@ -93,12 +94,14 @@
     evince # PDF reader
     celluloid # Video player
     foliate # ebook reader
+    loupe # Image viewer
 
     ## COMMUNICATION
 
     flare-signal # Signal client
     polari # IRC client
     paper-plane # Telegram client
+    calls # Gnome Calls, a voip client
 
     powertop
   ];
