@@ -70,6 +70,7 @@ with lib.hm.gvariant; {
       num-workspaces = 5;
       resize-with-right-button = true;
       focus-mode = "sloppy";
+      button-layout = "appmenu";
     };
 
     "org/gnome/mutter" = {

@@ -9,6 +9,7 @@
   imports = [
     "${inputs.home-manager}/nixos"
     "${inputs.impermanence}/nixos.nix"
+    inputs.nix-index-database.nixosModules.nix-index
   ];
 
   # nix
@@ -82,6 +83,10 @@
   home-manager.extraSpecialArgs = {
     inherit inputs;
   };
+
+  programs.nix-index-database.comma.enable = true;
+
+  programs.command-not-found.enable = false;
 
   # -- Persistence --
   environment.persistence."/nix/state" = {

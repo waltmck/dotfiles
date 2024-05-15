@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     systems.url = "github:nix-systems/default-linux";
 
     home-manager = {
@@ -98,6 +103,7 @@
   outputs = {
     self,
     nixpkgs,
+    nix-index-database,
     home-manager,
     impermanence,
     hyprland,

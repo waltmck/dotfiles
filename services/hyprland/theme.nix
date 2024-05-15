@@ -5,6 +5,11 @@
   system,
   ...
 }: {
+  # kvantum qt theme engine, which can be configured with kvantummanager
+  environment.systemPackages = [
+    pkgs.libsForQt5.qtstyleplugin-kvantum
+  ];
+
   home-manager.users.waltmck = let
     nerdfonts = pkgs.nerdfonts.override {
       fonts = [
@@ -83,9 +88,33 @@
       '';
     };
 
+    #environment.variables = {
+    #  # This will become a global environment variable
+    #  "QT_STYLE_OVERRIDE" = "kvantum";
+    #};
+
     qt = {
       enable = true;
-      # platformTheme.name = "kde";
+      platformTheme = "qtct";
+      style.name = "kvantum";
+    };
+
+    /*
+    xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
+      General.theme = "KvLibadwaitaDark";
+    };
+    */
+
+    xdg.configFile = {
+      "Kvantum/KvLibadwaita" = {
+        source = "${./kvantum-theme/KvLibadwaita}";
+        recursive = true;
+      };
+      "Kvantum/Colors" = {
+        source = "${./kvantum-theme/Colors}";
+        recursive = true;
+      };
+      "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=KvLibadwaitaDark";
     };
   };
 }

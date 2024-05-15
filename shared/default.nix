@@ -104,5 +104,7 @@
     calls # Gnome Calls, a voip client
 
     powertop
+
+    keepassxc
   ];
 }
