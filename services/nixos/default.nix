@@ -119,6 +119,8 @@
       extraGroups = ["users" "wheel" "sudo" "networkmanager"];
 
       openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDIhzYxT+Dociep+0p5a2xr9T8UDJYCa9wbYRNux4LN2 walt@waltmckelvie.com"];
+
+      linger = true; # Systemd user units start at boot rather than login
     };
   };
 

@@ -294,4 +294,9 @@
       };
     };
   };
+
+  # Persist crash logs
+  environment.persistence."/nix/state".users.waltmck = {
+    directories = [".cache/hyprland" ".hyprland"];
+  };
 }
