@@ -23,7 +23,8 @@
     wireplumber = {
       enable = true;
 
-      # Disable unused virtual device
+      # Disable unused virtual device.
+      # This is temporary until libgnome-volume-control-fixes (see https://github.com/AsahiLinux/docs/wiki/Yaks-in-need-of-shaving)
       configPackages = [
         (pkgs.writeTextDir "share/wireplumber/main.lua.d/51-alsa-disable.lua" ''
           rule = {

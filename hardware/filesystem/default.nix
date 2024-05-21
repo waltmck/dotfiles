@@ -74,6 +74,11 @@
   fileSystems."/" = {
     device = "none";
     fsType = "tmpfs";
-    options = ["defaults" "size=8G" "mode=755" "noexec"];
+    options = [
+      "defaults"
+      "size=8G"
+      "mode=755"
+      # "noexec" This makes it really hard to build certain things (i.e. m1n1), so I am disabling it.
+    ];
   };
 }
