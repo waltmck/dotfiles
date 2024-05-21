@@ -3,6 +3,7 @@
   lib,
   pkgs,
   inputs,
+  hostname,
   ...
 }: {
   imports = [
@@ -11,6 +12,7 @@
   ];
 
   networking = {
+    hostName = hostname;
     wireless.iwd = {
       enable = true;
       settings.General.EnableNetworkConfiguration = true;

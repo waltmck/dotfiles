@@ -62,12 +62,6 @@
     };
   };
 
-  home-manager.users.waltmck.home.file.".config/hypr/per-app/asahi.conf" = {
-    text = ''
-      ${builtins.readFile ./hyprland.conf}
-    '';
-  };
-
   # -- Persistence --
   environment.persistence."/nix/state" = {
     files = [

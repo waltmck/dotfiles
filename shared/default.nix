@@ -58,7 +58,7 @@
     # spotify <- no aarch64-linux support
     # caprine-bin # <- no aarch64-linux support
     d-spy
-    gimp
+    # gimp
     transmission_4-gtk
     # discord <- no aarch64-linux support
     icon-library

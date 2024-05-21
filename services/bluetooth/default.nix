@@ -3,6 +3,7 @@
   lib,
   pkgs,
   inputs,
+  hostname,
   ...
 }: {
   imports = [
@@ -16,7 +17,7 @@
 
     settings = {
       General = {
-        Name = "walt-laptop";
+        Name = hostname;
         ControllerMode = "dual";
         FastConnectable = "true";
         Experimental = "true";

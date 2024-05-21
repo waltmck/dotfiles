@@ -81,6 +81,25 @@
     };
   };
 
+  /*
+  systemd.user.services.hyprland = {
+    description = "Hyprland Window Manager";
+    documentation = ["https://wiki.hyprland.org/Hypr-Ecosystem/hypridle"];
+    after = ["systemd-user-sessions.service" "plymouth-quit-wait.service" "getty@tty1.service"];
+    conflicts = ["getty@tty1.service"];
+
+    unitConfig = {
+      ConditionEnvironment = "WAYLAND_DISPLAY";
+    };
+
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.util-linux}/bin/agetty --autologin waltmck --noclear ${inputs.hypridle.packages.${pkgs.system}.default}/bin/hypridle";
+      Restart = "on-failure";
+    };
+  };
+  */
+
   home-manager.users.waltmck.wayland.windowManager.hyprland = let
     hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
     plugins = inputs.hyprland-plugins.packages.${pkgs.system};
@@ -174,6 +193,7 @@
         mvactive = binding "SUPER ALT" "moveactive";
         mvtows = binding "SUPER SHIFT" "movetoworkspace";
         e = "exec, ags -b hypr";
+        popup_rules = "[float;pin;size 65%;stayfocused;center;dimaround]";
         arr = [1 2 3 4 5 6 7 8 9];
       in
         [
@@ -189,8 +209,9 @@
           "SUPER, W, exec, firefox"
           "SUPER, Q, exec, blackbox"
           "SUPER, E, ${e} -t datemenu"
-          "SUPER, S, exec, spot"
-          "SUPER, T, exec, 1password --quick-access"
+          "SUPER, S, exec, ${popup_rules} spot"
+          "SUPER, G, exec, ${popup_rules} nautilus"
+          "SUPER, T, exec, 1password"
 
           # SUPER, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"

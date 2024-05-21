@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   config,
+  hostname,
   ...
 }: {
   # Imports and state version
@@ -90,10 +91,15 @@
 
   # -- Persistence --
   environment.persistence."/nix/state" = {
-    directories = [];
+    hideMounts = true;
 
     files = [
       "/etc/machine-id"
+    ];
+
+    directories = [
+      "/var/lib/systemd" # For systemd timers, etc. See https://github.com/nbraud/nixpkgs/blob/735481ef6b8be1ef884a6c4b0a4b80264216a379/nixos/doc/manual/administration/systemd-state.section.md
+      "/var/lib/nixos" # See https://github.com/nix-community/impermanence/issues/178
     ];
 
     users.waltmck = {
@@ -123,6 +129,35 @@
       linger = true; # Systemd user units start at boot rather than login
     };
   };
+
+  environment.systemPackages = let
+    os =
+      pkgs.writeShellScriptBin
+      "os"
+      ''
+        case $1 in
+          "boot")
+            sudo nixos-rebuild boot --flake /etc/nixos#${hostname} --impure
+            ;;
+          "switch")
+            sudo nixos-rebuild switch --flake /etc/nixos#${hostname} --impure
+            ;;
+          "edit")
+            ${pkgs.vscode}/bin/code /etc/nixos
+            ;;
+          "gc")
+            sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +50
+            nix-collect-garbage
+            ;;
+          *)
+            echo "Arguments: boot, switch, edit, gc"
+            exit 1
+            ;;
+        esac
+      '';
+  in [
+    os
+  ];
 
   time.timeZone = "America/New_York";
 }

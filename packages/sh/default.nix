@@ -17,12 +17,13 @@
       ":q" = "exit";
       "q" = "exit";
 
-      "rebuild-boot" = "sudo nixos-rebuild boot --flake /etc/nixos#walt-laptop --impure";
-      "rebuild-switch" = "sudo nixos-rebuild switch --flake /etc/nixos#walt-laptop --impure";
+      "open" = "xdg-open";
 
       "del" = "gio trash";
 
       "top" = "${pkgs.btop}/bin/btop";
+
+      "fs" = "${pkgs.ncdu}/bin/ncdu -x /";
     };
   in {
     programs = {
@@ -112,5 +113,22 @@
         '';
       };
     };
+  };
+
+  security.sudo = {
+    enable = true;
+
+    # Otherwise we get sudo lecture every reboot
+    extraConfig = ''
+      Defaults lecture = never
+    '';
+  };
+
+  # Persist zsh history and completion cache
+  environment.persistence."/nix/state".users.waltmck = {
+    files = [
+      ".zsh_history"
+      # ".zcompdump" TODO figure out how to persist this
+    ];
   };
 }

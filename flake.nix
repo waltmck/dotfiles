@@ -126,6 +126,8 @@
         ];
         specialArgs = {
           inherit inputs;
+          arch = "armv8-a";
+          hostname = "walt-laptop";
         };
       };
     };

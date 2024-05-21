@@ -31,6 +31,7 @@
     ../../packages/newsflash
     ../../packages/starship
     ../../packages/dissent
+    ../../packages/locate
 
     # ../../packages/wofi
     # ../../packages/gnome
@@ -49,10 +50,6 @@
 
   # See installation notes for how to find this
   boot.initrd.luks.devices."encrypted".device = "/dev/disk/by-uuid/0caf6fe9-a9e6-4f18-ada4-a9acc1609799";
-
-  # -- Set hostname --
-
-  networking.hostName = "walt-laptop";
 
   colorScheme = inputs.nix-colors.colorSchemes."horizon-dark";
 

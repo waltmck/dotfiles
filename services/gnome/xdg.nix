@@ -46,10 +46,10 @@
     defaultApplications = (
       let
         browser = "firefox.desktop";
-        pdf = "evince.desktop";
-        video = "celluloid.desktop";
-        image = "loupe.desktop";
-        latex = "setzer.desktop";
+        pdf = "org.gnome.Evince.desktop";
+        video = "io.github.celluloid_player.Celluloid.desktop";
+        image = "org.gnome.Loupe.desktop";
+        latex = "org.cvfosammmm.Setzer.desktop";
 
         fileformats = import ./fileformats.nix;
         types = program: type:
