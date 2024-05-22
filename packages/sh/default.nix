@@ -11,8 +11,8 @@
       "tree" = "eza --tree";
       "nv" = "nvim";
 
-      "ll" = "ls -la";
-      "l" = "ls";
+      "ll" = "${pkgs.lsd}/bin/lsd -la";
+      "l" = "${pkgs.lsd}/bin/lsd";
 
       ":q" = "exit";
       "q" = "exit";
@@ -23,7 +23,7 @@
 
       "top" = "${pkgs.btop}/bin/btop";
 
-      "fs" = "${pkgs.ncdu}/bin/ncdu -x /";
+      "fs" = "${pkgs.gdu}/bin/gdu -x /";
     };
   in {
     programs = {

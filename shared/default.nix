@@ -19,7 +19,7 @@
     home-manager
     clang
     openssh
-    ncdu
+    gdu
     neofetch
     pciutils
     wl-clipboard
