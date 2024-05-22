@@ -5,6 +5,7 @@
   system,
   ...
 }: {
+  environment.systemPackages = [pkgs.hyprlock];
   home-manager.users.waltmck = {
     ## Hyprlock
 

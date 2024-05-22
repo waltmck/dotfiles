@@ -18,7 +18,7 @@
 
   programs.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    package = pkgs.hyprland;
     xwayland.enable = true;
   };
 
@@ -44,9 +44,6 @@
     wayshot
     pavucontrol
     brightnessctl
-    inputs.hyprlock.packages.${pkgs.system}.default
-    inputs.hypridle.packages.${pkgs.system}.default
-    inputs.hyprpaper.packages.${pkgs.system}.default
   ];
 
   services = {
@@ -64,7 +61,7 @@
   security.pam.services.sddm.enableGnomeKeyring = true;
 
   services.greetd = let
-    session = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
+    session = "${pkgs.hyprland}/bin/Hyprland";
     tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
     user = "waltmck";
   in {
@@ -94,18 +91,16 @@
 
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.util-linux}/bin/agetty --autologin waltmck --noclear ${inputs.hypridle.packages.${pkgs.system}.default}/bin/hypridle";
+      ExecStart = "${pkgs.util-linux}/bin/agetty --autologin waltmck --noclear ${hypridle.packages.${pkgs.system}.default}/bin/hypridle";
       Restart = "on-failure";
     };
   };
   */
 
   home-manager.users.waltmck.wayland.windowManager.hyprland = let
-    hyprland = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    plugins = inputs.hyprland-plugins.packages.${pkgs.system};
-
-    hyprctl = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/hyprctl";
-    hyprlock = "${inputs.hyprlock.packages.${pkgs.system}.hyprlock}/bin/Hyprlock";
+    # hyprland = hyprland;
+    # plugins = inputs.hyprland-plugins.packages.${pkgs.system};
+    hyprctl = "${pkgs.hyprland}/bin/hyprctl";
 
     yt = pkgs.writeShellScript "yt" ''
       notify-send "Opening video" "$(wl-paste)"
@@ -117,11 +112,11 @@
     wpctl = "${pkgs.wireplumber}/bin/wpctl";
   in {
     enable = true;
-    package = hyprland;
+    package = pkgs.hyprland;
     systemd.enable = true;
     xwayland.enable = true;
     # plugins = with plugins; [ hyprbars borderspp ];
-    plugins = []; # [inputs.hyprspace.packages.${pkgs.system}.Hyprspace];
+    # plugins = []; # [hyprspace.packages.${pkgs.system}.Hyprspace];
 
     settings = {
       exec-once = [
@@ -133,7 +128,6 @@
       general = {
         layout = "dwindle";
         resize_on_border = true;
-        no_cursor_warps = true;
 
         gaps_in = 4;
         gaps_out = 8;

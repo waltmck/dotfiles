@@ -5,15 +5,16 @@
   system,
   ...
 }: {
+  environment.systemPackages = [pkgs.hypridle];
   home-manager.users.waltmck = {
     ## Hypridle
 
     home.file.".config/hypr/hypridle.conf" = {
       text = ''
         general {
-            lock_cmd = ${pkgs.busybox}/bin/pidof hyprlock || ${inputs.hyprlock.packages.${pkgs.system}.hyprlock}/bin/hyprlock
+            lock_cmd = ${pkgs.busybox}/bin/pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock
             before_sleep_cmd = ${pkgs.systemd}/bin/loginctl lock-session
-            after_sleep_cmd = ${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/hyprctl dispatch dpms on
+            after_sleep_cmd = ${pkgs.hyprland}/bin/hyprctl dispatch dpms on
             unlock_cmd = ${pkgs.systemd}/bin/loginctl unlock-sessions
             ignore_dbus_inhibit = false
         }
@@ -39,7 +40,7 @@
 
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${inputs.hypridle.packages.${pkgs.system}.default}/bin/hypridle";
+      ExecStart = "${pkgs.hypridle}/bin/hypridle";
       Restart = "on-failure";
     };
   };

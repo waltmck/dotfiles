@@ -5,6 +5,7 @@
   system,
   ...
 }: {
+  environment.systemPackages = [pkgs.hyprpaper];
   home-manager.users.waltmck = {
     ## Hypridle
 
@@ -36,7 +37,7 @@
 
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${inputs.hyprpaper.packages.${pkgs.system}.default}/bin/hyprpaper";
+      ExecStart = "${pkgs.hyprpaper}/bin/hyprpaper";
       Restart = "on-failure";
     };
   };

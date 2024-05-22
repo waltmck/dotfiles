@@ -84,7 +84,6 @@
           Preferences = {
             "browser.tabs.loadInBackground" = true;
             "widget.gtk.rounded-bottom-corners.enabled" = true;
-            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
             "svg.context-properties.content.enabled" = true;
             "browser.toolbars.bookmarks.visibility" = false;
             "mousewheel.default.delta_multiplier_y" = 60;
@@ -140,6 +139,9 @@
           "gnomeTheme.normalWidthTabs" = false;
           "gnomeTheme.tabsAsHeaderbar" = false;
           "gnomeTheme.activeTabContrast" = true;
+          "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+          "widget.gtk.rounded-bottom-corners.enabled" = true;
+          "svg.context-properties.content.enabled" = true;
         };
         userChrome = ''
           @import "firefox-gnome-theme/userChrome.css";

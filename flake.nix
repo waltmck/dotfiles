@@ -23,49 +23,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprlang = {
-      url = "github:hyprwm/hyprlang";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "systems";
-    };
-
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprlang.follows = "hyprlang";
-      inputs.systems.follows = "systems";
-    };
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
-    hyprlock = {
-      url = "github:hyprwm/Hyprlock";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprlang.follows = "hyprlang";
-      inputs.systems.follows = "systems";
-    };
-
-    hypridle = {
-      url = "github:hyprwm/hypridle";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprlang.follows = "hyprlang";
-      inputs.systems.follows = "systems";
-    };
-
-    hyprpaper = {
-      url = "github:hyprwm/hyprpaper";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.hyprlang.follows = "hyprlang";
-      inputs.systems.follows = "systems";
-    };
-
-    #hyprspace = {
-    #  url = "github:KZDKM/Hyprspace";
-    #  inputs.hyprland.follows = "hyprland";
-    #};
-
     nix-colors.url = "github:kyesarri/nix-colors"; # colour themes
 
     alejandra = {
@@ -86,6 +43,7 @@
     matugen = {
       url = "github:InioX/matugen";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.systems.follows = "systems";
     };
 
     lf-icons = {
@@ -110,16 +68,11 @@
     nix-index-database,
     home-manager,
     impermanence,
-    hyprland,
-    hyprlock,
-    hypridle,
-    hyprpaper,
-    # hyprspace,
     apple-silicon-support,
     alejandra,
     ags,
     firefox-addons,
-    # nixos-boot,
+    ### nixos-boot,
     ...
   } @ inputs: {
     nixosConfigurations = {
@@ -129,7 +82,9 @@
           ./hosts/laptop/default.nix
           # nixos-boot.nixosModules.default
         ];
-        specialArgs = {
+        specialArgs = let
+          pkgs = nixpkgs.legacyPackages."aarch64-linux";
+        in {
           inherit inputs;
           arch = "armv8-a";
           hostname = "walt-laptop";
