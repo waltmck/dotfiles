@@ -18,10 +18,10 @@
     programs.firefox = {
       enable = true;
 
-      package = pkgs.firefox.override {
+      package = (pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {pipewireSupport = true;}) {}).override {
         extraPolicies = {
           AppAutoUpdate = false;
-          /*
+
           BackgroundAppUpdate = false;
           CaptivePortal = false;
           DisableFirefoxStudies = true;
@@ -33,6 +33,7 @@
           OfferToSaveLogins = false;
           OfferToSaveLoginsDefault = false;
           PasswordManagerEnabled = false;
+
           UserMessaging = {
             ExtensionRecommendations = false;
             SkipOnboarding = true;
@@ -51,6 +52,7 @@
             Snippets = false;
             Locked = true;
           };
+
           FirefoxSuggest = {
             WebSuggestions = false;
             SponsoredSuggestions = false;
@@ -80,45 +82,6 @@
               installation_mode = "force_installed";
             };
           };
-
-          Preferences = {
-            "browser.tabs.loadInBackground" = true;
-            "widget.gtk.rounded-bottom-corners.enabled" = true;
-            "svg.context-properties.content.enabled" = true;
-            "browser.toolbars.bookmarks.visibility" = false;
-            "mousewheel.default.delta_multiplier_y" = 60;
-            "mousewheel.default.delta_multiplier_x" = 30;
-            "browser.formfill.enable" = false;
-            "extensions.formautofill.creditCards.enabled" = false;
-            "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.searchEngines" = "";
-            "services.sync.prefs.sync-seen.browser.urlbar.suggest.engines" = false;
-            "services.sync.prefs.sync.browser.urlbar.suggest.engines" = false;
-            "services.sync.prefs.sync-seen.services.sync.prefs.sync.browser.urlbar.suggest.engines" = false;
-            "browser.urlbar.quicksuggest.enabled" = false;
-            "browser.urlbar.suggest.addons" = false;
-            "browser.urlbar.suggest.bookmark" = false;
-            "browser.urlbar.suggest.calculator" = false;
-            "browser.urlbar.suggest.clipboard" = false;
-            "browser.urlbar.suggest.engines" = false;
-            "browser.urlbar.suggest.mdn" = false;
-            "browser.urlbar.suggest.openpage" = false;
-            "browser.urlbar.quicksuggest.sponsored" = false;
-            "browser.urlbar.quicksuggest.nonsponsored" = false;
-            "browser.urlbar.suggest.topsites" = false;
-            "browser.urlbar.suggest.trending" = false;
-            "browser.urlbar.suggest.weather" = false;
-
-            "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
-            "browser.newtabpage.activity-stream.feeds.snippets" = false;
-            "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
-            "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" = false;
-            "browser.newtabpage.activity-stream.section.highlights.includeDownloads" = true;
-            "browser.newtabpage.activity-stream.section.highlights.includeVisited" = false;
-            "browser.newtabpage.activity-stream.showSponsored" = false;
-            "browser.newtabpage.activity-stream.system.showSponsored" = false;
-            "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
-          };
-          */
         };
       };
 
@@ -142,6 +105,41 @@
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
           "widget.gtk.rounded-bottom-corners.enabled" = true;
           "svg.context-properties.content.enabled" = true;
+          "browser.tabs.firefox-view" = false;
+
+          "browser.tabs.loadInBackground" = true;
+          "browser.toolbars.bookmarks.visibility" = false;
+          "mousewheel.default.delta_multiplier_y" = 60;
+          "mousewheel.default.delta_multiplier_x" = 30;
+          "browser.formfill.enable" = false;
+          "extensions.formautofill.creditCards.enabled" = false;
+          "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.searchEngines" = "";
+          "services.sync.prefs.sync-seen.browser.urlbar.suggest.engines" = false;
+          "services.sync.prefs.sync.browser.urlbar.suggest.engines" = false;
+          "services.sync.prefs.sync-seen.services.sync.prefs.sync.browser.urlbar.suggest.engines" = false;
+          "browser.urlbar.quicksuggest.enabled" = false;
+          "browser.urlbar.suggest.addons" = false;
+          "browser.urlbar.suggest.bookmark" = false;
+          "browser.urlbar.suggest.calculator" = false;
+          "browser.urlbar.suggest.clipboard" = false;
+          "browser.urlbar.suggest.engines" = false;
+          "browser.urlbar.suggest.mdn" = false;
+          "browser.urlbar.suggest.openpage" = false;
+          "browser.urlbar.quicksuggest.sponsored" = false;
+          "browser.urlbar.quicksuggest.nonsponsored" = false;
+          "browser.urlbar.suggest.topsites" = false;
+          "browser.urlbar.suggest.trending" = false;
+          "browser.urlbar.suggest.weather" = false;
+
+          "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+          "browser.newtabpage.activity-stream.feeds.snippets" = false;
+          "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
+          "browser.newtabpage.activity-stream.section.highlights.includeBookmarks" = false;
+          "browser.newtabpage.activity-stream.section.highlights.includeDownloads" = true;
+          "browser.newtabpage.activity-stream.section.highlights.includeVisited" = false;
+          "browser.newtabpage.activity-stream.showSponsored" = false;
+          "browser.newtabpage.activity-stream.system.showSponsored" = false;
+          "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
         };
         userChrome = ''
           @import "firefox-gnome-theme/userChrome.css";

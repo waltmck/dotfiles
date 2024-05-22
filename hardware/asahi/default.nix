@@ -45,7 +45,7 @@
 
     input.touchpad = {
       natural_scroll = "yes";
-      disable_while_typing = true;
+      disable_while_typing = false;
       drag_lock = true;
       tap-to-click = false;
       scroll_factor = 0.5;
@@ -68,6 +68,4 @@
       # "/sys/devices/platform/soc/231c00000.dcp/backlight/apple-panel-bl/brightness" # Persist screen brightness
     ];
   };
-
-  system.stateVersion = "24.05"; # Did you read the comment?
 }

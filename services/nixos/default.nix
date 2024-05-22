@@ -141,6 +141,7 @@
             ;;
           "switch")
             sudo nixos-rebuild switch --flake /etc/nixos#${hostname} --impure
+            ags -b hypr quit; hyprctl reload; hyprctl dispatch exec "ags -b hypr"
             ;;
           "edit")
             ${pkgs.vscode}/bin/code /etc/nixos
@@ -148,6 +149,9 @@
           "gc")
             sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +50
             nix-collect-garbage
+            ;;
+          "upgrade")
+            nix flake upgrade /etx/nixos
             ;;
           *)
             echo "Arguments: boot, switch, edit, gc"

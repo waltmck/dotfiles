@@ -32,12 +32,7 @@
     ../../packages/starship
     ../../packages/dissent
     ../../packages/locate
-
-    # ../../packages/wofi
-    # ../../packages/gnome
-    # ../../packages/greetd
-    # ../../packages/hyprland
-    # ../../packages/ags
+    ../../packages/gaming
 
     ../../services/ags-laptop
     ../../services/gnome
