@@ -76,7 +76,7 @@
     fsType = "tmpfs";
     options = [
       "defaults"
-      "size=8G"
+      "size=16G"
       "mode=755"
       # "noexec" This makes it really hard to build certain things (i.e. m1n1), so I am disabling it.
     ];
