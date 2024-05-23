@@ -255,7 +255,7 @@
       ];
 
       bindm = [
-        "SUPER, mouse:273, resizewindow"
+        "SUPER SHIFT, mouse:272, resizewindow"
         "SUPER, mouse:272, movewindow"
       ];
 

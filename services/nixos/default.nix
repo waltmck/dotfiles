@@ -109,6 +109,12 @@
     };
   };
 
+  # By default, the limit on the number of open files is too low
+  # to allow building from source. I ran `ulimit -n 4096`, but hopefully
+  # this should fix it for the future. See
+  # https://discourse.nixos.org/t/unable-to-fix-too-many-open-files-error/27094/7
+  systemd.extraConfig = "DefaultLimitNOFILE=2048";
+
   environment.sessionVariables = rec {
     NIXOS_OZONE_WL = "1";
     NIXPKGS_ALLOW_UNFREE = "1";

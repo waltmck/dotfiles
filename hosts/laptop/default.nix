@@ -36,6 +36,7 @@
     ../../packages/locate
     ../../packages/gaming
     ../../packages/alacritty
+    ../../packages/neovim
 
     ../../services/ags-laptop
     ../../services/gnome
@@ -49,7 +50,7 @@
   # See installation notes for how to find this
   boot.initrd.luks.devices."encrypted".device = "/dev/disk/by-uuid/0caf6fe9-a9e6-4f18-ada4-a9acc1609799";
 
-  colorScheme = inputs.nix-colors.colorSchemes."horizon-dark";
+  colorScheme = inputs.nix-colors.colorSchemes."gruvbox-dark-hard";
 
   system.stateVersion = "24.05"; # Did you read the comment?
 }

@@ -7,7 +7,7 @@
   ...
 }: {
   environment.systemPackages = [
-    inputs.alejandra.defaultPackage.${pkgs.system}
+    pkgs.alejandra
   ];
 
   home-manager.users.waltmck.programs.vscode = {

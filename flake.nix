@@ -25,8 +25,8 @@
 
     nix-colors.url = "github:kyesarri/nix-colors"; # colour themes
 
-    alejandra = {
-      url = "github:kamadorueda/alejandra/3.0.0"; # codeium nix
+    nixvim = {
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -66,10 +66,10 @@
     self,
     nixpkgs,
     nix-index-database,
+    nixvim,
     home-manager,
     impermanence,
     apple-silicon-support,
-    alejandra,
     ags,
     firefox-addons,
     ### nixos-boot,

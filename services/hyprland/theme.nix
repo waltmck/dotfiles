@@ -117,4 +117,6 @@
       "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=KvLibadwaitaDark";
     };
   };
+
+  colorScheme = inputs.nix-colors.colorSchemes."gruvbox-dark-hard";
 }

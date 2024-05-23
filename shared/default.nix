@@ -11,8 +11,6 @@
   environment.systemPackages = with pkgs;
   with gnome; [
     vim
-    neovim
-    gnome-terminal # Dependency of neovim-wrapper
     git
     wget
     htop
