@@ -3,6 +3,9 @@
   lib,
   pkgs,
   inputs,
+  march,
+  native,
+  system,
   ...
 }: {
   imports = [
@@ -62,10 +65,16 @@
     };
   };
 
-  # -- Persistence --
-  environment.persistence."/nix/state" = {
-    files = [
-      # "/sys/devices/platform/soc/231c00000.dcp/backlight/apple-panel-bl/brightness" # Persist screen brightness
-    ];
-  };
+  hardware.opengl.driSupport32Bit = false;
+
+  nixpkgs.hostPlatform =
+    if native
+    then {
+      gcc.arch = march;
+      gcc.tune = march;
+      inherit system;
+    }
+    else {
+      inherit system;
+    };
 }

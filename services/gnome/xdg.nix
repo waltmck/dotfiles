@@ -32,7 +32,7 @@
     XDG_STATE_HOME = "$HOME/.local/state";
 
     EDITOR = "vim";
-    TERMINAL = "blackbox";
+    TERMINAL = "${pkgs.alacritty}/bin/alacritty";
 
     # Not officially in the specification
     XDG_BIN_HOME = "$HOME/.local/bin";

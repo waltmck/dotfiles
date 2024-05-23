@@ -14,6 +14,11 @@
       "ll" = "${pkgs.lsd}/bin/lsd -la";
       "l" = "${pkgs.lsd}/bin/lsd";
 
+      "cat" = "${pkgs.bat}/bin/bat";
+      "ping" = "${pkgs.gping}/bin/gping";
+      "fetch" = "${pkgs.neofetch}/bin/neofetch";
+      "sudo" = "sudo "; # This is so that other aliases will work with sudo
+
       ":q" = "exit";
       "q" = "exit";
 
@@ -23,7 +28,7 @@
 
       "top" = "${pkgs.btop}/bin/btop";
 
-      "fs" = "${pkgs.gdu}/bin/gdu -x /";
+      "fs" = "${pkgs.ncdu}/bin/ncdu -x /";
     };
   in {
     programs = {

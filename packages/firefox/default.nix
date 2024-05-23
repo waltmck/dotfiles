@@ -140,9 +140,16 @@
           "browser.newtabpage.activity-stream.showSponsored" = false;
           "browser.newtabpage.activity-stream.system.showSponsored" = false;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+
+          # Optimizations
+          "browser.sessionstore.resume_from_crash" = false; # Disable resuming from crash which requires frequent writes to disk
         };
         userChrome = ''
           @import "firefox-gnome-theme/userChrome.css";
+
+          #TabsToolbar #firefox-view-button {
+            display: none !important;
+          }
         '';
         userContent = ''
           @import "firefox-gnome-theme/userContent.css";
@@ -153,8 +160,10 @@
 
   environment.persistence."/nix/state".users.waltmck = {
     directories = [
-      ".mozilla" # Bookmarks, history, account, etc.
-      ".cache/mozilla/firefox" # Cache for faster start time
+      # TODO re-enable this; only disabled for testing purposes
+      # ".mozilla" # Bookmarks, history, account, etc.
+
+      # ".cache/mozilla/firefox" # Don't cache this, increase speed
     ];
   };
 }

@@ -120,6 +120,8 @@
     root.initialHashedPassword = "$6$EkkeNxXqJ8H12NTS$cgxh3gdWgQTPhZrojyO1TOGdTUH8qWm/184uLBIjTkYpfgJEOQlRXxQuoGgXvskcYAjRS1WcpO04VzzBo4WNw/";
 
     waltmck = {
+      uid = 1000;
+
       initialHashedPassword = "$6$EkkeNxXqJ8H12NTS$cgxh3gdWgQTPhZrojyO1TOGdTUH8qWm/184uLBIjTkYpfgJEOQlRXxQuoGgXvskcYAjRS1WcpO04VzzBo4WNw/";
       isNormalUser = true;
       extraGroups = ["users" "wheel" "sudo" "networkmanager"];
@@ -137,21 +139,21 @@
       ''
         case $1 in
           "boot")
-            sudo nixos-rebuild boot --flake /etc/nixos#${hostname} --impure
+            sudo nixos-rebuild boot --flake /etc/nixos#${hostname} --impure || exit 1
             ;;
           "switch")
-            sudo nixos-rebuild switch --flake /etc/nixos#${hostname} --impure
+            sudo nixos-rebuild switch --flake /etc/nixos#${hostname} --impure || exit 1
             ags -b hypr quit; hyprctl reload; hyprctl dispatch exec "ags -b hypr"
             ;;
           "edit")
             ${pkgs.vscode}/bin/code /etc/nixos
             ;;
           "gc")
-            sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +50
+            sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +50 || exit 1
             nix-collect-garbage
             ;;
           "upgrade")
-            nix flake upgrade /etx/nixos
+            nix flake upgrade /etx/nixos || exit 1
             ;;
           *)
             echo "Arguments: boot, switch, edit, gc"

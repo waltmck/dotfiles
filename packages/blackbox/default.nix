@@ -7,10 +7,6 @@
     '';
   in {
     home = {
-      packages = with pkgs; [
-        blackbox-terminal
-        # xterm
-      ];
       sessionVariables.TERMINAL = "blackbox";
     };
 

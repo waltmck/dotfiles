@@ -6,6 +6,8 @@
   lib,
   pkgs,
   inputs,
+  march,
+  system,
   ...
 }: {
   imports = [
@@ -24,7 +26,7 @@
     ../../packages/obsidian
     ../../packages/vscode
     ../../packages/kitty
-    ../../packages/blackbox
+    # ../../packages/blackbox
     ../../packages/spot
     ../../packages/fractal
     ../../packages/tmux
@@ -33,6 +35,7 @@
     ../../packages/dissent
     ../../packages/locate
     ../../packages/gaming
+    ../../packages/alacritty
 
     ../../services/ags-laptop
     ../../services/gnome

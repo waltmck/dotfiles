@@ -200,7 +200,7 @@
           # "SUPER, Return, exec, xterm" # xterm is a symlink, not actually xterm
 
           "SUPER, W, exec, firefox"
-          "SUPER, Q, exec, blackbox"
+          "SUPER, Q, exec, ${pkgs.alacritty}/bin/alacritty"
           "SUPER, E, ${e} -t datemenu"
           "SUPER, S, exec, ${popup_rules} spot"
           "SUPER, G, exec, ${popup_rules} nautilus"

@@ -1,4 +1,8 @@
-{lib, ...}:
+{
+  lib,
+  pkgs,
+  ...
+}:
 with lib.hm.gvariant; {
   dconf.settings = {
     /*
@@ -145,7 +149,7 @@ with lib.hm.gvariant; {
     };
 
     "com/github/stunkymonkey/nautilus-open-any-terminal" = {
-      terminal = "blackbox";
+      terminal = "${pkgs.alacritty}/bin/alacritty";
     };
 
     "org/virt-manager/virt-manager/connections" = {

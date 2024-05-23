@@ -20,7 +20,8 @@
     clang
     openssh
     gdu
-    neofetch
+    ncdu
+    jq
     pciutils
     wl-clipboard
     brightnessctl
