@@ -152,7 +152,7 @@
             ags -b hypr quit; hyprctl reload; hyprctl dispatch exec "ags -b hypr"
             ;;
           "edit")
-            ${pkgs.vscode}/bin/code /etc/nixos
+            ${pkgs.neovide}/bin/neovide /etc/nixos
             ;;
           "gc")
             sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +50 || exit 1
