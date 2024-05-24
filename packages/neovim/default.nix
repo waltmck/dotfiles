@@ -34,6 +34,9 @@
   programs.nixvim = {
     enable = true;
 
+    viAlias = true;
+    vimAlias = true;
+
     # Sync clipboard with OS
     clipboard.providers.wl-copy.enable = true;
 
