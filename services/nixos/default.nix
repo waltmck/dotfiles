@@ -3,6 +3,7 @@
   inputs,
   config,
   hostname,
+  headless,
   ...
 }: {
   # Imports and state version
@@ -152,7 +153,11 @@
             ags -b hypr quit; hyprctl reload; hyprctl dispatch exec "ags -b hypr"
             ;;
           "edit")
-            ${pkgs.neovide}/bin/neovide /etc/nixos
+            ${
+          if headless
+          then "${pkgs.neovim}/bin/neovim"
+          else "${pkgs.neovide}/bin/neovide"
+        } /etc/nixos
             ;;
           "gc")
             sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +50 || exit 1

@@ -48,11 +48,17 @@
 
   home-manager.users.waltmck = {
     # Make ssh use 1password ssh-agent
-    programs.ssh = {
+    /*
+      programs.ssh = {
       extraConfig = lib.mkOrder 0 ''
         Host *
             IdentityAgent ~/.1password/agent.sock
       '';
+    };
+    */
+
+    home.sessionVariables = {
+      SSH_AUTH_SOCK = "/home/waltmck/.1password/agent.sock";
     };
   };
 

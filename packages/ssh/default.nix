@@ -3,18 +3,20 @@
   lib,
   pkgs,
   inputs,
+  headless,
   ...
 }: {
   home-manager.users.waltmck = {
     programs.ssh = {
       enable = true;
 
-      extraConfig = lib.mkOrder 1 ''
-        Host walt-server
-            HostName waltmckelvie.com
-            User waltmck
-            ForwardAgent yes
-      '';
+      matchBlocks = {
+        "walt-server" = {
+          hostname = "waltmckelvie.com";
+          user = "waltmck";
+          forwardAgent = true;
+        };
+      };
     };
   };
 
@@ -24,7 +26,7 @@
   };
 
   services.openssh = {
-    enable = false; # Disable ssh server (save battery, increase security)
+    enable = headless; # Disable ssh server (save battery, increase security) if not headless
     settings = {
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;

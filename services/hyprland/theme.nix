@@ -5,6 +5,10 @@
   system,
   ...
 }: {
+  imports = [
+    inputs.nix-colors.homeManagerModules.default
+  ];
+
   # kvantum qt theme engine, which can be configured with kvantummanager
   environment.systemPackages = [
     pkgs.libsForQt5.qtstyleplugin-kvantum

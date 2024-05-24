@@ -10,23 +10,7 @@
 
   environment.systemPackages = with pkgs;
   with gnome; [
-    vim
-    git
-    wget
-    htop
-    home-manager
-    clang
-    openssh
-    gdu
-    ncdu
-    jq
-    pciutils
-    wl-clipboard
-    brightnessctl
     playerctl
-    wirelesstools
-
-    libnotify
 
     nautilus
     geary
@@ -63,19 +47,6 @@
     icon-library
     dconf-editor
 
-    # tools
-    # steam-run # fhs envs <- no aarch64 support
-    bat
-    eza
-    fd
-    ripgrep
-    fzf
-    libnotify
-    killall
-    zip
-    unzip
-    glib
-
     # fun
     glow
     slides
@@ -101,8 +72,6 @@
     polari # IRC client
     paper-plane # Telegram client
     calls # Gnome Calls, a voip client
-
-    powertop
 
     keepassxc
   ];

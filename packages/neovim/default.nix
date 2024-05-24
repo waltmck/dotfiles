@@ -1,16 +1,22 @@
 {
   pkgs,
   inputs,
+  headless,
   ...
 }: {
   imports = [
     inputs.nixvim.nixosModules.nixvim
   ];
 
-  environment.systemPackages = [
-    pkgs.alejandra
-    pkgs.neovide
-  ];
+  environment.systemPackages =
+    [
+      pkgs.alejandra
+    ]
+    ++ (
+      if !headless
+      then [pkgs.neovide]
+      else []
+    );
 
   environment.sessionVariables = {
     NEOVIDE_FORK = 1;
@@ -38,7 +44,7 @@
     vimAlias = true;
 
     # Sync clipboard with OS
-    clipboard.providers.wl-copy.enable = true;
+    clipboard.providers.wl-copy.enable = !headless;
 
     opts = {
       ###################
@@ -204,6 +210,8 @@
           };
         };
       };
+
+      nvim-colorizer.enable = true;
 
       nix.enable = true;
     };
