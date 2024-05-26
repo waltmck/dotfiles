@@ -54,6 +54,12 @@
       url = "github:rafaelmardojai/firefox-gnome-theme";
       flake = false;
     };
+
+    betterfox = {
+      url = "github:yokoffing/Betterfox";
+      flake = false;
+    };
+
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -72,6 +78,7 @@
     apple-silicon-support,
     ags,
     firefox-addons,
+    betterfox,
     ### nixos-boot,
     ...
   } @ inputs: {

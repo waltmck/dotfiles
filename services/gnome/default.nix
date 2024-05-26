@@ -20,17 +20,6 @@
     #libvirtd.enable = true;
   };
 
-  # kde connect
-  networking.firewall = rec {
-    allowedTCPPortRanges = [
-      {
-        from = 1714;
-        to = 1764;
-      }
-    ];
-    allowedUDPPortRanges = allowedTCPPortRanges;
-  };
-
   programs.dconf.enable = true;
 
   home-manager.users.waltmck = {
@@ -60,13 +49,6 @@
       "file://${home}/Pictures"
       "file://${home}/src Source"
     ];
-
-    services = {
-      kdeconnect = {
-        enable = true;
-        indicator = true;
-      };
-    };
 
     xdg.userDirs.enable = true;
   };

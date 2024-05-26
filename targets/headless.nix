@@ -11,12 +11,13 @@
   ...
 }: {
   imports = [
-    ../packages/_1password
     ../packages/sh
     ../packages/git
     ../packages/ssh
     ../packages/tmux
     ../packages/starship
+    # ../packages/p10k
+
     ../packages/locate
     ../packages/neovim
 

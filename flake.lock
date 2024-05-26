@@ -79,6 +79,22 @@
         "type": "github"
       }
     },
+    "betterfox": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1716574980,
+        "narHash": "sha256-i6fxW6hOOUWjWJ7lhX5qjEh9tyE2JyD6vwPEsfov7fY=",
+        "owner": "yokoffing",
+        "repo": "Betterfox",
+        "rev": "9756922ee951f9c0dd09f1e7037b93089a661963",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yokoffing",
+        "repo": "Betterfox",
+        "type": "github"
+      }
+    },
     "devshell": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -524,6 +540,7 @@
         "ags": "ags",
         "apple-silicon-support": "apple-silicon-support",
         "astal": "astal",
+        "betterfox": "betterfox",
         "firefox-addons": "firefox-addons",
         "firefox-gnome-theme": "firefox-gnome-theme",
         "home-manager": "home-manager",

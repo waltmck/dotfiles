@@ -13,30 +13,13 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../shared
     ../../hardware/asahi
     ../../hardware/filesystem
 
     ../../targets/headless.nix
-
-    ../../packages/firefox
-    ../../packages/obsidian
-    ../../packages/vscode
-    ../../packages/kitty
-    # ../../packages/blackbox
-    ../../packages/spot
-    ../../packages/fractal
-    ../../packages/newsflash
-    ../../packages/dissent
-    ../../packages/gaming
-    ../../packages/alacritty
-    ../../packages/email
+    ../../targets/graphical.nix
 
     ../../services/ags-laptop
-    ../../services/gnome
-    ../../services/hyprland
-    ../../services/bluetooth
-    ../../services/audio
   ];
 
   # See installation notes for how to find this
