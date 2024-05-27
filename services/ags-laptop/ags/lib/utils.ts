@@ -86,7 +86,7 @@ export function launchApp(app: Application) {
 		.filter(str => !str.startsWith("%") && !str.startsWith("@"))
 		.join(" ")
 
-	bash(`systemd-run --user --slice=app.slice --no-block --collect ${exe}`)
+	bash(`systemd-run --user --scope --slice=app.slice --no-block --collect ${exe} &`)
 	app.frequency += 1
 }
 

@@ -16,7 +16,7 @@
   environment.enableDebugInfo = true;
 
   environment.sessionVariables = {
-    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    ELECTRON_OZONE_PLATFORM_HINT = "wayland";
   };
 
   services.xserver.displayManager.startx.enable = true;
