@@ -160,7 +160,7 @@
 
     settings = {
       exec-once = [
-        # "${hyprctl} setcursor Qogir 24"
+        "${hyprctl} setcursor Qogir 24"
         # "transmission-gtk"
       ];
 
