@@ -213,7 +213,7 @@
 
       nvim-colorizer.enable = true;
 
-      nix.enable = true;
+      sleuth.enable = true;
     };
 
     colorschemes.catppuccin = {

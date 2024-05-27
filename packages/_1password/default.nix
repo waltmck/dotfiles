@@ -44,8 +44,12 @@
     after = ["graphical-session.target"];
 
     script = ''
-      ${pkgs._1password-gui.override {polkitPolicyOwners = ["waltmck"];}}/bin/1password --silent
+      ${pkgs._1password-gui.override {polkitPolicyOwners = ["waltmck"];}}/bin/1password --silent --ozone-platform-hint=wayland
     '';
+
+    serviceConfig.Environment = [
+      "ELECTRON_OZONE_PLATFORM_HINT=wayland"
+    ];
   };
 
   home-manager.users.waltmck = {

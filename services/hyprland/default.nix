@@ -15,6 +15,10 @@
 
   environment.enableDebugInfo = true;
 
+  environment.sessionVariables = {
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+  };
+
   services.xserver.displayManager.startx.enable = true;
 
   programs.hyprland = {
@@ -367,6 +371,14 @@
 
   # Persist crash logs
   environment.persistence."/nix/state".users.waltmck = {
-    directories = [".cache/hyprland" ".hyprland"];
+    directories = [
+      ".cache/hyprland"
+      ".hyprland"
+    ];
+  };
+
+  environment.persistence."/nix/state" = {
+    # Historical power information
+    directories = ["/var/lib/upower"];
   };
 }
