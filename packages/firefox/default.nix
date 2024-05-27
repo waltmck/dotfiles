@@ -140,6 +140,7 @@ in {
         ''
           user_pref("browser.search.suggest.enabled", true);
           user_pref("browser.search.suggest.enabled.private", true);
+          user_pref("browser.urlbar.suggest.searches", true);
         ''
       ];
 
@@ -152,7 +153,7 @@ in {
         "browser.download.useDownloadDir" = false; # Ask where to save stuff
         "privacy.clearOnShutdown.history" = false; # We want to save history on exit
         # Hi-DPI
-        "layout.css.devPixelsPerPx" = "2";
+        "layout.css.devPixelsPerPx" = "2.2";
 
         # Allow executing JS in the dev console
         "devtools.chrome.enabled" = true;

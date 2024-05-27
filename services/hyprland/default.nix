@@ -168,9 +168,17 @@
         layout = "dwindle";
         resize_on_border = true;
 
-        gaps_in = 4;
-        gaps_out = 8;
+        gaps_in = 12;
+        gaps_out = 24;
+
+        border_size = 1;
+
+        "col.active_border" = "rgba(51a4e7ff)";
+        "col.inactive_border" = "rgba(333333ff)";
       };
+
+      dwindle.no_gaps_when_only = true;
+      master.no_gaps_when_only = true;
 
       debug = {
         disable_logs = false;
@@ -228,6 +236,7 @@
         e = "exec, ${ags} -b hypr";
         popup_rules = "[float;pin;size 65%;stayfocused;center;dimaround]";
         arr = [1 2 3 4 5 6 7 8 9];
+        systemd-run = "${pkgs.systemd}/bin/systemd-run --user --slice=app.slice --no-block --collect --scope";
       in
         [
           "SUPER, R,       ${e} -t launcher"
@@ -236,21 +245,21 @@
           "SUPER,O,        ${e} -r 'recorder.start()'"
           "SUPER SHIFT,P,  ${e} -r 'recorder.screenshot()'"
           "SUPER,P,        ${e} -r 'recorder.screenshot(true)'"
+          "SUPER, E,       ${e} -t datemenu"
           # "SUPER, Return, exec, xterm" # xterm is a symlink, not actually xterm
 
-          "SUPER, Q, exec, systemd-run --user --slice=app.slice --no-block --collect --scope ${pkgs.alacritty}/bin/alacritty"
-          "SUPER, E, ${e} -t datemenu"
-          "SUPER, S, exec, ${popup_rules} systemd-run --user --slice=app.slice --no-block --collect --scope ${pkgs.spot}/bin/spot"
-          "SUPER, G, exec, ${popup_rules} systemd-run --user --slice=app.slice --no-block --collect --scope ${pkgs.gnome.nautilus}/bin/nautilus"
-          "SUPER, T, exec, ${pkgs._1password-gui}/bin/1password"
+          "SUPER, Q, exec, ${systemd-run} ${pkgs.alacritty}/bin/alacritty"
+          "SUPER, S, exec, ${systemd-run} ${pkgs.spot}/bin/spot"
+          "SUPER, G, exec, ${systemd-run} ${pkgs.gnome.nautilus}/bin/nautilus"
+          "SUPER, T, exec, ${systemd-run} ${pkgs._1password-gui}/bin/1password"
 
           # SUPER, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"
           "CTRL ALT, Backspace, exit"
           "SUPER, D, killactive"
           "SUPER, F, togglefloating"
-          "SUPER, A, fullscreen"
-          "SUPER SHIFT, A, fakefullscreen"
+          "SUPER SHIFT, A, fullscreen"
+          "SUPER, A, fakefullscreen"
           "SUPER, V, togglesplit"
 
           (mvfocus "k" "u")
@@ -276,8 +285,10 @@
       bindle = [
         ",XF86MonBrightnessUp,   exec, ${brightnessctl} set +5%"
         ",XF86MonBrightnessDown, exec, ${brightnessctl} set  5%-"
-        ",XF86KbdBrightnessUp,   exec, ${brightnessctl} -d asus::kbd_backlight set +1"
-        ",XF86KbdBrightnessDown, exec, ${brightnessctl} -d asus::kbd_backlight set  1-"
+        ",XF86KbdBrightnessUp,   exec, ${brightnessctl} -d kbd_backlight set +5%"
+        ",XF86KbdBrightnessDown, exec, ${brightnessctl} -d kbd_backlight set  5%-"
+        "SHIFT,XF86MonBrightnessUp, exec, ${brightnessctl} -d kbd_backlight set +5%"
+        "SHIFT,XF86MonBrightnessDown, exec, ${brightnessctl} -d kbd_backlight set 5%-"
         ",XF86AudioRaiseVolume,  exec, ${wpctl} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
         ",XF86AudioLowerVolume,  exec, ${wpctl} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-"
         ",XF86AudioMute,         exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
@@ -290,6 +301,11 @@
         ",XF86AudioPrev,    exec, ${playerctl} previous"
         ",XF86AudioNext,    exec, ${playerctl} next"
         ",XF86AudioMicMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        "SHIFT,XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+
+        "SHIFT,XF86AudioPlay,    exec, ${playerctl} stop"
+        "SHIFT,XF86AudioPrev,   exec, ${playerctl} position 2-"
+        "SHIFT,XF86AudioNext,    exec, ${playerctl} position 2+"
       ];
 
       bindm = [
@@ -298,7 +314,7 @@
       ];
 
       decoration = {
-        drop_shadow = "yes";
+        drop_shadow = true;
         shadow_range = 8;
         shadow_render_power = 2;
         "col.shadow" = "rgba(00000044)";
@@ -315,6 +331,8 @@
           brightness = 0.8;
           popups = true;
         };
+
+        rounding = 11;
       };
 
       animations = {
