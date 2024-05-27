@@ -3,13 +3,14 @@
   inputs,
   config,
   system,
+  lib,
   ...
 }: {
   imports = [
     ./theme.nix
     ./hyprlock.nix
     ./hypridle.nix
-    ./hyprpaper.nix
+    # ./hyprpaper.nix
   ];
 
   environment.enableDebugInfo = true;
@@ -60,6 +61,7 @@
   # for reasons outside of my comprehension
   security.pam.services.sddm.enableGnomeKeyring = true;
 
+  /*
   services.greetd = let
     session = "${pkgs.hyprland}/bin/Hyprland";
     tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
@@ -77,25 +79,62 @@
       };
     };
   };
+  */
 
-  /*
   systemd.user.services.hyprland = {
     description = "Hyprland Window Manager";
-    documentation = ["https://wiki.hyprland.org/Hypr-Ecosystem/hypridle"];
-    after = ["systemd-user-sessions.service" "plymouth-quit-wait.service" "getty@tty1.service"];
-    conflicts = ["getty@tty1.service"];
+    documentation = ["https://wiki.hyprland.org"];
+    #### after = ["systemd-user-sessions.service" "plymouth-quit-wait.service" "getty@tty1.service"];
+    # conflicts = ["getty@tty1.service"];
+
+    #### bindsTo = ["hyprland-session.target"];
+
+    #environment = let
+    #  path = lib.makeBinPath [pkgs.coreutils-full pkgs.gnugrep];
+    #in {
+    #  "PATH" = "${path}:/run/current-system/sw/bin/";
+    #};
 
     unitConfig = {
-      ConditionEnvironment = "WAYLAND_DISPLAY";
+      # ConditionEnvironment = "WAYLAND_DISPLAY";
     };
 
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.util-linux}/bin/agetty --autologin waltmck --noclear ${hypridle.packages.${pkgs.system}.default}/bin/hypridle";
-      Restart = "on-failure";
+      ExecStartPre = "${pkgs.systemd}/bin/systemctl --user unset-environment WAYLAND_DISPLAY DISPLAY";
+      ExecStart = "${pkgs.hyprland}/bin/Hyprland";
+
+      Environment = let
+        path = lib.makeBinPath [pkgs.coreutils-full pkgs.gnugrep];
+      in [
+        "PATH=${path}:/run/current-system/sw/bin/"
+        "LOGNAME=waltmck"
+        "HOME=/home/waltmck"
+        "LANG=en_US.UTF-8"
+        "XDG_SEAT=seat0"
+        "XDG_SESSION_TYPE=tty"
+        "XDG_SESSION_CLASS=user"
+        "XDG_VTNR=1"
+        "XDG_RUNTIME_DIR=/run/user/1000"
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus"
+        "HYPRLAND_LOG_WLR=1"
+
+        # CURSOR STUFF
+        "XCURSOR_SIZE=24"
+        "XCURSOR_THEME=Qogir"
+        # END CURSOR STUFF
+
+        # "WAYLAND_DISPLAY=wayland-1"
+        # "DISPLAY=:0"
+      ];
+
+      Slice = "session.slice"; # For processes with
+
+      StandardOutput = "journal";
+      StandardError = "journal";
+      Restart = "no";
     };
   };
-  */
 
   home-manager.users.waltmck.wayland.windowManager.hyprland = let
     # hyprland = hyprland;
@@ -110,6 +149,7 @@
     playerctl = "${pkgs.playerctl}/bin/playerctl";
     brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
     wpctl = "${pkgs.wireplumber}/bin/wpctl";
+    ags = "${inputs.ags.packages.${pkgs.system}.default}/bin/ags";
   in {
     enable = true;
     package = pkgs.hyprland;
@@ -120,8 +160,7 @@
 
     settings = {
       exec-once = [
-        "ags -b hypr"
-        "${hyprctl} setcursor Qogir 24"
+        # "${hyprctl} setcursor Qogir 24"
         # "transmission-gtk"
       ];
 
@@ -186,7 +225,7 @@
         resizeactive = binding "SUPER CTRL" "resizeactive";
         mvactive = binding "SUPER ALT" "moveactive";
         mvtows = binding "SUPER SHIFT" "movetoworkspace";
-        e = "exec, ags -b hypr";
+        e = "exec, ${ags} -b hypr";
         popup_rules = "[float;pin;size 65%;stayfocused;center;dimaround]";
         arr = [1 2 3 4 5 6 7 8 9];
       in
@@ -199,12 +238,11 @@
           "SUPER,P,        ${e} -r 'recorder.screenshot(true)'"
           # "SUPER, Return, exec, xterm" # xterm is a symlink, not actually xterm
 
-          "SUPER, W, exec, firefox"
-          "SUPER, Q, exec, ${pkgs.alacritty}/bin/alacritty"
+          "SUPER, Q, exec, systemd-run --user --slice=app.slice --no-block --collect --scope ${pkgs.alacritty}/bin/alacritty"
           "SUPER, E, ${e} -t datemenu"
-          "SUPER, S, exec, ${popup_rules} spot"
-          "SUPER, G, exec, ${popup_rules} nautilus"
-          "SUPER, T, exec, 1password"
+          "SUPER, S, exec, ${popup_rules} systemd-run --user --slice=app.slice --no-block --collect --scope ${pkgs.spot}/bin/spot"
+          "SUPER, G, exec, ${popup_rules} systemd-run --user --slice=app.slice --no-block --collect --scope ${pkgs.gnome.nautilus}/bin/nautilus"
+          "SUPER, T, exec, ${pkgs._1password-gui}/bin/1password"
 
           # SUPER, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"

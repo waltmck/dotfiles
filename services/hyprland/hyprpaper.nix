@@ -39,6 +39,8 @@
       Type = "simple";
       ExecStart = "${pkgs.hyprpaper}/bin/hyprpaper";
       Restart = "on-failure";
+
+      Slice = "session.slice";
     };
   };
 }

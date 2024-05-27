@@ -17,7 +17,73 @@
     NVD_BACKEND = "direct";
   };
   envStr = concatStringsSep " " (mapAttrsToList (n: v: "${n}=${escapeShellArg v}") env);
+
+  firefox-pkg =
+    (pkgs.firefox.overrideAttrs (old: {
+      buildCommand =
+        old.buildCommand
+        + ''
+          substituteInPlace $out/bin/firefox \
+            --replace "exec -a" ${escapeShellArg envStr}" exec -a"
+        '';
+    }))
+    .override {
+      extraPolicies = {
+        AppAutoUpdate = false;
+
+        BackgroundAppUpdate = false;
+        AppUpdateURL = "";
+
+        DisableSystemAddonUpdate = true;
+        CaptivePortal = false;
+        DisableFirefoxStudies = true;
+        DisablePocket = true;
+        DisableTelemetry = true;
+        DisableFirefoxAccounts = true;
+        DisableFirefoxScreenshots = true;
+        NoDefaultBookmarks = true;
+        OfferToSaveLogins = false;
+        OfferToSaveLoginsDefault = false;
+        DisableFormHistory = true;
+        PasswordManagerEnabled = false;
+
+        UserMessaging = {
+          ExtensionRecommendations = false;
+          SkipOnboarding = true;
+          WhatsNew = false; # Remove the “What’s New” icon and menuitem
+          FeatureRecommendations = false; # Don’t recommend browser features
+          MoreFromMozilla = false; # Don’t show the “More from Mozilla” section in Preferences
+          Locked = true;
+        };
+        FirefoxHome = {
+          Search = false;
+          TopSites = false;
+          SponsoredTopSites = false;
+          Highlights = false;
+          Pocket = false;
+          SponsoredPocket = false;
+          Snippets = false;
+          Locked = true;
+        };
+
+        FirefoxSuggest = {
+          WebSuggestions = false;
+          SponsoredSuggestions = false;
+          ImproveSuggest = false;
+          Locked = true;
+        };
+
+        DisplayBookmarksToolbar = "never"; # alternatives: "always" or "newtab"
+        DisplayMenuBar = "default-off"; # alternatives: "always", "never" or "default-on"
+
+        AutofillAddressEnabled = false;
+        AutofillCreditCardEnabled = false;
+      };
+    };
 in {
+  environment.systemPackages = [firefox-pkg];
+
+  # Install gnome theme
   home-manager.users.waltmck.home = {
     sessionVariables.BROWSER = "firefox";
 
@@ -27,70 +93,12 @@ in {
     };
   };
 
+  # Add shortcut using our override firefox
+  home-manager.users.waltmck.wayland.windowManager.hyprland.settings.bind = ["SUPER, W, exec, systemd-run --user --slice=app.slice --no-block --collect --scope ${firefox-pkg}/bin/firefox"];
+
   home-manager.users.waltmck.programs.firefox = {
     enable = true;
-    package =
-      (pkgs.firefox.overrideAttrs (old: {
-        buildCommand =
-          old.buildCommand
-          + ''
-            substituteInPlace $out/bin/firefox \
-              --replace "exec -a" ${escapeShellArg envStr}" exec -a"
-          '';
-      }))
-      .override {
-        extraPolicies = {
-          AppAutoUpdate = false;
-
-          BackgroundAppUpdate = false;
-          AppUpdateURL = "";
-
-          DisableSystemAddonUpdate = true;
-          CaptivePortal = false;
-          DisableFirefoxStudies = true;
-          DisablePocket = true;
-          DisableTelemetry = true;
-          DisableFirefoxAccounts = true;
-          DisableFirefoxScreenshots = true;
-          NoDefaultBookmarks = true;
-          OfferToSaveLogins = false;
-          OfferToSaveLoginsDefault = false;
-          DisableFormHistory = true;
-          PasswordManagerEnabled = false;
-
-          UserMessaging = {
-            ExtensionRecommendations = false;
-            SkipOnboarding = true;
-            WhatsNew = false; # Remove the “What’s New” icon and menuitem
-            FeatureRecommendations = false; # Don’t recommend browser features
-            MoreFromMozilla = false; # Don’t show the “More from Mozilla” section in Preferences
-            Locked = true;
-          };
-          FirefoxHome = {
-            Search = false;
-            TopSites = false;
-            SponsoredTopSites = false;
-            Highlights = false;
-            Pocket = false;
-            SponsoredPocket = false;
-            Snippets = false;
-            Locked = true;
-          };
-
-          FirefoxSuggest = {
-            WebSuggestions = false;
-            SponsoredSuggestions = false;
-            ImproveSuggest = false;
-            Locked = true;
-          };
-
-          DisplayBookmarksToolbar = "never"; # alternatives: "always" or "newtab"
-          DisplayMenuBar = "default-off"; # alternatives: "always", "never" or "default-on"
-
-          AutofillAddressEnabled = false;
-          AutofillCreditCardEnabled = false;
-        };
-      };
+    package = firefox-pkg;
 
     profiles.default = {
       id = 0;
@@ -104,6 +112,7 @@ in {
         sponsorblock
         bypass-paywalls-clean
         i-dont-care-about-cookies
+        user-agent-string-switcher
         # zotero-connector
         # mullvad
       ];
@@ -127,12 +136,17 @@ in {
         (builtins.readFile "${inputs.betterfox}/Securefox.js")
         (builtins.readFile "${inputs.betterfox}/Fastfox.js")
         (builtins.readFile "${inputs.betterfox}/Peskyfox.js")
+        # Override the previous user.js (later lines get priority)
+        ''
+          user_pref("browser.search.suggest.enabled", true);
+          user_pref("browser.search.suggest.enabled.private", true);
+        ''
       ];
 
       settings = {
         # General
         "intl.accept_languages" = "en-US,en";
-        "browser.startup.page" = 3; # Resume previous session on startup
+        "browser.startup.page" = 0; # Open blank page on start-up
         "browser.aboutConfig.showWarning" = false; # I sometimes know what I'm doing
         "browser.ctrlTab.sortByRecentlyUsed" = false; # (default) Who wants that?
         "browser.download.useDownloadDir" = false; # Ask where to save stuff
@@ -232,6 +246,14 @@ in {
 
         "browser.sessionstore.resume_from_crash" = false; # Disable resuming from crash which requires frequent writes to disk
 
+        # Cache to memory, disable cache to disk
+        "browser.cache.memory.enable" = true;
+        "browser.cache.disk.enable" = false;
+        "browser.cache.disk_cache_ssl" = false;
+
+        "browser.cache.memory.max_entry_size" = 51200;
+        "browser.cache.memory.capacity" = 880640; # In kB
+
         "extensions.autoDisableScopes" = 0; # Don't auto disable extensions
 
         # REMOVE EVEN MORE CRUD
@@ -286,159 +308,6 @@ in {
 
         # Disable form autofill
         "signon.autofillForms" = false;
-      };
-      search = {
-        force = true;
-        default = "Kagi";
-        order = ["Kagi" "DuckDuckGo" "Youtube" "NixOS Options" "Nix Packages" "GitHub" "HackerNews"];
-
-        engines = {
-          "Bing".metaData.hidden = true;
-          "Amazon.com".metaData.hidden = true;
-          "Google".metaData.hidden = true;
-          "DuckDuckGo".metaData.hidden = true;
-          "eBay".metaData.hidden = true;
-          /*
-          "Kagi" = {
-            iconUpdateURL = "https://kagi.com/favicon.ico";
-            updateInterval = 24 * 60 * 60 * 1000;
-            definedAliases = ["@k"];
-            urls = [
-              {
-                template = "https://kagi.com/search";
-                params = [
-                  {
-                    name = "q";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-          };
-          */
-
-          "YouTube" = {
-            iconUpdateURL = "https://youtube.com/favicon.ico";
-            updateInterval = 24 * 60 * 60 * 1000;
-            definedAliases = ["@yt"];
-            urls = [
-              {
-                template = "https://www.youtube.com/results";
-                params = [
-                  {
-                    name = "search_query";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-
-            metaData.hidden = true;
-          };
-
-          "Nix Packages" = {
-            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = ["@np"];
-            urls = [
-              {
-                template = "https://search.nixos.org/packages";
-                params = [
-                  {
-                    name = "type";
-                    value = "packages";
-                  }
-                  {
-                    name = "query";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-
-            metaData.hidden = true;
-          };
-
-          "NixOS Options" = {
-            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = ["@no"];
-            urls = [
-              {
-                template = "https://search.nixos.org/options";
-                params = [
-                  {
-                    name = "channel";
-                    value = "unstable";
-                  }
-                  {
-                    name = "query";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-
-            metaData.hidden = true;
-          };
-
-          "GitHub" = {
-            iconUpdateURL = "https://github.com/favicon.ico";
-            updateInterval = 24 * 60 * 60 * 1000;
-            definedAliases = ["@gh"];
-
-            urls = [
-              {
-                template = "https://github.com/search";
-                params = [
-                  {
-                    name = "q";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-
-            metaData.hidden = true;
-          };
-
-          "Home Manager" = {
-            icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-            definedAliases = ["@hm"];
-
-            url = [
-              {
-                template = "https://mipmip.github.io/home-manager-option-search/";
-                params = [
-                  {
-                    name = "query";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-
-            metaData.hidden = true;
-          };
-
-          "HackerNews" = {
-            iconUpdateURL = "https://hn.algolia.com/favicon.ico";
-            updateInterval = 24 * 60 * 60 * 1000;
-            definedAliases = ["@hn"];
-
-            url = [
-              {
-                template = "https://hn.algolia.com/";
-                params = [
-                  {
-                    name = "query";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-
-            metaData.hidden = true;
-          };
-        };
       };
     };
   };

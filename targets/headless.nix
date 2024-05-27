@@ -16,7 +16,7 @@
     ../packages/ssh
     ../packages/tmux
     ../packages/starship
-    # ../packages/p10k
+    ../packages/p10k
 
     ../packages/locate
     ../packages/neovim
@@ -38,6 +38,7 @@
     pciutils
     brightnessctl
     wirelesstools
+    speedtest-cli
 
     bat
     eza

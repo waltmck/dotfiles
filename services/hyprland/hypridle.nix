@@ -42,6 +42,8 @@
       Type = "simple";
       ExecStart = "${pkgs.hypridle}/bin/hypridle";
       Restart = "on-failure";
+
+      Slice = "session.slice";
     };
   };
 }

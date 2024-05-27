@@ -119,9 +119,9 @@ in {
       eval "$(${starshipCmd} init bash)"
     '';
 
-    programs.zsh.initExtra = ''
-      eval "$(${starshipCmd} init zsh)"
-    '';
+    #programs.zsh.initExtra = ''
+    #  eval "$(${starshipCmd} init zsh)"
+    #'';
 
     programs.nushell = {
       extraEnv = ''

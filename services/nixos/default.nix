@@ -68,6 +68,9 @@
   home-manager.useUserPackages = true;
   home-manager.useGlobalPkgs = true;
 
+  # If conflicting config files exist, move them to a backup ending with `.hm-bak`.
+  home-manager.backupFileExtension = "hm-bak";
+
   home-manager.users.waltmck = {
     # Imports and stateVersion
     home.stateVersion = "23.11";
@@ -110,11 +113,14 @@
     };
   };
 
-  # By default, the limit on the number of open files is too low
-  # to allow building from source. I ran `ulimit -n 4096`, but hopefully
-  # this should fix it for the future. See
-  # https://discourse.nixos.org/t/unable-to-fix-too-many-open-files-error/27094/7
-  systemd.extraConfig = "DefaultLimitNOFILE=2048";
+  systemd = {
+    # By default, the limit on the number of open files is too low
+    # to allow building from source. This should fix it for the future. See
+    # https://discourse.nixos.org/t/unable-to-fix-too-many-open-files-error/27094/7
+    extraConfig = "DefaultLimitNOFILE=2048";
+
+    enableCgroupAccounting = true;
+  };
 
   environment.sessionVariables = rec {
     NIXOS_OZONE_WL = "1";
@@ -150,7 +156,7 @@
             ;;
           "switch")
             sudo nixos-rebuild switch --flake /etc/nixos#${hostname} --impure || exit 1
-            ags -b hypr quit; hyprctl reload; hyprctl dispatch exec "ags -b hypr"
+            hyprctl reload; systemctl restart --user ags
             ;;
           "edit")
             ${
