@@ -16,9 +16,9 @@ assert !headless; {
     ../packages/kitty
     # ../packages/blackbox
     ../packages/spot
-    ../packages/fractal
+    ../packages/matrix
     ../packages/newsflash
-    ../packages/dissent
+    ../packages/discord
     ../packages/gaming
     ../packages/alacritty
     ../packages/email

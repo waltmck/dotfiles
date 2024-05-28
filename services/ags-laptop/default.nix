@@ -26,6 +26,7 @@
     gtk3
     hyprland
     systemd
+    networkmanagerapplet #TODO link to this from quicksettings
   ];
 in {
   home-manager.users.waltmck = {

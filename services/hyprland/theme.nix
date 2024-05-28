@@ -56,8 +56,8 @@
         papirus-icon-theme
       ];
       sessionVariables = {
-        XCURSOR_THEME = cursorTheme.name;
-        XCURSOR_SIZE = "${toString cursorTheme.size}";
+        # XCURSOR_THEME = cursorTheme.name;
+        # XCURSOR_SIZE = "${toString cursorTheme.size}";
       };
       pointerCursor =
         cursorTheme
@@ -81,7 +81,7 @@
     fonts.fontconfig.enable = true;
 
     gtk = {
-      inherit font cursorTheme iconTheme;
+      inherit font iconTheme;
       theme.name = theme.name;
       enable = true;
       gtk3.extraCss = ''

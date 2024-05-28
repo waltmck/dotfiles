@@ -38,7 +38,7 @@ const Settings = () => Widget.Box({
     class_name: "quicksettings vertical",
     css: quicksettings.width.bind().as(w => `min-width: ${w}px;`),
     children: [
-        Header(),
+        // Header(), TODO remove backend
         Widget.Box({
             class_name: "sliders-box vertical",
             vertical: true,
@@ -56,10 +56,10 @@ const Settings = () => Widget.Box({
             [NetworkToggle, BluetoothToggle],
             [WifiSelection, BluetoothDevices],
         ),
-        Row(
+        /*Row(
             [ProfileToggle, DarkModeToggle],
             [ProfileSelector],
-        ),
+        ),*/ // Got rid of unneeded stuff. TODO cleanup backend
         Row([MicMute, DND]),
         Widget.Box({
             visible: media.as(l => l.length > 0),

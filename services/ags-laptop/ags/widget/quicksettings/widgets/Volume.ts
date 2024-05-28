@@ -11,7 +11,7 @@ const VolumeIndicator = (type: Type = "speaker") => Widget.Button({
     on_clicked: () => audio[type].is_muted = !audio[type].is_muted,
     child: Widget.Icon({
         icon: audio[type].bind("icon_name")
-            .as(i => icon(i || "", icons.audio.volume.high)),
+            .as(i => icon(i || "", type === "speaker" ? icons.audio.volume.high : icons.audio.mic.high)),
         tooltipText: audio[type].bind("volume")
             .as(vol => `Volume: ${Math.floor(vol * 100)}%`),
     }),
