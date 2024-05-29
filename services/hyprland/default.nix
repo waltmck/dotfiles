@@ -15,8 +15,10 @@
 
   environment.enableDebugInfo = true;
 
+  # Make electron apps use Wayland
   environment.sessionVariables = {
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
+    NIXOS_OZONE_WL = "1";
   };
 
   services.xserver.displayManager.startx.enable = true;
@@ -238,9 +240,34 @@
         mvactive = binding "SUPER ALT" "moveactive";
         mvtows = binding "SUPER SHIFT" "movetoworkspace";
         e = "exec, ${ags} -b hypr";
-        popup_rules = "[float;pin;size 65%;stayfocused;center;dimaround]";
+        popup_rules = "[float;pin;size 75%;stayfocused;center;dimaround]";
+
+        popup_script = cmd: name:
+          pkgs.writeShellScript "${name}-popup-script" ''
+            if ${hyprctl} activewindow | ${pkgs.gnused}/bin/sed '/pinned: 1/q1' --quiet; then # If no window pinned, run normally
+              ${hyprctl} dispatch exec "${popup_rules} ${cmd}"; exit 0;
+            fi
+
+            if ${hyprctl} activewindow | ${pkgs.gnused}/bin/sed '/${name}/q1' --quiet; then # If window other than ours is pinned
+              ${hyprctl} dispatch killactive;
+              ${hyprctl} dispatch exec "${popup_rules} ${cmd}"; exit 0; # Replace the pinned window with ours
+            else
+              ${hyprctl} dispatch killactive; # If our window is pinned, get rid of it
+            fi;
+          '';
+
+        popup_rules_loose = "[float; size 65%; center]";
         arr = [1 2 3 4 5 6 7 8 9];
         systemd-run = "${pkgs.systemd}/bin/systemd-run --user --slice=app.slice --no-block --collect --scope";
+
+        # "Task Manager" menu
+        topPopup = popup_script "${pkgs.alacritty}/bin/alacritty -T 'Task Manager' -e ${pkgs.btop}/bin/btop" "title: Task Manager";
+        termPopup = popup_script "${systemd-run} ${pkgs.alacritty}/bin/alacritty -T 'Terminal (Quick)'" "title: Terminal (Quick)";
+        termPopupSession = popup_script "${pkgs.alacritty}/bin/alacritty -T 'Terminal (session.slice)'" "title: Terminal (session.slice)";
+
+        opPopup = popup_script "${systemd-run} ${pkgs._1password-gui}/bin/1password" "class: 1Password";
+
+        spotPopup = popup_script "${systemd-run} ${pkgs.spot}/bin/spot" "class: dev.alextren.Spot";
       in
         [
           "SUPER, R,       ${e} -t launcher"
@@ -253,9 +280,17 @@
           # "SUPER, Return, exec, xterm" # xterm is a symlink, not actually xterm
 
           "SUPER, Q, exec, ${systemd-run} ${pkgs.alacritty}/bin/alacritty"
-          "SUPER, S, exec, ${systemd-run} ${pkgs.spot}/bin/spot"
-          "SUPER, G, exec, ${systemd-run} ${pkgs.gnome.nautilus}/bin/nautilus"
-          "SUPER, T, exec, ${systemd-run} ${pkgs._1password-gui}/bin/1password"
+
+          "SUPER SHIFT, Q, execr, ${termPopup}" # Alacritty popup
+          "SUPER CTRL SHIFT, Q, execr, ${termPopupSession}" # Alacritty popup in session.slice
+          "SUPER, S, exec, ${spotPopup}"
+          "SUPER, G, exec, ${popup_rules_loose} ${systemd-run} ${pkgs.gnome.nautilus}/bin/nautilus"
+          "SUPER, T, exec, ${opPopup}"
+
+          "SUPER SHIFT, W, execr, ${topPopup}" # "task manager" menu
+
+          # For debugging, use to find findow rules of current window
+          "SUPER ALT, W, execr, ${hyprctl} activewindow > /home/waltmck/winrules"
 
           # SUPER, Tab, focuscurrentorlast"
           "CTRL ALT, Delete, exit"

@@ -113,14 +113,21 @@
     };
   };
 
-  systemd = {
-    # By default, the limit on the number of open files is too low
-    # to allow building from source. This should fix it for the future. See
-    # https://discourse.nixos.org/t/unable-to-fix-too-many-open-files-error/27094/7
-    extraConfig = "DefaultLimitNOFILE=2048";
+  # Show CPU, IO, memory usage for systemd services by default
+  systemd.enableCgroupAccounting = true;
 
-    enableCgroupAccounting = true;
-  };
+  # By default, the limit on the number of open files is too low
+  # to allow building from source. This should fix it for the future. See
+  # https://discourse.nixos.org/t/unable-to-fix-too-many-open-files-error/27094/7
+  systemd.extraConfig = "DefaultLimitNOFILE=4096";
+  security.pam.loginLimits = [
+    {
+      domain = "*";
+      type = "soft";
+      item = "nofile";
+      value = "4096";
+    }
+  ];
 
   environment.sessionVariables = rec {
     NIXOS_OZONE_WL = "1";
