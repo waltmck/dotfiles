@@ -7,7 +7,6 @@
   ...
 }: {
   # Imports and state version
-  system.stateVersion = "24.05";
   imports = [
     "${inputs.home-manager}/nixos"
     "${inputs.impermanence}/nixos.nix"
