@@ -103,7 +103,7 @@
       "walt-cloud" = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         modules = [
-          ./hosts/cloud
+          ./hosts/cloud/configuration.nix
           # nixos-boot.nixosModules.default
         ];
         specialArgs = {
