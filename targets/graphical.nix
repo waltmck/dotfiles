@@ -27,6 +27,7 @@ assert !headless; {
     ../services/hyprland
     ../services/bluetooth
     ../services/audio
+    ../services/internet
   ];
 
   # -- System Packages --

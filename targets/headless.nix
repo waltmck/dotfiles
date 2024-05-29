@@ -22,7 +22,6 @@
     ../packages/neovim
 
     ../services/nixos
-    ../services/internet
   ];
 
   environment.systemPackages = with pkgs; [

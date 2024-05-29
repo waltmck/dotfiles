@@ -34,7 +34,8 @@
   #};
 
   # kde connect
-  networking.firewall = rec {
+  /*
+    networking.firewall = rec {
     allowedTCPPortRanges = [
       {
         from = 1714;
@@ -43,6 +44,7 @@
     ];
     allowedUDPPortRanges = allowedTCPPortRanges;
   };
+  */
 
   home-manager.useUserPackages = true;
   home-manager.useGlobalPkgs = true;
