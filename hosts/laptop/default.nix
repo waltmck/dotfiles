@@ -14,7 +14,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../hardware/asahi
-    ../../hardware/filesystem
+    ./filesystem.nix
 
     ../../targets/headless.nix
     ../../targets/graphical.nix

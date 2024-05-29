@@ -15,6 +15,16 @@
 
   environment.enableDebugInfo = true;
 
+  # Moved from services/nixos. TODO is this necessary?
+  services = {
+    xserver = {
+      enable = true;
+      excludePackages = [pkgs.xterm];
+    };
+    printing.enable = true;
+    # flatpak.enable = true;
+  };
+
   # Make electron apps use Wayland
   environment.sessionVariables = {
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";

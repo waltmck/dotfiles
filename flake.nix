@@ -100,6 +100,23 @@
           headless = false;
         };
       };
+      "walt-cloud" = nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/cloud/default.nix
+          # nixos-boot.nixosModules.default
+        ];
+        specialArgs = {
+          inherit inputs;
+          inherit system;
+          hostname = "walt-cloud";
+
+          # Look at gcc docs plus https://gpages.juszkiewicz.com.pl/arm-socs-table/arm-socs.html to find arch
+          # march = "armv8.6-a+fp16+fp16fml+aes+sha2+sha3+bf16+i8mm+nosve+nosve2+nomemtag+nosm4+nof32mm+nof64mm";
+          native = false;
+          headless = true;
+        };
+      };
     };
   };
 }

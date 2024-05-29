@@ -6,6 +6,13 @@
   ...
 }: {
   environment.systemPackages = [pkgs.hyprlock];
+
+  services.logind.extraConfig = ''
+    HandlePowerKey=ignore
+    HandleLidSwitch=suspend
+    HandleLidSwitchExternalPower=suspend
+  '';
+
   home-manager.users.waltmck = {
     ## Hyprlock
 

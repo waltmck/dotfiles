@@ -26,33 +26,13 @@
     };
   };
 
-  # camera
-  programs.droidcam.enable = true;
-
   # virtualisation
-  programs.virt-manager.enable = true;
-  virtualisation = {
-    #podman.enable = true;
-    #docker.enable = true;
-    #libvirtd.enable = true;
-  };
-
-  # services
-  services = {
-    xserver = {
-      enable = true;
-      excludePackages = [pkgs.xterm];
-    };
-    printing.enable = true;
-    # flatpak.enable = true;
-  };
-
-  # logind
-  services.logind.extraConfig = ''
-    HandlePowerKey=ignore
-    HandleLidSwitch=suspend
-    HandleLidSwitchExternalPower=suspend
-  '';
+  #programs.virt-manager.enable = true;
+  #virtualisation = {
+  #podman.enable = true;
+  #docker.enable = true;
+  #libvirtd.enable = true;
+  #};
 
   # kde connect
   networking.firewall = rec {
@@ -130,7 +110,6 @@
   ];
 
   environment.sessionVariables = rec {
-    NIXOS_OZONE_WL = "1";
     NIXPKGS_ALLOW_UNFREE = "1";
   };
 
