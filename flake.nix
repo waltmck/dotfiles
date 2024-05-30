@@ -113,6 +113,9 @@
           headless = false;
         };
       };
+
+      # Note: when using nixos-anywhere to Hetzner, make sure to select the `linux-old` (kernel `6.3.1`) rather than
+      # the `linux` (kernel `6.7.4`) rescue system--otherwise, there are problems with `kexec`.
       "walt-cloud" = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         modules = [
