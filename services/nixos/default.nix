@@ -83,6 +83,8 @@
     ];
 
     directories = [
+      "/etc/nixos"
+      "/var/log"
       "/var/lib/systemd" # For systemd timers, etc. See https://github.com/nbraud/nixpkgs/blob/735481ef6b8be1ef884a6c4b0a4b80264216a379/nixos/doc/manual/administration/systemd-state.section.md
       "/var/lib/nixos" # See https://github.com/nix-community/impermanence/issues/178
     ];

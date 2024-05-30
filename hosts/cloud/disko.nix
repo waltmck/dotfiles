@@ -60,7 +60,6 @@
         };
       };
     };
-    /*
     nodev = {
       "/" = {
         fsType = "tmpfs";
@@ -71,7 +70,6 @@
         ];
       };
     };
-    */
     mdadm = {
       boot = {
         type = "mdadm";
@@ -93,18 +91,16 @@
             content = {
               type = "filesystem";
               format = "ext4";
-              mountpoint = "/";
+              mountpoint = "/nix";
             };
           };
         };
       };
     };
   };
-  /*
   fileSystems = {
     "/".neededForBoot = true;
     #"/nix".neededForBoot = true;
-    "/boot".neededForBoot = true;
+    # "/boot".neededForBoot = true;
   };
-  */
 }

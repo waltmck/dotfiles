@@ -11,7 +11,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./disko.nix
-    # ../../targets/headless.nix
+    ../../targets/headless.nix
   ];
 
   boot.kernelModules = ["kvm-intel"];
@@ -51,7 +51,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDIhzYxT+Dociep+0p5a2xr9T8UDJYCa9wbYRNux4LN2"
     ];
 
-    initialPassword = "hunter3";
+    # initialPassword = "hunter3";
   };
 
   /*
