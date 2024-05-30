@@ -11,6 +11,17 @@
 
     systems.url = "github:nix-systems/default-linux";
 
+    # Deployment
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -80,6 +91,8 @@
     firefox-addons,
     betterfox,
     ### nixos-boot,
+    deploy-rs,
+    disko,
     ...
   } @ inputs: {
     nixosConfigurations = {
@@ -105,6 +118,7 @@
         modules = [
           ./hosts/cloud/configuration.nix
           # nixos-boot.nixosModules.default
+          inputs.disko.nixosModules.disko
         ];
         specialArgs = {
           inherit inputs;
@@ -118,5 +132,23 @@
         };
       };
     };
+
+    deploy = {
+      sshUser = "root";
+      user = "root";
+      autoRollback = true;
+      magicRollback = true;
+      remoteBuild = true;
+      nodes = {
+        "walt-cloud" = {
+          hostname = "37.27.106.131";
+          profiles.system = {
+            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations."walt-cloud";
+          };
+        };
+      };
+    };
+
+    checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
   };
 }

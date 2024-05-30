@@ -68,6 +68,11 @@ in {
 
     #### bindsTo = ["hyprland-session.target"];
 
+    # Don't start until our display is running
+    unitConfig = {
+      ConditionEnvironment = "WAYLAND_DISPLAY";
+    };
+
     serviceConfig = {
       Type = "simple";
       ExecStart = "${ags}/bin/ags -b hypr";

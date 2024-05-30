@@ -10,14 +10,17 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./disko.nix
     # ../../targets/headless.nix
   ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelModules = ["kvm-intel"];
 
-  boot.loader.grub.device = "/dev/nvme0n1";
+  # Use the grub EFI boot loader.
+  boot.loader.grub.enable = true;
+  boot.loader.efi.canTouchEfiVariables = false;
+
+  # boot.loader.grub.device = "/dev/nvme0n1";
 
   services.openssh.enable = true;
 
@@ -36,11 +39,21 @@
     initialPassword = "hunter3";
   };
 
+  users.users.root = {
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDIhzYxT+Dociep+0p5a2xr9T8UDJYCa9wbYRNux4LN2"
+    ];
+
+    initialPassword = "hunter3";
+  };
+
+  /*
   fileSystems."/" = {
     device = "none";
     fsType = "tmpfs";
     options = ["defaults" "size=16G" "mode=755"];
   };
+  */
 
   networking.hostName = "walt-cloud"; # Define your hostname.
   networking.hostId = "deadbeef";

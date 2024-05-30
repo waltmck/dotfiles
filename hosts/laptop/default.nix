@@ -22,6 +22,8 @@
     ../../services/ags-laptop
   ];
 
+  boot.binfmt.emulatedSystems = ["x86_64-linux"];
+
   # See installation notes for how to find this
   boot.initrd.luks.devices."encrypted".device = "/dev/disk/by-uuid/0caf6fe9-a9e6-4f18-ada4-a9acc1609799";
 
