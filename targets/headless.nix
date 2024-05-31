@@ -15,13 +15,13 @@
     ../packages/git
     ../packages/ssh
     ../packages/tmux
-    ../packages/starship
+    # ../packages/starship
     ../packages/p10k
 
-    ../packages/locate
+    # ../packages/locate
     ../packages/neovim
 
-    ../services/nixos
+    # ../services/nixos
   ];
 
   environment.systemPackages = with pkgs; [
