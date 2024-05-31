@@ -31,10 +31,6 @@
     NIXOS_OZONE_WL = "1";
   };
 
-  # Start services before login
-  # This speeds up the boot process
-  users.users.waltmck.linger = true;
-
   services.xserver.displayManager.startx.enable = true;
 
   programs.hyprland = {
