@@ -46,6 +46,9 @@
     ];
   };
 
+  # Begin user systemd services on boot rather than on login
+  users.users.waltmck.linger = true;
+
   security = {
     polkit.enable = true;
     pam.services.ags = {};
