@@ -114,8 +114,10 @@
         };
       };
 
+      # Initially, use `nix run github:numtide/nixos-anywhere -- --build-on-remote --flake .#walt-cloud root@cloud.waltmckelvie.com`
       # Note: when using nixos-anywhere to Hetzner, make sure to select the `linux-old` (kernel `6.3.1`) rather than
       # the `linux` (kernel `6.7.4`) rescue system--otherwise, there are problems with `kexec`.
+      # Due to problems with impermanence, it will also be necessary to `nixos-anywhere` a basic version without impermanence. Then, impermanence can be added and permissions manually changed in `/nix/state` as we go.
       "walt-cloud" = nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         modules = [
@@ -144,7 +146,7 @@
       remoteBuild = true;
       nodes = {
         "walt-cloud" = {
-          hostname = "37.27.106.131";
+          hostname = "cloud.waltmckelvie.com";
           profiles.system = {
             path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations."walt-cloud";
           };

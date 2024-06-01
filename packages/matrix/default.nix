@@ -5,14 +5,14 @@
   inputs,
   ...
 }: {
-  environment.systemPackages = [pkgs.element-desktop-wayland];
+  environment.systemPackages = [pkgs.element-desktop];
 
   /*
   home-manager.users.waltmck.wayland.windowManager.hyprland.settings.exec-once = [
     "${pkgs.fractal}/bin/fractal --gapplication-service" # To get background notifications
   ];
   */
-
+/*
   home-manager.users.waltmck = {
     xdg.desktopEntries = {
       element = {
@@ -24,7 +24,7 @@
       };
     };
   };
-
+*/
   environment.persistence."/nix/state".users.waltmck = {
     directories = [".local/share/fractal" ".config/Element"];
   };

@@ -27,16 +27,19 @@
 
   environment.systemPackages = let
     locate =
-      pkgs.writeShellScriptBin "locate2"
+      pkgs.writeShellScriptBin "locate"
       ''
         ${pkgs.plocate}/bin/plocate --database /var/cache/locatedb/locatedb "$@" | sort -u
       '';
     updatedb =
-      pkgs.writeShellScriptBin "updatedb2"
+      pkgs.writeShellScriptBin "updatedb"
       ''
         ${pkgs.plocate}/bin/updatedb "$@" --output /var/cache/locatedb/locatedb
       '';
-  in [locate updatedb];
+  in [
+    (lib.hiPrio locate)
+    (lib.hiPrio updatedb)
+  ];
 
   users.users.waltmck.extraGroups = ["plocate"];
 

@@ -15,7 +15,7 @@
     ../packages/git
     ../packages/ssh
     ../packages/tmux
-    ../packages/starship
+    # ../packages/starship
     ../packages/p10k
 
     ../packages/locate

@@ -76,8 +76,6 @@
 
   # -- Persistence --
   environment.persistence."/nix/state" = {
-    hideMounts = true;
-
     files = [
       "/etc/machine-id"
     ];
@@ -112,7 +110,7 @@
     }
   ];
 
-  environment.sessionVariables = rec {
+  environment.sessionVariables = {
     NIXPKGS_ALLOW_UNFREE = "1";
   };
 
@@ -155,6 +153,9 @@
           "gc")
             sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +50 || exit 1
             nix-collect-garbage
+            ;;
+          "deploy")
+            nix run github:serokell/deploy-rs -- --remote-build -s /etc/nixos#$2
             ;;
           "upgrade")
             nix flake upgrade /etx/nixos || exit 1

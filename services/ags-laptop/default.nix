@@ -92,6 +92,12 @@ in {
         "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus"
         "HYPRLAND_LOG_WLR=1"
 
+        "ELECTRON_OZONE_PLATFORM_HINT=wayland" # Launch apps in wayland
+        "NIXOS_OZONE_WL=1"
+        "MOZ_ENABLE_WAYLAND=1"
+        "XDG_BACKEND=wayland"
+        "XDG_SESSION_TYPE=wayland"
+
         # CURSOR STUFF
         "XCURSOR_SIZE=24"
         "XCURSOR_THEME=Qogir"

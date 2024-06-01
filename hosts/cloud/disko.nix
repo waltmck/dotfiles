@@ -24,7 +24,7 @@
               size = "100%";
               content = {
                 type = "mdraid";
-                name = "raid1";
+                name = "raid0";
               };
             };
           };
@@ -53,7 +53,7 @@
               size = "100%";
               content = {
                 type = "mdraid";
-                name = "raid1";
+                name = "raid0";
               };
             };
           };
@@ -81,9 +81,9 @@
           mountpoint = "/boot";
         };
       };
-      raid1 = {
+      raid0 = {
         type = "mdadm";
-        level = 1;
+        level = 0;
         content = {
           type = "gpt";
           partitions.primary = {
