@@ -7,17 +7,13 @@
         content = {
           type = "gpt";
           partitions = {
-            BOOT = {
-              size = "1M";
-              type = "EF02"; # for grub MBR
-              priority = 1; # Make sure it is first partition
-            };
             ESP = {
-              size = "500M";
+              size = "1G";
               type = "EF00";
               content = {
-                type = "mdraid";
-                name = "boot";
+                type = "filesystem";
+                format = "vfat";
+                mountpoint = "/boot";
               };
             };
             mdadm = {
@@ -36,17 +32,12 @@
         content = {
           type = "gpt";
           partitions = {
-            boot = {
-              size = "1M";
-              type = "EF02"; # for grub MBRi
-              priority = 1;
-            };
-            ESP = {
-              size = "500M";
-              type = "EF00";
+            extra = {
+              size = "1G";
               content = {
-                type = "mdraid";
-                name = "boot";
+                type = "swap";
+                discardPolicy = "both";
+                resumeDevice = false;
               };
             };
             mdadm = {
@@ -71,16 +62,6 @@
       };
     };
     mdadm = {
-      boot = {
-        type = "mdadm";
-        level = 1;
-        metadata = "1.0";
-        content = {
-          type = "filesystem";
-          format = "vfat";
-          mountpoint = "/boot";
-        };
-      };
       raid0 = {
         type = "mdadm";
         level = 0;

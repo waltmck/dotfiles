@@ -11,14 +11,19 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./disko.nix
-    # ../../targets/headless.nix
+    ../../targets/headless.nix
   ];
 
   boot.kernelModules = ["kvm-intel"];
 
-  # Use the grub EFI boot loader.
+  # Do not remove this, otherwise recovery OS may stop working.
   boot.loader.efi.canTouchEfiVariables = false;
 
+  boot.loader.systemd-boot = {
+    enable = true;
+  };
+
+  /*
   boot.loader.grub = {
     enable = true;
     # no need to set devices, disko will add all devices that have a EF02 partition to the list already
@@ -26,6 +31,7 @@
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
+  */
 
   # boot.loader.grub.device = "/dev/nvme0n1";
 

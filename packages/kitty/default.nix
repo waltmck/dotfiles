@@ -18,6 +18,11 @@
         touch_scroll_multiplier = "2.0";
       };
 
+      font = {
+        name = "CaskaydiaCove Nerd Font";
+        size = 12;
+      };
+
       theme = "Material Dark";
 
       shellIntegration.enableZshIntegration = true;
