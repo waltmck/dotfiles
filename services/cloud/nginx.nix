@@ -54,7 +54,7 @@
               proxy_set_header Remote-Addr $remote_addr;
               proxy_set_header Remote-Port $remote_port;
               proxy_set_header Original-URI $request_uri;
-              proxy_set_header Expected-Tailnet "cloud.waltmckelvie.com";
+              proxy_set_header Expected-Tailnet "headscale.waltmckelvie.com";
             '';
 
             proxyPass = "http://unix:/run/tailscale-nginx-auth/tailscale-nginx-auth.sock";
@@ -104,6 +104,13 @@
 
   # Persist SSL certificates
   environment.persistence."/nix/state" = {
-    directories = ["/var/lib/acme"];
+    directories = [
+      {
+        directory = "/var/lib/acme";
+        user = "acme";
+        group = "acme";
+        mode = "0755";
+      }
+    ];
   };
 }

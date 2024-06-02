@@ -42,6 +42,17 @@
     };
   };
 
+  environment.persistence."/nix/state" = {
+    directories = [
+      {
+        directory = "/var/lib/headscale";
+        user = "headscale";
+        group = "headscale";
+        mode = "0750";
+      }
+    ];
+  };
+
   # Allow UDP port for DERP
   networking.firewall.allowedUDPPorts = [3478];
 }

@@ -23,7 +23,7 @@
         size = 12;
       };
 
-      theme = "Material Dark";
+      theme = "Adwaita darker"; # "Mishran"; # "GitHub Dark";
 
       shellIntegration.enableZshIntegration = true;
     };

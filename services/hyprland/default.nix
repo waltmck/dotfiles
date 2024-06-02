@@ -275,8 +275,8 @@
 
         # "Task Manager" menu
         topPopup = popup_script "${pkgs.alacritty}/bin/alacritty -T 'Task Manager' -e ${pkgs.btop}/bin/btop" "title: Task Manager";
-        termPopup = popup_script "${systemd-run} ${pkgs.alacritty}/bin/alacritty -T 'Terminal (Quick)'" "title: Terminal (Quick)";
-        termPopupSession = popup_script "${pkgs.alacritty}/bin/alacritty -T 'Terminal (session.slice)'" "title: Terminal (session.slice)";
+        termPopup = popup_script "${systemd-run} ${pkgs.kitty}/bin/kitty -T 'Terminal (Quick)'" "title: Terminal (Quick)";
+        termPopupSession = popup_script "${pkgs.kitty}/bin/kitty -T 'Terminal (session.slice)'" "title: Terminal (session.slice)";
 
         opPopup = popup_script "${systemd-run} ${pkgs._1password-gui}/bin/1password" "class: 1Password";
 
@@ -292,10 +292,10 @@
           "SUPER, E,       ${e} -t datemenu"
           # "SUPER, Return, exec, xterm" # xterm is a symlink, not actually xterm
 
-          "SUPER, Q, exec, ${systemd-run} ${pkgs.alacritty}/bin/alacritty"
+          "SUPER, Q, exec, ${systemd-run} ${pkgs.kitty}/bin/kitty"
 
-          "SUPER SHIFT, Q, execr, ${termPopup}" # Alacritty popup
-          "SUPER CTRL SHIFT, Q, execr, ${termPopupSession}" # Alacritty popup in session.slice
+          "SUPER SHIFT, Q, execr, ${termPopup}" # Kitty popup
+          "SUPER CTRL SHIFT, Q, execr, ${termPopupSession}" # Kitty popup in session.slice
           "SUPER, S, exec, ${spotPopup}"
           "SUPER, G, exec, ${popup_rules_loose} ${systemd-run} ${pkgs.gnome.nautilus}/bin/nautilus"
           "SUPER, T, exec, ${opPopup}"
