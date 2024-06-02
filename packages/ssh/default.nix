@@ -48,4 +48,7 @@
       KbdInteractiveAuthentication = false;
     };
   };
+
+  # Open ssh port if headless
+  networking.firewall.allowedTCPPorts = if headless then [ 22 ] else [];
 }

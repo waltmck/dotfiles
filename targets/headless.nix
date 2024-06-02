@@ -22,6 +22,7 @@
     ../packages/neovim
 
     ../services/nixos
+    ../services/tailscale.nix
   ];
 
   environment.systemPackages = with pkgs; [

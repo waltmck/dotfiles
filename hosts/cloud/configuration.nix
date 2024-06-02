@@ -8,10 +8,13 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
+    # Needed for initial boot
     ./hardware-configuration.nix
     ./disko.nix
+
+    # Extra stuff
     ../../targets/headless.nix
+    ../../services/cloud
   ];
 
   boot.kernelModules = ["kvm-intel"];
@@ -35,6 +38,7 @@
 
   # boot.loader.grub.device = "/dev/nvme0n1";
 
+  networking.firewall.allowedTCPPorts = [22];
   services.openssh.enable = true;
 
   users.mutableUsers = false;

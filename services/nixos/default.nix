@@ -46,6 +46,8 @@
   };
   */
 
+  networking.firewall.enable = true;
+
   home-manager.useUserPackages = true;
   home-manager.useGlobalPkgs = true;
 
