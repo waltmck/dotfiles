@@ -60,7 +60,7 @@
             proxyPass = "http://unix:/run/tailscale-nginx-auth/tailscale-nginx-auth.sock";
           };
           "/admin/" = {
-            # extraConfig = auth_snippet;
+            extraConfig = auth_snippet;
 
             proxyPass = "http://127.0.0.1:9090/";
           };
