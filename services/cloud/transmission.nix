@@ -46,6 +46,20 @@
     };
   };
 
+  /*
+  The `vpn.conf` file has the following form:
+
+    [Interface]
+    PrivateKey = <REDACTED>
+    Address = 172.22.132.68/32, fd00:0000:1337:cafe:1111:1111:b7bf:f2e3/128
+    DNS = 46.227.67.134,192.165.9.158,2a07:a880:4601:10f0:cd45::1,2001:67c:750:1:cafe:cd45::1
+
+    [Peer]
+    PublicKey = <REDACTED>
+    AllowedIPs = 0.0.0.0/0, ::/0
+    Endpoint = <REDACTED>:9929
+  */
+
   systemd.services.wg = {
     description = "wg network interface";
     bindsTo = ["netns@wg.service"];
