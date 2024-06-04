@@ -66,7 +66,8 @@ assert !headless; {
     # caprine-bin # <- no aarch64-linux support
     d-spy
     # gimp
-    transmission_4-gtk
+    # transmission_4-gtk
+    transmission-remote-gtk
     # discord <- no aarch64-linux support
     icon-library
     dconf-editor

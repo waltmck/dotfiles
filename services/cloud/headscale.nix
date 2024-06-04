@@ -22,7 +22,10 @@
       };
 
       listen_addr = "127.0.0.1:8080";
-      metrics_listen_addr = "127.0.0.1:9090";
+
+      # Allow access using tailscale address`walt-cloud:9090/metrics`
+      # Since port 9090 is not open in the firewall, this is private.
+      metrics_listen_addr = "0.0.0.0:9090";
 
       derp = {
         server = {
