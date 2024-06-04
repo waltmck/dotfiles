@@ -52,5 +52,6 @@
     unzip
     glib
     powertop
+    systemctl-tui
   ];
 }

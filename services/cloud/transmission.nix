@@ -13,10 +13,12 @@
     user = "data";
 
     settings = {
-      rpc-bind-address = "127.0.0.1";
+      rpc-bind-address = "0.0.0.0";
       rpc-port = 9091;
+      rpc-url = "/";
 
-      # rpc-whitelist = "127.0.0.1"; # Whitelist traffic coming from tailscale
+      rpc-whitelist-enabled = false; # Disable RPC whitelisti
+      rpc-authentication-required = false;
 
       incomplete-dir = "/data/.incomplete";
       download-dir = "/data/downloads";
@@ -27,6 +29,8 @@
     bindsTo = ["netns@wg.service"];
     requires = ["network-online.target"];
     after = ["wg.service"];
+    wants = ["wg.service"];
+
     serviceConfig = {
       NetworkNamespacePath = "/var/run/netns/wg";
     };
@@ -47,12 +51,12 @@
   };
 
   /*
-  The `vpn.conf` file has the following form:
+  The `vpn.conf` file has the following form. Note the commented-out fields.
 
     [Interface]
     PrivateKey = <REDACTED>
-    Address = 172.22.132.68/32, fd00:0000:1337:cafe:1111:1111:b7bf:f2e3/128
-    DNS = 46.227.67.134,192.165.9.158,2a07:a880:4601:10f0:cd45::1,2001:67c:750:1:cafe:cd45::1
+    # Address = 172.22.132.68/32, fd00:0000:1337:cafe:1111:1111:b7bf:f2e3/128
+    # DNS = 46.227.67.134,192.165.9.158,2a07:a880:4601:10f0:cd45::1,2001:67c:750:1:cafe:cd45::1
 
     [Peer]
     PublicKey = <REDACTED>
@@ -109,8 +113,8 @@
     unitConfig.JoinsNamespaceOf = "transmission.service";
 
     serviceConfig = {
-      type = "notify";
-      ExecStart = "/usr/lib/systemd/systemd-socket-proxyd 127.0.0.1:9091";
+      Type = "notify";
+      ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd 127.0.0.1:9091";
       PrivateTmp = "yes";
       PrivateNetwork = "yes";
     };
