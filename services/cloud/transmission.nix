@@ -13,14 +13,34 @@
     user = "data";
 
     settings = {
-      rpc-bind-address = "0.0.0.0";
-      rpc-port = 9091;
-      rpc-url = "/";
+      # Torrent config
 
-      rpc-whitelist-enabled = false; # Disable RPC whitelisti
+      bind-address-ipv4 = "185.157.160.132";
+      bind-address-ipv6 = "::1"; # Disable ipv6
+      port-forwarding-enabled = false;
+      peer-port = 51413;
+      peer-port-random-enabled = false;
+
+      encryption = 1;
+      lpd-enabled = true;
+      dht-enabled = true;
+      pex-enabled = true;
+      utp-enabled = true;
+
+      # Config to get RPC to work
+      rpc-bind-address = "127.0.0.1";
+      rpc-port = 9091;
+      rpc-url = "/transmission/";
+
+      rpc-whitelist-enabled = true;
+      rpc-host-whitelist-enabled = true;
       rpc-authentication-required = false;
 
+      rpc-host-whitelist = "*";
+      rpc-whitelist = "*";
+
       incomplete-dir = "/data/.incomplete";
+      incomplete-dir-enabled = true;
       download-dir = "/data/downloads";
     };
   };
@@ -33,6 +53,8 @@
 
     serviceConfig = {
       NetworkNamespacePath = "/var/run/netns/wg";
+      PrivateTmp = true;
+      PrivateNetwork = true;
     };
   };
 
@@ -73,7 +95,7 @@
       Type = "oneshot";
       RemainAfterExit = true;
       ExecStart = with pkgs; let
-        ipv4 = "172.19.93.63/32"; # ipv4 VPN addr/cidr
+        ipv4 = "185.157.160.132/32"; # "172.19.93.63/32"; # ipv4 VPN addr/cidr
         ipv6 = "fd00:0000:1337:cafe:1111:1111:9ac3:88de/128"; # ipv6 VPN addr/cidr
       in
         writers.writeBash "wg-up" ''
@@ -81,18 +103,20 @@
           ${iproute}/bin/ip link add wg0 type wireguard
           ${iproute}/bin/ip link set wg0 netns wg
           ${iproute}/bin/ip -n wg address add ${ipv4} dev wg0
-          ${iproute}/bin/ip -n wg -6 address add ${ipv6} dev wg0
+          # ${iproute}/bin/ip -n wg -6 address add ${ipv6} dev wg0
           ${iproute}/bin/ip netns exec wg \
             ${wireguard-tools}/bin/wg setconf wg0 /nix/state/secrets/vpn.conf
+          ${iproute}/bin/ip -n wg link set lo up
           ${iproute}/bin/ip -n wg link set wg0 up
           ${iproute}/bin/ip -n wg route add default dev wg0
-          ${iproute}/bin/ip -n wg -6 route add default dev wg0
+          # ${iproute}/bin/ip -n wg -6 route add default dev wg0
         '';
       ExecStop = with pkgs;
         writers.writeBash "wg-down" ''
           ${iproute}/bin/ip -n wg route del default dev wg0
-          ${iproute}/bin/ip -n wg -6 route del default dev wg0
+          # ${iproute}/bin/ip -n wg -6 route del default dev wg0
           ${iproute}/bin/ip -n wg link del wg0
+          ${iproute}/bin/ip -n wg link del lo
         '';
 
       StandardOutput = "journal";
@@ -110,13 +134,17 @@
     requires = ["transmission.service" "transmission-rpc.socket"];
     after = ["transmission.service" "transmission-rpc.socket"];
 
-    unitConfig.JoinsNamespaceOf = "transmission.service";
+    # unitConfig.JoinsNamespaceOf = "transmission.service";
 
     serviceConfig = {
       Type = "notify";
       ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd 127.0.0.1:9091";
-      PrivateTmp = "yes";
-      PrivateNetwork = "yes";
+      PrivateTmp = true;
+      PrivateNetwork = true;
+      NetworkNamespacePath = "/var/run/netns/wg";
+
+      StandardOutput = "journal";
+      StandardError = "journal";
     };
   };
 

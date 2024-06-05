@@ -27,7 +27,10 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    vim
+    # Common utilities
+    toybox
+    busybox
+
     git
     wget
     home-manager
