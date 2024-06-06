@@ -99,5 +99,7 @@ assert !headless; {
     calls # Gnome Calls, a voip client
 
     keepassxc
+
+    inputs.zotero-nix.packages.${system}.default
   ];
 }

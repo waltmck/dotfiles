@@ -76,6 +76,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zotero-nix = {
+      url = "github:camillemndn/zotero-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # nixos-boot.url = "github:Melkor333/nixos-boot";
   };
 

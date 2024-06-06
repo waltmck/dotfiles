@@ -44,7 +44,20 @@
     vimAlias = true;
 
     # Sync clipboard with OS
-    clipboard.providers.wl-copy.enable = !headless;
+    clipboard = {
+      providers.wl-copy.enable = !headless;
+      register = "unnamedplus";
+    };
+
+    keymaps = [
+      {
+        action = "<cmd>NvimTreeFindFileToggle<CR>";
+        key = "<C-t>";
+        options = {
+          silent = true;
+        };
+      }
+    ];
 
     opts = {
       ###################
@@ -130,6 +143,9 @@
     extraConfigLuaPre = ''
       vim.g.neovide_remember_window_size = false
       vim.g.neovide_scale_factor = 0.8
+
+      vim.keymap.set("n", "<Space>", "<Nop>", { silent = true, remap = false })
+      vim.g.mapleader = " "
     '';
 
     plugins = {
@@ -137,6 +153,14 @@
         enable = true;
         openOnSetup = true;
         hijackCursor = true;
+        actions.useSystemClipboard = true;
+
+        renderer = {
+          highlightGit = true;
+          highlightModified = "all";
+        };
+
+        view.width = 25;
       };
       lualine.enable = true;
       gitsigns.enable = true;
@@ -151,7 +175,15 @@
 
       treesitter-context = {
         enable = true;
-        settings.mode = "topline";
+        settings = {
+          mode = "topline";
+          max_lines = 4;
+        };
+      };
+
+      treesitter-refactor = {
+        enable = true;
+        highlightCurrentScope.enable = true;
       };
 
       # Language server protocol and none-ls for formatting
@@ -214,35 +246,30 @@
       nvim-colorizer.enable = true;
 
       sleuth.enable = true;
-    };
 
-    colorschemes.catppuccin = {
-      enable = true;
-      settings = {
-        flavour = "mocha";
-        # terminal_colors = true;
+      telescope = {
+        enable = true;
 
-        integrations = {
-          cmp = true;
-          gitsigns = true;
-          treesitter = true;
+        keymaps = {
+          "<leader>fg" = "live_grep";
+          "<leader>ff" = "find_files";
+          "<leader>fb" = "buffers";
+          "<leader>fh" = "help_tags";
+        };
+
+        extensions = {
+          frecency.enable = true;
         };
       };
     };
-  };
 
-  /*
-  home-manager.users.waltmck.programs.neovim = {
-    enable = true;
-    programs.neovim = {
+    colorschemes.vscode = {
       enable = true;
-      extraLuaConfig = ''
-        ${builtins.readfile ./options.lua}
-      '';
-
-      plugins = with pkgs.vimPlugins; [
-      ];
+      settings = {};
     };
   };
-  */
+
+  environment.persistence."/nix/state".users.waltmck = {
+    directories = [".local/share/nvim"];
+  };
 }

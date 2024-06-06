@@ -29,6 +29,8 @@
       "top" = "${pkgs.btop}/bin/btop";
 
       "fs" = "${pkgs.ncdu}/bin/ncdu -x /";
+
+      "vimdiff" = "nvim -d";
     };
   in {
     programs = {

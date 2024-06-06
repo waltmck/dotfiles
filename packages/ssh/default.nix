@@ -22,6 +22,8 @@
           forwardAgent = true;
         };
       };
+
+      userKnownHostsFile = "/nix/state/home/waltmck/.ssh/known_hosts";
     };
   };
 
@@ -29,26 +31,26 @@
   environment.persistence."/nix/state".users.waltmck = {
     files = [".ssh/known_hosts"];
   };
-  /*
-  environment.persistence."/nix/state".files =
+
+  environment.persistence."/nix/state".directories =
     if headless
     then [
-      "/etc/ssh/ssh_host_ed25519_key"
-      "/etc/ssh/ssh_host_ed25519_key.pub"
-      "/etc/ssh/ssh_host_rsa_key"
-      "/etc/ssh/ssh_host_rsa_key.pub"
+      "/etc/ssh"
     ]
     else [];
-  */
 
   services.openssh = {
     enable = headless; # Disable ssh server (save battery, increase security) if not headless
     settings = {
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
+      PrintLastLog = false;
     };
   };
 
   # Open ssh port if headless
-  networking.firewall.allowedTCPPorts = if headless then [ 22 ] else [];
+  networking.firewall.allowedTCPPorts =
+    if headless
+    then [22]
+    else [];
 }

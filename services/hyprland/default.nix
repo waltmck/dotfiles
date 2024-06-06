@@ -187,8 +187,8 @@
         layout = "dwindle";
         resize_on_border = true;
 
-        gaps_in = 12;
-        gaps_out = 24;
+        gaps_in = 8;
+        gaps_out = 16;
 
         border_size = 1;
 

@@ -15,17 +15,19 @@
     settings = {
       # Torrent config
 
-      bind-address-ipv4 = "185.157.160.132";
+      bind-address-ipv4 = "0.0.0.0"; # "185.157.160.132";
       bind-address-ipv6 = "::1"; # Disable ipv6
       port-forwarding-enabled = false;
       peer-port = 51413;
       peer-port-random-enabled = false;
 
-      encryption = 1;
+      encryption = 0;
       lpd-enabled = true;
       dht-enabled = true;
       pex-enabled = true;
       utp-enabled = true;
+
+      # umask = 10;
 
       # Config to get RPC to work
       rpc-bind-address = "127.0.0.1";
@@ -55,6 +57,13 @@
       NetworkNamespacePath = "/var/run/netns/wg";
       PrivateTmp = true;
       PrivateNetwork = true;
+
+      StandardOutput = "journal";
+      StandardError = "journal";
+
+      Environment = [
+        # "TR_CURL_SSL_NO_VERIFY=1"
+      ];
     };
   };
 
@@ -77,7 +86,7 @@
 
     [Interface]
     PrivateKey = <REDACTED>
-    # Address = 172.22.132.68/32, fd00:0000:1337:cafe:1111:1111:b7bf:f2e3/128
+    # Address = 185.157.160.132/32
     # DNS = 46.227.67.134,192.165.9.158,2a07:a880:4601:10f0:cd45::1,2001:67c:750:1:cafe:cd45::1
 
     [Peer]
@@ -124,6 +133,14 @@
     };
   };
 
+  # Fix DNS with the `wg` namespace, since it can't access tailscale DNS
+  environment.etc."netns/wg/resolv.conf".text = ''
+    nameserver 46.227.67.134
+    nameserver 192.165.9.158
+    nameserver 2a07:a880:4601:10f0:cd45::1
+    nameserver 2001:67c:750:1:cafe:cd45::1
+  '';
+
   # Socket to bridge RPC port (9091) to wg namespace
   systemd.sockets.transmission-rpc = {
     listenStreams = ["0.0.0.0:9091"];
@@ -148,5 +165,7 @@
     };
   };
 
-  networking.firewall.allowedUDPPorts = [57974]; # Open port for wireguard
+  networking.firewall.allowedUDPPorts = [57974 51413]; # Open port for wireguard and torrent
+
+  networking.firewall.allowedTCPPorts = [51413];
 }

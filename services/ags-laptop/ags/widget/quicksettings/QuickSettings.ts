@@ -38,7 +38,7 @@ const Settings = () => Widget.Box({
     class_name: "quicksettings vertical",
     css: quicksettings.width.bind().as(w => `min-width: ${w}px;`),
     children: [
-        // Header(), TODO remove backend
+        Header(), // TODO remove this and backend
         Widget.Box({
             class_name: "sliders-box vertical",
             vertical: true,
