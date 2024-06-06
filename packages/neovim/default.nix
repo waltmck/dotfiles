@@ -261,6 +261,9 @@
           frecency.enable = true;
         };
       };
+
+      # Git plugin
+      fugitive.enable = true;
     };
 
     colorschemes.vscode = {

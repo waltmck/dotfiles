@@ -119,6 +119,13 @@
 
   environment.variables = {
     "QT_SCALE_FACTOR" = "0.7";
+    "QT_QPA_PLATFORM" = "wayland";
+    "QT_WAYLAND_DISABLE_WINDOWDECORATION" = 1;
+    "QT_QPA_PLATFORMTHEME" = "qt5ct";
+
+    "GDK_BACKEND" = "wayland";
+    "SDL_VIDEODRIVER" = "wayland";
+    "CLUTTER_BACKEND" = "wayland";
   };
 
   colorScheme = inputs.nix-colors.colorSchemes."gruvbox-dark-hard";

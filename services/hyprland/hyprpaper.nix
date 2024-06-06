@@ -27,9 +27,9 @@
   systemd.user.services.hyprpaper = {
     description = "Hyprland's paper daemon";
     documentation = ["https://wiki.hyprland.org/Hypr-Ecosystem/hyprpaper"];
-    partOf = ["graphical-session.target"];
-    after = ["graphical-session.target"];
-    wantedBy = ["graphical-session.target"];
+    partOf = ["hyprland-session.target"];
+    after = ["hyprland-session.target"];
+    wantedBy = ["hyprland-session.target"];
 
     unitConfig = {
       ConditionEnvironment = "WAYLAND_DISPLAY";
@@ -38,7 +38,8 @@
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.hyprpaper}/bin/hyprpaper";
-      Restart = "on-failure";
+      Restart = "always";
+      RestartSec = 3;
 
       Slice = "session.slice";
     };

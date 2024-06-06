@@ -69,7 +69,7 @@
   services = {
     gvfs.enable = true;
     # devmon.enable = true;
-    udisks2.enable = false;
+    # udisks2.enable = true; # Enabled by gvfs
     upower.enable = true; # For battery indicator
     accounts-daemon.enable = true;
   };
@@ -103,24 +103,17 @@
   systemd.user.services.hyprland = {
     description = "Hyprland Window Manager";
     documentation = ["https://wiki.hyprland.org"];
-    #### after = ["systemd-user-sessions.service" "plymouth-quit-wait.service" "getty@tty1.service"];
+    # after = ["graphical-session-pre.target" "getty@tty1.service"];
+    # wants = ["graphical-session-pre.target"];
+    # before = ["hyprland-session.target"];
     # conflicts = ["getty@tty1.service"];
 
-    #### bindsTo = ["hyprland-session.target"];
-
-    #environment = let
-    #  path = lib.makeBinPath [pkgs.coreutils-full pkgs.gnugrep];
-    #in {
-    #  "PATH" = "${path}:/run/current-system/sw/bin/";
-    #};
-
-    unitConfig = {
-      # ConditionEnvironment = "WAYLAND_DISPLAY";
-    };
+    # wantedBy = ["graphical-session-pre.target"];
+    # bindsTo = ["hyprland-session.target"];
 
     serviceConfig = {
-      Type = "simple";
-      ExecStartPre = "${pkgs.systemd}/bin/systemctl --user unset-environment WAYLAND_DISPLAY DISPLAY";
+      Type = "notify";
+      ExecStopPost = "${pkgs.systemd}/bin/systemctl --user unset-environment WAYLAND_DISPLAY DISPLAY";
       ExecStart = "${pkgs.hyprland}/bin/Hyprland";
 
       Environment = let
@@ -138,6 +131,9 @@
         "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus"
         "HYPRLAND_LOG_WLR=1"
 
+        # Enable sd_notify
+        "HYPRLAND_NO_RT=0"
+
         # CURSOR STUFF
         "XCURSOR_SIZE=24"
         "XCURSOR_THEME=Qogir"
@@ -147,11 +143,14 @@
         # "DISPLAY=:0"
       ];
 
-      Slice = "session.slice"; # For processes with
+      Slice = "session.slice";
 
       StandardOutput = "journal";
       StandardError = "journal";
       Restart = "no";
+
+      NotifyAccess = "all";
+      TimeoutStopSec = 10;
     };
   };
 
@@ -179,6 +178,8 @@
 
     settings = {
       exec-once = [
+        # Tell systemd we are ready
+        "${pkgs.systemd}/bin/systemd-notify --ready"
         "${hyprctl} setcursor Qogir 24"
         # "transmission-gtk"
       ];

@@ -60,15 +60,12 @@ in {
   };
 
   systemd.user.services.ags = {
-    description = "Aylur's Gnome Widgets";
+    description = "Aylur's Gnome Shell";
     documentation = ["https://aylur.github.io/ags-docs"];
-    # bindsTo = ["hyprland.service"];
-    #### after = ["systemd-user-sessions.service" "plymouth-quit-wait.service" "getty@tty1.service"];
-    # conflicts = ["getty@tty1.service"];
+    partOf = ["hyprland-session.target"];
+    after = ["hyprland-session.target"];
+    wantedBy = ["hyprland-session.target"];
 
-    #### bindsTo = ["hyprland-session.target"];
-
-    # Don't start until our display is running
     unitConfig = {
       ConditionEnvironment = "WAYLAND_DISPLAY";
     };
@@ -101,17 +98,14 @@ in {
         # CURSOR STUFF
         "XCURSOR_SIZE=24"
         "XCURSOR_THEME=Qogir"
-        # END CURSOR STUFF
-
-        # "WAYLAND_DISPLAY=wayland-1"
-        # "DISPLAY=:0"
       ];
 
       Slice = "session.slice";
 
       StandardOutput = "journal";
       StandardError = "journal";
-      Restart = "no";
+      Restart = "always";
+      RestartSec = 3;
     };
   };
 }
