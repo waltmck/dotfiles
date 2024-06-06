@@ -69,7 +69,7 @@
   services = {
     gvfs.enable = true;
     # devmon.enable = true;
-    # udisks2.enable = true;
+    udisks2.enable = false;
     upower.enable = true; # For battery indicator
     accounts-daemon.enable = true;
   };

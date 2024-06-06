@@ -8,7 +8,13 @@
   home-manager.users.waltmck = {
     programs.mbsync.enable = true;
     programs.msmtp.enable = true;
-    programs.astroid.enable = true;
+    programs.astroid = {
+      enable = true;
+      extraConfig = {
+        thread_view.open_html_part_external = false;
+        poll.interval = 0;
+      };
+    };
     programs.aerc = {
       enable = true;
       extraConfig.general.unsafe-accounts-conf = true;
