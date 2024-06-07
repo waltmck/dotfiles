@@ -17,10 +17,12 @@
 
   # Moved from services/nixos. TODO is this necessary?
   services = {
-    xserver = {
+    /*
+      xserver = {
       enable = true;
       excludePackages = [pkgs.xterm];
     };
+    */
     printing.enable = true;
     # flatpak.enable = true;
   };
@@ -36,7 +38,7 @@
   programs.hyprland = {
     enable = true;
     package = pkgs.hyprland;
-    xwayland.enable = true;
+    # xwayland.enable = true;
   };
 
   xdg.portal = {
@@ -69,7 +71,6 @@
   services = {
     gvfs.enable = true;
     # devmon.enable = true;
-    # udisks2.enable = true; # Enabled by gvfs
     upower.enable = true; # For battery indicator
     accounts-daemon.enable = true;
   };
@@ -103,13 +104,18 @@
   systemd.user.services.hyprland = {
     description = "Hyprland Window Manager";
     documentation = ["https://wiki.hyprland.org"];
-    # after = ["graphical-session-pre.target" "getty@tty1.service"];
-    # wants = ["graphical-session-pre.target"];
-    # before = ["hyprland-session.target"];
-    # conflicts = ["getty@tty1.service"];
+    after = ["systemd-user-sessions.service" "plymouth-quit-wait.service" "getty@tty1.service" "graphical-session-pre.target"];
 
-    # wantedBy = ["graphical-session-pre.target"];
-    # bindsTo = ["hyprland-session.target"];
+    /*
+    TODO figure out how to get this to automatically start at boot
+    wants = ["graphical-session-pre.target"];
+    # before = ["graphical-session.target"];
+    conflicts = ["getty@tty1.service"];
+
+    # wantedBy = ["graphical-session.target"];
+    # bindsTo = ["graphical-session.target"];
+    wantedBy = ["default.target"];
+    */
 
     serviceConfig = {
       Type = "notify";
@@ -172,7 +178,7 @@
     enable = true;
     package = pkgs.hyprland;
     systemd.enable = true;
-    xwayland.enable = true;
+    # xwayland.enable = true;
     # plugins = with plugins; [ hyprbars borderspp ];
     # plugins = []; # [hyprspace.packages.${pkgs.system}.Hyprspace];
 

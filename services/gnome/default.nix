@@ -95,7 +95,8 @@
     gnome-keyring = {
       enable = true;
     };
-    gnome-online-accounts.enable = true;
+    # Enable to use google or nextcloud
+    # gnome-online-accounts.enable = true;
     sushi.enable = true;
   };
 
