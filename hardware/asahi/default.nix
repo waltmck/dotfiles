@@ -61,7 +61,7 @@
 
       workspace_swipe_distance = 480;
 
-      workspace_swipe_cancel_ratio = 0.3;
+      workspace_swipe_cancel_ratio = 0.15;
     };
   };
 

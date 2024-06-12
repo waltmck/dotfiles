@@ -20,10 +20,10 @@
 
       font = {
         name = "CaskaydiaCove Nerd Font";
-        size = 12;
+        size = 11;
       };
 
-      theme = "Adwaita darker"; # "Mishran"; # "GitHub Dark";
+      theme = "VSCode_Dark"; # "Adwaita darker"; # "Mishran"; # "GitHub Dark";
 
       shellIntegration.enableZshIntegration = true;
     };

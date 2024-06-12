@@ -113,6 +113,7 @@ in {
         bypass-paywalls-clean
         i-dont-care-about-cookies
         user-agent-string-switcher
+        # keepassxc
         # zotero-connector
         # mullvad
       ];

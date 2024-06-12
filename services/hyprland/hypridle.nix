@@ -14,7 +14,7 @@
         general {
             lock_cmd = ${pkgs.busybox}/bin/pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock
             before_sleep_cmd = ${pkgs.systemd}/bin/loginctl lock-session
-            after_sleep_cmd = ${pkgs.hyprland}/bin/hyprctl dispatch dpms on
+            after_sleep_cmd = ${config.programs.hyprland.package}/bin/hyprctl dispatch dpms on
             unlock_cmd = ${pkgs.systemd}/bin/loginctl unlock-sessions
             ignore_dbus_inhibit = false
         }

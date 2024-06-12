@@ -24,8 +24,8 @@
 
   home-manager.users.waltmck.home.file.".config/neovide/config.toml".text = ''
     [font]
-      normal = [] # Will use the bundled Fira Code Nerd Font by default
-      size = 12.0
+      normal = ["CaskaydiaCove Nerd Font"] # Will use the bundled Fira Code Nerd Font by default
+      size = 13.0
     fork = true
     frame = "none"
     idle = true
@@ -165,7 +165,7 @@
       lualine.enable = true;
       gitsigns.enable = true;
 
-      trouble.enable = true;
+      # trouble.enable = true;
 
       treesitter = {
         enable = true;
@@ -192,6 +192,10 @@
         servers = {
           nixd.enable = true; # Nix
           tsserver.enable = true; # TypeScript
+          texlab = {
+            enable = true; # LaTeX
+            # TODO use latexindent
+          };
 
           lua-ls = {
             enable = true;
@@ -264,6 +268,16 @@
 
       # Git plugin
       fugitive.enable = true;
+
+      texpresso = {
+        enable = true;
+        texpressoPackage = pkgs.texpresso;
+        package = pkgs.vimPlugins.texpresso-vim;
+      };
+      vimtex = {
+        enable = true;
+        # settings.view_method = "zathura";
+      };
     };
 
     colorschemes.vscode = {

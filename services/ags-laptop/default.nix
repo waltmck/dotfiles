@@ -24,7 +24,7 @@
     pavucontrol
     networkmanager
     gtk3
-    hyprland
+    # hyprland
     systemd
     networkmanagerapplet #TODO link to this from quicksettings
   ];
@@ -35,7 +35,7 @@ in {
       inputs.astal.homeManagerModules.default
     ];
 
-    home.packages = deps;
+    # home.packages = deps;
 
     programs.astal = {
       enable = true;

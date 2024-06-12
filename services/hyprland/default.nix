@@ -38,8 +38,10 @@
   programs.hyprland = {
     enable = true;
     package = pkgs.hyprland;
-    # xwayland.enable = true;
+    xwayland.enable = false;
   };
+
+  programs.xwayland.enable = false;
 
   xdg.portal = {
     enable = true;
@@ -120,7 +122,7 @@
     serviceConfig = {
       Type = "notify";
       ExecStopPost = "${pkgs.systemd}/bin/systemctl --user unset-environment WAYLAND_DISPLAY DISPLAY";
-      ExecStart = "${pkgs.hyprland}/bin/Hyprland";
+      ExecStart = "${config.programs.hyprland.package}/bin/Hyprland";
 
       Environment = let
         path = lib.makeBinPath [pkgs.coreutils-full pkgs.gnugrep];
@@ -163,7 +165,7 @@
   home-manager.users.waltmck.wayland.windowManager.hyprland = let
     # hyprland = hyprland;
     # plugins = inputs.hyprland-plugins.packages.${pkgs.system};
-    hyprctl = "${pkgs.hyprland}/bin/hyprctl";
+    hyprctl = "${config.programs.hyprland.package}/bin/hyprctl";
 
     yt = pkgs.writeShellScript "yt" ''
       notify-send "Opening video" "$(wl-paste)"
@@ -178,7 +180,7 @@
     enable = true;
     package = pkgs.hyprland;
     systemd.enable = true;
-    # xwayland.enable = true;
+    xwayland.enable = false;
     # plugins = with plugins; [ hyprbars borderspp ];
     # plugins = []; # [hyprspace.packages.${pkgs.system}.Hyprspace];
 
@@ -192,10 +194,10 @@
 
       general = {
         layout = "dwindle";
-        resize_on_border = true;
+        resize_on_border = false;
 
         gaps_in = 8;
-        gaps_out = 16;
+        gaps_out = 14;
 
         border_size = 1;
 
@@ -203,8 +205,7 @@
         "col.inactive_border" = "rgba(333333ff)";
       };
 
-      dwindle.no_gaps_when_only = true;
-      master.no_gaps_when_only = true;
+      master.no_gaps_when_only = false;
 
       debug = {
         disable_logs = false;
@@ -228,7 +229,7 @@
       dwindle = {
         pseudotile = "yes";
         preserve_split = "yes";
-        # no_gaps_when_only = "yes";
+        no_gaps_when_only = false;
       };
 
       windowrule = let
@@ -256,7 +257,7 @@
         binding = mod: cmd: key: arg: "${mod}, ${key}, ${cmd}, ${arg}";
         mvfocus = binding "SUPER" "movefocus";
         ws = binding "SUPER" "workspace";
-        resizeactive = binding "SUPER CTRL" "resizeactive";
+        resizeactive = binding "SUPER SHIFT" "resizeactive";
         mvactive = binding "SUPER ALT" "moveactive";
         mvtows = binding "SUPER SHIFT" "movetoworkspace";
         e = "exec, ${ags} -b hypr";
@@ -320,6 +321,7 @@
           "SUPER SHIFT, A, fullscreen"
           "SUPER, A, fakefullscreen"
           "SUPER, V, togglesplit"
+          "SUPER, C, swapsplit"
 
           (mvfocus "k" "u")
           (mvfocus "j" "d")

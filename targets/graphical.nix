@@ -82,11 +82,16 @@ assert !headless; {
     wezterm
 
     setzer # LaTex
+    # texlive.combined.scheme-tetex
+    texliveMedium
+    texpresso
+    # texlivePackages.synctex
     passes # Passes manager
 
     # File Readers
 
     evince # PDF reader
+    zathura # Another PDF viewer
     celluloid # Video player
     foliate # ebook reader
     loupe # Image viewer

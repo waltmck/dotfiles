@@ -4,7 +4,37 @@
   config,
   system,
   ...
-}: {
+}: let
+  nerdfonts = pkgs.nerdfonts.override {
+    fonts = [
+      "Ubuntu"
+      "UbuntuMono"
+      "CascadiaCode"
+      "FantasqueSansMono"
+      "FiraCode"
+      "Mononoki"
+      "Iosevka"
+    ];
+  };
+
+  theme = {
+    name = "adw-gtk3-dark";
+    package = pkgs.adw-gtk3;
+  };
+  font = {
+    name = "Ubuntu Nerd Font";
+    package = nerdfonts;
+  };
+  cursorTheme = {
+    name = "Qogir";
+    size = 24;
+    package = pkgs.qogir-icon-theme;
+  };
+  iconTheme = {
+    name = "MoreWaita";
+    package = pkgs.morewaita-icon-theme;
+  };
+in {
   imports = [
     inputs.nix-colors.homeManagerModules.default
   ];
@@ -14,36 +44,14 @@
     pkgs.libsForQt5.qtstyleplugin-kvantum
   ];
 
-  home-manager.users.waltmck = let
-    nerdfonts = pkgs.nerdfonts.override {
-      fonts = [
-        "Ubuntu"
-        "UbuntuMono"
-        "CascadiaCode"
-        "FantasqueSansMono"
-        "FiraCode"
-        "Mononoki"
-      ];
-    };
+  /*
+    fonts = {
+    enableDefaultPackages = true;
+    packages = [nerdfonts];
+  };
+  */
 
-    theme = {
-      name = "adw-gtk3-dark";
-      package = pkgs.adw-gtk3;
-    };
-    font = {
-      name = "Ubuntu Nerd Font";
-      package = nerdfonts;
-    };
-    cursorTheme = {
-      name = "Qogir";
-      size = 24;
-      package = pkgs.qogir-icon-theme;
-    };
-    iconTheme = {
-      name = "MoreWaita";
-      package = pkgs.morewaita-icon-theme;
-    };
-  in {
+  home-manager.users.waltmck = {
     home = {
       packages = with pkgs; [
         cantarell-fonts
