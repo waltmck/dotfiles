@@ -194,7 +194,14 @@
           tsserver.enable = true; # TypeScript
           texlab = {
             enable = true; # LaTeX
-            # TODO use latexindent
+
+            # TODO these aren't working
+            extraOptions = {
+              build.onSave = true;
+              chktex.onEdit = true;
+
+              formatterLineLength = 0;
+            };
           };
 
           lua-ls = {
@@ -237,7 +244,7 @@
                 ['<C-f>'] = cmp.mapping.scroll_docs(4),
                 ['<C-Space>'] = cmp.mapping.complete(),
                 ['<C-e>'] = cmp.mapping.abort(),
-                ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                ['<CR>'] = cmp.mapping.confirm({ select = false }),
               })
             '';
           };
@@ -274,10 +281,12 @@
         texpressoPackage = pkgs.texpresso;
         package = pkgs.vimPlugins.texpresso-vim;
       };
+      /*
       vimtex = {
         enable = true;
         # settings.view_method = "zathura";
       };
+      */
     };
 
     colorschemes.vscode = {

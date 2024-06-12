@@ -10,6 +10,7 @@
       "db" = "distrobox";
       "tree" = "eza --tree";
       "nv" = "nvim";
+      "nvd" = "neovide";
 
       "ll" = "${pkgs.lsd}/bin/lsd -la";
       "l" = "${pkgs.lsd}/bin/lsd";

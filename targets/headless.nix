@@ -24,6 +24,7 @@
 
     ../services/nixos
     ../services/tailscale.nix
+    ../services/syncthing.nix
   ];
 
   environment.systemPackages = with pkgs; [

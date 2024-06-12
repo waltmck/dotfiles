@@ -222,8 +222,8 @@ in {
 
         # disable EME encrypted media extension (Providers can get DRM
         # through this if they include a decryption black-box program)
-        "browser.eme.ui.enabled" = false;
-        "media.eme.enabled" = false;
+        # "browser.eme.ui.enabled" = false;
+        # "media.eme.enabled" = false;
 
         # don't predict network requests
         # "network.predictor.enabled" = false;

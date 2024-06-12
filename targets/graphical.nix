@@ -84,6 +84,7 @@ assert !headless; {
     setzer # LaTex
     # texlive.combined.scheme-tetex
     texliveMedium
+    tectonic
     texpresso
     # texlivePackages.synctex
     passes # Passes manager
