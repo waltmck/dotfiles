@@ -30,7 +30,7 @@
       # umask = 10;
 
       # Config to get RPC to work
-      rpc-bind-address = "0.0.0.0";
+      rpc-bind-address = "127.0.0.1";
       rpc-port = 9091;
       rpc-url = "/transmission/";
 
@@ -47,8 +47,6 @@
     };
   };
 
-  /*
-  # TODO auncomment to add back the VPN
   systemd.services.transmission = {
     bindsTo = ["netns@wg.service"];
     requires = ["network-online.target"];
@@ -68,7 +66,6 @@
       ];
     };
   };
-  */
 
   # --- VPN Configuration ---
 
@@ -144,8 +141,6 @@
     nameserver 2001:67c:750:1:cafe:cd45::1
   '';
 
-  # TODO uncomment this
-  /*
   # Socket to bridge RPC port (9091) to wg namespace
   systemd.sockets.transmission-rpc = {
     listenStreams = ["0.0.0.0:9091"];
@@ -169,9 +164,16 @@
       StandardError = "journal";
     };
   };
-  */
+
+  environment.persistence."/nix/state".directories = [
+    {
+      directory = "/var/lib/transmission";
+      user = "data";
+      group = "transmission";
+    }
+  ];
 
   networking.firewall.allowedUDPPorts = [57974 51413]; # Open port for wireguard and torrent
 
-  networking.firewall.allowedTCPPorts = [51413 9091]; # TODO close rpc port
+  networking.firewall.allowedTCPPorts = [51413];
 }

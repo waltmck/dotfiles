@@ -10,12 +10,21 @@
 
   services.syncthing = {
     enable = true;
-    user = "waltmck";
-    dataDir = "/home/waltmck/sync";
-    configDir = "/home/waltmck/.config/syncthing";
+    user = lib.mkDefault "waltmck";
+    dataDir = lib.mkDefault "/home/waltmck/sync";
+    configDir = lib.mkDefault "/home/waltmck/.config/syncthing";
     overrideDevices = true;
 
-    guiAddress = "0.0.0.0:8384";
+    # Configure folders manually until we get
+    # support for declarative configuration of
+    # untrusted nodes
+    overrideFolders = false;
+
+    # Enable gui remote access only if headless
+    guiAddress =
+      if headless
+      then "0.0.0.0:8384"
+      else "127.0.0.1:8384";
 
     settings = {
       options.urAccepted = -1;

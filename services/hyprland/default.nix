@@ -245,7 +245,7 @@
         (f "Color Picker")
         (f "xdg-desktop-portal")
         (f "xdg-desktop-portal-gnome")
-        (f "transmission-gtk")
+        (f "transmission-remote-gtk")
         (f "com.github.Aylur.ags")
 
         (f "dev.alextren.Spot")

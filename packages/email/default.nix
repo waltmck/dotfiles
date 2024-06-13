@@ -58,4 +58,8 @@
       };
     };
   };
+
+  environment.persistence."/nix/state".users.waltmck = {
+    directories = ["Maildir"];
+  };
 }

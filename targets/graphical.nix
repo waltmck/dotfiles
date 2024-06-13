@@ -108,4 +108,12 @@ assert !headless; {
 
     inputs.zotero-nix.packages.${system}.default
   ];
+
+  environment.persistence."/nix/state".directories = [
+    {
+      directory = "/home/waltmck/Zotero";
+      user = "waltmck";
+      group = "users";
+    }
+  ];
 }

@@ -62,6 +62,7 @@
       "Documents"
       "Videos"
       "Pictures"
+      "Music"
       "src"
       ".local/share/keyrings"
       ".local/share/evolution" # Mail, contacts, calendar, tasks

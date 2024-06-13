@@ -1,5 +1,5 @@
 export const substitutes = {
-    "transmission-gtk": "transmission",
+    "transmission-remote-gtk": "transmission",
     "blueberry.py": "blueberry",
     "Caprine": "facebook-messenger",
     "com.raggesilver.BlackBox-symbolic": "terminal-symbolic",
