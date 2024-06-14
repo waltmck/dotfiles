@@ -143,9 +143,15 @@
     */
 
     # Disable neovide automatic fullscreen
-    extraConfigLuaPre = ''
+    extraConfigLuaPre = let
+      empty = "''";
+    in ''
       vim.g.neovide_remember_window_size = false
       vim.g.neovide_scale_factor = 0.8
+
+      local expr = {silent = true, expr = true, remap = false}
+      vim.keymap.set(${empty}, 'j', "(v:count == 0 ? 'gj' : 'j')", expr)
+      vim.keymap.set(${empty}, 'k', "(v:count == 0 ? 'gk' : 'k')", expr)
 
       vim.keymap.set("n", "<Space>", "<Nop>", { silent = true, remap = false })
       vim.g.mapleader = " "

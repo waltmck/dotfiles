@@ -5,7 +5,19 @@
   inputs,
   headless,
   ...
-}: {
+}: let
+  ipv4 = "185.157.160.132/32"; # "172.19.93.63/32"; # ipv4 VPN addr/cidr
+  ipv6 = "fd00:0000:1337:cafe:1111:1111:9ac3:88de/128"; # ipv6 VPN addr/cidr
+
+  dnsconf = ''
+    nameserver 46.227.67.134
+    nameserver 192.165.9.158
+    nameserver 2a07:a880:4601:10f0:cd45::1
+    nameserver 2001:67c:750:1:cafe:cd45::1
+  '';
+
+  peer-port = 51413;
+in {
   services.transmission = {
     enable = true;
     openRPCPort = true;
@@ -16,10 +28,10 @@
     settings = {
       # Torrent config
 
-      bind-address-ipv4 = "0.0.0.0"; # "185.157.160.132";
+      bind-address-ipv4 = "0.0.0.0";
       bind-address-ipv6 = "::1"; # Disable ipv6
       port-forwarding-enabled = true;
-      peer-port = 51413;
+      inherit peer-port;
       peer-port-random-enabled = false;
 
       encryption = 0;
@@ -106,10 +118,7 @@
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
-      ExecStart = with pkgs; let
-        ipv4 = "185.157.160.132/32"; # "172.19.93.63/32"; # ipv4 VPN addr/cidr
-        ipv6 = "fd00:0000:1337:cafe:1111:1111:9ac3:88de/128"; # ipv6 VPN addr/cidr
-      in
+      ExecStart = with pkgs;
         writers.writeBash "wg-up" ''
           set -e
           ${iproute}/bin/ip link add wg0 type wireguard
@@ -137,12 +146,7 @@
   };
 
   # Fix DNS with the `wg` namespace, since it can't access tailscale DNS
-  environment.etc."netns/wg/resolv.conf".text = ''
-    nameserver 46.227.67.134
-    nameserver 192.165.9.158
-    nameserver 2a07:a880:4601:10f0:cd45::1
-    nameserver 2001:67c:750:1:cafe:cd45::1
-  '';
+  environment.etc."netns/wg/resolv.conf".text = dnsconf;
 
   # Socket to bridge RPC port (9091) to wg namespace
   systemd.sockets.transmission-rpc = {
