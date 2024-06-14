@@ -16,7 +16,7 @@
     nameserver 2001:67c:750:1:cafe:cd45::1
   '';
 
-  peer-port = 62816;
+  peer-port = 62815;
 
   vpnconf = "/nix/state/secrets/helsinki.conf";
 in {
@@ -132,7 +132,7 @@ in {
           ${iproute}/bin/ip -n wg link set lo up
           ${iproute}/bin/ip -n wg link set wg0 up
           ${iproute}/bin/ip -n wg route add default dev wg0
-          # ${iproute}/bin/ip -n wg -6 route add default dev wg0
+          ${iproute}/bin/ip -n wg -6 route add default dev wg0
         '';
       ExecStop = with pkgs;
         writers.writeBash "wg-down" ''
