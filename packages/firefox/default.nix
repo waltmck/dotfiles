@@ -13,8 +13,10 @@
     # Required for hardware video decoding.
     # See https://github.com/elFarto/nvidia-vaapi-driver?tab=readme-ov-file#firefox
     MOZ_DISABLE_RDD_SANDBOX = 1;
-    LIBVA_DRIVER_NAME = "nvidia";
-    NVD_BACKEND = "direct";
+    # LIBVA_DRIVER_NAME = "nvidia";
+    # NVD_BACKEND = "direct";
+
+    # MOZ_GMP_PATH = ["${pkgs.widevine-cdm-lacros}/gmp-widevinecdm/system-installed"]; # for aarch64 widevine
   };
   envStr = concatStringsSep " " (mapAttrsToList (n: v: "${n}=${escapeShellArg v}") env);
 

@@ -28,6 +28,7 @@
 
   # Firefox DRM Support
   nixpkgs.overlays = [inputs.nixos-aarch64-widevine.overlays.default];
+  environment.sessionVariables.MOZ_GMP_PATH = ["${pkgs.widevine-cdm-lacros}/gmp-widevinecdm/system-installed"];
 
   # Enable the notch, and swap the fn and control keys
   boot.extraModprobeConfig = ''
