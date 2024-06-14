@@ -4,6 +4,7 @@
   pkgs,
   inputs,
   headless,
+  hostname,
   ...
 }: {
   networking.firewall.allowedTCPPorts = [
@@ -24,45 +25,35 @@
   services.nginx = {
     enable = true;
 
-    virtualHosts = let
-      auth_snippet = ''
-        auth_request /auth;
-        auth_request_set $auth_user $upstream_http_tailscale_user;
-        auth_request_set $auth_name $upstream_http_tailscale_name;
-        auth_request_set $auth_login $upstream_http_tailscale_login;
-        auth_request_set $auth_tailnet $upstream_http_tailscale_tailnet;
-        auth_request_set $auth_profile_picture $upstream_http_tailscale_profile_picture;
-
-        proxy_set_header X-Webauth-User "$auth_user";
-        proxy_set_header X-Webauth-Name "$auth_name";
-        proxy_set_header X-Webauth-Login "$auth_login";
-        proxy_set_header X-Webauth-Tailnet "$auth_tailnet";
-        proxy_set_header X-Webauth-Profile-Picture "$auth_profile_picture";
-      '';
-    in {
+    virtualHosts = {
       "cloud.waltmckelvie.com" = {
         enableACME = true;
         forceSSL = true;
 
         locations = {
-          # See https://github.com/tailscale/tailscale/tree/main/cmd/nginx-auth for documentation
-          "/auth" = {
-            extraConfig = ''
-              internal;
-              proxy_pass_request_body off;
-              proxy_set_header Host $host;
-              proxy_set_header Remote-Addr $remote_addr;
-              proxy_set_header Remote-Port $remote_port;
-              proxy_set_header Original-URI $request_uri;
-              proxy_set_header Expected-Tailnet "headscale.waltmckelvie.com";
-            '';
-
-            proxyPass = "http://unix:/run/tailscale-nginx-auth/tailscale-nginx-auth.sock";
+          "/stream/" = {
+            proxyPass = "http://127.0.0.1:8096/";
           };
-          "/admin/" = {
-            extraConfig = auth_snippet;
+        };
+      };
 
+      # Intranet
+      "${hostname}" = {
+        # Listen for all traffic
+        listenAddresses = [
+          "0.0.0.0"
+          "[::]"
+        ];
+
+        locations = {
+          "/headscale-metrics/" = {
             proxyPass = "http://127.0.0.1:9090/";
+          };
+          "/transmission/" = {
+            proxyPass = "http://127.0.0.1:9091/";
+          };
+          "/syncthing/" = {
+            proxyPass = "http://127.0.0.1:8384/";
           };
         };
       };
@@ -91,15 +82,6 @@
         };
       };
     };
-  };
-
-  # Allow nginx to access the tailscaleAuth socket
-  systemd.services.nginx.serviceConfig.ProtectHome = false;
-  users.groups."tailscale-nginx-auth".members = ["nginx"];
-
-  services.tailscaleAuth = {
-    enable = true;
-    socketPath = "/run/tailscale-nginx-auth/tailscale-nginx-auth.sock";
   };
 
   # Persist SSL certificates

@@ -11,13 +11,14 @@
     openRPCPort = true;
 
     user = "data";
+    group = "data";
 
     settings = {
       # Torrent config
 
       bind-address-ipv4 = "0.0.0.0"; # "185.157.160.132";
       bind-address-ipv6 = "::1"; # Disable ipv6
-      port-forwarding-enabled = false;
+      port-forwarding-enabled = true;
       peer-port = 51413;
       peer-port-random-enabled = false;
 
@@ -64,6 +65,8 @@
       Environment = [
         # "TR_CURL_SSL_NO_VERIFY=1"
       ];
+
+      BindPaths = ["/data/media"];
     };
   };
 

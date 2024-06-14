@@ -2,6 +2,8 @@
   description = "waltmck's personal system config";
 
   inputs = {
+    # Core dependencies
+
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nix-index-database = {
@@ -10,6 +12,13 @@
     };
 
     systems.url = "github:nix-systems/default-linux";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    impermanence.url = "github:nix-community/impermanence/master";
 
     # Deployment
     disko = {
@@ -22,18 +31,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    home-manager = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    impermanence.url = "github:nix-community/impermanence/master";
-
+    # Apple Silicon Stuff
     apple-silicon-support = {
       url = "github:tpwrules/nixos-apple-silicon/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-aarch64-widevine = {
+      url = "github:epetousis/nixos-aarch64-widevine";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
+    # Misc dependencies
     nix-colors.url = "github:kyesarri/nix-colors"; # colour themes
 
     nixvim = {
@@ -61,6 +69,8 @@
       url = "github:gokcehan/lf";
       flake = false;
     };
+
+    # Firefox stuff
     firefox-gnome-theme = {
       url = "github:rafaelmardojai/firefox-gnome-theme";
       flake = false;
@@ -80,8 +90,6 @@
       url = "github:camillemndn/zotero-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # nixos-boot.url = "github:Melkor333/nixos-boot";
   };
 
   outputs = {

@@ -123,6 +123,9 @@
 
       # Minimal number of screen lines to keep above and below the cursor.
       scrolloff = 10;
+
+      smoothscroll = true;
+      wrap = true;
     };
 
     # To automatically open chadtree when opening a directory (i.e. `nvim .`)

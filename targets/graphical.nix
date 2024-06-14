@@ -94,8 +94,11 @@ assert !headless; {
     evince # PDF reader
     zathura # Another PDF viewer
     celluloid # Video player
+    delfin # Jellyfin streaming
     foliate # ebook reader
     loupe # Image viewer
+
+    zim # Notes app to try
 
     ## COMMUNICATION
 
@@ -109,11 +112,8 @@ assert !headless; {
     inputs.zotero-nix.packages.${system}.default
   ];
 
-  environment.persistence."/nix/state".directories = [
-    {
-      directory = "/home/waltmck/Zotero";
-      user = "waltmck";
-      group = "users";
-    }
+  environment.persistence."/nix/state".users.waltmck.directories = [
+    "Zotero"
+    ".config/delfin"
   ];
 }

@@ -126,7 +126,7 @@
 
       initialHashedPassword = "$6$EkkeNxXqJ8H12NTS$cgxh3gdWgQTPhZrojyO1TOGdTUH8qWm/184uLBIjTkYpfgJEOQlRXxQuoGgXvskcYAjRS1WcpO04VzzBo4WNw/";
       isNormalUser = true;
-      extraGroups = ["users" "wheel" "sudo" "networkmanager"];
+      extraGroups = ["users" "wheel" "sudo" "networkmanager" "data"];
 
       openssh.authorizedKeys.keys = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDIhzYxT+Dociep+0p5a2xr9T8UDJYCa9wbYRNux4LN2 walt@waltmckelvie.com"];
     };

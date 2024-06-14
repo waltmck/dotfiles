@@ -3,6 +3,7 @@
     ./nginx.nix
     ./headscale.nix
     ./transmission.nix
+    ./jellyfin.nix
   ];
 
   users.groups."data" = {

@@ -4,6 +4,7 @@
   pkgs,
   inputs,
   headless,
+  hostname,
   ...
 }: {
   environment.systemPackages = [pkgs.tailscale];
@@ -32,5 +33,9 @@
         mode = "0700";
       }
     ];
+  };
+
+  networking.hosts = {
+    "127.0.0.1" = [hostname];
   };
 }

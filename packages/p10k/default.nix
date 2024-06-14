@@ -13,6 +13,11 @@
             src = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/";
             file = "powerlevel10k.zsh-theme";
           }
+          {
+            name = "vi-mode";
+            src = pkgs.zsh-vi-mode;
+            file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+          }
         ];
         initExtraFirst = ''
           # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.

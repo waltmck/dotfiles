@@ -26,6 +26,9 @@
     withRust = true;
   };
 
+  # Firefox DRM Support
+  nixpkgs.overlays = [inputs.nixos-aarch64-widevine.overlays.default];
+
   # Enable the notch, and swap the fn and control keys
   boot.extraModprobeConfig = ''
     options apple_dcp show_notch=1

@@ -4,6 +4,7 @@
   pkgs,
   inputs,
   headless,
+  hostname,
   ...
 }: {
   environment.systemPackages = [pkgs.syncthing];
@@ -50,6 +51,20 @@
         group = "syncthing";
       }
     ];
+  };
+
+  services.nginx = {
+    enable = true;
+
+    virtualHosts."${hostname}" = {
+      locations."/syncthing/".proxyPass = "http://127.0.0.1:8384/";
+
+      # Listen for local connections
+      listenAddresses = [
+        "127.0.0.1"
+        "[::1]"
+      ];
+    };
   };
 
   /*
