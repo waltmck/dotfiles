@@ -30,6 +30,8 @@
   nixpkgs.overlays = [inputs.nixos-aarch64-widevine.overlays.default];
   environment.sessionVariables.MOZ_GMP_PATH = ["${pkgs.widevine-cdm-lacros}/gmp-widevinecdm/system-installed"];
 
+  home-manager.users.waltmck.programs.firefox.profiles.default.settings."general.useragent.override" = "Mozilla/5.0 (X11; CrOS aarch64 15236.80.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.5414.125 Safari/537.36"; # In order for Netflix to work it needs to think you are a chromebook. This is stupid.
+
   # Enable the notch, and swap the fn and control keys
   boot.extraModprobeConfig = ''
     options apple_dcp show_notch=1

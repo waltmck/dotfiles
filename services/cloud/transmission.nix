@@ -6,8 +6,8 @@
   headless,
   ...
 }: let
-  ipv4 = "172.31.140.33/32";
-  ipv6 = "fd00:0000:1337:cafe:1111:1111:3d87:c6d9/128";
+  ipv4 = "185.157.160.132/32";
+  ipv6 = null;
 
   dnsconf = ''
     nameserver 46.227.67.134
@@ -16,9 +16,9 @@
     nameserver 2001:67c:750:1:cafe:cd45::1
   '';
 
-  peer-port = 62815;
+  peer-port = 51413;
 
-  vpnconf = "/nix/state/secrets/helsinki.conf";
+  vpnconf = "/nix/state/secrets/vpn.conf";
 in {
   services.transmission = {
     enable = true;
@@ -31,12 +31,15 @@ in {
       # Torrent config
 
       bind-address-ipv4 = "0.0.0.0";
-      bind-address-ipv6 = "::";
+      bind-address-ipv6 =
+        if ipv6 == null
+        then "::1"
+        else "::";
       port-forwarding-enabled = true;
       inherit peer-port;
       peer-port-random-enabled = false;
 
-      encryption = 0;
+      encryption = 1;
       lpd-enabled = true;
       dht-enabled = true;
       pex-enabled = true;
@@ -126,18 +129,30 @@ in {
           ${iproute}/bin/ip link add wg0 type wireguard
           ${iproute}/bin/ip link set wg0 netns wg
           ${iproute}/bin/ip -n wg address add ${ipv4} dev wg0
-          ${iproute}/bin/ip -n wg -6 address add ${ipv6} dev wg0
+          ${
+            if ipv6 == null
+            then ""
+            else "${iproute}/bin/ip -n wg -6 address add ${ipv6} dev wg0"
+          }
           ${iproute}/bin/ip netns exec wg \
             ${wireguard-tools}/bin/wg setconf wg0 ${vpnconf}
           ${iproute}/bin/ip -n wg link set lo up
           ${iproute}/bin/ip -n wg link set wg0 up
           ${iproute}/bin/ip -n wg route add default dev wg0
-          ${iproute}/bin/ip -n wg -6 route add default dev wg0
+          ${
+            if ipv6 == null
+            then ""
+            else "${iproute}/bin/ip -n wg -6 route add default dev wg0"
+          }
         '';
       ExecStop = with pkgs;
         writers.writeBash "wg-down" ''
           ${iproute}/bin/ip -n wg route del default dev wg0
-          ${iproute}/bin/ip -n wg -6 route del default dev wg0
+          ${
+            if ipv6 == null
+            then ""
+            else "${iproute}/bin/ip -n wg -6 route del default dev wg0"
+          }
           ${iproute}/bin/ip -n wg link del wg0
           ${iproute}/bin/ip -n wg link del lo
         '';
@@ -182,7 +197,7 @@ in {
     }
   ];
 
-  networking.firewall.allowedUDPPorts = [57974 51413 59119]; # Open port for wireguard and torrent
+  networking.firewall.allowedUDPPorts = [57974]; # 51413]; # Open port for wireguard and torrent
 
-  networking.firewall.allowedTCPPorts = [51413 59119];
+  # networking.firewall.allowedTCPPorts = [51413];
 }
