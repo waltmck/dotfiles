@@ -4,6 +4,7 @@
   pkgs,
   inputs,
   hostname,
+  headless,
   ...
 }: {
   imports = [
@@ -23,6 +24,11 @@
 
       wifi.backend = "iwd";
     };
+  };
+
+  programs.nm-applet = {
+    enable = !headless;
+    indicator = true;
   };
 
   environment.persistence."/nix/state".directories = [

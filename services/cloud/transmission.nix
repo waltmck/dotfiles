@@ -18,6 +18,19 @@
 
   peer-port = 51413;
 
+  /*
+  The `vpn.conf` file has the following form, obtained from your VPN provider. Note the commented-out fields.
+
+    [Interface]
+    PrivateKey = <REDACTED>
+    # Address = ${ipv4}, ${ipv6}
+    # DNS = 46.227.67.134,192.165.9.158,2a07:a880:4601:10f0:cd45::1,2001:67c:750:1:cafe:cd45::1
+
+    [Peer]
+    PublicKey = <REDACTED>
+    AllowedIPs = 0.0.0.0/0, ::/0
+    Endpoint = <REDACTED>:<REDACTED>
+  */
   vpnconf = "/nix/state/secrets/vpn.conf";
 in {
   services.transmission = {
@@ -44,8 +57,6 @@ in {
       dht-enabled = true;
       pex-enabled = true;
       utp-enabled = true;
-
-      # umask = 10;
 
       # Config to get RPC to work
       rpc-bind-address = "127.0.0.1";
@@ -100,20 +111,6 @@ in {
       ExecStop = "${pkgs.iproute}/bin/ip netns del %I";
     };
   };
-
-  /*
-  The `vpn.conf` file has the following form. Note the commented-out fields.
-
-    [Interface]
-    PrivateKey = <REDACTED>
-    # Address = 185.157.160.132/32
-    # DNS = 46.227.67.134,192.165.9.158,2a07:a880:4601:10f0:cd45::1,2001:67c:750:1:cafe:cd45::1
-
-    [Peer]
-    PublicKey = <REDACTED>
-    AllowedIPs = 0.0.0.0/0, ::/0
-    Endpoint = <REDACTED>:9929
-  */
 
   systemd.services.wg = {
     description = "wg network interface";
@@ -175,8 +172,6 @@ in {
     requires = ["transmission.service" "transmission-rpc.socket"];
     after = ["transmission.service" "transmission-rpc.socket"];
 
-    # unitConfig.JoinsNamespaceOf = "transmission.service";
-
     serviceConfig = {
       Type = "notify";
       ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd 127.0.0.1:9091";
@@ -197,7 +192,6 @@ in {
     }
   ];
 
-  networking.firewall.allowedUDPPorts = [57974]; # 51413]; # Open port for wireguard and torrent
-
-  # networking.firewall.allowedTCPPorts = [51413];
+  # Open wireguard port
+  networking.firewall.allowedUDPPorts = [57974];
 }

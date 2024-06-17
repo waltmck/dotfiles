@@ -41,6 +41,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Android Support
+    nix-on-droid = {
+      url = "github:nix-community/nix-on-droid/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
+
     # Misc dependencies
     nix-colors.url = "github:kyesarri/nix-colors"; # colour themes
 
@@ -103,7 +110,7 @@
     ags,
     firefox-addons,
     betterfox,
-    ### nixos-boot,
+    nix-on-droid,
     deploy-rs,
     disko,
     ...
@@ -143,8 +150,22 @@
           inherit system;
           hostname = "walt-cloud";
 
-          # Look at gcc docs plus https://gpages.juszkiewicz.com.pl/arm-socs-table/arm-socs.html to find arch
-          # march = "armv8.6-a+fp16+fp16fml+aes+sha2+sha3+bf16+i8mm+nosve+nosve2+nomemtag+nosm4+nof32mm+nof64mm";
+          native = false;
+          headless = true;
+        };
+      };
+
+      "walt-phone" = nixpkgs.lib.nixosSystem rec {
+        system = "aarch64-linux";
+        modules = [
+          ./hosts/phone/default.nix
+        ];
+
+        specialArgs = {
+          inherit inputs;
+          inherit system;
+          hostname = "walt-cloud";
+
           native = false;
           headless = true;
         };

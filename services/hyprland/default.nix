@@ -189,6 +189,9 @@
         # Tell systemd we are ready
         "${pkgs.systemd}/bin/systemd-notify --ready"
         "${hyprctl} setcursor Qogir 24"
+        # "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
+        "${pkgs.blueman}/bin/blueman-applet"
+
         # "transmission-gtk"
       ];
 

@@ -54,6 +54,7 @@ assert !headless; {
     # gnome-secrets
     gnome-logs # systemd logs
     endeavour # tasks manager
+    networkmanagerapplet
 
     evolution # Necessary to configure FastMail calendar for God knows what reason
     # gnome-software # for flatpak

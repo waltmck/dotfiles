@@ -40,11 +40,16 @@
     else [];
 
   services.openssh = {
-    enable = headless; # Disable ssh server (save battery, increase security) if not headless
+    enable = true;
     settings = {
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
       PrintLastLog = false;
+      # Allow root login to push deployments only if headless
+      PermitRootLogin =
+        if headless
+        then "prohibit-password"
+        else "no";
     };
   };
 
