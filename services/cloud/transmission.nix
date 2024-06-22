@@ -93,8 +93,6 @@ in {
       Environment = [
         # "TR_CURL_SSL_NO_VERIFY=1"
       ];
-
-      BindPaths = ["/data/media"];
     };
   };
 

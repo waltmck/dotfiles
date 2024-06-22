@@ -4,6 +4,7 @@
     ./headscale.nix
     ./transmission.nix
     ./jellyfin.nix
+    ./arr.nix
   ];
 
   users.groups."data" = {
@@ -38,6 +39,6 @@
     group = "data";
 
     dataDir = "/data/syncthing";
-    configDir = "/nix/state/home/data/.config/syncthing";
+    configDir = "/data/config/syncthing";
   };
 }

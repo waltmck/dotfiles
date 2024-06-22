@@ -18,7 +18,7 @@
     user = "data";
     group = "data";
 
-    dataDir = "/data/jellyfin";
+    dataDir = "/data/config/jellyfin";
   };
 
   # Hardware transcoding configuration
