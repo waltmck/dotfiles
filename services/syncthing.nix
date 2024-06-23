@@ -6,7 +6,10 @@
   headless,
   hostname,
   ...
-}: {
+}: let
+  # TODO figure out why quic is broken
+  protocol = "tcp";
+in {
   environment.systemPackages = [pkgs.syncthing];
 
   services.syncthing = {
@@ -33,11 +36,15 @@
       devices = {
         "walt-laptop" = {
           id = "CB64UMU-73DG62I-7SIO5XK-Z646OHX-3RRLYER-WM2VISF-F5OD7XJ-RQRG2QU";
-          addresses = ["quic://walt-laptop:22000"];
+          addresses = ["${protocol}://walt-laptop:22000"];
         };
         "walt-cloud" = {
-          id = "2VRJ6ZS-HNTNHFT-PDYVXWC-WZAXQ3J-HTYUX7O-PDZMLJO-BC2NVXF-7CATWA5";
-          addresses = ["quic://walt-cloud:22000"];
+          id = "LYZMZD4-QGMHQX2-NVC2A4A-3QJFKWQ-ICXOARZ-F4OVURU-D6ZTVFG-BH65EQA";
+          addresses = ["${protocol}://walt-cloud:22000"];
+        };
+        "walt-phone" = {
+          id = "AB5YGZ7-FA6ANNK-DJ7LS5W-DZF5EK3-FIYY4L7-B5O3E2Z-H4MWQRR-TEUA3QI";
+          addresses = ["${protocol}://walt-phone:22000"];
         };
       };
     };

@@ -35,6 +35,13 @@
     dataDir = "/data/config/lidarr";
   };
 
+  services.readarr = {
+    enable = true;
+    user = "data";
+
+    dataDir = "/data/config/readarr";
+  };
+
   services.nginx = {
     enable = true;
 
@@ -93,6 +100,16 @@
       };
       locations."^~ /prowlarr/api" = {
         proxyPass = "http://127.0.0.1:9696";
+        extraConfig = "auth_basic off;";
+      };
+
+      locations."^~ /readarr" = {
+        proxyPass = "http://127.0.0.1:8787";
+
+        inherit extraConfig;
+      };
+      locations."^~ /readarr/api" = {
+        proxyPass = "http://127.0.0.1:8787";
         extraConfig = "auth_basic off;";
       };
     };

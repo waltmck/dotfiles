@@ -15,7 +15,7 @@ assert !headless; {
     ../packages/vscode
     ../packages/kitty
     # ../packages/blackbox
-    ../packages/spot
+    ../packages/music
     ../packages/matrix
     ../packages/newsflash
     ../packages/discord
@@ -109,6 +109,8 @@ assert !headless; {
     calls # Gnome Calls, a voip client
 
     keepassxc
+
+    g4music
 
     inputs.zotero-nix.packages.${system}.default
   ];

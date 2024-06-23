@@ -14,9 +14,10 @@
 
   # -- Asahi-
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
+    enable32Bit = false;
+    # driSupport = true;
   };
 
   hardware.asahi = {
@@ -71,7 +72,7 @@
     };
   };
 
-  hardware.opengl.driSupport32Bit = false;
+  # hardware.opengl.driSupport32Bit = false;
 
   nixpkgs.hostPlatform =
     if native

@@ -50,15 +50,37 @@
           };
         };
       };
-    };
-    nodev = {
-      "/" = {
-        fsType = "tmpfs";
-        mountOptions = [
-          "defaults"
-          "size=16G"
-          "mode=755"
-        ];
+      sda = {
+        type = "disk";
+        device = "/dev/sda";
+        content = {
+          type = "gpt";
+          partitions = {
+            zfs = {
+              size = "100%";
+              content = {
+                type = "zfs";
+                pool = "data";
+              };
+            };
+          };
+        };
+      };
+      sdb = {
+        type = "disk";
+        device = "/dev/sdb";
+        content = {
+          type = "gpt";
+          partitions = {
+            zfs = {
+              size = "100%";
+              content = {
+                type = "zfs";
+                pool = "data";
+              };
+            };
+          };
+        };
       };
     };
     mdadm = {
@@ -72,8 +94,22 @@
             content = {
               type = "filesystem";
               format = "ext4";
-              mountpoint = "/nix";
+              mountpoint = "/";
             };
+          };
+        };
+      };
+    };
+    zpool = {
+      data = {
+        type = "zpool";
+        mode = "mirror";
+        # mountpoint = "/data2";
+
+        datasets = {
+          dataset = {
+            type = "zfs_fs";
+            mountpoint = "/data";
           };
         };
       };
@@ -81,7 +117,7 @@
   };
   fileSystems = {
     "/".neededForBoot = true;
-    #"/nix".neededForBoot = true;
+    "/data".neededForBoot = true;
     # "/boot".neededForBoot = true;
   };
 }

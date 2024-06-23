@@ -18,10 +18,10 @@
     isSystemUser = true;
     uid = 791;
 
-    home = "/nix/state/home/data";
-    createHome = true;
+    createHome = false;
   };
 
+  /*
   # Later: replace this with a mounted volume
   environment.persistence."/nix/state" = {
     directories = [
@@ -33,6 +33,7 @@
       }
     ];
   };
+  */
 
   services.syncthing = {
     user = "data";

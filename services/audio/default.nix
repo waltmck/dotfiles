@@ -10,7 +10,7 @@
   # Just for pactl
   # environment.systemPackages = [pkgs.pulseaudio];
 
-  sound.enable = true;
+  # sound.enable = true;
   security.rtkit.enable = true;
 
   services.pipewire = {

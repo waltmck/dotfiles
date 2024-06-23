@@ -122,7 +122,7 @@ with lib.hm.gvariant; {
         "caprine.desktop"
         "teams-for-linux.desktop"
         "discord.desktop"
-        "spot.desktop"
+        "com.github.neithern.g4music.desktop"
         "com.usebottles.bottles.desktop"
         "org.gnome.Software.desktop"
       ];

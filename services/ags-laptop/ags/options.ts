@@ -122,12 +122,11 @@ const options = mkOptions(OPTIONS, {
         systray: {
             ignore: opt([
                 "KDE Connect Indicator",
-                "spot",
             ]),
         },
         media: {
             monochrome: opt(true),
-            preferred: opt("spot"),
+            preferred: opt("com.github.neithern.g4music"),
             direction: opt<"left" | "right">("right"),
             format: opt("{artists} - {title}"),
             length: opt(40),
@@ -157,8 +156,8 @@ const options = mkOptions(OPTIONS, {
                     "org.gnome.Nautilus",
                     "org.gnome.Calendar",
                     "obsidian",
-                    "discord",
-                    "spot",
+                    "armcord",
+                    "com.github.neithern.g4music",
                 ],
             ]),
         },

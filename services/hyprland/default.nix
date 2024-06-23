@@ -251,9 +251,14 @@
         (f "transmission-remote-gtk")
         (f "com.github.Aylur.ags")
 
-        (f "dev.alextren.Spot")
+        (f "com.github.neithern.g4music")
         (f "1Password")
         "stayfocused,class:^(1Password)$"
+        "pin,class:^(com.github.neithern.g4music)$"
+        "size 75%,class:^(com.github.neithern.g4music)$"
+        "stayfocused,class:^(com.github.neithern.g4music)$"
+        "center,class:^(com.github.neithern.g4music)$"
+        "dimaround,class:^(com.github.neithern.g4music)$"
       ];
 
       bind = let
@@ -291,7 +296,7 @@
 
         opPopup = popup_script "${systemd-run} ${pkgs._1password-gui}/bin/1password" "class: 1Password";
 
-        spotPopup = popup_script "${systemd-run} ${pkgs.spot}/bin/spot" "class: dev.alextren.Spot";
+        musicPopup = popup_script "${systemd-run} ${pkgs.g4music}/bin/g4music" "class: com.github.neithern.g4music";
       in
         [
           "SUPER, R,       ${e} -t launcher"
@@ -307,7 +312,7 @@
 
           "SUPER SHIFT, Q, execr, ${termPopup}" # Kitty popup
           "SUPER CTRL SHIFT, Q, execr, ${termPopupSession}" # Kitty popup in session.slice
-          "SUPER, S, exec, ${spotPopup}"
+          "SUPER, S, exec, ${musicPopup}"
           "SUPER, G, exec, ${popup_rules_loose} ${systemd-run} ${pkgs.gnome.nautilus}/bin/nautilus"
           "SUPER, T, exec, ${opPopup}"
 

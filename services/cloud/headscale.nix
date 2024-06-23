@@ -42,19 +42,16 @@
         v6 = "fd7a:115c:a1e0::/48";
         v4 = "100.64.0.0/10";
       };
+
+      # Use data partition for headscale state
+      db_path = "/data/config/headscale/db.sqlite";
+      private_key_path = "/data/config/headscale/private.key";
+      noise.private_key_path = "/data/config/headscale/noise_private.key";
     };
   };
 
-  environment.persistence."/nix/state" = {
-    directories = [
-      {
-        directory = "/var/lib/headscale";
-        user = "headscale";
-        group = "headscale";
-        mode = "0750";
-      }
-    ];
-  };
+  # Allow headscale to access its config directory
+  systemd.services.headscale.serviceConfig.BindPaths = ["/data/config/headscale"];
 
   # Allow UDP port for DERP
   networking.firewall.allowedUDPPorts = [3478];

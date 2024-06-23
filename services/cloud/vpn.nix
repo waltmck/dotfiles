@@ -4,7 +4,6 @@
   pkgs,
   inputs,
   headless,
-  hostname,
   ...
 }: let
   ipv4 = "185.157.160.132/32";
@@ -17,10 +16,9 @@
     nameserver 2001:67c:750:1:cafe:cd45::1
   '';
 
-  peer-port = 51413;
-
   /*
   The `vpn.conf` file has the following form, obtained from your VPN provider. Note the commented-out fields.
+  Note that the Endpoint must be an IP address, not a domain name (since we haven't set up DNS yet).
 
     [Interface]
     PrivateKey = <REDACTED>
@@ -34,77 +32,6 @@
   */
   vpnconf = "/data/secrets/vpn.conf";
 in {
-  services.transmission = {
-    enable = true;
-    openRPCPort = true;
-
-    user = "data";
-    group = "data";
-    home = "/data/config/transmission";
-
-    downloadDirPermissions = "770";
-
-    settings = {
-      # Torrent config
-
-      bind-address-ipv4 = "0.0.0.0";
-      bind-address-ipv6 =
-        if ipv6 == null
-        then "::1"
-        else "::";
-      port-forwarding-enabled = true;
-      inherit peer-port;
-      peer-port-random-enabled = false;
-
-      encryption = 1;
-      lpd-enabled = true;
-      dht-enabled = true;
-      pex-enabled = true;
-      utp-enabled = true;
-
-      # Config to get RPC to work
-      rpc-bind-address = "127.0.0.1";
-      rpc-port = 9091;
-      rpc-url = "/transmission/";
-
-      rpc-whitelist-enabled = true;
-      rpc-host-whitelist-enabled = true;
-      rpc-authentication-required = false;
-
-      rpc-host-whitelist = "*";
-      rpc-whitelist = "*";
-
-      incomplete-dir = "/data/.incomplete";
-      incomplete-dir-enabled = true;
-      download-dir = "/data/torrents/other";
-    };
-  };
-
-  systemd.services.transmission = {
-    bindsTo = ["netns@wg.service"];
-    requires = ["network-online.target"];
-    after = ["wg.service"];
-    wants = ["wg.service"];
-
-    serviceConfig = {
-      NetworkNamespacePath = "/var/run/netns/wg";
-      PrivateTmp = true;
-      PrivateNetwork = true;
-
-      StandardOutput = "journal";
-      StandardError = "journal";
-
-      Environment = [
-        # "TR_CURL_SSL_NO_VERIFY=1"
-      ];
-
-      # Allow it to access its own config directory
-      BindPaths = ["/data/config/transmission" "/data/torrents"];
-    };
-  };
-
-  # --- VPN Configuration ---
-
   # Setup wireguard interface and namespace for transmission
   systemd.services."netns@" = {
     description = "%I network namespace";
@@ -157,6 +84,7 @@ in {
           }
           ${iproute}/bin/ip -n wg link del wg0
           ${iproute}/bin/ip -n wg link del lo
+          ${iproute}/bin/ip link del wg0
         '';
 
       StandardOutput = "journal";
@@ -167,45 +95,6 @@ in {
   # Fix DNS with the `wg` namespace, since it can't access tailscale DNS
   environment.etc."netns/wg/resolv.conf".text = dnsconf;
 
-  # Socket to bridge RPC port (9091) to wg namespace
-  systemd.sockets.transmission-rpc = {
-    listenStreams = ["0.0.0.0:9091"];
-    wantedBy = ["sockets.target"];
-  };
-
-  systemd.services.transmission-rpc = {
-    requires = ["transmission.service" "transmission-rpc.socket"];
-    after = ["transmission.service" "transmission-rpc.socket"];
-
-    serviceConfig = {
-      Type = "notify";
-      ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd 127.0.0.1:9091";
-      PrivateTmp = true;
-      PrivateNetwork = true;
-      NetworkNamespacePath = "/var/run/netns/wg";
-
-      StandardOutput = "journal";
-      StandardError = "journal";
-    };
-  };
-
-  environment.persistence."/nix/state".directories = [
-    {
-      directory = "/var/lib/transmission";
-      user = "data";
-      group = "transmission";
-    }
-  ];
-
   # Open wireguard port
   networking.firewall.allowedUDPPorts = [57974];
-
-  # nginx reverse proxy for gui/rpc
-  services.nginx = {
-    enable = true;
-
-    virtualHosts."${hostname}".locations."/transmission/" = {
-      proxyPass = "http://127.0.0.1:9091/transmission/";
-    };
-  };
 }
