@@ -83,7 +83,10 @@
       };
     };
 in {
-  environment.systemPackages = [firefox-pkg];
+  environment.systemPackages = [
+    firefox-pkg
+    # pkgs.fx-cast-bridge # TODO debug no arm64 support
+  ];
 
   # Install gnome theme
   home-manager.users.waltmck.home = {
@@ -119,6 +122,7 @@ in {
         zotero-connector
         rsshub-radar
         # mullvad
+        # fx_cast # TODO debug no arm64 support
       ];
 
       # Hide tab bar because we have tree style tabs

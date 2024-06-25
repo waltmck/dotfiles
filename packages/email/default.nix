@@ -5,6 +5,8 @@
   inputs,
   ...
 }: {
+  programs.geary.enable = true;
+
   home-manager.users.waltmck = {
     programs.mbsync.enable = true;
     programs.msmtp.enable = true;
@@ -59,7 +61,29 @@
     };
   };
 
+  systemd.user.services.geary = {
+    enable = true;
+    description = "Geary Background Service";
+    wantedBy = ["graphical-session.target"];
+    wants = ["graphical-session.target"];
+    after = ["graphical-session.target"];
+
+    script = ''
+      ${pkgs.gnome.geary}/bin/geary --gapplication-service
+    '';
+
+    serviceConfig.Environment = [
+      "NO_AT_BRIDGE=1" # Disable accessibility stuff
+    ];
+  };
+
   environment.persistence."/nix/state".users.waltmck = {
-    directories = ["Maildir"];
+    directories = [
+      "Maildir"
+      ".config/geary"
+      ".local/share/geary"
+      ".cache/geary"
+      ".local/share/evolution" # to keep mail
+    ];
   };
 }

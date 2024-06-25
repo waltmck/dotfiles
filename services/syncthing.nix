@@ -12,6 +12,11 @@
 in {
   environment.systemPackages = [pkgs.syncthing];
 
+  # Recommended for quic, to increase performance. See:
+  # https://github.com/quic-go/quic-go/wiki/UDP-Buffer-Sizes
+  boot.kernel.sysctl."net.core.rmem_max" = 7500000;
+  boot.kernel.sysctl."net.core.wmem_max" = 7500000;
+
   services.syncthing = {
     enable = true;
     user = lib.mkDefault "waltmck";

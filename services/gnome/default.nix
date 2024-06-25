@@ -36,6 +36,7 @@
         BAT_THEME = "base16";
         GOPATH = "/home/waltmck/.local/share/go";
         GOMODCACHE = "/home/waltmck/.cache/go/pkg/mod";
+        NO_AT_BRIDGE = "1"; # Disable accessibility stuff
       };
 
       sessionPath = [
@@ -65,8 +66,7 @@
       "Music"
       "src"
       ".local/share/keyrings"
-      ".local/share/evolution" # Mail, contacts, calendar, tasks
-      ".local/share/geary"
+      ".config/dconf" # Keep gnome app settings (including geary, g4music)
     ];
     files = [];
   };

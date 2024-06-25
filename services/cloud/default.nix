@@ -5,6 +5,7 @@
     ./transmission.nix
     ./jellyfin.nix
     ./arr.nix
+    ./rss.nix
   ];
 
   users.groups."data" = {
