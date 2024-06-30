@@ -22,8 +22,19 @@
     };
   };
 
+  services.tailscaleAuth = {
+    enable = true;
+  };
+
   services.nginx = {
     enable = true;
+
+    # I'm pretty sure this actually does nothing, unfortunately
+    tailscaleAuth = {
+      enable = true;
+      virtualHosts = [hostname];
+      expectedTailnet = "waltmck.headscale.waltmckelvie.com";
+    };
 
     virtualHosts = {
       "cloud.waltmckelvie.com" = {
@@ -39,6 +50,13 @@
 
       # Intranet
       "${hostname}" = {
+        # Restrict to tailscale
+        extraConfig = ''
+          allow 100.64.0.0/24;
+          allow 127.0.0.1;
+          deny  all;
+        '';
+
         # Listen for all traffic
         listenAddresses = [
           "0.0.0.0"

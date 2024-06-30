@@ -7,6 +7,20 @@
   hostname,
   ...
 }: {
+  systemd.services.stash = {
+    description = "Stash";
+    after = ["network.target"];
+    wantedBy = ["multi-user.target"];
+
+    serviceConfig = {
+      Type = "simple";
+      User = "data";
+      Group = "data";
+      ExecStart = "${pkgs.stash}/bin/stash --nobrowser --config /data/config/stash/config.yml";
+      Restart = "on-failure";
+    };
+  };
+
   services.prowlarr = {
     enable = true;
   };
@@ -38,14 +52,13 @@
   services.readarr = {
     enable = true;
     user = "data";
+    group = "data";
 
     dataDir = "/data/config/readarr";
   };
 
   services.jellyseerr = {
     enable = true;
-    # user = "data";
-    # dataDir = "/data/config/jellyseerr";
   };
 
   /*
@@ -101,6 +114,19 @@
       sub_filter '/favicon' '/$app/favicon';
       sub_filter '/logo_' '/$app/logo_';
       sub_filter '/site.webmanifest' '/$app/site.webmanifest';
+    '';
+
+    stashConfig = ''
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "Upgrade";
+      proxy_set_header Host $host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Port $server_port;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_set_header X-Forwarded-Prefix /stash;
+      proxy_read_timeout 60000s;
     '';
   in {
     enable = true;
@@ -172,6 +198,12 @@
       locations."^~ /whisparr/api" = {
         proxyPass = "http://127.0.0.1:6969";
         extraConfig = "auth_basic off;";
+      };
+
+      locations."/stash/" = {
+        proxyPass = "http://127.0.0.1:9999/";
+
+        extraConfig = stashConfig;
       };
     };
 
