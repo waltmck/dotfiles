@@ -165,16 +165,13 @@
           "status")
             pushd /etc/nixos >/dev/null || exit 1
             git status
-            popd
+            popd >/dev/null
             ;;
           "commit")
             shift 1
             pushd /etc/nixos >/dev/null || exit 1
-            echo $1
-            echo $2
-            echo "$@"
             git commit "$@"
-            popd
+            popd >/dev/null
             ;;
           *)
             echo "Arguments: boot, switch, edit, gc, deploy, update, status"
