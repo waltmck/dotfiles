@@ -54,6 +54,10 @@
   # If conflicting config files exist, move them to a backup ending with `.hm-bak`.
   home-manager.backupFileExtension = "hm-bak";
 
+  home-manager.extraSpecialArgs = {
+    inherit headless;
+  };
+
   home-manager.users.waltmck = {
     # Imports and stateVersion
     home.stateVersion = "23.11";
@@ -157,7 +161,7 @@
             nix-collect-garbage
             ;;
           "deploy")
-            deploy-rs -- --remote-build -s /etc/nixos#$2
+            deploy --remote-build -s /etc/nixos#$2
             ;;
           "update")
             shift 1

@@ -3,6 +3,7 @@
   inputs,
   config,
   lib,
+  headless,
   ...
 }: {
   home-manager.users.waltmck = {
@@ -33,6 +34,7 @@
 
     EDITOR = "vim";
     TERMINAL = "${pkgs.alacritty}/bin/alacritty";
+    OPENER = "xdg-open";
 
     # Not officially in the specification
     XDG_BIN_HOME = "$HOME/.local/bin";
@@ -50,6 +52,8 @@
         video = "io.github.celluloid_player.Celluloid.desktop";
         image = "org.gnome.Loupe.desktop";
         latex = "org.cvfosammmm.Setzer.desktop";
+        text = "neovide.desktop";
+        code = "neovide.desktop";
 
         fileformats = import ./fileformats.nix;
         types = program: type:
@@ -64,6 +68,8 @@
           (types image fileformats.image)
           (types browser fileformats.browser)
           (types video fileformats.audiovideo)
+          (types text fileformats.text)
+          (types code fileformats.code)
           {
             "application/pdf" = pdf;
             "application/tex" = latex;

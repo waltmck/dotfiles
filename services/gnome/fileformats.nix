@@ -139,4 +139,35 @@
     "x-scheme-handler/unknown"
     "text/html"
   ];
+
+  directory = [
+    "inode/directory"
+    "inode/mount-point"
+  ];
+
+  text = [
+    "text/plain"
+    "application/json"
+    "application/xml"
+    "application/yaml"
+    "application/toml"
+    "text/csv"
+    "text/markdown"
+  ];
+
+  code = [
+    "text/x-c++src"
+    "text/x-c++hdr"
+    "text/x-csrc"
+    "text/x-chdr"
+    "text/vnd.trolltech.linguist" # Actually typescript
+    "application/x-shellscript"
+    "text/rust"
+    "text/x-go"
+    "text/x-python"
+    "text/x-dbus-service"
+    "text/x-systemd-unit"
+    "text/x-java"
+    "text/javascript"
+  ];
 }

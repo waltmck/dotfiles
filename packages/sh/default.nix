@@ -35,6 +35,12 @@
     };
   in {
     programs = {
+      btop = {
+        enable = true;
+
+        settings.theme_background = false;
+      };
+
       zsh = {
         inherit shellAliases;
         enable = true;

@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   config,
+  headless,
   ...
 }: {
   imports = [
@@ -36,7 +37,7 @@
   };
 
   home-manager.users.waltmck = {
-    imports = [./dconf.nix ./lf.nix];
+    imports = [./dconf.nix];
 
     home = {
       sessionPath = [

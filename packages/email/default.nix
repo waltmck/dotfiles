@@ -68,10 +68,11 @@
     wants = ["graphical-session.target"];
     after = ["graphical-session.target"];
 
+    # Running through `zsh` so that it respects my user environment variables. This is not "best practice" but it is actually the easiest way to get this to work.
     script = ''
       ${pkgs.zsh}/bin/zsh -lc "${pkgs.gnome.geary}/bin/geary --gapplication-service"
-      # env > /home/waltmck/src/env1
     '';
+  };
 
   environment.persistence."/nix/state".users.waltmck = {
     directories = [
