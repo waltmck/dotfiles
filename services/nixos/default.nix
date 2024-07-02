@@ -157,19 +157,34 @@
             nix-collect-garbage
             ;;
           "deploy")
-            nix run github:serokell/deploy-rs -- --remote-build -s /etc/nixos#$2
+            deploy-rs -- --remote-build -s /etc/nixos#$2
             ;;
-          "upgrade")
-            nix flake upgrade /etx/nixos || exit 1
+          "update")
+            nix flake update /etc/nixos
+            ;;
+          "status")
+            pushd /etc/nixos >/dev/null || exit 1
+            git status
+            popd
+            ;;
+          "commit")
+            shift 1
+            pushd /etc/nixos >/dev/null || exit 1
+            echo $1
+            echo $2
+            echo "$@"
+            git commit "$@"
+            popd
             ;;
           *)
-            echo "Arguments: boot, switch, edit, gc"
+            echo "Arguments: boot, switch, edit, gc, deploy, update, status"
             exit 1
             ;;
         esac
       '';
   in [
     os
+    pkgs.deploy-rs
   ];
 
   time.timeZone = "America/New_York";
