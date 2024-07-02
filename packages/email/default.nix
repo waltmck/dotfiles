@@ -69,24 +69,9 @@
     after = ["graphical-session.target"];
 
     script = ''
-      # ${pkgs.gnome.geary}/bin/geary --gapplication-service
-
-      env > /home/waltmck/src/env1
+      ${pkgs.zsh}/bin/zsh -lc "${pkgs.gnome.geary}/bin/geary --gapplication-service"
+      # env > /home/waltmck/src/env1
     '';
-
-    serviceConfig.Environment = [
-      "NO_AT_BRIDGE=1" # Disable accessibility stuff
-    ];
-
-    serviceConfig.PassEnvironment = [
-      "BROWSER"
-      "XDG_CONFIG_DIRS"
-      "XDG_BACKEND"
-      "XCURSOR_SIZE"
-      "XDG_SESSION_TYPE"
-      "XDG_CURRENT_DESKTOP"
-    ];
-  };
 
   environment.persistence."/nix/state".users.waltmck = {
     directories = [
