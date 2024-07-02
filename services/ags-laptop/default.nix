@@ -100,6 +100,15 @@ in {
         "XCURSOR_THEME=Qogir"
       ];
 
+      PassEnvironment = [
+        "BROWSER"
+        "XDG_CONFIG_DIRS"
+        "XDG_BACKEND"
+        "XCURSOR_SIZE"
+        "XDG_SESSION_TYPE"
+        "XDG_CURRENT_DESKTOP"
+      ];
+
       Slice = "session.slice";
 
       StandardOutput = "journal";

@@ -62,6 +62,8 @@ in {
       pex-enabled = true;
       utp-enabled = true;
 
+      download-queue-enabled = false;
+
       # Config to get RPC to work
       rpc-bind-address = "127.0.0.1";
       rpc-port = 9091;

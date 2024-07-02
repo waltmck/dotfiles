@@ -12,7 +12,7 @@ assert !headless; {
     ../packages/_1password
     ../packages/firefox
     ../packages/obsidian
-    ../packages/vscode
+    # ../packages/vscode
     ../packages/kitty
     # ../packages/blackbox
     ../packages/music

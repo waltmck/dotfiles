@@ -25,20 +25,20 @@
 
   programs.dconf.enable = true;
 
+  environment.sessionVariables = {
+    QT_XCB_GL_INTEGRATION = "none"; # kde-connect
+    NIXPKGS_ALLOW_UNFREE = "1";
+    NIXPKGS_ALLOW_INSECURE = "1";
+    BAT_THEME = "base16";
+    GOPATH = "/home/waltmck/.local/share/go";
+    GOMODCACHE = "/home/waltmck/.cache/go/pkg/mod";
+    NO_AT_BRIDGE = "1"; # Disable accessibility stuff
+  };
+
   home-manager.users.waltmck = {
     imports = [./dconf.nix ./lf.nix];
 
     home = {
-      sessionVariables = {
-        QT_XCB_GL_INTEGRATION = "none"; # kde-connect
-        NIXPKGS_ALLOW_UNFREE = "1";
-        NIXPKGS_ALLOW_INSECURE = "1";
-        BAT_THEME = "base16";
-        GOPATH = "/home/waltmck/.local/share/go";
-        GOMODCACHE = "/home/waltmck/.cache/go/pkg/mod";
-        NO_AT_BRIDGE = "1"; # Disable accessibility stuff
-      };
-
       sessionPath = [
         "$HOME/.local/bin"
       ];
