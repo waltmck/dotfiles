@@ -4,6 +4,9 @@
   config,
   hostname,
   headless,
+  system,
+  speedFactor,
+  builder,
   ...
 }: {
   # Imports and state version
@@ -60,6 +63,19 @@
 
   home-manager.users.waltmck = {
     # Imports and stateVersion
+    home.stateVersion = "23.11";
+
+    programs.home-manager.enable = true;
+
+    news.display = "show";
+
+    nix.settings = {
+      experimental-features = ["nix-command" "flakes"];
+      warn-dirty = false;
+    };
+  };
+
+  home-manager.users.root = {
     home.stateVersion = "23.11";
 
     programs.home-manager.enable = true;
@@ -203,6 +219,47 @@
     os
     pkgs.deploy-rs
   ];
+
+  # Distributed Builds
+
+  nix.buildMachines =
+    [
+      {
+        hostName = "walt-cloud";
+        # system = "x86_64-linux";
+        protocol = "ssh-ng";
+        # if the builder supports building for multiple architectures,
+        # replace the previous line by, e.g.
+        systems = ["x86_64-linux" "aarch64-linux"];
+        maxJobs = 8;
+        speedFactor = 32013; # From https://www.cpubenchmark.net/compare/
+        supportedFeatures = ["big-parallel" "kvm"];
+        mandatoryFeatures = [];
+      }
+    ]
+    ++ (
+      if !builder
+      then [
+        {
+          hostName = hostname;
+          system = system;
+          protocol = "ssh-ng";
+          # if the builder supports building for multiple architectures,
+          # replace the previous line by, e.g.
+          # systems = ["x86_64-linux" "aarch64-linux"];
+          maxJobs = 1;
+          inherit speedFactor;
+          supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
+          mandatoryFeatures = [];
+        }
+      ]
+      else []
+    );
+  nix.distributedBuilds = true;
+  # optional, useful when the builder has a faster internet connection than yours
+  nix.extraOptions = ''
+    builders-use-substitutes = true
+  '';
 
   time.timeZone = "America/New_York";
 }

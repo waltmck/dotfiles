@@ -126,6 +126,8 @@
           inherit inputs;
           inherit system;
           hostname = "walt-laptop";
+          speedFactor = 15519;
+          builder = false;
 
           # Look at gcc docs plus https://gpages.juszkiewicz.com.pl/arm-socs-table/arm-socs.html to find arch
           march = "armv8.6-a+fp16+fp16fml+aes+sha2+sha3+bf16+i8mm+nosve+nosve2+nomemtag+nosm4+nof32mm+nof64mm";
@@ -149,6 +151,8 @@
           inherit inputs;
           inherit system;
           hostname = "walt-cloud";
+          speedFactor = 32013;
+          builder = true;
 
           native = false;
           headless = true;
@@ -164,7 +168,9 @@
         specialArgs = {
           inherit inputs;
           inherit system;
-          hostname = "walt-cloud";
+          hostname = "walt-phone";
+          speedFactor = 1;
+          builder = false;
 
           native = false;
           headless = true;

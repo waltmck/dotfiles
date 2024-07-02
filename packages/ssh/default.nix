@@ -6,26 +6,28 @@
   headless,
   ...
 }: {
-  home-manager.users.waltmck = {
-    programs.ssh = {
-      enable = true;
+  home-manager.sharedModules = [
+    {
+      programs.ssh = {
+        enable = true;
 
-      matchBlocks = {
-        "walt-server" = {
-          hostname = "waltmckelvie.com";
-          user = "waltmck";
-          forwardAgent = true;
+        matchBlocks = {
+          "walt-server" = {
+            hostname = "waltmckelvie.com";
+            user = "waltmck";
+            forwardAgent = true;
+          };
+          "walt-cloud" = {
+            hostname = "cloud.waltmckelvie.com";
+            user = "waltmck";
+            forwardAgent = true;
+          };
         };
-        "walt-cloud" = {
-          hostname = "cloud.waltmckelvie.com";
-          user = "waltmck";
-          forwardAgent = true;
-        };
+
+        userKnownHostsFile = "/nix/state/home/waltmck/.ssh/known_hosts";
       };
-
-      userKnownHostsFile = "/nix/state/home/waltmck/.ssh/known_hosts";
-    };
-  };
+    }
+  ];
 
   # Persist known_hosts
   environment.persistence."/nix/state".users.waltmck = {

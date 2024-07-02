@@ -61,6 +61,7 @@
     };
   };
 
+  # Remember to enable "run in background" in the Geary user settings
   systemd.user.services.geary = {
     enable = true;
     description = "Geary Background Service";

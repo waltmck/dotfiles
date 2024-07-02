@@ -52,21 +52,18 @@
     ];
   };
 
+  environment.sessionVariables = {
+    SSH_AUTH_SOCK = "/home/waltmck/.1password/agent.sock";
+  };
+
+  /*
   home-manager.users.waltmck = {
     # Make ssh use 1password ssh-agent
-    /*
-      programs.ssh = {
-      extraConfig = lib.mkOrder 0 ''
-        Host *
-            IdentityAgent ~/.1password/agent.sock
-      '';
-    };
-    */
-
     home.sessionVariables = {
       SSH_AUTH_SOCK = "/home/waltmck/.1password/agent.sock";
     };
   };
+  */
 
   # Persist secret state
   environment.persistence."/nix/state".users.waltmck = {
