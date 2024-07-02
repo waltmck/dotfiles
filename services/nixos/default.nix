@@ -160,11 +160,21 @@
             deploy-rs -- --remote-build -s /etc/nixos#$2
             ;;
           "update")
-            nix flake update /etc/nixos
+            shift 1
+            pushd /etc/nixos >/dev/null || exit 1
+            nix flake update "$@"
+            popd >/dev/null
             ;;
           "status")
+            shift 1
             pushd /etc/nixos >/dev/null || exit 1
-            git status
+            git status "$@"
+            popd >/dev/null
+            ;;
+          "add")
+            shift 1
+            pushd /etc/nixos >/dev/null || exit 1
+            git add "$@"
             popd >/dev/null
             ;;
           "commit")
@@ -173,8 +183,14 @@
             git commit "$@"
             popd >/dev/null
             ;;
+          "push")
+            shift 1
+            pushd /etc/nixos >/dev/null || exit 1
+            git push "$@"
+            popd >/dev/null
+            ;;
           *)
-            echo "Arguments: boot, switch, edit, gc, deploy, update, status"
+            echo "Arguments: boot, switch, edit, gc, deploy, update, status, add, commit, push"
             exit 1
             ;;
         esac
