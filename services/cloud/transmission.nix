@@ -202,6 +202,19 @@ in {
   # Open wireguard port
   networking.firewall.allowedUDPPorts = [57974];
 
+  # Allow all ports through the wg0 interface
+  networking.firewall.interfaces."wg0" = let
+    all = [
+      {
+        from = 0;
+        to = 65535;
+      }
+    ];
+  in {
+    allowedUDPPortRanges = all;
+    allowedTCPPortRanges = all;
+  };
+
   # nginx reverse proxy for gui/rpc
   services.nginx = {
     enable = true;

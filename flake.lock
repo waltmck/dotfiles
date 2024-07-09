@@ -754,6 +754,7 @@
         "nixos-aarch64-widevine": "nixos-aarch64-widevine",
         "nixpkgs": "nixpkgs",
         "nixvim": "nixvim",
+        "schildichat": "schildichat",
         "systems": "systems_3",
         "zotero-nix": "zotero-nix"
       }
@@ -771,6 +772,26 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "schildichat": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1708941445,
+        "narHash": "sha256-pPSnfU1n0niGu24ZFdbaVQWh8VEmRo60wAaczW2DPTk=",
+        "owner": "SchildiChat",
+        "repo": "schildichat-desktop",
+        "rev": "a1458b136bc6577561787481ea0cedc824d8c607",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SchildiChat",
+        "repo": "schildichat-desktop",
         "type": "github"
       }
     },

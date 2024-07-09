@@ -16,9 +16,8 @@ assert !headless; {
     ../packages/kitty
     # ../packages/blackbox
     ../packages/music
-    ../packages/matrix
+    ../packages/messaging
     ../packages/newsflash
-    ../packages/discord
     ../packages/gaming
     ../packages/alacritty
     ../packages/email
@@ -38,9 +37,10 @@ assert !headless; {
 
     nautilus
     geary
-    cheese
+    # cheese
+    guvcview
     baobab
-    gnome-text-editor
+    # gnome-text-editor
     gnome-calendar
     gnome-boxes
     gnome-system-monitor
@@ -49,6 +49,7 @@ assert !headless; {
     gnome-calculator
     gnome-clocks
     gnome-maps
+    gnome-photos
     gnome-contacts
     gnome-power-manager
     # gnome-secrets
@@ -69,6 +70,7 @@ assert !headless; {
     # gimp
     # transmission_4-gtk
     transmission-remote-gtk
+    fragments # Alternate transmission remote client
     # discord <- no aarch64-linux support
     icon-library
     dconf-editor
@@ -92,18 +94,21 @@ assert !headless; {
 
     # File Readers
 
-    evince # PDF reader
+    papers # PDF reader
     zathura # Another PDF viewer
+
     celluloid # Video player
     delfin # Jellyfin streaming
     foliate # ebook reader
-    loupe # Image viewer
+    loupe # Image viewe
+
+    shortwave # Internate radio
+    wike # wikipedia reader
 
     zim # Notes app to try
 
     ## COMMUNICATION
 
-    flare-signal # Signal client
     polari # IRC client
     paper-plane # Telegram client
     calls # Gnome Calls, a voip client
@@ -111,6 +116,10 @@ assert !headless; {
     keepassxc
 
     g4music
+
+    notify-client #ntfy client
+
+    varia # Download manager, wraps aria2
 
     inputs.zotero-nix.packages.${system}.default
   ];

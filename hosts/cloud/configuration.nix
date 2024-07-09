@@ -17,6 +17,13 @@
     ../../services/cloud
   ];
 
+  # Emulation for distributed builds
+  boot.binfmt.emulatedSystems = [
+    "aarch64-linux"
+    # "x86_64-windows"
+    # "i686-linux"
+  ];
+
   # Disable impermanence because it is buggy and often causes failure to boot
   environment.persistence."/nix/state".enable = false;
 

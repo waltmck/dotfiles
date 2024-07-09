@@ -25,6 +25,7 @@
     settings = {
       experimental-features = "nix-command flakes";
       auto-optimise-store = true;
+      trusted-users = ["waltmck"];
     };
   };
 
@@ -220,42 +221,43 @@
     pkgs.deploy-rs
   ];
 
-  # Distributed Builds
+  # Distributed Builds. Disabled for now since enabling disables building locally for some reason.
 
-  nix.buildMachines =
-    [
+  nix.buildMachines = [
+    {
+      hostName = "walt-cloud";
+      # system = "x86_64-linux";
+      protocol = "ssh-ng";
+      # if the builder supports building for multiple architectures,
+      # replace the previous line by, e.g.
+      systems = ["x86_64-linux" "aarch64-linux"];
+      maxJobs = 64;
+      speedFactor = 10; # From https://www.cpubenchmark.net/compare/
+      supportedFeatures = ["nixos-test" "big-parallel" "kvm" "benchmark"];
+      mandatoryFeatures = [];
+    }
+  ];
+  /*
+    ++ (
+    if !builder
+    then [
       {
-        hostName = "walt-cloud";
-        # system = "x86_64-linux";
+        hostName = hostname;
+        system = system;
         protocol = "ssh-ng";
         # if the builder supports building for multiple architectures,
         # replace the previous line by, e.g.
-        systems = ["x86_64-linux" "aarch64-linux"];
-        maxJobs = 8;
-        speedFactor = 32013; # From https://www.cpubenchmark.net/compare/
-        supportedFeatures = ["big-parallel" "kvm"];
+        # systems = ["x86_64-linux" "aarch64-linux"];
+        maxJobs = 2;
+        speedFactor = 1;
+        supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
         mandatoryFeatures = [];
       }
     ]
-    ++ (
-      if !builder
-      then [
-        {
-          hostName = hostname;
-          system = system;
-          protocol = "ssh-ng";
-          # if the builder supports building for multiple architectures,
-          # replace the previous line by, e.g.
-          # systems = ["x86_64-linux" "aarch64-linux"];
-          maxJobs = 1;
-          inherit speedFactor;
-          supportedFeatures = ["nixos-test" "benchmark" "big-parallel" "kvm"];
-          mandatoryFeatures = [];
-        }
-      ]
-      else []
-    );
-  nix.distributedBuilds = true;
+    else []
+  );
+  */
+  # nix.distributedBuilds = true;
   # optional, useful when the builder has a faster internet connection than yours
   nix.extraOptions = ''
     builders-use-substitutes = true

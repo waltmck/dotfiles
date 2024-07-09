@@ -49,6 +49,9 @@
         DisableFormHistory = true;
         PasswordManagerEnabled = false;
 
+        ExtensionUpdate = false;
+        DisableAppUpdate = true;
+
         UserMessaging = {
           ExtensionRecommendations = false;
           SkipOnboarding = true;
@@ -138,6 +141,10 @@ in {
 
       userContent = ''
         @import "firefox-gnome-theme/userContent.css";
+
+        @-moz-document url("about:home"),url("about:blank"),url("about:newtab"),url("about:privatebrowsing"){
+          body{ background-color: #232325 !important }
+        }
       '';
 
       extraConfig = builtins.concatStringsSep "\n" [
@@ -198,6 +205,8 @@ in {
         # Not with me please ...
         "app.normandy.enabled" = false;
         "app.shield.optoutstudies.enabled" = false;
+        "messaging-system.rsexperimentloader.enabled" = false;
+        "extensions.getAddons.cache.enabled" = false; # Addon recommendations
 
         "beacon.enabled" = false; # No bluetooth location BS in my webbrowser please
         "device.sensors.enabled" = false; # This isn't a phone
@@ -212,6 +221,8 @@ in {
         "toolkit.telemetry.server" = "";
         "toolkit.telemetry.unified" = false;
         "extensions.webcompat-reporter.enabled" = false; # don't report compability problems to mozilla
+        "extensions.fxmonitor.enabled" = false; # Disable notification of security breaches
+        "extensions.screenshots.disabled" = true; # Disable screenshot tool
         "datareporting.policy.dataSubmissionEnabled" = false;
         "datareporting.healthreport.uploadEnabled" = false;
         "browser.ping-centre.telemetry" = false;
@@ -226,6 +237,18 @@ in {
         "identity.fxaccounts.commands.enabled" = false;
         "browser.contentblocking.report.lockwise.enabled" = false; # don't use firefox password manger
         "browser.uitour.enabled" = false; # no tutorial please
+
+        # Remove identifying information from blocklist queries
+        "extensions.blocklist.url" = "https://blocklists.settings.services.mozilla.com/v1/blocklist/3/%20/%20/";
+
+        # Safe browsing sends information to Google
+        "browser.safebrowsing.malware.enabled" = false;
+        "browser.safebrowsing.phishing.enabled" = false;
+        "browser.safebrowsing.downloads.enabled" = false;
+
+        # Disable captive portal polling for better battary. Instead go to neverssl.com when joining a public network
+        "network.captive-portal-service.enabled" = false;
+        "network.connectivity-service.enabled" = false; # If ipv6 is breaking, try enabling this
 
         # disable EME encrypted media extension (Providers can get DRM
         # through this if they include a decryption black-box program)

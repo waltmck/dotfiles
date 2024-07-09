@@ -22,6 +22,11 @@
             user = "waltmck";
             forwardAgent = true;
           };
+          "walt-laptop" = {
+            hostname = "walt-laptop";
+            user = "waltmck";
+            forwardAgent = true;
+          };
         };
 
         userKnownHostsFile = "/nix/state/home/waltmck/.ssh/known_hosts";

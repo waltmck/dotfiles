@@ -48,7 +48,7 @@
     defaultApplications = (
       let
         browser = "firefox.desktop";
-        pdf = "org.gnome.Evince.desktop";
+        pdf = "org.gnome.Papers.desktop";
         video = "io.github.celluloid_player.Celluloid.desktop";
         image = "org.gnome.Loupe.desktop";
         latex = "org.cvfosammmm.Setzer.desktop";

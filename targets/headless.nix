@@ -58,5 +58,6 @@
     glib
     powertop
     systemctl-tui
+    yt-dlp
   ];
 }

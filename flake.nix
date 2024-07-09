@@ -97,6 +97,11 @@
       url = "github:camillemndn/zotero-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    schildichat = {
+      url = "github:SchildiChat/schildichat-desktop";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -126,7 +131,6 @@
           inherit inputs;
           inherit system;
           hostname = "walt-laptop";
-          speedFactor = 15519;
           builder = false;
 
           # Look at gcc docs plus https://gpages.juszkiewicz.com.pl/arm-socs-table/arm-socs.html to find arch
@@ -151,7 +155,6 @@
           inherit inputs;
           inherit system;
           hostname = "walt-cloud";
-          speedFactor = 32013;
           builder = true;
 
           native = false;

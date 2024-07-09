@@ -80,6 +80,8 @@
     };
   };
 
+  nix.settings.max-jobs = 2;
+
   # hardware.opengl.driSupport32Bit = false;
 
   nixpkgs.hostPlatform =
