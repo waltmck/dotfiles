@@ -5,22 +5,16 @@
   inputs,
   ...
 }: {
-  /*
-  environment.systemPackages = [pkgs.dissent];
-
-  environment.persistence."/nix/state".users.waltmck = {
-    directories = [
-      ".config/dissent"
-      ".cache/dissent"
-    ];
-  };
-  */
-
-  environment.systemPackages = [pkgs.armcord];
+  environment.systemPackages = [
+    pkgs.armcord
+    pkgs.dissent
+  ];
 
   environment.persistence."/nix/state".users.waltmck = {
     directories = [
       ".config/ArmCord"
+      ".config/dissent"
+      ".cache/dissent"
     ];
   };
 }

@@ -33,7 +33,7 @@
     XDG_STATE_HOME = "$HOME/.local/state";
 
     EDITOR = "vim";
-    TERMINAL = "${pkgs.alacritty}/bin/alacritty";
+    TERMINAL = "${pkgs.kitty}/bin/kitty";
     OPENER = "xdg-open";
 
     # Not officially in the specification

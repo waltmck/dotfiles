@@ -51,6 +51,7 @@
       # Intranet
       "${hostname}" = {
         # Restrict to tailscale
+        /*
         extraConfig = ''
           allow 100.64.0.0/24;
           allow 127.0.0.1;
@@ -62,6 +63,7 @@
           "0.0.0.0"
           "[::]"
         ];
+        */
 
         locations = {
           "/headscale-metrics/" = {

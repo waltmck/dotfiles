@@ -149,7 +149,7 @@ with lib.hm.gvariant; {
     };
 
     "com/github/stunkymonkey/nautilus-open-any-terminal" = {
-      terminal = "${pkgs.alacritty}/bin/alacritty";
+      terminal = "${pkgs.kitty}/bin/kitty";
     };
 
     "org/virt-manager/virt-manager/connections" = {

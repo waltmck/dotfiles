@@ -75,6 +75,15 @@
     '';
   };
 
+  # Some tweaks to Geary settings
+  home-manager.users.waltmck.dconf.settings."org/gnome/Geary" = {
+    "ask-open-attachment" = true;
+    "compose-as-html" = true;
+    "formatting-toolbar-visible" = false;
+    "images-trusted-domains" = ["*"];
+    "run-in-background" = true; # This is important
+  };
+
   environment.persistence."/nix/state".users.waltmck = {
     directories = [
       "Maildir"

@@ -9,7 +9,7 @@
 }:
 assert !headless; {
   imports = [
-    ../packages/_1password
+    ../packages/passwords
     ../packages/firefox
     ../packages/obsidian
     # ../packages/vscode
@@ -21,6 +21,7 @@ assert !headless; {
     ../packages/gaming
     ../packages/alacritty
     ../packages/email
+    ../packages/torrent
 
     ../services/gnome
     ../services/hyprland
@@ -51,6 +52,7 @@ assert !headless; {
     gnome-maps
     gnome-photos
     gnome-contacts
+    seahorse
     gnome-power-manager
     # gnome-secrets
     gnome-logs # systemd logs
@@ -68,9 +70,6 @@ assert !headless; {
     # caprine-bin # <- no aarch64-linux support
     d-spy
     # gimp
-    # transmission_4-gtk
-    transmission-remote-gtk
-    fragments # Alternate transmission remote client
     # discord <- no aarch64-linux support
     icon-library
     dconf-editor
@@ -113,13 +112,13 @@ assert !headless; {
     paper-plane # Telegram client
     calls # Gnome Calls, a voip client
 
-    keepassxc
-
     g4music
 
     notify-client #ntfy client
 
     varia # Download manager, wraps aria2
+
+    slack-term # Slack client
 
     inputs.zotero-nix.packages.${system}.default
   ];

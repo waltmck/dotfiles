@@ -148,6 +148,7 @@
     in ''
       vim.g.neovide_remember_window_size = false
       vim.g.neovide_scale_factor = 0.8
+      vim.g.neovide_scroll_animation_length = 0.15
 
       local expr = {silent = true, expr = true, remap = false}
       vim.keymap.set(${empty}, 'j', "(v:count == 0 ? 'gj' : 'j')", expr)

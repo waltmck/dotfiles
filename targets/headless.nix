@@ -26,6 +26,7 @@
     ../services/nixos
     ../services/tailscale.nix
     ../services/syncthing.nix
+    ../services/iperf3.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -59,5 +60,10 @@
     powertop
     systemctl-tui
     yt-dlp
+    imgcat
+
+    # Audio tools
+    unflac
+    ffmpeg-headless
   ];
 }
