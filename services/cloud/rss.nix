@@ -36,4 +36,6 @@
       };
     };
   };
+
+  services.postgresql.dataDir = "/data/config/postgresql/15";
 }

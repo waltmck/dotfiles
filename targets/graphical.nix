@@ -126,5 +126,7 @@ assert !headless; {
   environment.persistence."/nix/state".users.waltmck.directories = [
     "Zotero"
     ".config/delfin"
+    "Books"
+    "Audiobooks"
   ];
 }

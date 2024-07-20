@@ -5,6 +5,7 @@
   inputs,
   headless,
   hostname,
+  nur,
   ...
 }: {
   systemd.services.stash = {
@@ -55,6 +56,20 @@
     group = "data";
 
     dataDir = "/data/config/readarr";
+  };
+
+  systemd.services.speakarr = {
+    description = "Speakarr";
+    after = ["network.target"];
+    wantedBy = ["multi-user.target"];
+
+    serviceConfig = {
+      Type = "simple";
+      User = "data";
+      Group = "data";
+      ExecStart = "${pkgs.readarr}/bin/Readarr -nobrowser -data='/data/config/speakarr'";
+      Restart = "on-failure";
+    };
   };
 
   services.jellyseerr = {
@@ -181,6 +196,16 @@
       };
       locations."^~ /readarr/api" = {
         proxyPass = "http://127.0.0.1:8787";
+        extraConfig = "auth_basic off;";
+      };
+
+      locations."^~ /speakarr" = {
+        proxyPass = "http://127.0.0.1:8788";
+
+        inherit extraConfig;
+      };
+      locations."^~ /speakarr/api" = {
+        proxyPass = "http://127.0.0.1:8788";
         extraConfig = "auth_basic off;";
       };
 
