@@ -104,15 +104,11 @@
       data = {
         type = "zpool";
         mode = "mirror";
-        mountpoint = "/data"; # Mountpoint for root dataset
 
         datasets = {
-          data = {
+          dataset = {
             type = "zfs_fs";
-            mountpoint = "/data2";
-            options = {
-              compression = "on";
-            };
+            mountpoint = "/data";
           };
         };
       };
