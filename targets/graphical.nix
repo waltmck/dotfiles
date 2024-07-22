@@ -121,6 +121,8 @@ assert !headless; {
     slack-term # Slack client
 
     inputs.zotero-nix.packages.${system}.default
+
+    cozy
   ];
 
   environment.persistence."/nix/state".users.waltmck.directories = [
@@ -128,5 +130,7 @@ assert !headless; {
     ".config/delfin"
     "Books"
     "Audiobooks"
+    ".local/share/cozy"
+    ".cache/cozy"
   ];
 }

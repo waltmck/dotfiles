@@ -153,6 +153,17 @@
     };
   };
 
+  environment.sessionVariables = {
+    "FLAKE" = "/etc/nixos";
+  };
+
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep 50";
+    flake = "/etc/nixos";
+  };
+
   environment.systemPackages = let
     os =
       pkgs.writeShellScriptBin
@@ -160,10 +171,10 @@
       ''
         case $1 in
           "boot")
-            sudo nixos-rebuild boot --flake /etc/nixos#${hostname} --impure || exit 1
+            nh os boot -- --impure || exit 1
             ;;
           "switch")
-            sudo nixos-rebuild switch --flake /etc/nixos#${hostname} --impure || exit 1
+            nh os switch -- --impure || exit 1
             hyprctl reload; systemctl restart --user ags
             ;;
           "edit")

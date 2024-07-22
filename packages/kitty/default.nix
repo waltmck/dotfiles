@@ -23,7 +23,7 @@
         size = 11;
       };
 
-      theme = "VSCode_Dark"; # "Adwaita darker"; # "Mishran"; # "GitHub Dark";
+      theme = "VSCode_Dark";
 
       shellIntegration.enableZshIntegration = true;
     };
