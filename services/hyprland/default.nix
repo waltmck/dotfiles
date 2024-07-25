@@ -175,7 +175,7 @@
     playerctl = "${pkgs.playerctl}/bin/playerctl";
     brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
     wpctl = "${pkgs.wireplumber}/bin/wpctl";
-    ags = "${inputs.ags.packages.${pkgs.system}.default}/bin/ags";
+    ags = "${pkgs.ags}/bin/ags";
   in {
     enable = true;
     package = pkgs.hyprland;

@@ -97,7 +97,6 @@
     home-manager,
     impermanence,
     apple-silicon-support,
-    ags,
     firefox-addons,
     betterfox,
     deploy-rs,

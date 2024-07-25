@@ -31,12 +31,10 @@
 in {
   home-manager.users.waltmck = {
     imports = [
-      inputs.ags.homeManagerModules.default
       inputs.astal.homeManagerModules.default
     ];
 
     # home.packages = deps;
-
     programs.astal = {
       enable = true;
       extraPackages = with pkgs; [
@@ -44,16 +42,10 @@ in {
       ];
     };
 
-    programs.ags = {
-      enable = true;
-      configDir = ./ags;
-      # extraPackages = with pkgs; [
-      #   accountsservice
-      # ];
-
-      package = ags;
-    };
+    xdg.configFile."ags".source = ./ags;
   };
+
+  environment.systemPackages = [ags];
 
   environment.persistence."/nix/state".users.waltmck = {
     directories = [".cache/ags"];
