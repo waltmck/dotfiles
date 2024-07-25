@@ -11,8 +11,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    systems.url = "github:nix-systems/default-linux";
-
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -34,18 +32,11 @@
     # Apple Silicon Stuff
     apple-silicon-support = {
       url = "github:tpwrules/nixos-apple-silicon/main";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-aarch64-widevine = {
       url = "github:epetousis/nixos-aarch64-widevine";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # Android Support
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Misc dependencies
@@ -69,7 +60,6 @@
     matugen = {
       url = "github:InioX/matugen";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "systems";
     };
 
     lf-icons = {
@@ -97,11 +87,6 @@
       url = "github:camillemndn/zotero-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    schildichat = {
-      url = "github:SchildiChat/schildichat-desktop";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
@@ -115,7 +100,6 @@
     ags,
     firefox-addons,
     betterfox,
-    nix-on-droid,
     deploy-rs,
     disko,
     ...
