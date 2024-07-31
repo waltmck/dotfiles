@@ -14,7 +14,7 @@
     fd
     brightnessctl
     # swww
-    # inputs.matugen.packages.${system}.default
+    # inputs.matugen.packages.${system}.default # TODO remove matugen stuff from ags config
     slurp
     wf-recorder
     wl-clipboard

@@ -8,6 +8,9 @@
     inputs.nixvim.nixosModules.nixvim
   ];
 
+  # Temporary workaround until https://github.com/NixOS/nixpkgs/pull/302442 lands
+  nixpkgs.overlays = [inputs.neorg-overlay.overlays.default];
+
   environment.systemPackages =
     [
       pkgs.alejandra
@@ -181,6 +184,9 @@
         enable = true;
         nixvimInjections = true;
         indent = true;
+        folding = true;
+
+        grammarPackages = pkgs.vimPlugins.nvim-treesitter.passthru.allGrammars;
       };
 
       treesitter-context = {
@@ -291,6 +297,31 @@
         texpressoPackage = pkgs.texpresso;
         package = pkgs.vimPlugins.texpresso-vim;
       };
+
+      # Notes
+      neorg = {
+        enable = true;
+        package = pkgs.vimPlugins.neorg;
+        modules = {
+          /*
+            "core.defaults" = {
+            __empty = null;
+          };
+          */
+          "core.defaults" = {};
+          "core.concealer" = {};
+          "core.latex.renderer" = {};
+          "core.completion" = {};
+          "core.dirman" = {
+            config = {
+              workspaces = {
+                notes = "~/Notes";
+              };
+            };
+          };
+        };
+      };
+
       /*
       vimtex = {
         enable = true;

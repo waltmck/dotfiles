@@ -103,6 +103,7 @@ assert !headless; {
 
     shortwave # Internate radio
     wike # wikipedia reader
+    gnome-podcasts # Podcasts
 
     zim # Notes app to try
 
@@ -122,7 +123,9 @@ assert !headless; {
 
     inputs.zotero-nix.packages.${system}.default
 
-    cozy
+    cozy # Audiobooks
+
+    dino # XMPP/Jabber client
   ];
 
   environment.persistence."/nix/state".users.waltmck.directories = [

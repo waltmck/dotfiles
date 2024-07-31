@@ -60,10 +60,10 @@
     powertop
     systemctl-tui
     yt-dlp
-    imgcat
 
     # Audio tools
     unflac
+    flac
     ffmpeg-headless
   ];
 }

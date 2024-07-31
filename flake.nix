@@ -21,13 +21,9 @@
     # Deployment
     disko = {
       url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    deploy-rs = {
-      url = "github:serokell/deploy-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    deploy-rs.url = "github:serokell/deploy-rs";
 
     # Apple Silicon Stuff
     apple-silicon-support = {
@@ -42,11 +38,10 @@
     # Misc dependencies
     nix-colors.url = "github:kyesarri/nix-colors"; # colour themes
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixvim.url = "github:nix-community/nixvim";
+    neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
 
+    # TODO replace with nixpkgs
     ags = {
       url = "github:Aylur/ags";
       # inputs.nixpkgs.follows = "nixpkgs";
@@ -55,11 +50,6 @@
     astal = {
       url = "github:Aylur/astal";
       # inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    matugen = {
-      url = "github:InioX/matugen";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     lf-icons = {
@@ -80,31 +70,19 @@
 
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Apps unavailable in nixpkgs
     zotero-nix = {
       url = "github:camillemndn/zotero-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    nix-index-database,
-    nixvim,
-    home-manager,
-    impermanence,
-    apple-silicon-support,
-    firefox-addons,
-    betterfox,
-    deploy-rs,
-    disko,
-    ...
-  } @ inputs: {
+  outputs = {self, ...} @ inputs: {
     nixosConfigurations = {
-      "walt-laptop" = nixpkgs.lib.nixosSystem rec {
+      "walt-laptop" = inputs.nixpkgs.lib.nixosSystem rec {
         system = "aarch64-linux";
         modules = [
           ./hosts/laptop/default.nix
@@ -127,7 +105,7 @@
       # Note: when using nixos-anywhere to Hetzner, make sure to select the `linux-old` (kernel `6.3.1`) rather than
       # the `linux` (kernel `6.7.4`) rescue system--otherwise, there are problems with `kexec`.
       # Due to problems with impermanence, it will also be necessary to `nixos-anywhere` a basic version without impermanence. Then, impermanence can be added and permissions manually changed in `/nix/state` as we go.
-      "walt-cloud" = nixpkgs.lib.nixosSystem rec {
+      "walt-cloud" = inputs.nixpkgs.lib.nixosSystem rec {
         system = "x86_64-linux";
         modules = [
           ./hosts/cloud/configuration.nix
@@ -139,24 +117,6 @@
           inherit system;
           hostname = "walt-cloud";
           builder = true;
-
-          native = false;
-          headless = true;
-        };
-      };
-
-      "walt-phone" = nixpkgs.lib.nixosSystem rec {
-        system = "aarch64-linux";
-        modules = [
-          ./hosts/phone/default.nix
-        ];
-
-        specialArgs = {
-          inherit inputs;
-          inherit system;
-          hostname = "walt-phone";
-          speedFactor = 1;
-          builder = false;
 
           native = false;
           headless = true;
