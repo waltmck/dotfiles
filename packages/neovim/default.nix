@@ -8,9 +8,6 @@
     inputs.nixvim.nixosModules.nixvim
   ];
 
-  # Temporary workaround until https://github.com/NixOS/nixpkgs/pull/302442 lands
-  nixpkgs.overlays = [inputs.neorg-overlay.overlays.default];
-
   environment.systemPackages =
     [
       pkgs.alejandra
@@ -298,16 +295,12 @@
         package = pkgs.vimPlugins.texpresso-vim;
       };
 
-      # Notes
+      # Notes (broken for now)
+      /*
       neorg = {
         enable = true;
         package = pkgs.vimPlugins.neorg;
         modules = {
-          /*
-            "core.defaults" = {
-            __empty = null;
-          };
-          */
           "core.defaults" = {};
           "core.concealer" = {};
           "core.latex.renderer" = {};
@@ -321,6 +314,7 @@
           };
         };
       };
+      /*
 
       /*
       vimtex = {
