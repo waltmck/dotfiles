@@ -42,15 +42,19 @@
     neorg-overlay.url = "github:nvim-neorg/nixpkgs-neorg-overlay";
 
     # TODO replace with nixpkgs
+    /*
     ags = {
       url = "github:Aylur/ags";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
+    */
 
+    /*
     astal = {
       url = "github:Aylur/astal";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
+    */
 
     lf-icons = {
       url = "github:gokcehan/lf";

@@ -6,7 +6,6 @@
   system,
   ...
 }: let
-  ags = inputs.ags.packages.${pkgs.system}.default;
   deps = with pkgs; [
     ags
     bun
@@ -27,25 +26,36 @@
     # hyprland
     systemd
     networkmanagerapplet #TODO link to this from quicksettings
+    libdbusmenu-gtk3
   ];
 in {
+  # Fix problem with ags packaging, see https://github.com/NixOS/nixpkgs/issues/306446#issuecomment-2081540768
+  nixpkgs.overlays = [
+    (final: prev: {
+      ags = prev.ags.overrideAttrs (old: {
+        buildInputs = old.buildInputs ++ [pkgs.libdbusmenu-gtk3];
+      });
+    })
+  ];
+
   home-manager.users.waltmck = {
+    /*
     imports = [
       inputs.astal.homeManagerModules.default
     ];
 
-    # home.packages = deps;
     programs.astal = {
       enable = true;
       extraPackages = with pkgs; [
         libadwaita
       ];
     };
+    */
 
     xdg.configFile."ags".source = ./ags;
   };
 
-  environment.systemPackages = [ags];
+  environment.systemPackages = [pkgs.ags];
 
   environment.persistence."/nix/state".users.waltmck = {
     directories = [".cache/ags"];
@@ -64,7 +74,7 @@ in {
 
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${ags}/bin/ags -b hypr";
+      ExecStart = "${pkgs.ags}/bin/ags -b hypr";
 
       Environment = let
         path = lib.makeBinPath deps;

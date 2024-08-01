@@ -7,6 +7,6 @@
 }: {
   imports = [
     ./1password.nix
-    ./keepass.nix
+    # ./keepass.nix
   ];
 }

@@ -123,7 +123,7 @@ assert !headless; {
 
     inputs.zotero-nix.packages.${system}.default
 
-    cozy # Audiobooks
+    # cozy # Audiobooks
 
     dino # XMPP/Jabber client
   ];
