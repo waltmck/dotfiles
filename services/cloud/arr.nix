@@ -22,6 +22,8 @@
     };
   };
 
+  services.flaresolverr.enable = true;
+
   services.prowlarr = {
     enable = true;
   };

@@ -35,10 +35,6 @@
     package = pkgs.morewaita-icon-theme;
   };
 in {
-  imports = [
-    inputs.nix-colors.homeManagerModules.default
-  ];
-
   # kvantum qt theme engine, which can be configured with kvantummanager
   environment.systemPackages = [
     pkgs.libsForQt5.qtstyleplugin-kvantum
@@ -135,6 +131,4 @@ in {
     "SDL_VIDEODRIVER" = "wayland";
     "CLUTTER_BACKEND" = "wayland";
   };
-
-  colorScheme = inputs.nix-colors.colorSchemes."gruvbox-dark-hard";
 }

@@ -60,6 +60,11 @@
     };
   };
 
+  programs.mosh = {
+    enable = true;
+    openFirewall = headless;
+  };
+
   # Open ssh port if headless
   networking.firewall.allowedTCPPorts =
     if headless

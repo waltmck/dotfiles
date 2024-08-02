@@ -131,6 +131,7 @@ in {
       set-option -g window-status-current-format "${current_window}"
       set-option -g window-status-format "${window_status}"
       set-option -g window-status-separator ""
+      set -g default-terminal screen-256color
     '';
   };
 }

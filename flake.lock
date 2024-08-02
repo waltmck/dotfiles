@@ -21,22 +21,6 @@
         "type": "github"
       }
     },
-    "base16-schemes": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1702718998,
-        "narHash": "sha256-VTczZi1C4WSzejpTFbneMonAdarRLtDnFehVxWs6ad0=",
-        "owner": "tinted-theming",
-        "repo": "base16-schemes",
-        "rev": "2b6f2d0677216ddda50c9cabd6ee70fae4665f81",
-        "type": "github"
-      },
-      "original": {
-        "owner": "tinted-theming",
-        "repo": "base16-schemes",
-        "type": "github"
-      }
-    },
     "betterfox": {
       "flake": false,
       "locked": {
@@ -389,25 +373,6 @@
         "type": "github"
       }
     },
-    "nix-colors": {
-      "inputs": {
-        "base16-schemes": "base16-schemes",
-        "nixpkgs-lib": "nixpkgs-lib"
-      },
-      "locked": {
-        "lastModified": 1713398850,
-        "narHash": "sha256-DIJzHbiiMhjfy5Dsuws0/zKcB2L7u2nbO6PAJWgZOaY=",
-        "owner": "kyesarri",
-        "repo": "nix-colors",
-        "rev": "b9c7682b55d1e36efca0321e14875ad740dd2423",
-        "type": "github"
-      },
-      "original": {
-        "owner": "kyesarri",
-        "repo": "nix-colors",
-        "type": "github"
-      }
-    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -480,21 +445,6 @@
         "owner": "nixos",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-lib": {
-      "locked": {
-        "lastModified": 1713055793,
-        "narHash": "sha256-vIrZQykYW32RnlI2lT/gCcB59BOIqqrAmPirBdiirrc=",
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "rev": "361d8a4f443bbfab20bd6d222f9022b8c6665906",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
         "type": "github"
       }
     },
@@ -668,7 +618,6 @@
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "lf-icons": "lf-icons",
-        "nix-colors": "nix-colors",
         "nix-index-database": "nix-index-database",
         "nixos-aarch64-widevine": "nixos-aarch64-widevine",
         "nixpkgs": "nixpkgs_6",

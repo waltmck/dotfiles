@@ -36,8 +36,6 @@
     };
 
     # Misc dependencies
-    nix-colors.url = "github:kyesarri/nix-colors"; # colour themes
-
     nixvim.url = "github:nix-community/nixvim";
 
     lf-icons = {

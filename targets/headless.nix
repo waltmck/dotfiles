@@ -19,7 +19,7 @@
     ../packages/p10k
     ../packages/kitty
 
-    ../packages/locate
+    # ../packages/locate
     ../packages/neovim
     ../packages/lf
 
