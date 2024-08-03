@@ -8,6 +8,7 @@
   environment.systemPackages = [
     pkgs.armcord
     pkgs.dissent
+    pkgs.vesktop
   ];
 
   environment.persistence."/nix/state".users.waltmck = {
@@ -15,6 +16,7 @@
       ".config/ArmCord"
       ".config/dissent"
       ".cache/dissent"
+      ".config/vesktop"
     ];
   };
 }
