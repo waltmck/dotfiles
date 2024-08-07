@@ -110,7 +110,6 @@ assert !headless; {
     ## COMMUNICATION
 
     polari # IRC client
-    paper-plane # Telegram client
     calls # Gnome Calls, a voip client
 
     g4music

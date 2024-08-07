@@ -75,6 +75,16 @@
     '';
   };
 
+  # Dark mode for geary emails
+  home-manager.users.waltmck.xdg.configFile."geary/user-style.css".text = ''
+    @media (prefers-color-scheme: dark) {
+      :root, *:not(a) {
+        color: #eeeeec !important;
+        background-color: #353535 !important;
+      }
+    }
+  '';
+
   # Some tweaks to Geary settings
   home-manager.users.waltmck.dconf.settings."org/gnome/Geary" = {
     "ask-open-attachment" = true;
