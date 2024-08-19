@@ -65,5 +65,9 @@
     unflac
     flac
     ffmpeg-headless
+
+    # Nix tools
+    nix-tree
+    hydra-check
   ];
 }

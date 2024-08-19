@@ -86,8 +86,10 @@ assert !headless; {
     setzer # LaTex
     # texlive.combined.scheme-tetex
     texliveMedium
-    tectonic
-    texpresso
+
+    # tectonic # TODO fix build failure
+    # texpresso # TODO fix build failure
+
     # texlivePackages.synctex
     passes # Passes manager
 
@@ -123,8 +125,6 @@ assert !headless; {
     inputs.zotero-nix.packages.${system}.default
 
     # cozy # Audiobooks
-
-    dino # XMPP/Jabber client
   ];
 
   environment.persistence."/nix/state".users.waltmck.directories = [

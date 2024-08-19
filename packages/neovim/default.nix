@@ -289,11 +289,14 @@
       # Git plugin
       fugitive.enable = true;
 
+      /*
+         TODO fix build failure
       texpresso = {
         enable = true;
         texpressoPackage = pkgs.texpresso;
         package = pkgs.vimPlugins.texpresso-vim;
       };
+      */
 
       # Notes (broken for now)
       /*

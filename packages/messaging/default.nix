@@ -5,5 +5,6 @@
     ./discord.nix
     ./whatsapp.nix
     ./telegram.nix
+    ./xmpp.nix
   ];
 }
