@@ -5,12 +5,14 @@
 
   environment.systemPackages = [ pkgs.git ];
 
-  home-manager.users.waltmck = {
-    programs.git = {
-      enable = true;
+  home-manager.sharedModules = [
+    {
+      programs.git = {
+        enable = true;
 
-      userName = "Walter McKelvie";
-      userEmail = "walt@mckelvie.org";
-    };
-  };
+        userName = "Walter McKelvie";
+        userEmail = "walt@mckelvie.org";
+      };
+    }
+  ];
 }

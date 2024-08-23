@@ -98,40 +98,44 @@
     format = "#[fg=${fg}]#{b:pane_current_path}";
   in "${icon}${format}";
 in {
-  home-manager.users.waltmck.programs.tmux = {
-    enable = true;
-    plugins = with pkgs.tmuxPlugins; [
-      vim-tmux-navigator
-      yank
-    ];
-    prefix = "C-Space";
-    baseIndex = 1;
-    escapeTime = 0;
-    keyMode = "vi";
-    mouse = true;
-    shell = "${pkgs.zsh}/bin/zsh";
-    extraConfig = ''
-      set-option -sa terminal-overrides ",xterm*:Tc"
-      bind v copy-mode
-      bind-key -T copy-mode-vi v send-keys -X begin-selection
-      bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
-      bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
-      bind-key b set-option status
-      bind '"' split-window -v -c "#{pane_current_path}"
-      bind % split-window -h -c "#{pane_current_path}"
+  home-manager.sharedModules = [
+    {
+      programs.tmux = {
+        enable = true;
+        plugins = with pkgs.tmuxPlugins; [
+          vim-tmux-navigator
+          yank
+        ];
+        prefix = "C-Space";
+        baseIndex = 1;
+        escapeTime = 0;
+        keyMode = "vi";
+        mouse = true;
+        shell = "${pkgs.zsh}/bin/zsh";
+        extraConfig = ''
+          set-option -sa terminal-overrides ",xterm*:Tc"
+          bind v copy-mode
+          bind-key -T copy-mode-vi v send-keys -X begin-selection
+          bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+          bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+          bind-key b set-option status
+          bind '"' split-window -v -c "#{pane_current_path}"
+          bind % split-window -h -c "#{pane_current_path}"
 
-      set-option -g @indicator_color "yellow"
-      set-option -g @window_color "magenta"
-      set-option -g @main_accent "blue"
-      set-option -g pane-active-border fg=black
-      set-option -g pane-border-style fg=black
-      set-option -g status-style "bg=${bg} fg=${fg}"
-      set-option -g status-left "${indicator}"
-      set-option -g status-right "${pwd} | ${battery} ${time}"
-      set-option -g window-status-current-format "${current_window}"
-      set-option -g window-status-format "${window_status}"
-      set-option -g window-status-separator ""
-      set -g default-terminal screen-256color
-    '';
-  };
+          set-option -g @indicator_color "yellow"
+          set-option -g @window_color "magenta"
+          set-option -g @main_accent "blue"
+          set-option -g pane-active-border fg=black
+          set-option -g pane-border-style fg=black
+          set-option -g status-style "bg=${bg} fg=${fg}"
+          set-option -g status-left "${indicator}"
+          set-option -g status-right "${pwd} | ${battery} ${time}"
+          set-option -g window-status-current-format "${current_window}"
+          set-option -g window-status-format "${window_status}"
+          set-option -g window-status-separator ""
+          set -g default-terminal screen-256color
+        '';
+      };
+    }
+  ];
 }

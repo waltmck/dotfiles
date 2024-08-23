@@ -81,8 +81,6 @@ assert !headless; {
     # yabridgectl <- no aarch64-linux support
     # wine-staging <- no aarch64-linux support
 
-    wezterm
-
     setzer # LaTex
     # texlive.combined.scheme-tetex
     texliveMedium
