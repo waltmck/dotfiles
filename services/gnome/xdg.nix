@@ -48,7 +48,7 @@
     defaultApplications = (
       let
         browser = "firefox.desktop";
-        pdf = "org.gnome.Papers.desktop";
+        pdf = "org.pwmt.zathura.desktop"; # "org.gnome.Papers.desktop";
         video = "io.github.celluloid_player.Celluloid.desktop";
         image = "org.gnome.Loupe.desktop";
         latex = "org.cvfosammmm.Setzer.desktop";
@@ -72,6 +72,9 @@
           (types code fileformats.code)
           {
             "application/pdf" = pdf;
+            "application/postscript" = pdf;
+            "image/vnd.djvu" = pdf;
+            "application/vnd.ms-xpsdocument" = pdf;
             "application/tex" = latex;
           }
         ]

@@ -107,6 +107,9 @@
     sushi.enable = true;
   };
 
+  # Use faster dbus-broker implementation of dbus
+  services.dbus.implementation = "broker";
+
   # TODO: fix keyring not unlocking on boot
   security.pam.services.greetd.enableGnomeKeyring = true;
   security.pam.services.sddm.enableGnomeKeyring = true;
