@@ -49,15 +49,23 @@
       register = "unnamedplus";
     };
 
-    keymaps = [
-      {
-        action = "<cmd>NvimTreeFindFileToggle<CR>";
-        key = "<C-t>";
+    keymaps =
+      [
+        {
+          action = "<cmd>NvimTreeFindFileToggle<CR>";
+          key = "<C-t>";
+          options = {
+            silent = true;
+          };
+        }
+      ]
+      ++ builtins.map (x: {
+        action = "<cmd>wincmd ${x}<CR>";
+        key = "<C-${x}>";
         options = {
           silent = true;
         };
-      }
-    ];
+      }) ["h" "j" "k" "l"];
 
     opts = {
       ###################
@@ -172,6 +180,17 @@
 
         view.width = 25;
       };
+      bufferline = {
+        enable = true;
+        /*
+        TODO see example config
+        settings = {
+          options = {
+            mode = "buffers";
+          };
+        };
+        */
+      };
       lualine.enable = true;
       gitsigns.enable = true;
 
@@ -180,10 +199,14 @@
       treesitter = {
         enable = true;
         nixvimInjections = true;
-        indent = true;
-        folding = true;
+        settings = {
+          indent = {
+            enable = true;
+          };
+          folding = true;
 
-        grammarPackages = pkgs.vimPlugins.nvim-treesitter.passthru.allGrammars;
+          grammarPackages = pkgs.vimPlugins.nvim-treesitter.passthru.allGrammars;
+        };
       };
 
       treesitter-context = {
@@ -220,6 +243,18 @@
           lua-ls = {
             enable = true;
             settings.telemetry.enable = false;
+          };
+
+          ruff.enable = true;
+        };
+
+        keymaps = {
+          lspBuf = {
+            K = "hover";
+            gD = "references";
+            gd = "definition";
+            gi = "implementation";
+            gt = "type_definition";
           };
         };
       };

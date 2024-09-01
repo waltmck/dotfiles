@@ -58,9 +58,7 @@
     pam.services.ags = {};
   };
 
-  environment.systemPackages = with pkgs;
-  with gnome; [
-    gnome.adwaita-icon-theme
+  environment.systemPackages = with pkgs; [
     loupe
     adwaita-icon-theme
     wl-gammactl

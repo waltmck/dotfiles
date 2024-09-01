@@ -32,8 +32,7 @@ assert !headless; {
 
   # -- System Packages --
 
-  environment.systemPackages = with pkgs;
-  with gnome; [
+  environment.systemPackages = with pkgs; [
     playerctl
 
     nautilus
@@ -43,19 +42,19 @@ assert !headless; {
     baobab
     # gnome-text-editor
     gnome-calendar
-    gnome-boxes
+    gnome.gnome-boxes
     gnome-system-monitor
-    gnome-control-center
-    gnome-weather
+    gnome.gnome-control-center
+    gnome.gnome-weather
     gnome-calculator
-    gnome-clocks
-    gnome-maps
+    gnome.gnome-clocks
+    gnome.gnome-maps
     gnome-photos
-    gnome-contacts
+    gnome.gnome-contacts
     seahorse
-    gnome-power-manager
+    gnome.gnome-power-manager
     # gnome-secrets
-    gnome-logs # systemd logs
+    gnome.gnome-logs # systemd logs
     endeavour # tasks manager
     networkmanagerapplet
 
@@ -109,7 +108,7 @@ assert !headless; {
 
     ## COMMUNICATION
 
-    polari # IRC client
+    gnome.polari # IRC client
     calls # Gnome Calls, a voip client
 
     g4music

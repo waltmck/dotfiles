@@ -124,6 +124,7 @@ in {
         # keepassxc
         zotero-connector
         rsshub-radar
+        surfingkeys
         # mullvad
         # fx_cast # TODO debug no arm64 support
       ];
