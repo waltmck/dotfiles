@@ -94,6 +94,7 @@ assert !headless; {
 
     papers # PDF reader
     zathura # Another PDF viewer
+    xournalpp # PDF annotator
 
     celluloid # Video player
     delfin # Jellyfin streaming
