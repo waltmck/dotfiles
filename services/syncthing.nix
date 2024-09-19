@@ -36,7 +36,10 @@ in {
       else "127.0.0.1:8384";
 
     settings = {
-      options.urAccepted = -1;
+      options = {
+        urAccepted = -1;
+        relaysEnabled = false; # Use Tailscale for direct connections
+      };
 
       devices = {
         "walt-laptop" = {

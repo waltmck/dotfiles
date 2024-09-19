@@ -189,16 +189,18 @@
         "${hyprctl} setcursor Qogir 24"
         # "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
         "${pkgs.blueman}/bin/blueman-applet"
-
-        # "transmission-gtk"
       ];
+
+      cursor = {
+        inactive_timeout = 3;
+      };
 
       general = {
         layout = "dwindle";
         resize_on_border = false;
 
         gaps_in = 8;
-        gaps_out = 14;
+        gaps_out = 5;
 
         border_size = 1;
 
@@ -325,7 +327,7 @@
           "SUPER, D, killactive"
           "SUPER, F, togglefloating"
           "SUPER SHIFT, A, fullscreen"
-          "SUPER, A, fakefullscreen"
+          "SUPER, A, fullscreenstate"
           "SUPER, V, togglesplit"
           "SUPER, C, swapsplit"
 

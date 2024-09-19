@@ -166,7 +166,8 @@ in {
         "browser.startup.page" = 0; # Open blank page on start-up
         "browser.aboutConfig.showWarning" = false; # I sometimes know what I'm doing
         "browser.ctrlTab.sortByRecentlyUsed" = false; # (default) Who wants that?
-        "browser.download.useDownloadDir" = false; # Ask where to save stuff
+        "browser.download.useDownloadDir" = true; # Ask where to save stuff
+        "browser.download.open_pdf_attachments_inline" = false; # Use PDF reader to preview PDFs
         "privacy.clearOnShutdown.history" = false; # We want to save history on exit
         # Hi-DPI
         "layout.css.devPixelsPerPx" = "-1";
@@ -349,6 +350,10 @@ in {
         "browser.fixup.domainwhitelist.walt-desktop" = true;
         "browser.fixup.domainwhitelist.walt-phone" = true;
         "browser.fixup.domainwhitelist.walt-nas" = true;
+
+        # To get SurfingKeys to work in protected pages
+        "privacy.resistFingerprinting.block_mozAddonManager" = true;
+        "extensions.webextensions.restrictedDomains" = "";
       };
     };
   };

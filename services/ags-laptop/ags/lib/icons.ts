@@ -12,6 +12,7 @@ export const substitutes = {
     "com.github.Aylur.ags": "controls-symbolic",
     "neovide-symbolic": "io.neovim.nvim-symbolic",
     "com.rtosta.zapzap-symbolic": "whatsapp-symbolic",
+    "org.pwmt.zathura-symbolic": "emblem-documents-symbolic",
 }
 
 export default {

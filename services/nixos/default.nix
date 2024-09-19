@@ -189,7 +189,7 @@
             nix-collect-garbage
             ;;
           "deploy")
-            deploy --remote-build -s /etc/nixos#$2
+            deploy -s /etc/nixos#$2
             ;;
           "update")
             shift 1

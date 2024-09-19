@@ -37,5 +37,8 @@
     };
   };
 
-  services.postgresql.dataDir = "/data/config/postgresql/15";
+  services.postgresql = {
+    dataDir = "/data/config/postgresql/15";
+    package = pkgs.postgresql_15;
+  };
 }

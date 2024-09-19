@@ -3,7 +3,9 @@
   inputs,
   headless,
   ...
-}: {
+}: let
+  texlive = pkgs.texlive.combined.scheme-full.withPackages (ps: with ps; [bbm]);
+in {
   imports = [
     inputs.nixvim.nixosModules.nixvim
   ];
@@ -11,6 +13,7 @@
   environment.systemPackages =
     [
       pkgs.alejandra
+      texlive
     ]
     ++ (
       if !headless
@@ -134,6 +137,15 @@
 
       smoothscroll = true;
       wrap = true;
+
+      expandtab = true;
+      shiftwidth = 4;
+
+      tabstop = 4;
+
+      foldmethod = "expr";
+      foldexpr = "nvim_treesitter#foldexpr()";
+      foldenable = false;
     };
 
     # To automatically open chadtree when opening a directory (i.e. `nvim .`)
@@ -164,6 +176,7 @@
 
       vim.keymap.set("n", "<Space>", "<Nop>", { silent = true, remap = false })
       vim.g.mapleader = " "
+      vim.g.maplocalleader = " "
     '';
 
     plugins = {
@@ -234,7 +247,20 @@
             # TODO these aren't working
             extraOptions = {
               build.onSave = true;
-              chktex.onEdit = true;
+              chktex = {
+                onEdit = true;
+                onOpenAndSave = true;
+              };
+
+              latexindent = {
+                local =
+                  pkgs.writeText "latexindent.yaml"
+                  ''
+                    defaultIndent: "    "
+                  '';
+
+                modifyLineBreaks = true;
+              };
 
               formatterLineLength = 0;
             };
@@ -266,9 +292,11 @@
         enable = true;
         enableLspFormat = true;
 
-        sources.formatting.alejandra = {
-          enable = true;
-          package = pkgs.alejandra;
+        sources.formatting = {
+          alejandra = {
+            enable = true;
+            package = pkgs.alejandra;
+          };
         };
       };
 
@@ -302,6 +330,8 @@
         };
       };
 
+      which-key.enable = true;
+
       nvim-colorizer.enable = true;
 
       sleuth.enable = true;
@@ -324,15 +354,6 @@
       # Git plugin
       fugitive.enable = true;
 
-      /*
-         TODO fix build failure
-      texpresso = {
-        enable = true;
-        texpressoPackage = pkgs.texpresso;
-        package = pkgs.vimPlugins.texpresso-vim;
-      };
-      */
-
       # Notes (broken for now)
       /*
       neorg = {
@@ -352,14 +373,26 @@
           };
         };
       };
-      /*
+      */
 
-      /*
+      copilot-lua = {
+        enable = true;
+
+        suggestion = {
+          autoTrigger = true;
+        };
+      };
+
       vimtex = {
         enable = true;
-        # settings.view_method = "zathura";
+        texlivePackage = texlive;
+        settings = {
+          view_method = "zathura";
+          fold_enable = 1;
+          quickfix_mode = 0;
+          complete_enabled = false; # Use vimtex for completion
+        };
       };
-      */
     };
 
     colorschemes.vscode = {

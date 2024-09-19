@@ -36,7 +36,7 @@
 in {
   services.transmission = {
     enable = true;
-    openRPCPort = true;
+    openRPCPort = false;
 
     user = "data";
     group = "data";
@@ -203,16 +203,9 @@ in {
   networking.firewall.allowedUDPPorts = [57974];
 
   # Allow all ports through the wg0 interface
-  networking.firewall.interfaces."wg0" = let
-    all = [
-      {
-        from = 0;
-        to = 65535;
-      }
-    ];
-  in {
-    allowedUDPPortRanges = all;
-    allowedTCPPortRanges = all;
+  networking.firewall.interfaces."wg0" = {
+    allowedUDPPorts = [peer-port];
+    allowedTCPPorts = [peer-port];
   };
 
   # nginx reverse proxy for gui/rpc

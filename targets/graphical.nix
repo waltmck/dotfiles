@@ -22,6 +22,7 @@ assert !headless; {
     ../packages/alacritty
     ../packages/email
     ../packages/torrent
+    ../packages/preview
 
     ../services/gnome
     ../services/hyprland
@@ -81,13 +82,7 @@ assert !headless; {
     # wine-staging <- no aarch64-linux support
 
     setzer # LaTex
-    # texlive.combined.scheme-tetex
-    texliveMedium
 
-    # tectonic # TODO fix build failure
-    # texpresso # TODO fix build failure
-
-    # texlivePackages.synctex
     passes # Passes manager
 
     # File Readers
