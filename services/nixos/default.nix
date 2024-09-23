@@ -14,6 +14,9 @@
     "${inputs.home-manager}/nixos"
     "${inputs.impermanence}/nixos.nix"
     inputs.nix-index-database.nixosModules.nix-index
+
+    # Use Lix instead of Nix
+    inputs.lix-module.nixosModules.default
   ];
 
   # nix

@@ -33,7 +33,9 @@
 
   # Use CloudFlare's DNS. Needed because wifi DNS was
   # broken for a Riad Dar Naai in Marrakech.
-  networking.nameservers = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
+
+  # This sometimes breaks wifi captive portals.
+  # networking.nameservers = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
 
   services.resolved = {
     enable = true;
@@ -42,6 +44,12 @@
     fallbackDns = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
     # dnsovertls = "true"; # This breaks connecting to harvard.edu on Harvard wifi.
   };
+
+  # IPFS
+  services.kubo = {
+    enable = true;
+  };
+  users.users.waltmck.extraGroups = [config.services.kubo.group];
 
   environment.persistence."/nix/state".directories = [
     "/var/lib/iwd"
