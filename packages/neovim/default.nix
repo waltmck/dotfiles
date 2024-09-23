@@ -240,7 +240,7 @@ in {
         enable = true;
         servers = {
           nixd.enable = true; # Nix
-          tsserver.enable = true; # TypeScript
+          ts-ls.enable = true; # TypeScript
           texlab = {
             enable = true; # LaTeX
 
@@ -353,6 +353,8 @@ in {
 
       # Git plugin
       fugitive.enable = true;
+
+      web-devicons.enable = true;
 
       # Notes (broken for now)
       /*

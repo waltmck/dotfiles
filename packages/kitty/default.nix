@@ -24,7 +24,7 @@
           size = 11;
         };
 
-        theme = "VSCode_Dark";
+        themeFile = "VSCode_Dark";
 
         shellIntegration.enableZshIntegration = true;
       };
