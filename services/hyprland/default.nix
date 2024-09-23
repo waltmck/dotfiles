@@ -313,7 +313,7 @@
           "SUPER SHIFT, Q, execr, ${termPopup}" # Kitty popup
           "SUPER CTRL SHIFT, Q, execr, ${termPopupSession}" # Kitty popup in session.slice
           "SUPER, S, exec, ${musicPopup}"
-          "SUPER, G, exec, ${popup_rules_loose} ${systemd-run} ${pkgs.gnome.nautilus}/bin/nautilus"
+          "SUPER, G, exec, ${popup_rules_loose} ${systemd-run} ${pkgs.nautilus}/bin/nautilus"
           "SUPER, T, exec, ${opPopup}"
 
           "SUPER SHIFT, W, execr, ${topPopup}" # "task manager" menu

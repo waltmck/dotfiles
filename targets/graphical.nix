@@ -43,19 +43,19 @@ assert !headless; {
     baobab
     # gnome-text-editor
     gnome-calendar
-    gnome.gnome-boxes
+    gnome-boxes
     gnome-system-monitor
-    gnome.gnome-control-center
-    gnome.gnome-weather
+    gnome-control-center
+    gnome-weather
     gnome-calculator
-    gnome.gnome-clocks
-    gnome.gnome-maps
+    gnome-clocks
+    gnome-maps
     gnome-photos
-    gnome.gnome-contacts
+    gnome-contacts
     seahorse
-    gnome.gnome-power-manager
+    gnome-power-manager
     # gnome-secrets
-    gnome.gnome-logs # systemd logs
+    gnome-logs # systemd logs
     endeavour # tasks manager
     networkmanagerapplet
 
@@ -104,7 +104,7 @@ assert !headless; {
 
     ## COMMUNICATION
 
-    gnome.polari # IRC client
+    polari # IRC client
     calls # Gnome Calls, a voip client
 
     g4music

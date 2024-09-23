@@ -71,7 +71,7 @@
 
     # Running through `zsh` so that it respects my user environment variables. This is not "best practice" but it is actually the easiest way to get this to work.
     script = ''
-      ${pkgs.zsh}/bin/zsh -lc "${pkgs.gnome.geary}/bin/geary --gapplication-service"
+      ${pkgs.zsh}/bin/zsh -lc "${pkgs.geary}/bin/geary --gapplication-service"
     '';
   };
 
