@@ -10,12 +10,17 @@
   home-manager.sharedModules = [
     {
       xdg.desktopEntries = {
-        newsboat = {
+        newsboat = let
+          icon = "io.gitlab.news_flash.NewsFlash";
+          tagline = "Terminal-baed RSS reader";
+        in {
           name = "Newsboat";
-          genericName = "Terminal-based RSS reader";
-          exec = ''${pkgs.kitty}/bin/kitty --name "Newsboat" --class "io.gitlab.news_flash.NewsFlash" -- ${pkgs.newsboat}/bin/newsboat'';
+          genericName = tagline;
+          exec = ''${pkgs.kitty}/bin/kitty --name "Newsboat" --class "${icon}" -- ${pkgs.newsboat}/bin/newsboat'';
           terminal = false;
           categories = ["Application" "Network" "Feed"];
+          inherit icon;
+          comment = tagline;
         };
       };
 

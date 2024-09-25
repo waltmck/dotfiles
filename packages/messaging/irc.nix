@@ -1,7 +1,12 @@
 {pkgs, ...}: {
-  environment.systemPackages = [pkgs.irssi pkgs.polari];
+  # Polari is broken for now, see https://github.com/NixOS/nixpkgs/issues/149685
 
-  services.telepathy.enable = true;
+  environment.systemPackages = [
+    pkgs.irssi
+    # pkgs.polari
+  ];
+
+  # services.telepathy.enable = true;
 
   home-manager.sharedModules = [
     {
@@ -11,18 +16,6 @@
         aliases = {
           znc = "msg *status";
         };
-
-        /*
-        networks.znc = {
-          nick = "waltmck";
-          server = {
-            address = "walt-cloud";
-            port = 5000;
-            ssl.verify = false;
-            ssl.enable = true;
-          };
-        };
-        */
 
         extraConfig = ''
           servers = (
@@ -51,6 +44,21 @@
             "oftc-znc" = { type = "IRC"; };
           };
         '';
+      };
+
+      xdg.desktopEntries = {
+        irssi = let
+          icon = "preferences-desktop-display";
+          tagline = "Terminal-based IRC client";
+        in {
+          name = "Irssi";
+          genericName = "Terminal-based IRC client";
+          exec = ''${pkgs.kitty}/bin/kitty --name "Irssi" --class "${icon}" -- ${pkgs.irssi}/bin/irssi'';
+          terminal = false;
+          categories = ["Application" "Network" "Chat"];
+          icon = "${icon}-symbolic";
+          comment = tagline;
+        };
       };
     }
   ];
