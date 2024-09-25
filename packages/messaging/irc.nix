@@ -24,7 +24,7 @@
             chatnet = "znc";
             address = "walt-cloud";
             port = "5000";
-            use_ssl = "yes";
+            use_ssl = "no";
             ssl_verify = "no";
             autoconnect = "yes";
             username = "waltmck";

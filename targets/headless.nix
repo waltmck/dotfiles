@@ -35,6 +35,7 @@
     busybox
 
     dig.dnsutils
+    unrar
 
     git
     wget

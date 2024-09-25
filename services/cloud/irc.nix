@@ -26,7 +26,12 @@
 
       MaxBufferSize = 500;
 
-      # URIPrefix = "/znc/";
+      Listener.l = {
+        Port = 5000;
+        AllowWeb = false;
+        AllowIRC = true;
+        SSL = false;
+      };
 
       User."waltmck" = {
         LoadModule = ["autoattach"];
