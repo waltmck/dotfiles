@@ -22,6 +22,7 @@
     # ../packages/locate
     ../packages/neovim
     ../packages/lf
+    ../packages/aria2.nix
 
     ../services/nixos
     ../services/tailscale.nix

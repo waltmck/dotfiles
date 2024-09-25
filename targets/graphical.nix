@@ -104,9 +104,6 @@ assert !headless; {
 
     ## COMMUNICATION
 
-    polari # IRC client
-    calls # Gnome Calls, a voip client
-
     g4music
 
     notify-client #ntfy client

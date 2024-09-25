@@ -21,6 +21,11 @@
         Hash = "bff975916a91a4bf6eb11a05c338a056065e907a5299b3eff2f52fc2bafb6dc2";
         Salt = "kYQt85ztalhiQij7B2+_";
       };
+
+      default = {
+        AutoClearChanBuffer = false;
+        Buffer = 500;
+      };
     in {
       LoadModule = ["adminlog"];
 
@@ -48,20 +53,32 @@
           Server = "irc.libera.chat +6697";
           LoadModule = [
             "simple_away"
+            "route_replies"
             "nickserv EreVMvde4QttCdB"
           ];
 
-          Chan = let
-            default = {
-              AutoClearChanBuffer = false;
-              Buffer = 500;
-            };
-          in {
+          Chan = {
             "#nixos" = default;
             "#openzfs" = default;
             "#zfsonlinux" = default;
             "#linux" = default;
             "#znc" = default;
+            "#revolutionirc" = default;
+          };
+        };
+
+        Network.oftc = {
+          Server = "irc.oftc.net +6697";
+          LoadModule = [
+            "simple_away"
+            "route_replies"
+            "nickserv EreVMvde4QttCdB"
+          ];
+
+          Chan = {
+            "#asahi" = default;
+            "#asahi-alt" = default;
+            "#asahi-gpu" = default;
           };
         };
 

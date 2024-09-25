@@ -7,5 +7,6 @@
     ./telegram.nix
     ./xmpp.nix
     ./irc.nix
+    ./voip.nix
   ];
 }
