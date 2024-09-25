@@ -17,9 +17,9 @@ assert !headless; {
     # ../packages/blackbox
     ../packages/music
     ../packages/messaging
-    ../packages/newsflash
+    ../packages/rss
     ../packages/gaming
-    ../packages/alacritty
+    # ../packages/alacritty
     ../packages/email
     ../packages/torrent
     ../packages/preview

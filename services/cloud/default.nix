@@ -6,7 +6,7 @@
     ./jellyfin.nix
     ./arr.nix
     ./rss.nix
-    # ./irc.nix
+    ./irc.nix
     ./ntfy.nix
   ];
 

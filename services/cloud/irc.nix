@@ -7,59 +7,71 @@
   hostname,
   ...
 }: {
-  services.soju = {
+  services.znc = {
     enable = true;
-    hostName = "http://walt-cloud";
+    mutable = false;
+    useLegacyConfig = false;
+    openFirewall = false;
 
-    /*
-      extraConfig = ''
-      db sqlite3 /data/config/soju/main.db
-      message-store fs /data/config/soju/logs/
-    '';
-    */
-  };
+    dataDir = "/data/config/znc";
 
-  # See https://hacdias.com/2023/12/24/irc-bouncer-setup-soju-gamja-caddy-docker/
+    config = let
+      password = {
+        Method = "sha256";
+        Hash = "bff975916a91a4bf6eb11a05c338a056065e907a5299b3eff2f52fc2bafb6dc2";
+        Salt = "kYQt85ztalhiQij7B2+_";
+      };
+    in {
+      LoadModule = ["adminlog"];
 
-  systemd.services.soju = let
-    configFile = pkgs.writeText "soju.conf" ''
-      listen irc+insecure://0.0.0.0:6667
-      listen ws+insecure://0.0.0.0:3030
-      listen unix+admin:///run/soju/admin
-      hostname walt-cloud.com
+      MaxBufferSize = 500;
 
-      db sqlite3 /data/config/soju/soju.db
-      log fs /data/config/soju/logs
-      http-origin
-      accept-proxy-ip
-    '';
-  in {
-    serviceConfig = {
-      environment = ''
-        ADMIN=waltmck
-        PASSWORD=password
-      '';
+      # URIPrefix = "/znc/";
 
-      ExecStart = lib.mkOverride 10 "${pkgs.soju}/bin/soju -config ${configFile}";
+      User."waltmck" = {
+        LoadModule = ["autoattach"];
+
+        Admin = true;
+        Nick = "waltmck";
+        AltNick = "waltmckel";
+
+        AutoClearChanBuffer = false;
+        AutoClearQueryBuffer = false;
+        ChanBufferSize = 500;
+
+        Network.libera = {
+          Server = "irc.libera.chat +6697";
+          LoadModule = [
+            "simple_away"
+            "nickserv EreVMvde4QttCdB"
+          ];
+
+          Chan = let
+            default = {
+              AutoClearChanBuffer = false;
+              Buffer = 500;
+            };
+          in {
+            "#nixos" = default;
+            "#openzfs" = default;
+            "#zfsonlinux" = default;
+            "#linux" = default;
+            "#znc" = default;
+          };
+        };
+
+        Pass = {
+          inherit password;
+        };
+      };
     };
   };
-
-  # Set up a Nginx virtual host.
+  /*
   services.nginx = {
     enable = true;
     virtualHosts."${hostname}" = {
-      locations."/irc" = {
-        proxyPass = "http://127.0.0.1:6667";
-        extraConfig = ''
-          proxy_redirect off;
-          proxy_set_header Host $host;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-          proxy_set_header X-Forwarded-Proto $scheme;
-        '';
-      };
-      locations."/soju" = {
-        proxyPass = "http://127.0.0.1:3030";
+      locations."/znc/" = {
+        proxyPass = "http://127.0.0.1:5000/";
         extraConfig = ''
           proxy_redirect off;
           proxy_set_header Host $host;
@@ -70,4 +82,5 @@
       };
     };
   };
+  */
 }

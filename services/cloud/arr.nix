@@ -17,7 +17,9 @@
       Type = "simple";
       User = "data";
       Group = "data";
-      ExecStart = "${pkgs.stash}/bin/stash --nobrowser --config /data/config/stash/config.yml";
+      ExecStart = ''
+        ${pkgs.zsh}/bin/zsh -lc "${pkgs.stash}/bin/stash --nobrowser --config /data/config/stash/config.yml"
+      '';
       Restart = "on-failure";
     };
   };

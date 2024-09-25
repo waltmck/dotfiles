@@ -6,10 +6,6 @@
   ...
 }: {
   home-manager.users.waltmck = {
-    home = {
-      sessionVariables.TERMINAL = "${pkgs.alacritty}/bin/alacritty";
-    };
-
     programs.alacritty = {
       enable = true;
       package = pkgs.alacritty;

@@ -9,6 +9,9 @@
 
   home-manager.sharedModules = [
     {
+      home = {
+        sessionVariables.TERMINAL = "${pkgs.kitty}/bin/kitty";
+      };
       programs.kitty = {
         enable = true;
 

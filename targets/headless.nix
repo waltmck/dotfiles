@@ -34,6 +34,8 @@
     toybox
     busybox
 
+    dig.dnsutils
+
     git
     wget
     home-manager

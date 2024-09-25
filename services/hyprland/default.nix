@@ -290,7 +290,7 @@
         systemd-run = "${pkgs.systemd}/bin/systemd-run --user --slice=app.slice --no-block --collect --scope";
 
         # "Task Manager" menu
-        topPopup = popup_script "${pkgs.alacritty}/bin/alacritty -T 'Task Manager' -e ${pkgs.btop}/bin/btop" "title: Task Manager";
+        topPopup = popup_script "${pkgs.kitty}/bin/kitty --name 'Task Manager' --class 'btop' -- ${pkgs.btop}/bin/btop" "title: Task Manager";
         termPopup = popup_script "${systemd-run} ${pkgs.kitty}/bin/kitty -T 'Terminal (Quick)'" "title: Terminal (Quick)";
         termPopupSession = popup_script "${pkgs.kitty}/bin/kitty -T 'Terminal (session.slice)'" "title: Terminal (session.slice)";
 
