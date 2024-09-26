@@ -13,9 +13,6 @@
   # Hide mounted files from Nautilus
   environment.persistence."/nix/state".hideMounts = true;
 
-  # camera
-  programs.droidcam.enable = true;
-
   # virtualisation
   programs.virt-manager.enable = true;
   virtualisation = {

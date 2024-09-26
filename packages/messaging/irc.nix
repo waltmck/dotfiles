@@ -58,7 +58,6 @@
           exec = ''${pkgs.kitty}/bin/kitty --name "Irssi" --class "${icon}" -- ${pkgs.irssi}/bin/irssi'';
           terminal = false;
           categories = ["Application" "Network" "Chat"];
-          icon = "${icon}-symbolic";
           comment = tagline;
         };
       };

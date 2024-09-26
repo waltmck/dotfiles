@@ -19,7 +19,6 @@
           exec = ''${pkgs.kitty}/bin/kitty --name "Newsboat" --class "${icon}" -- ${pkgs.newsboat}/bin/newsboat'';
           terminal = false;
           categories = ["Application" "Network" "Feed"];
-          inherit icon;
           comment = tagline;
         };
       };
