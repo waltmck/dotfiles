@@ -43,6 +43,8 @@
             "libera-znc" = { type = "IRC"; };
             "oftc-znc" = { type = "IRC"; };
           };
+
+          ignores = ( { level = "JOINS PARTS QUITS"; } );
         '';
       };
 

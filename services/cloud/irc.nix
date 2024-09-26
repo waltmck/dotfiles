@@ -64,6 +64,7 @@
             "#linux" = default;
             "#znc" = default;
             "#revolutionirc" = default;
+            "#irssi" = default;
           };
         };
 
