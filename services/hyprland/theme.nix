@@ -96,11 +96,13 @@ in {
       '';
     };
 
+    /*
     qt = {
       enable = true;
       platformTheme.name = "qtct";
       style.name = "kvantum";
     };
+    */
 
     /*
     xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
@@ -108,6 +110,7 @@ in {
     };
     */
 
+    /*
     xdg.configFile = {
       "Kvantum/KvLibadwaita" = {
         source = "${./kvantum-theme/KvLibadwaita}";
@@ -119,8 +122,10 @@ in {
       };
       "Kvantum/kvantum.kvconfig".text = "[General]\ntheme=KvLibadwaitaDark";
     };
+    */
   };
 
+  /*
   environment.variables = {
     "QT_SCALE_FACTOR" = "0.7";
     "QT_QPA_PLATFORM" = "wayland";
@@ -131,4 +136,5 @@ in {
     "SDL_VIDEODRIVER" = "wayland";
     "CLUTTER_BACKEND" = "wayland";
   };
+  */
 }

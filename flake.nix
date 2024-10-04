@@ -112,6 +112,8 @@
 
           native = false;
           headless = true;
+
+          datasets = ["data"];
         };
       };
     };

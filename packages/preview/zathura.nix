@@ -38,6 +38,8 @@
 
           notification-bg = bg;
           notification-fg = fg;
+
+          smooth-scroll = true;
         };
       };
     }

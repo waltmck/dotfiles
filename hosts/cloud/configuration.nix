@@ -15,6 +15,7 @@
     # Extra stuff
     ../../targets/headless.nix
     ../../services/cloud
+    ../../services/zfs.nix
   ];
 
   # Emulation for distributed builds

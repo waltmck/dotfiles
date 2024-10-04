@@ -347,6 +347,7 @@ in {
         "browser.fixup.domainwhitelist.walt-laptop" = true;
         "browser.fixup.domainwhitelist.walt-cloud" = true;
         "browser.fixup.domainwhitelist.walt-server" = true;
+        "browser.fixup.domainwhitelist.walt-reader" = true;
         "browser.fixup.domainwhitelist.walt-desktop" = true;
         "browser.fixup.domainwhitelist.walt-phone" = true;
         "browser.fixup.domainwhitelist.walt-nas" = true;

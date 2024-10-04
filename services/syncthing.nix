@@ -54,6 +54,10 @@ in {
           id = "AB5YGZ7-FA6ANNK-DJ7LS5W-DZF5EK3-FIYY4L7-B5O3E2Z-H4MWQRR-TEUA3QI";
           addresses = ["${protocol}://walt-phone:22000"];
         };
+        "walt-reader" = {
+          id = "DAH6HPS-GM43HSW-2P6OPKY-HQXKN5F-A37LZ2I-YCAL2DI-2M6Z4DU-QSNDXAI";
+          addresses = ["${protocol}://walt-reader:22000"];
+        };
       };
     };
   };

@@ -103,6 +103,7 @@ assert !headless; {
     ## COMMUNICATION
 
     g4music
+    cozy
 
     notify-client #ntfy client
 
@@ -122,5 +123,7 @@ assert !headless; {
     "Audiobooks"
     ".local/share/cozy"
     ".cache/cozy"
+    "Papers"
+    "Notepad"
   ];
 }
