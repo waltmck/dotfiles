@@ -64,11 +64,8 @@ assert !headless; {
     obsidian
     (mpv.override {scripts = [mpvScripts.mpris];})
     libreoffice
-    # spotify <- no aarch64-linux support
-    # caprine-bin # <- no aarch64-linux support
+    # caprine
     d-spy
-    # gimp
-    # discord <- no aarch64-linux support
     icon-library
     dconf-editor
 
