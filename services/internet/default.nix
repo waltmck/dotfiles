@@ -16,7 +16,7 @@
     hostName = hostname;
     wireless.iwd = {
       enable = true;
-      settings.General.EnableNetworkConfiguration = true;
+      settings.General.EnableNetworkConfiguration = false;
     };
 
     networkmanager = {

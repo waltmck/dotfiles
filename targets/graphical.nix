@@ -21,6 +21,7 @@ assert !headless; {
     ../packages/email
     ../packages/torrent
     ../packages/preview
+    ../packages/nautilus.nix
 
     ../services/gnome
     ../services/hyprland
@@ -34,7 +35,6 @@ assert !headless; {
   environment.systemPackages = with pkgs; [
     playerctl
 
-    nautilus
     geary
     # cheese
     guvcview

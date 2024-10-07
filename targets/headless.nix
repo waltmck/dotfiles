@@ -28,6 +28,7 @@
     ../services/tailscale.nix
     ../services/syncthing.nix
     ../services/iperf3.nix
+    ../services/resources.nix
   ];
 
   environment.systemPackages = with pkgs; [

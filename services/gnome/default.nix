@@ -34,8 +34,6 @@
   };
 
   home-manager.users.waltmck = {
-    imports = [./dconf.nix];
-
     home = {
       sessionPath = [
         "$HOME/.local/bin"
@@ -64,7 +62,6 @@
       "Music"
       "src"
       ".local/share/keyrings"
-      ".config/dconf" # Keep gnome app settings (including geary, g4music)
       ".config/evolution" # Persist calendars
       ".cache/evolution/calendar"
       ".local/share/evolution/calendar"
