@@ -51,6 +51,11 @@
     ];
 
     xdg.userDirs.enable = true;
+
+    # Hide close buttons
+    dconf.settings = {
+      "org/gnome/desktop/wm/preferences".button-layout = "appmenu";
+    };
   };
 
   environment.persistence."/nix/state".users.waltmck = {
