@@ -6,14 +6,14 @@
   ...
 }: {
   environment.systemPackages = [
-    pkgs.armcord
+    pkgs.legcord
     pkgs.dissent
     pkgs.vesktop
   ];
 
   environment.persistence."/nix/state".users.waltmck = {
     directories = [
-      ".config/ArmCord"
+      ".config/LegCord"
       ".config/dissent"
       ".cache/dissent"
       ".config/vesktop"

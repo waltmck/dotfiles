@@ -208,7 +208,7 @@
         "col.inactive_border" = "rgba(333333ff)";
       };
 
-      master.no_gaps_when_only = false;
+      master.no_gaps_when_only = true;
 
       debug = {
         disable_logs = false;

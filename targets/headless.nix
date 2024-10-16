@@ -23,12 +23,14 @@
     ../packages/neovim
     ../packages/lf
     ../packages/aria2.nix
+    ../packages/numerical.nix
 
     ../services/nixos
     ../services/tailscale.nix
     ../services/syncthing.nix
     ../services/iperf3.nix
     ../services/resources.nix
+    ../services/virtualization
   ];
 
   environment.systemPackages = with pkgs; [
@@ -70,6 +72,7 @@
     unflac
     flac
     ffmpeg-headless
+    sox
 
     # Nix tools
     nix-tree

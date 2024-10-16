@@ -240,7 +240,7 @@ in {
         enable = true;
         servers = {
           nixd.enable = true; # Nix
-          ts-ls.enable = true; # TypeScript
+          ts_ls.enable = true; # TypeScript
           texlab = {
             enable = true; # LaTeX
 
@@ -266,7 +266,7 @@ in {
             };
           };
 
-          lua-ls = {
+          lua_ls = {
             enable = true;
             settings.telemetry.enable = false;
           };
@@ -356,11 +356,8 @@ in {
 
       web-devicons.enable = true;
 
-      # Notes (broken for now)
-      /*
       neorg = {
         enable = true;
-        package = pkgs.vimPlugins.neorg;
         modules = {
           "core.defaults" = {};
           "core.concealer" = {};
@@ -375,8 +372,8 @@ in {
           };
         };
       };
-      */
 
+      /*
       copilot-lua = {
         enable = true;
 
@@ -384,6 +381,7 @@ in {
           autoTrigger = true;
         };
       };
+      */
 
       vimtex = {
         enable = true;

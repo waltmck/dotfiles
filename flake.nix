@@ -60,8 +60,8 @@
     };
 
     firefox-addons = {
-      # url = "gitlab:waltmck/nur-expressions/fix-bpc?dir=pkgs/firefox-addons";
-      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      url = "gitlab:waltmck/nur-expressions?dir=pkgs/firefox-addons";
+      # url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -50,6 +50,7 @@ assert !headless; {
     gnome-maps
     gnome-photos
     gnome-contacts
+    sound-juicer
     seahorse
     gnome-power-manager
     # gnome-secrets

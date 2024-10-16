@@ -3,7 +3,7 @@
     ./matrix.nix
     ./signal.nix
     ./discord.nix
-    ./whatsapp.nix
+    ./whatsapp.nix 
     ./telegram.nix
     ./xmpp.nix
     ./irc.nix
