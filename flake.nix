@@ -32,7 +32,8 @@
 
     # Apple Silicon Stuff
     apple-silicon-support = {
-      url = "github:tpwrules/nixos-apple-silicon/main";
+      # url = "github:tpwrules/nixos-apple-silicon/main";
+      url = "github:waltmck/nixos-asahi";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-aarch64-widevine = {

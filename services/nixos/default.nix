@@ -126,13 +126,13 @@
   # By default, the limit on the number of open files is too low
   # to allow building from source. This should fix it for the future. See
   # https://discourse.nixos.org/t/unable-to-fix-too-many-open-files-error/27094/7
-  systemd.extraConfig = "DefaultLimitNOFILE=4096";
+  systemd.extraConfig = "DefaultLimitNOFILE=1048576";
   security.pam.loginLimits = [
     {
       domain = "*";
       type = "soft";
       item = "nofile";
-      value = "4096";
+      value = "1048576";
     }
   ];
 

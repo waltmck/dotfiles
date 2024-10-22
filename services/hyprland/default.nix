@@ -4,8 +4,12 @@
   config,
   system,
   lib,
+  march,
   ...
-}: {
+}: let
+  hyprland = pkgs.hyprland.overrideDerivation (old: {NIX_CFLAGS_COMPILE = (old.NIX_CFLAGS_COMPILE or "") + " -march=${march}";});
+  enable-xwayland = true;
+in {
   imports = [
     ./theme.nix
     ./hyprlock.nix
@@ -37,11 +41,11 @@
 
   programs.hyprland = {
     enable = true;
-    package = pkgs.hyprland;
-    xwayland.enable = false;
+    package = hyprland;
+    xwayland.enable = enable-xwayland;
   };
 
-  programs.xwayland.enable = false;
+  programs.xwayland.enable = enable-xwayland;
 
   xdg.portal = {
     enable = true;
@@ -80,26 +84,6 @@
   # This fixes the problem of the gnome-keyring not being logged into at boot
   # for reasons outside of my comprehension
   security.pam.services.sddm.enableGnomeKeyring = true;
-
-  /*
-  services.greetd = let
-    session = "${pkgs.hyprland}/bin/Hyprland";
-    tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-    user = "waltmck";
-  in {
-    enable = true;
-    settings = rec {
-      initial_session = {
-        command = "${session}";
-        user = "${user}";
-      };
-      default_session = {
-        command = "${tuigreet} --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time --cmd ${session}";
-        user = "greeter";
-      };
-    };
-  };
-  */
 
   systemd.user.services.hyprland = {
     description = "Hyprland Window Manager";
@@ -176,9 +160,9 @@
     ags = "${pkgs.ags}/bin/ags";
   in {
     enable = true;
-    package = pkgs.hyprland;
+    package = hyprland;
     systemd.enable = true;
-    xwayland.enable = false;
+    xwayland.enable = enable-xwayland;
     # plugins = with plugins; [ hyprbars borderspp ];
     # plugins = []; # [hyprspace.packages.${pkgs.system}.Hyprspace];
 

@@ -24,7 +24,7 @@
 
     # Running through `zsh` so that it respects my user environment variables. This is not "best practice" but it is actually the easiest way to get this to work.
     script = ''
-      signal-desktop --start-in-tray
+      signal-desktop --enable-features=UseOzonePlatform --ozone-platform=wayland --start-in-tray
     '';
   };
 

@@ -70,6 +70,11 @@ assert !headless; {
     icon-library
     dconf-editor
 
+    # GPU/graphics debugging tools
+    xorg.xlsclients.out #xlsclients
+    virtualgl.out # glxinfo
+    vulkan-tools.out # vulkaninfo
+
     # fun
     glow
     slides
