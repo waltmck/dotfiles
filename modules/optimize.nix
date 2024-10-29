@@ -5,7 +5,6 @@
   ...
 }: let
   inherit (lib) types;
-  inherit (lib.modules) mkIf;
   inherit (lib.options) mkOption mkEnableOption;
 
   cfg = config.services.optimize;
@@ -14,9 +13,29 @@ in {
     enable = mkEnableOption "optimize";
 
     march = mkOption {
-      type = types.string;
+      type = types.str;
       default = "native";
       description = "Arcitecture passed to -march=";
+    };
+
+    kernel = {
+      enable = mkOption {
+        type = types.bool;
+        default = false;
+        description = "Enable kernel optimizations";
+      };
+
+      native = mkOption {
+        type = types.bool;
+        default = true;
+        description = "Build kernel with native flags";
+      };
+
+      o = mkOption {
+        type = types.nullOr types.str;
+        default = null;
+        description = "Compiler optimization level";
+      };
     };
 
     packages = mkOption {
@@ -37,7 +56,7 @@ in {
           };
 
           o = mkOption {
-            type = types.nullOr types.string;
+            type = types.nullOr types.str;
             default = null;
             description = "Compiler optimization level";
           };
@@ -69,6 +88,8 @@ in {
             })
           cfg.packages
       )
+
+      # TODO kernel overlay
     ];
   };
 }
