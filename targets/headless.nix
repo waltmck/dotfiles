@@ -8,6 +8,7 @@
   inputs,
   march,
   system,
+  nativePackages,
   ...
 }: {
   imports = [
@@ -79,4 +80,13 @@
     nix-tree
     hydra-check
   ];
+
+  # Compile native packages natively
+  nixpkgs.overlays =
+    map (pkg: (self: super: {
+      "${pkg}" = super."${pkg}".overrideDerivation (old: {
+        NIX_CFLAGS_COMPILE = (old.NIX_CFLAGS_COMPILE or "") + " -march=${march}";
+      });
+    }))
+    nativePackages;
 }

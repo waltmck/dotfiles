@@ -5,9 +5,10 @@
   system,
   lib,
   march,
+  native,
   ...
 }: let
-  hyprland = pkgs.hyprland.overrideDerivation (old: {NIX_CFLAGS_COMPILE = (old.NIX_CFLAGS_COMPILE or "") + " -march=${march}";});
+  hyprland = pkgs.hyprland;
   enable-xwayland = true;
 in {
   imports = [
