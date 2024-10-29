@@ -103,10 +103,6 @@
           march = "armv8.6-a+fp16+fp16fml+aes+sha2+sha3+bf16+i8mm+nosve+nosve2+nomemtag+nosm4+nof32mm+nof64mm";
           native = false; # Build everything from source
 
-          nativePackages = [
-            "hyprland"
-            "aquamarine"
-          ];
           headless = false;
         };
       };

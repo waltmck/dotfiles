@@ -54,8 +54,13 @@
 
     packages = {
       hyprland = {
-        native = "yes";
-        enable = true;
+        native = true;
+        o = "fast";
+      };
+
+      aquamarine = {
+        native = true;
+        o = "fast";
       };
     };
   };

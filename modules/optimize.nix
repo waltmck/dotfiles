@@ -26,7 +26,7 @@ in {
         options = {
           enable = mkOption {
             type = types.bool;
-            default = false;
+            default = true;
             description = "Enable package optimization";
           };
 
@@ -36,9 +36,9 @@ in {
             description = "Native build flags";
           };
 
-          optLevel = mkOption {
-            type = types.int;
-            default = -1;
+          o = mkOption {
+            type = types.nullOr types.string;
+            default = null;
             description = "Compiler optimization level";
           };
         };
@@ -50,26 +50,24 @@ in {
     nixpkgs.overlays = [
       (
         self: super:
-          lib.mergeAttrsList (
-            lib.mapAttrsToList (name: pkg:
-              lib.mkIf pkg.enable {
-                "${name}" = super."${name}".overrideDerivation (old: {
-                  NIX_CFLAGS_COMPILE =
-                    (old.NIX_CFLAGS_COMPILE or "")
-                    + (
-                      if pkg.native
-                      then " -march=${cfg.march}"
-                      else ""
-                    )
-                    + (
-                      if pkg.optLevel != -1
-                      then " -O${pkg.optLevel}"
-                      else ""
-                    );
-                });
-              })
-            cfg.packages
-          )
+          lib.concatMapAttrs (name: pkg:
+            lib.optionalAttrs pkg.enable {
+              "${name}" = super."${name}".overrideDerivation (old: {
+                NIX_CFLAGS_COMPILE =
+                  (old.NIX_CFLAGS_COMPILE or "")
+                  + (
+                    if pkg.native
+                    then " -march=${cfg.march}"
+                    else ""
+                  )
+                  + (
+                    if pkg.o != null
+                    then " -O${pkg.o}"
+                    else ""
+                  );
+              });
+            })
+          cfg.packages
       )
     ];
   };
