@@ -203,6 +203,10 @@ in {
         disable_hyprland_logo = true;
       };
 
+      render = {
+        explicit_sync = false;
+      };
+
       input = {
         follow_mouse = 1;
         sensitivity = 0.25;

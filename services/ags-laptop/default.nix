@@ -27,6 +27,7 @@
     systemd
     networkmanagerapplet #TODO link to this from quicksettings
     libdbusmenu-gtk3
+    util-linux
   ];
 in {
   # Fix problem with ags packaging, see https://github.com/NixOS/nixpkgs/issues/306446#issuecomment-2081540768
@@ -74,7 +75,7 @@ in {
 
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.ags}/bin/ags -b hypr";
+      ExecStart = "${pkgs.util-linux}/bin/uclampset -m 0 -M 128 ${pkgs.ags}/bin/ags -b hypr";
 
       Environment = let
         path = lib.makeBinPath deps;

@@ -12,7 +12,7 @@
   };
 
   home-manager.users.waltmck.dconf.settings."com/github/neithern/g4music" = {
-    "audio-sink" = "pulsesink";
+    "audio-sink" = "alsasink";
     "blur-mode" = 2;
     "compact-playlist" = true;
     "dark-theme" = true;

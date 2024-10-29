@@ -25,11 +25,9 @@
   boot.binfmt.emulatedSystems = [
     "x86_64-linux"
     # "x86_64-windows"
-    # "i686-linux"
+    "i686-linux"
   ];
-
   /*
-
   environment.systemPackages = with pkgs; [box64];
 
   boot.binfmt.registrations = {

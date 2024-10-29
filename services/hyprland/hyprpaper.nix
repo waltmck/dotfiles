@@ -37,7 +37,7 @@
 
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.hyprpaper}/bin/hyprpaper";
+      ExecStart = "${pkgs.util-linux}/bin/uclampset -m0 -M64 ${pkgs.hyprpaper}/bin/hyprpaper";
       Restart = "always";
       RestartSec = 3;
 

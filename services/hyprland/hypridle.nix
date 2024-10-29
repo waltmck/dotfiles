@@ -40,7 +40,7 @@
 
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.hypridle}/bin/hypridle";
+      ExecStart = "${pkgs.util-linux}/bin/uclampset -m0 -M64 ${pkgs.hypridle}/bin/hypridle";
       Restart = "always";
       RestartSec = 3;
 

@@ -33,8 +33,16 @@
     # Apple Silicon Stuff
     apple-silicon-support = {
       # url = "github:tpwrules/nixos-apple-silicon/main";
-      url = "github:waltmck/nixos-asahi";
-      # inputs.nixpkgs.follows = "nixpkgs";
+
+      # Minimal update plus Honeykrisp
+      # url = "github:oliverbestmann/nixos-apple-silicon";
+
+      # Opinionated + optimized update
+      # url = "github:zzywysm/nixos-asahi";
+
+      # My custom update
+      url = "github:waltmck/nixos-asahi/dev";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-aarch64-widevine = {
       url = "github:epetousis/nixos-aarch64-widevine";
@@ -61,8 +69,8 @@
     };
 
     firefox-addons = {
-      url = "gitlab:waltmck/nur-expressions?dir=pkgs/firefox-addons";
-      # url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      # url = "gitlab:waltmck/nur-expressions?dir=pkgs/firefox-addons";
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -86,6 +94,10 @@
           inherit system;
           hostname = "walt-laptop";
           builder = false;
+          pkgs86 = import inputs.nixpkgs {
+            allowUnfree = true;
+            system = "x86_64-linux";
+          };
 
           # Look at gcc docs plus https://gpages.juszkiewicz.com.pl/arm-socs-table/arm-socs.html to find arch
           march = "armv8.6-a+fp16+fp16fml+aes+sha2+sha3+bf16+i8mm+nosve+nosve2+nomemtag+nosm4+nof32mm+nof64mm";

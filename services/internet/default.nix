@@ -44,12 +44,14 @@
     fallbackDns = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
     # dnsovertls = "true"; # This breaks connecting to harvard.edu on Harvard wifi.
   };
-
+  
+  /*
   # IPFS
   services.kubo = {
     enable = true;
   };
   users.users.waltmck.extraGroups = [config.services.kubo.group];
+  */
 
   environment.persistence."/nix/state".directories = [
     "/var/lib/iwd"

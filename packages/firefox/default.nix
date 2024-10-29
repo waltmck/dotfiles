@@ -169,6 +169,8 @@ in {
         "browser.download.useDownloadDir" = true; # Ask where to save stuff
         "browser.download.open_pdf_attachments_inline" = false; # Use PDF reader to preview PDFs
         "privacy.clearOnShutdown.history" = false; # We want to save history on exit
+        "browser.startup.homepage_override.mstone" = "ignore"; #Don't check for version changes (to show update page)
+
         # Hi-DPI
         "layout.css.devPixelsPerPx" = "-1";
 
@@ -212,6 +214,7 @@ in {
 
         "beacon.enabled" = false; # No bluetooth location BS in my webbrowser please
         "device.sensors.enabled" = false; # This isn't a phone
+        "browser.search.geoip.url" = ""; # Disable geoip lookup on first start
         "geo.enabled" = false; # Disable geolocation alltogether
 
         # ESNI is deprecated ECH is recommended

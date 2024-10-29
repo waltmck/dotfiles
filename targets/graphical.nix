@@ -73,7 +73,8 @@ assert !headless; {
     # GPU/graphics debugging tools
     xorg.xlsclients.out #xlsclients
     virtualgl.out # glxinfo
-    vulkan-tools.out # vulkaninfo
+    vulkan-tools.out # vulkaninfo, vkcube
+    vkmark # Vulkan benchmark
 
     # fun
     glow
