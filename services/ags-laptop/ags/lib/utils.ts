@@ -33,7 +33,7 @@ export async function bash(strings: TemplateStringsArray | string, ...values: un
 		.flatMap((str, i) => str + `${values[i] ?? ""}`)
 		.join("")
 
-	return Utils.execAsync(["bash", "-c", cmd]).catch(err => {
+	return Utils.execAsync(["uclampset", "-m0", "-M1024", "bash", "-c", cmd]).catch(err => {
 		console.error(cmd, err)
 		return ""
 	})

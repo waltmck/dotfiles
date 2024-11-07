@@ -22,6 +22,7 @@ assert !headless; {
     ../packages/torrent
     ../packages/preview
     ../packages/nautilus.nix
+    ../packages/numerical.nix
 
     ../services/gnome
     ../services/hyprland
@@ -101,6 +102,7 @@ assert !headless; {
     shortwave # Internate radio
     wike # wikipedia reader
     gnome-podcasts # Podcasts
+    gpodder
 
     zim # Notes app to try
 
@@ -118,6 +120,8 @@ assert !headless; {
     inputs.zotero-nix.packages.${system}.default
 
     # cozy # Audiobooks
+
+    ungoogled-chromium
   ];
 
   environment.persistence."/nix/state".users.waltmck.directories = [

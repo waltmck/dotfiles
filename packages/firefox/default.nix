@@ -22,6 +22,7 @@
 
   firefox-pkg =
     (pkgs.firefox.overrideAttrs (old: {
+      pipewireSupport = true;
       buildCommand =
         old.buildCommand
         + ''
@@ -282,6 +283,9 @@ in {
         "mousewheel.default.delta_multiplier_x" = 20;
 
         "browser.sessionstore.resume_from_crash" = false; # Disable resuming from crash which requires frequent writes to disk
+
+        # Use xdg desktop portal file picker (for GTK4)
+        "widget.use-xdg-desktop-portal.file-picker" = 1;
 
         # Cache to memory, disable cache to disk
         "browser.cache.memory.enable" = true;

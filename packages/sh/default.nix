@@ -133,7 +133,7 @@
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-  environment.shells = with pkgs; [zsh];
+  environment.shells = with pkgs; [zsh nushell];
 
   security.sudo = {
     enable = true;

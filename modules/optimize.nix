@@ -31,7 +31,7 @@ in {
         description = "Build kernel with native flags";
       };
 
-      o = mkOption {
+      cflags = mkOption {
         type = types.nullOr types.str;
         default = null;
         description = "Compiler optimization level";
@@ -55,7 +55,7 @@ in {
             description = "Native build flags";
           };
 
-          o = mkOption {
+          cflags = mkOption {
             type = types.nullOr types.str;
             default = null;
             description = "Compiler optimization level";
@@ -80,8 +80,8 @@ in {
                     else ""
                   )
                   + (
-                    if pkg.o != null
-                    then " -O${pkg.o}"
+                    if pkg.cflags != null
+                    then " ${pkg.cflags}"
                     else ""
                   );
               });

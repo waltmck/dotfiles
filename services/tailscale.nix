@@ -12,12 +12,6 @@
   services.tailscale = {
     enable = true;
     openFirewall = true;
-
-    # These appear to be broken, you still need to do them manually
-    extraUpFlags = [
-      "--login-server=https://headscale.waltmckelvie.com"
-      "--operator=waltmck"
-    ];
   };
 
   networking.firewall = {

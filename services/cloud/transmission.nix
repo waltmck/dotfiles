@@ -19,6 +19,8 @@
 
   peer-port = 51413;
 
+  iproute = pkgs.iproute2;
+
   /*
   The `vpn.conf` file has the following form, obtained from your VPN provider. Note the commented-out fields.
 
@@ -114,8 +116,8 @@ in {
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
-      ExecStart = "${pkgs.iproute}/bin/ip netns add %I";
-      ExecStop = "${pkgs.iproute}/bin/ip netns del %I";
+      ExecStart = "${iproute}/bin/ip netns add %I";
+      ExecStop = "${iproute}/bin/ip netns del %I";
     };
   };
 

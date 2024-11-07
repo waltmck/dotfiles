@@ -14,11 +14,11 @@
     settings = {
       server_url = "https://headscale.waltmckelvie.com";
 
-      dns_config = {
+      dns = {
         magic_dns = true;
-        base_domain = "headscale.waltmckelvie.com";
-        domains = ["headscale.waltmckelvie.com"];
-        nameservers = ["1.1.1.1" "9.9.9.9"];
+        base_domain = "tailnet.waltmckelvie.com";
+        domains = ["tailnet.waltmckelvie.com"];
+        nameservers.global = ["1.1.1.1" "9.9.9.9"];
       };
 
       listen_addr = "127.0.0.1:8080";
@@ -44,7 +44,8 @@
       };
 
       # Use data partition for headscale state
-      db_path = "/data/config/headscale/db.sqlite";
+      database.sqlite.path = "/data/config/headscale/db.sqlite";
+      # db_path = "/data/config/headscale/db.sqlite";
       private_key_path = "/data/config/headscale/private.key";
       noise.private_key_path = "/data/config/headscale/noise_private.key";
     };

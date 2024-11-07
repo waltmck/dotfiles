@@ -53,15 +53,15 @@
     inherit march;
 
     packages = {
-      hyprland = {
-        native = true;
-        o = "fast";
-      };
+      # Hypr ecosystem
+      hyprland.cflags = "-Ofast";
+      aquamarine.cflags = "-Ofast";
+      hyprcursor.cflags = "-Ofast";
+      hyprutils.cflags = "-Ofast";
 
-      aquamarine = {
-        native = true;
-        o = "fast";
-      };
+      # Why does this lead to rebuilding ffmpeg, neovide, qemu?
+      # pipewire.cflags = "-O3";
+      # wireplumber.cflags = "-Ofast";
     };
   };
 

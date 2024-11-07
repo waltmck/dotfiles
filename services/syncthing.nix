@@ -76,8 +76,24 @@ in {
     enable = true;
 
     virtualHosts."${hostname}" = {
-      locations."/syncthing/".proxyPass = "http://127.0.0.1:8384/";
-      # Todo: restrict to local connections if not headless
+      locations."/syncthing/" = {
+        proxyPass = "http://127.0.0.1:8384/";
+
+        # If not headless, restrict to local connections
+        extraConfig =
+          if headless
+          then ''
+            allow 100.64.0.0/24;
+            allow 127.0.0.0/8;
+            allow ::1/128;
+            deny  all;
+          ''
+          else ''
+            allow 127.0.0.0/8;
+            allow ::1/128;
+            deny  all;
+          '';
+      };
     };
   };
 

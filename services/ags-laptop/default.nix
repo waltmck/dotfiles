@@ -7,6 +7,7 @@
   ...
 }: let
   deps = with pkgs; [
+    zsh
     ags
     bun
     dart-sass
@@ -20,7 +21,8 @@
     wayshot
     swappy
     hyprpicker
-    pavucontrol
+    pwvucontrol
+    overskride
     networkmanager
     gtk3
     # hyprland
@@ -75,7 +77,7 @@ in {
 
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.util-linux}/bin/uclampset -m 0 -M 128 ${pkgs.ags}/bin/ags -b hypr";
+      ExecStart = "${pkgs.util-linux}/bin/uclampset -m 0 -M 64 ${pkgs.ags}/bin/ags -b hypr";
 
       Environment = let
         path = lib.makeBinPath deps;

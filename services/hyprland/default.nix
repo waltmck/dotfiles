@@ -69,7 +69,7 @@ in {
     wl-gammactl
     wl-clipboard
     wayshot
-    pavucontrol
+    pwvucontrol
     brightnessctl
   ];
 
@@ -173,7 +173,7 @@ in {
         "${pkgs.systemd}/bin/systemd-notify --ready"
         "${hyprctl} setcursor Qogir 24"
         # "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
-        "${pkgs.blueman}/bin/blueman-applet"
+        # "${pkgs.blueman}/bin/blueman-applet"
       ];
 
       cursor = {
@@ -229,7 +229,8 @@ in {
       in [
         (f "org.gnome.Calculator")
         (f "org.gnome.Nautilus")
-        (f "pavucontrol")
+        (f "com.saivert.pwvucontrol")
+        (f "io.github.kaii_lb.Overskride")
         (f "nm-connection-editor")
         (f "blueberry.py")
         (f "org.gnome.Settings")
@@ -237,6 +238,7 @@ in {
         (f "Color Picker")
         (f "xdg-desktop-portal")
         (f "xdg-desktop-portal-gnome")
+        (f "xdg-desktop-portal-gtk")
         (f "transmission-remote-gtk")
         (f "com.github.Aylur.ags")
 

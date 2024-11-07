@@ -15,7 +15,7 @@
     ../packages/git
     ../packages/ssh
     ../packages/tmux
-    # ../packages/starship
+    # ./packages/starship
     ../packages/p10k
     ../packages/kitty
 
@@ -23,7 +23,6 @@
     ../packages/neovim
     ../packages/lf
     ../packages/aria2.nix
-    ../packages/numerical.nix
 
     ../services/nixos
     ../services/tailscale.nix

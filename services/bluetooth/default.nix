@@ -32,7 +32,9 @@
     powerOnBoot = true;
   };
 
-  services.blueman.enable = true;
+  # services.blueman.enable = true;
+
+  environment.systemPackages = [pkgs.overskride];
 
   environment.persistence."/nix/state" = {
     directories = [

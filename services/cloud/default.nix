@@ -1,7 +1,7 @@
 {...}: {
   imports = [
     ./nginx.nix
-    ./headscale.nix
+    # ./headscale.nix
     ./transmission.nix
     ./jellyfin.nix
     ./arr.nix
