@@ -20,6 +20,8 @@
           enable_audio_bell = false;
           update_check_interval = 0;
           touch_scroll_multiplier = "2.0";
+
+          clipboard_control = "write-clipboard read-clipboard";
         };
 
         font = {

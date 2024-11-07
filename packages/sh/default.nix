@@ -32,6 +32,9 @@
       "fs" = "${pkgs.ncdu}/bin/ncdu -x /";
 
       "vimdiff" = "nvim -d";
+
+      "y" = "${pkgs.kitty}/bin/kitten clipboard";
+      "p" = "${pkgs.kitty}/bin/kitten clipboard -g";
     };
   in [
     {
@@ -54,6 +57,8 @@
             bindkey "^[[1;5C" forward-word
             bindkey "^[[1;5D" backward-word
             unsetopt BEEP
+            unsetopt HIST_SAVE_BY_COPY
+            unsetopt HIST_FCNTL_LOCK
           '';
         };
 
