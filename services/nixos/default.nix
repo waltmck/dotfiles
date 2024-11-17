@@ -276,5 +276,8 @@
     builders-use-substitutes = true
   '';
 
-  time.timeZone = "America/New_York";
+  # time.timeZone = "America/New_York";
+
+  services.timesyncd.enable = true;
+  services.automatic-timezoned.enable = true;
 }

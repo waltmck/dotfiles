@@ -24,6 +24,6 @@
   };
 
   # To test speed outside of tailscale VPN
-  networking.firewall.allowedTCPPorts = if (hostname == "walt-cloud") then [5201] else [];
+  networking.firewall.allowedTCPPorts = [5201]; # if (hostname == "walt-cloud") then [5201] else [];
   networking.firewall.allowedUDPPorts = [5201];
 }

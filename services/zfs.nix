@@ -29,6 +29,11 @@
 
   boot.zfs.removeLinuxDRM = true;
 
+  # ZFS options
+  boot.extraModprobeConfig = ''
+    options zfs zfs_bclone_enabled=1
+  '';
+
   services.zfs = {
     autoScrub.enable = true;
     trim.enable = true;

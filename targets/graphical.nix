@@ -23,6 +23,7 @@ assert !headless; {
     ../packages/preview
     ../packages/nautilus.nix
     ../packages/numerical.nix
+    ../packages/llm.nix
 
     ../services/gnome
     ../services/hyprland
@@ -116,6 +117,7 @@ assert !headless; {
     varia # Download manager, wraps aria2
 
     slack-term # Slack client
+    headlines
 
     inputs.zotero-nix.packages.${system}.default
 

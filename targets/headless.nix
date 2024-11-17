@@ -35,6 +35,7 @@
   environment.systemPackages = with pkgs; [
     # Common utilities
     sysbench
+    coreutils-full
     toybox
     busybox
 
