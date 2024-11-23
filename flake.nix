@@ -7,7 +7,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -35,13 +35,13 @@
       # url = "github:tpwrules/nixos-apple-silicon/main";
 
       # Minimal update plus Honeykrisp
-      # url = "github:oliverbestmann/nixos-apple-silicon";
+      url = "github:oliverbestmann/nixos-apple-silicon";
 
       # Opinionated + optimized update
       # url = "github:zzywysm/nixos-asahi";
 
       # My custom update
-      url = "github:waltmck/nixos-asahi/dev";
+      # url = "github:waltmck/nixos-asahi/dev";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-aarch64-widevine = {
