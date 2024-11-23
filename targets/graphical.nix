@@ -92,7 +92,6 @@ assert !headless; {
     # File Readers
 
     papers # PDF reader
-    zathura # Another PDF viewer
     xournalpp # PDF annotator
 
     celluloid # Video player
@@ -124,6 +123,8 @@ assert !headless; {
     # cozy # Audiobooks
 
     ungoogled-chromium
+    epiphany
+    deja-dup
   ];
 
   environment.persistence."/nix/state".users.waltmck.directories = [

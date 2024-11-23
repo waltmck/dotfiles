@@ -4,15 +4,19 @@
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  zathura = pkgs.zathura.override {useMupdf = true;};
+in {
   environment.systemPackages = [
-    pkgs.zathura
+    zathura
   ];
 
   home-manager.sharedModules = [
     {
       programs.zathura = {
         enable = true;
+
+        package = zathura;
 
         options = let
           bg = "#1F1F1F";

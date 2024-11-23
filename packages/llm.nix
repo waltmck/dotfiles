@@ -39,7 +39,8 @@
   services.ollama = {
     enable = true;
     loadModels = [
-      "llama3.1:70b"
+      # "llama3.1:70b"
+      "llama3.1" # Macbook Air doesn't have enough memory to run 70b model
     ];
   };
 
