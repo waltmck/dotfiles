@@ -127,6 +127,7 @@ in {
 
         # CURSOR STUFF
         "XCURSOR_SIZE=24"
+        "HYPRCURSOR_SIZE=24"
         "XCURSOR_THEME=Qogir"
         # END CURSOR STUFF
 
@@ -193,8 +194,6 @@ in {
         "col.inactive_border" = "rgba(333333ff)";
       };
 
-      master.no_gaps_when_only = true;
-
       debug = {
         disable_logs = false;
       };
@@ -221,7 +220,6 @@ in {
       dwindle = {
         pseudotile = "yes";
         preserve_split = "yes";
-        no_gaps_when_only = false;
       };
 
       windowrule = let
@@ -374,10 +372,13 @@ in {
       ];
 
       decoration = {
-        drop_shadow = true;
-        shadow_range = 8;
-        shadow_render_power = 2;
-        "col.shadow" = "rgba(00000044)";
+        shadow = {
+          enabled = true;
+          range = 8;
+          render_power = 2;
+
+          color = "rgba(00000044)";
+        };
 
         dim_inactive = false;
 

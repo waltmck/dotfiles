@@ -27,7 +27,9 @@
   };
   cursorTheme = {
     name = "Qogir";
-    size = 24;
+    # Temporary fix for GTK4 cursor bug, see https://bbs.archlinux.org/viewtopic.php?id=299624
+    # Once a fix is merge, revert to 24
+    size = 32;
     package = pkgs.qogir-icon-theme;
   };
   iconTheme = {

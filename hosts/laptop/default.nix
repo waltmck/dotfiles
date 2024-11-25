@@ -59,6 +59,9 @@
       hyprcursor.cflags = "-Ofast";
       hyprutils.cflags = "-Ofast";
 
+      # We need to rebuild systemd anyway so why not?
+      systemdPatched.cflags = "-O3";
+
       # Why does this lead to rebuilding ffmpeg, neovide, qemu?
       # pipewire.cflags = "-O3";
       # wireplumber.cflags = "-Ofast";

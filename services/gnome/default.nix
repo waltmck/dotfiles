@@ -55,6 +55,9 @@
     # Hide close buttons
     dconf.settings = {
       "org/gnome/desktop/wm/preferences".button-layout = "appmenu";
+
+      # Temporary fix for GTK4 cursor bug, see https://bbs.archlinux.org/viewtopic.php?id=299624
+      "org/gnome/desktop/interface".cursor-size = 32;
     };
   };
 

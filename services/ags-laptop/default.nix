@@ -102,6 +102,7 @@ in {
 
         # CURSOR STUFF
         "XCURSOR_SIZE=24"
+        "HYPRCURSOR_SIZE=24"
         "XCURSOR_THEME=Qogir"
       ];
 

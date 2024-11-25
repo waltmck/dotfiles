@@ -16,7 +16,7 @@
     inputs.nix-index-database.nixosModules.nix-index
 
     # Use Lix instead of Nix
-    inputs.lix-module.nixosModules.lixFromNixpkgs
+    # inputs.lix-module.nixosModules.lixFromNixpkgs
   ];
 
   # nix

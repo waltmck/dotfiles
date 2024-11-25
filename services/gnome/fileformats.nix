@@ -155,6 +155,11 @@
     "text/markdown"
   ];
 
+  latex = [
+    "text/x-bibtex"
+    "text/x-tex"
+  ];
+
   code = [
     "text/x-c++src"
     "text/x-c++hdr"
