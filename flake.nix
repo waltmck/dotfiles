@@ -35,13 +35,13 @@
       # url = "github:tpwrules/nixos-apple-silicon/main";
 
       # Minimal update plus Honeykrisp
-      url = "github:oliverbestmann/nixos-apple-silicon";
+      # url = "github:oliverbestmann/nixos-apple-silicon";
 
       # Opinionated + optimized update
       # url = "github:zzywysm/nixos-asahi";
 
       # My custom update
-      # url = "github:waltmck/nixos-asahi/dev";
+      url = "github:waltmck/nixos-asahi";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-aarch64-widevine = {
