@@ -52,7 +52,7 @@
           packages = with pkgs; [
             nix
             git
-            _1password
+            _1password-cli
             newsboat
             tmux
             zathura

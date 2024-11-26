@@ -29,11 +29,8 @@ in {
     # untrusted nodes
     overrideFolders = false;
 
-    # Enable gui remote access only if headless
-    guiAddress =
-      if headless
-      then "0.0.0.0:8384"
-      else "127.0.0.1:8384";
+    # Only accessible through nginx
+    guiAddress = "127.0.0.1:8384";
 
     settings = {
       options = {

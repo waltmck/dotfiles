@@ -10,7 +10,7 @@
   ];
 
   programs._1password = {
-    package = pkgs._1password;
+    package = pkgs._1password-cli;
     enable = true;
   };
   programs._1password-gui = {

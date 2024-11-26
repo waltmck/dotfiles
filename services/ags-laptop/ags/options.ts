@@ -126,7 +126,7 @@ const options = mkOptions(OPTIONS, {
         },
         media: {
             monochrome: opt(true),
-            preferred: opt("com.github.neithern.g4music"),
+            preferred: opt("Gapless"),
             direction: opt<"left" | "right">("right"),
             format: opt("{artists} - {title}"),
             length: opt(40),
