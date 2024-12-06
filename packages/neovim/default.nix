@@ -356,6 +356,8 @@ in {
 
       web-devicons.enable = true;
 
+      # Neorg is broken and additionally breaks Telescope, so disable
+      /*
       neorg = {
         enable = true;
         modules = {
@@ -376,6 +378,7 @@ in {
 
         logger.modes.info.level = "warn";
       };
+      */
 
       /*
       copilot-lua = {
