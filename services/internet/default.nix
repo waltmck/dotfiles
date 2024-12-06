@@ -35,6 +35,7 @@
   # broken for a Riad Dar Naai in Marrakech.
 
   # This sometimes breaks wifi captive portals.
+
   networking.nameservers = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
 
   services.resolved = {
@@ -44,7 +45,7 @@
     fallbackDns = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
     # dnsovertls = "true"; # This breaks connecting to harvard.edu on Harvard wifi.
   };
-  
+
   /*
   # IPFS
   services.kubo = {

@@ -6,7 +6,7 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    # flare-signal
+    flare-signal
     signal-desktop
   ];
 
@@ -30,7 +30,7 @@
 
   environment.persistence."/nix/state".users.waltmck = {
     directories = [
-      # ".local/share/flare"
+      ".local/share/flare"
       ".config/Signal"
     ];
   };

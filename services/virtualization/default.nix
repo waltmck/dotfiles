@@ -12,7 +12,10 @@
   # VMs
 
   programs.virt-manager.enable = true;
-  virtualisation.libvirtd.enable = true;
+  virtualisation = {
+    libvirtd.enable = true;
+    # waydroid.enable = true; # Broken on asahi linux
+  };
 
   environment.systemPackages = with pkgs; [
     # Container management
@@ -20,6 +23,9 @@
 
     # VM management
     boxes
+
+    # Wayrdoird
+    waydroid
   ];
 
   home-manager.sharedModules = [

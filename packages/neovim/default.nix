@@ -359,7 +359,9 @@ in {
       neorg = {
         enable = true;
         modules = {
-          "core.defaults" = {};
+          "core.defaults" = {
+            __empty = null;
+          };
           "core.concealer" = {};
           "core.latex.renderer" = {};
           "core.completion" = {};
@@ -371,6 +373,8 @@ in {
             };
           };
         };
+
+        logger.modes.info.level = "warn";
       };
 
       /*

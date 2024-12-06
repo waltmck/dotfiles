@@ -77,7 +77,7 @@ in {
 
     serviceConfig = {
       Type = "simple";
-      ExecStart = "${pkgs.util-linux}/bin/uclampset -m 0 -M 64 ${pkgs.ags}/bin/ags -b hypr";
+      ExecStart = "${pkgs.util-linux}/bin/uclampset -m 0 -M 1024 ${pkgs.ags}/bin/ags -b hypr";
 
       Environment = let
         path = lib.makeBinPath deps;

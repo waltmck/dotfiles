@@ -15,6 +15,7 @@ in {
     ./theme.nix
     ./hyprlock.nix
     ./hypridle.nix
+    ./hyprsunset.nix
     # ./hyprpaper.nix
   ];
 
@@ -328,10 +329,10 @@ in {
           (ws "right" "e+1")
           (mvtows "left" "e-1")
           (mvtows "right" "e+1")
-          (resizeactive "k" "0 -20")
-          (resizeactive "j" "0 20")
-          (resizeactive "l" "20 0")
-          (resizeactive "h" "-20 0")
+          # (resizeactive "k" "0 -20")
+          # (resizeactive "j" "0 20")
+          # (resizeactive "l" "20 0")
+          # (resizeactive "h" "-20 0")
           (mvactive "k" "0 -20")
           (mvactive "j" "0 20")
           (mvactive "l" "20 0")
@@ -350,6 +351,13 @@ in {
         ",XF86AudioRaiseVolume,  exec, ${wpctl} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
         ",XF86AudioLowerVolume,  exec, ${wpctl} set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%-"
         ",XF86AudioMute,         exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
+      ];
+
+      binde = [
+        "SUPER SHIFT, k, resizeactive, 0 -20"
+        "SUPER SHIFT, j, resizeactive, 0 20"
+        "SUPER SHIFT, l, resizeactive, 20 0"
+        "SUPER SHIFT, h, resizeactive, -20 0"
       ];
 
       bindl = [

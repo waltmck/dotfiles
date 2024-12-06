@@ -61,6 +61,10 @@
     }
   ];
 
+  services.nginx.virtualHosts."cloud.waltmckelvie.com".locations."/stream/" = {
+    proxyPass = "http://127.0.0.1:8096/";
+  };
+
   # Intro skipper plugin requires modifying nix store contents
   # Copied from https://wiki.nixos.org/wiki/Jellyfin#Intro_Skipper_plugin
   nixpkgs.overlays = with pkgs; [

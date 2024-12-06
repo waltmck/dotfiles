@@ -51,6 +51,34 @@
     };
   };
 
+  services.nginx.virtualHosts."headscale.waltmckelvie.com" = {
+    enableACME = true;
+    forceSSL = true;
+
+    locations = {
+      "/" = {
+        proxyPass = "http://127.0.0.1:8080/";
+        proxyWebsockets = true;
+
+        extraConfig = ''
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection $connection_upgrade;
+          proxy_set_header Host $server_name;
+          proxy_redirect http:// https://;
+          proxy_buffering off;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          add_header Strict-Transport-Security "max-age=15552000; includeSubDomains" always;
+        '';
+      };
+    };
+  };
+
+  services.acme.certs = {
+    "headscale.waltmckelvie.com" = {};
+  };
+
   # Allow headscale to access its config directory
   systemd.services.headscale.serviceConfig.BindPaths = ["/data/config/headscale"];
 

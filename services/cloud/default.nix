@@ -8,6 +8,8 @@
     ./rss.nix
     ./irc.nix
     ./ntfy.nix
+    ./stash.nix
+    ./aria2.nix
   ];
 
   users.groups."data" = {

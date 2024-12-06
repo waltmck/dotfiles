@@ -110,6 +110,7 @@ assert !headless; {
 
     g4music
     cozy
+    helvum
 
     notify-client #ntfy client
 
