@@ -356,10 +356,9 @@ in {
 
       web-devicons.enable = true;
 
-      # Neorg is broken and additionally breaks Telescope, so disable
-      /*
       neorg = {
         enable = true;
+        /*
         modules = {
           "core.defaults" = {
             __empty = null;
@@ -375,10 +374,10 @@ in {
             };
           };
         };
+        */
 
         logger.modes.info.level = "warn";
       };
-      */
 
       /*
       copilot-lua = {
