@@ -215,11 +215,12 @@ in {
 
         grammarPackages = pkgs.vimPlugins.nvim-treesitter.passthru.allGrammars;
 
+        folding = true;
+
         settings = {
           indent = {
             enable = true;
           };
-          folding = true;
         };
       };
 
