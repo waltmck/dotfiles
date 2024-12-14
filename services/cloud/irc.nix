@@ -32,7 +32,7 @@
       MaxBufferSize = 500;
 
       Listener.l = {
-        Port = 5000;
+        Port = 5001;
         AllowWeb = false;
         AllowIRC = true;
         SSL = false;
@@ -94,7 +94,7 @@
     enable = true;
     virtualHosts."${hostname}" = {
       locations."/znc/" = {
-        proxyPass = "http://127.0.0.1:5000/";
+        proxyPass = "http://127.0.0.1:5001/";
         extraConfig = ''
           proxy_redirect off;
           proxy_set_header Host $host;

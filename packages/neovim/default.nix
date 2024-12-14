@@ -359,7 +359,7 @@ in {
       web-devicons.enable = true;
 
       neorg = {
-        enable = true;
+        enable = false;
         /*
         modules = {
           "core.defaults" = {

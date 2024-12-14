@@ -43,4 +43,30 @@
       extraConfig = stashConfig;
     };
   };
+
+  programs.virt-manager.enable = true;
+  virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+    };
+    libvirtd.enable = true;
+  };
+
+  virtualisation.oci-containers.containers = {
+    stash-vr-companion = {
+      image = "ghcr.io/tweeticoats/stash-vr-companion:latest";
+      ports = ["127.0.0.1:5000:5000"];
+
+      environment = {
+        API_URL = "http://walt-cloud:9999/graphql";
+      };
+
+      extraOptions = [
+        "--pull=always"
+        "--network=host"
+        "--dns=100.100.100.100"
+      ];
+    };
+  };
 }

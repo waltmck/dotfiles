@@ -22,7 +22,7 @@
           {
             chatnet = "libera-znc";
             address = "walt-cloud";
-            port = "5000";
+            port = "5001";
             use_ssl = "no";
             ssl_verify = "no";
             autoconnect = "yes";
@@ -31,7 +31,7 @@
           {
             chatnet = "oftc-znc";
             address = "walt-cloud";
-            port = "5000";
+            port = "5001";
             use_ssl = "no";
             ssl_verify = "no";
             autoconnect = "yes";
