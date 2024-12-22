@@ -4,6 +4,7 @@
   pkgs,
   inputs,
   headless,
+  hostname,
   ...
 }: {
   home-manager.sharedModules = [
@@ -29,7 +30,10 @@
           };
         };
 
-        userKnownHostsFile = "/nix/state/home/waltmck/.ssh/known_hosts";
+        userKnownHostsFile =
+          if hostname == "walt-laptop"
+          then "/nix/state/home/waltmck/.ssh/known_hosts"
+          else "/home/waltmck/.ssh/known_hosts";
       };
     }
   ];
