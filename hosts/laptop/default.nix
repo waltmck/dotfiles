@@ -66,8 +66,5 @@
     };
   };
 
-  # Vulkan renderer is slower than opengl renderer on Asahi
-  environment.variables.GSK_RENDERER = "ngl";
-
   system.stateVersion = "24.05"; # Did you read the comment?
 }

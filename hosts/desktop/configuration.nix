@@ -11,6 +11,7 @@
     # Needed for initial boot
     ./disko.nix
     ./datasets.nix
+    ./tweaks.nix
 
     ./hardware-configuration.nix
 
@@ -93,15 +94,4 @@
   environment.systemPackages = with pkgs; [git vim busybox];
 
   system.stateVersion = "24.11";
-
-  # Tweaks:
-
-  home-manager.users.waltmck.wayland.windowManager.hyprland.settings = {
-    monitor = [
-      # "eDP-1, 1920x1080, 0x0, 1"
-      # "HDMI-A-1, 2560x1440, 1920x0, 1"
-      # ",preferred,auto,1.5"
-      "DP-1, 3840x2160@240, 0x0, 1.6"
-    ];
-  };
 }
