@@ -141,13 +141,13 @@
         specialArgs = {
           inherit inputs;
           inherit system;
-          hostname = "walt-cloud";
+          hostname = "walt-desktop";
           builder = true;
 
           native = false;
           headless = false;
 
-          datasets = ["data"];
+          datasets = ["rpool/enc/state"];
         };
       };
     };
@@ -163,6 +163,12 @@
           hostname = "cloud.waltmckelvie.com";
           profiles.system = {
             path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations."walt-cloud";
+          };
+        };
+        "walt-desktop" = {
+          hostname = "walt-desktop";
+          profiles.system = {
+            path = inputs.deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations."walt-desktop";
           };
         };
       };

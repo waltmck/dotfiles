@@ -42,7 +42,7 @@
         options = {
           mountpoint = "none";
           canmount = "off";
-          reservation = "10%";
+          reservation = "350M";
         };
       };
 

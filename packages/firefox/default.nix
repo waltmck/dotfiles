@@ -297,6 +297,9 @@ in {
 
         "extensions.autoDisableScopes" = 0; # Don't auto disable extensions
 
+        # Disable "this connection is not secure" warning
+        "security.insecure_field_warning.contextual.enabled" = false;
+
         # REMOVE EVEN MORE CRUD
 
         "services.sync.prefs.sync-seen.browser.urlbar.suggest.engines" = false;

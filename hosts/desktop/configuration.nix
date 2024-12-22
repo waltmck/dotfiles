@@ -12,9 +12,12 @@
     ./disko.nix
     ./datasets.nix
 
+    ./hardware-configuration.nix
+
     # Extra stuff
     ../../targets/headless.nix
-    ../../services/cloud
+    # ../../targets/graphical.nix
+    # ../../services/cloud
     ../../services/zfs.nix
   ];
 
