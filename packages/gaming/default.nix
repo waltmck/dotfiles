@@ -9,6 +9,7 @@
   environment.systemPackages = with pkgs; [
     prismlauncher
     pkgs86.hello
+    ares
   ];
 
   nixpkgs.config.allowUnsupportedSystem = true;

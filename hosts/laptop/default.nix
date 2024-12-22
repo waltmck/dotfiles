@@ -30,19 +30,19 @@
     "i686-linux"
   ];
   /*
-    environment.systemPackages = with pkgs; [box64];
+  environment.systemPackages = with pkgs; [box64];
 
-    boot.binfmt.registrations = {
-      x86_64-linux = {
-        magicOrExtension = ''\x7fELF\x02\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x3e\x00'';
-        mask = ''\xff\xff\xff\xff\xff\xfe\xfe\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff'';
-        interpreter = "${pkgs.box64}/bin/box64";
-      };
-      x86_64-windows = {
-  magicOrExtension = "MZ";
-        interpreter = "${pkgs.box64}/bin/box64";
-      };
+  boot.binfmt.registrations = {
+    x86_64-linux = {
+      magicOrExtension = ''\x7fELF\x02\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x3e\x00'';
+      mask = ''\xff\xff\xff\xff\xff\xfe\xfe\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff'';
+      interpreter = "${pkgs.box64}/bin/box64";
     };
+    x86_64-windows = {
+      magicOrExtension = "MZ";
+      interpreter = "${pkgs.box64}/bin/box64";
+    };
+  };
   */
 
   # See installation notes for how to find this
@@ -67,6 +67,9 @@
       # wireplumber.cflags = "-Ofast";
     };
   };
+
+  # Vulkan renderer is slower than opengl renderer on Asahi
+  environment.variables.GSK_RENDERER = "ngl";
 
   system.stateVersion = "24.05"; # Did you read the comment?
 }

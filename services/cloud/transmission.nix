@@ -81,6 +81,9 @@ in {
       incomplete-dir = "/data/.incomplete";
       incomplete-dir-enabled = true;
       download-dir = "/data/torrents/other";
+
+      # Disable preallocation which doesn't work with ZFS
+      preallocation = 0;
     };
   };
 

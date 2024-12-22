@@ -130,6 +130,26 @@
           datasets = ["data"];
         };
       };
+
+      "walt-desktop" = inputs.nixpkgs.lib.nixosSystem rec {
+        system = "x86_64-linux";
+        modules = [
+          ./hosts/desktop/configuration.nix
+          # nixos-boot.nixosModules.default
+          inputs.disko.nixosModules.disko
+        ];
+        specialArgs = {
+          inherit inputs;
+          inherit system;
+          hostname = "walt-cloud";
+          builder = true;
+
+          native = false;
+          headless = false;
+
+          datasets = ["data"];
+        };
+      };
     };
 
     deploy = {

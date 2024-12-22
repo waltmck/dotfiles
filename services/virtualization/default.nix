@@ -4,9 +4,15 @@
   ...
 }: {
   # Containers
+  /*
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
+  };
+  */
+
+  virtualisation.docker = {
+    enable = true;
   };
 
   # VMs
@@ -124,6 +130,14 @@
   ];
 
   environment.persistence."/nix/state".users.waltmck = {
-    directories = [".local/share/containers"];
+    directories = [
+      ".local/share/containers"
+    ];
+  };
+
+  environment.persistence."/nix/state" = {
+    directories = [
+      "/var/lib/docker"
+    ];
   };
 }
