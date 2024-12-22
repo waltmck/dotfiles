@@ -55,6 +55,10 @@ in {
           id = "DAH6HPS-GM43HSW-2P6OPKY-HQXKN5F-A37LZ2I-YCAL2DI-2M6Z4DU-QSNDXAI";
           addresses = ["${protocol}://walt-reader:22000"];
         };
+        "walt-desktop" = {
+          id = "FF46SOP-XPBJPUA-BYMJ623-DVOKVAW-GXGOFTP-VUPQEJQ-GSFK3LQ-V6MP7AM";
+          addresses = ["${protocol}://walt-desktop:22000"];
+        };
       };
     };
   };
