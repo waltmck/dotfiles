@@ -16,9 +16,15 @@
 
     # Extra stuff
     ../../targets/headless.nix
-    # ../../targets/graphical.nix
+    ../../targets/graphical.nix
     # ../../services/cloud
     ../../services/zfs.nix
+  ];
+
+  # TODO why is this needed??
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "python3.12-youtube-dl-2021.12.17"
   ];
 
   # Disable impermanence because it is buggy and often causes failure to boot
