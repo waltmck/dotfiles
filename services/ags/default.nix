@@ -55,7 +55,7 @@ in {
     };
     */
 
-    xdg.configFile."ags".source = ./ags;
+    xdg.configFile."ags".source = ./ags-laptop;
   };
 
   environment.systemPackages = [pkgs.ags];

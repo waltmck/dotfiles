@@ -19,8 +19,6 @@
     ../../targets/headless.nix
     ../../targets/graphical.nix
 
-    ../../services/ags-laptop
-
     ../../modules/optimize.nix
   ];
 
