@@ -1,10 +1,10 @@
-{}: {
+{
   disko.devices = {
     disk = {
       # M.2 boot drive
       boot = {
         type = "disk";
-        device = "/dev/nvme0n1";
+        device = "/dev/disk/by-id/nvme-WD_PC_SN740_SDDPNQD-256G-1006_23235U800101";
         content = {
           type = "gpt";
           partitions = {
@@ -24,7 +24,7 @@
       # First U.2 drive
       one = {
         type = "disk";
-        device = "/dev/sda";
+        device = "/dev/disk/by-id/nvme-INTEL_SSDPF2KX038TZ_PHAC0501001K3P8AGN";
         content = {
           type = "gpt";
           partitions = {
@@ -42,7 +42,7 @@
       # Second U.2 drive
       two = {
         type = "disk";
-        device = "/dev/sdb";
+        device = "/dev/disk/by-id/nvme-INTEL_SSDPF2KX038TZ_PHAC128200313P8AGN";
         content = {
           type = "gpt";
           partitions = {
