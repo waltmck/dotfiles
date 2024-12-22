@@ -46,9 +46,8 @@
 
   programs.virt-manager.enable = true;
   virtualisation = {
-    podman = {
+    docker = {
       enable = true;
-      dockerCompat = true;
     };
     libvirtd.enable = true;
   };
