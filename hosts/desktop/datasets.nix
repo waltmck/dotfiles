@@ -56,10 +56,6 @@
           keyformat = "passphrase";
           keylocation = "prompt";
         };
-        # use this to read the key during boot
-        # postCreateHook = ''
-        #   zfs set keylocation="prompt" "zroot/$name";
-        # '';
       };
 
       # For persistent data (enable snapshots)
