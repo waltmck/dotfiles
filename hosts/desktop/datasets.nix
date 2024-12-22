@@ -1,11 +1,11 @@
 {
   disko.devices.zpool.rpool = {
     options = {
-      mountpoint = "none";
-      canmount = "off";
       ashift = "13";
     };
     rootFsOptions = {
+      mountpoint = "none";
+      canmount = "off";
       "com.sun:auto-snapshot" = "false";
       xattr = "sa";
       acltype = "posixacl";
