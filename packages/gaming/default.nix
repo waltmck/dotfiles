@@ -3,12 +3,12 @@
   lib,
   pkgs,
   inputs,
-  pkgs86,
+  # pkgs86,
   ...
 }: {
   environment.systemPackages = with pkgs; [
     prismlauncher
-    pkgs86.hello
+    # pkgs86.hello
     ares
   ];
 
