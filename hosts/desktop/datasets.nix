@@ -36,6 +36,16 @@
         mountpoint = "/nix";
       };
 
+      # Steam games
+      "sys/games" = {
+        type = "zfs_fs";
+
+        options = {
+          mountpoint = "/games";
+          recordsize = "1M";
+        };
+      };
+
       # --- Reserved pool for performance ---
       reserved = {
         type = "zfs_fs";

@@ -33,7 +33,7 @@
   # Vulkan renderer is slower than opengl renderer on Asahi
   environment.variables.GSK_RENDERER = "ngl";
 
-  home-manager.users.waltmck.programs.firefox = {
+  home-manager.users.waltmck.programs.firefox.profiles.default.settings = {
     "mousewheel.default.delta_multiplier_y" = 40;
     "mousewheel.default.delta_multiplier_x" = 20;
   };

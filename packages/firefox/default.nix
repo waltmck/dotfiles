@@ -279,8 +279,6 @@ in {
         "svg.context-properties.content.enabled" = true;
 
         "browser.toolbars.bookmarks.visibility" = false;
-        "mousewheel.default.delta_multiplier_y" = 40;
-        "mousewheel.default.delta_multiplier_x" = 20;
 
         "browser.sessionstore.resume_from_crash" = false; # Disable resuming from crash which requires frequent writes to disk
 

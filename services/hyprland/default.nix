@@ -199,6 +199,8 @@ in {
         disable_logs = false;
       };
 
+      xwayland.force_zero_scaling = true;
+
       misc = {
         disable_splash_rendering = true;
         disable_hyprland_logo = true;
