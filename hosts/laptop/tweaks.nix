@@ -7,6 +7,8 @@
       "eDP-1, 2560x1664@60, 0x0, 1.6"
     ];
 
+    environment.sessionVariables.GDK_SCALE = "1.6";
+
     # exec-once = [
     #   "pactl set-default-sink audio_effect.j413-convolver"
     # ];

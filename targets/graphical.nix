@@ -52,6 +52,7 @@ assert !headless; {
     gnome-clocks
     gnome-maps
     gnome-photos
+    gnome-disk-utility
     gnome-contacts
     sound-juicer
     seahorse

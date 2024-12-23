@@ -29,6 +29,9 @@
       auto-optimise-store = true;
       trusted-users = ["waltmck"];
     };
+
+    # Since we are using flakes
+    channel.enable = false;
   };
 
   # virtualisation

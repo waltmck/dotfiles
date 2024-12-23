@@ -363,6 +363,13 @@ in {
         # To get SurfingKeys to work in protected pages
         "privacy.resistFingerprinting.block_mozAddonManager" = true;
         "extensions.webextensions.restrictedDomains" = "";
+
+        # Performance
+        "network.prefetch-next" = true;
+        "network.dns.disablePrefetch" = false;
+        "network.dns.disablePrefetchFromHTTPS" = false;
+        "network.http.speculative-parallel-limit" = 10;
+        "network.predictor.enabled" = true;
       };
     };
   };

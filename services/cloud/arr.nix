@@ -46,6 +46,12 @@
     dataDir = "/data/config/readarr";
   };
 
+  services.bazarr = {
+    enable = true;
+    user = "data";
+    group = "data";
+  };
+
   systemd.services.speakarr = {
     description = "Speakarr";
     after = ["network.target"];
@@ -186,6 +192,12 @@
         proxyPass = "http://127.0.0.1:5055";
 
         extraConfig = jellyseerrConfig "jellyseerr";
+      };
+
+      locations."^~ /bazarr" = {
+        proxyPass = "http://127.0.0.1:6767";
+
+        inherit extraConfig;
       };
 
       locations."^~ /whisparr" = {
