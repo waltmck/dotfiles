@@ -28,6 +28,11 @@
             user = "waltmck";
             forwardAgent = true;
           };
+          "walt-desktop" = {
+            hostname = "walt-desktop";
+            user = "waltmck";
+            forwardAgent = true;
+          };
         };
 
         userKnownHostsFile =
