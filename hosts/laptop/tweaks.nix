@@ -7,8 +7,6 @@
       "eDP-1, 2560x1664@60, 0x0, 1.6"
     ];
 
-    environment.sessionVariables.GDK_SCALE = "1.6";
-
     # exec-once = [
     #   "pactl set-default-sink audio_effect.j413-convolver"
     # ];
@@ -30,10 +28,14 @@
 
       workspace_swipe_cancel_ratio = 0.15;
     };
+
+    xwayland.force_zero_scaling = true;
   };
 
   # Vulkan renderer is slower than opengl renderer on Asahi
-  environment.variables.GSK_RENDERER = "ngl";
+  environment.sessionVariables.GSK_RENDERER = "ngl";
+
+  environment.sessionVariables.GDK_SCALE = "1.6";
 
   home-manager.users.waltmck.programs.firefox.profiles.default.settings = {
     "mousewheel.default.delta_multiplier_y" = 40;

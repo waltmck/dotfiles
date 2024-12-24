@@ -15,6 +15,7 @@
     ./hardware-configuration.nix
     ../../hardware/asahi
     ./filesystem.nix
+    ./tweaks.nix
 
     ../../targets/headless.nix
     ../../targets/graphical.nix

@@ -8,6 +8,8 @@
     ];
 
     misc.vrr = 1;
+
+    xwayland.force_zero_scaling = true;
   };
 
   # Scale X11 apps
