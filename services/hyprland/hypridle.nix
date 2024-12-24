@@ -20,8 +20,9 @@
         }
 
         listener {
-            timeout = 300
+            timeout = 1800
             on-timeout = ${pkgs.systemd}/bin/systemctl suspend
+            on-resume = ${pkgs.systemd}/bin/systemctl restart --user ags
         }
       '';
     };

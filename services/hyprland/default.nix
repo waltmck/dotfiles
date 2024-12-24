@@ -245,6 +245,19 @@ in {
 
         (f "com.github.neithern.g4music")
         (f "1Password")
+
+        # Float messaging apps
+        (f "de.schmidhuberj.Flare")
+        (f "signal")
+        (f "app.drey.PaperPlane")
+        (f "im.dino.Dino")
+        (f "vesktop")
+        (f "whatsapp-for-linux")
+
+        # Float launchers (steam, lutris)
+        (f "steam")
+        (f "lutris")
+
         "stayfocused,class:^(1Password)$"
         "pin,class:^(com.github.neithern.g4music)$"
         "size 75%,class:^(com.github.neithern.g4music)$"
@@ -363,6 +376,7 @@ in {
       ];
 
       bindl = [
+        ",XF86Calculator,   exec, ${playerctl} play-pause" # For desktop keyboard
         ",XF86AudioPlay,    exec, ${playerctl} play-pause"
         ",XF86AudioStop,    exec, ${playerctl} pause"
         ",XF86AudioPause,   exec, ${playerctl} pause"
