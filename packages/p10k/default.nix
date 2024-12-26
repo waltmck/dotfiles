@@ -18,6 +18,18 @@
             src = pkgs.zsh-vi-mode;
             file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
           }
+          {
+            name = "fzf-tab";
+            src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
+            file = "fzf-tab.plugin.zsh";
+          }
+          /*
+          {
+            name = "fzf-history-search";
+            src = "${pkgs.zsh-fzf-history-search}/share/zsh-fzf-history-search";
+            file = "zsh-fzf-history-search.zsh";
+          }
+          */
         ];
         initExtraFirst = ''
           # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.

@@ -23,7 +23,7 @@
   };
   font = {
     name = "Ubuntu Nerd Font";
-    package = nerdfonts;
+    package = pkgs.nerd-fonts.ubuntu;
   };
   cursorTheme = {
     name = "Qogir";
@@ -42,12 +42,22 @@ in {
     pkgs.libsForQt5.qtstyleplugin-kvantum
   ];
 
-  /*
-    fonts = {
+  fonts = {
     enableDefaultPackages = true;
-    packages = [nerdfonts];
+    packages = with pkgs.nerd-fonts; [
+      ubuntu
+      ubuntu-mono
+      caskaydia-cove
+      caskaydia-mono
+      fantasque-sans-mono
+      fira-code
+      fira-mono
+      mononoki
+      iosevka
+      iosevka-term
+      iosevka-term-slab
+    ];
   };
-  */
 
   home-manager.users.waltmck = {
     home = {

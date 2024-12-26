@@ -70,13 +70,11 @@
     enable = true;
   };
 
-  /*
   services.whisparr = {
     enable = true;
     user = "data";
     dataDir = "/data/config/whisparr";
   };
-  */
 
   services.nginx = let
     extraConfig = ''

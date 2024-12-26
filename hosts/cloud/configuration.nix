@@ -11,6 +11,7 @@
     # Needed for initial boot
     ./hardware-configuration.nix
     ./disko.nix
+    ./tweaks.nix
 
     # Extra stuff
     ../../targets/headless.nix

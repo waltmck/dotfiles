@@ -16,6 +16,7 @@
       "l" = "${pkgs.lsd}/bin/lsd";
 
       "cat" = "${pkgs.bat}/bin/bat";
+      "find" = "${pkgs.fd}/bin/fd";
       "ping" = "${pkgs.gping}/bin/gping";
       "fetch" = "${pkgs.neofetch}/bin/neofetch";
       "sudo" = "sudo "; # This is so that other aliases will work with sudo
@@ -59,6 +60,8 @@
             unsetopt BEEP
             unsetopt HIST_SAVE_BY_COPY
             unsetopt HIST_FCNTL_LOCK
+            setopt inc_append_history
+            source ${pkgs.fzf}/share/fzf/key-bindings.zsh
           '';
         };
 
@@ -148,6 +151,17 @@
       Defaults lecture = never
     '';
   };
+
+  # fzf config
+  environment.sessionVariables = {
+    FZF_ALT_C_COMMAND = "fd --type d --exclude .git --follow --hidden";
+    FZF_DEFAULT_COMMAND = "fd --type f --exclude .git --follow --hidden";
+    FZF_CTRL_T_COMMAND = "fd --type f --exclude .git --follow --hidden";
+
+    ZVM_INIT_MODE = "sourcing"; # Fixes a problem with fzf keybindings
+  };
+
+  programs.fzf.keybindings = true;
 
   # Persist zsh history and completion cache
   environment.persistence."/nix/state".users.waltmck = {

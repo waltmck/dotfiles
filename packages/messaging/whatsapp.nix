@@ -36,8 +36,8 @@
 
   environment.persistence."/nix/state".users.waltmck = {
     directories = [
-      ".cache/whatsapp-for-linux"
-      ".local/share/whatsapp-for-linux"
+      ".cache/wasistlos"
+      ".local/share/wasistlos"
     ];
   };
 
@@ -54,13 +54,13 @@
 
     # Running through `zsh` so that it respects my user environment variables. This is not "best practice" but it is actually the easiest way to get this to work.
     script = ''
-      ${pkgs.zsh}/bin/zsh -lc "${pkgs.whatsapp-for-linux}/bin/whatsapp-for-linux --gapplication-service"
+      ${pkgs.zsh}/bin/zsh -lc "${pkgs.whatsapp-for-linux}/bin/wasistlos --gapplication-service"
     '';
   };
 
   home-manager.sharedModules = [
     {
-      xdg.configFile."whatsapp-for-linux/settings.conf" = {
+      xdg.configFile."wasistlos/settings.conf" = {
         text = ''
           [general]
           notification-sounds=true

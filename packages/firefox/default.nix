@@ -370,6 +370,9 @@ in {
         "network.dns.disablePrefetchFromHTTPS" = false;
         "network.http.speculative-parallel-limit" = 10;
         "network.predictor.enabled" = true;
+
+        # At last! Touch pad hold gestures fore Firefox!
+        "apz.gtk.touchpad_hold.enabled" = true;
       };
     };
   };

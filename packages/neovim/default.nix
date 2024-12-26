@@ -334,7 +334,7 @@ in {
 
       which-key.enable = true;
 
-      nvim-colorizer.enable = true;
+      colorizer.enable = true;
 
       sleuth.enable = true;
 
@@ -377,8 +377,6 @@ in {
           };
         };
         */
-
-        logger.modes.info.level = "warn";
       };
 
       /*

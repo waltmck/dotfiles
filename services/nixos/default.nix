@@ -16,7 +16,7 @@
     inputs.nix-index-database.nixosModules.nix-index
 
     # Use Lix instead of Nix
-    # inputs.lix-module.nixosModules.lixFromNixpkgs
+    inputs.lix-module.nixosModules.lixFromNixpkgs
   ];
 
   # nix
@@ -235,10 +235,13 @@
   in [
     os
     pkgs.deploy-rs
+    pkgs.nix-output-monitor
+    pkgs.nix-fast-build
   ];
 
   # Distributed Builds. Disabled for now since enabling disables building locally for some reason.
 
+  /*
   nix.buildMachines = [
     {
       hostName = "walt-cloud";
@@ -253,6 +256,7 @@
       mandatoryFeatures = [];
     }
   ];
+  */
   /*
     ++ (
     if !builder
