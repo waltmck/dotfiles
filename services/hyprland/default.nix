@@ -87,10 +87,17 @@ in {
   # for reasons outside of my comprehension
   security.pam.services.sddm.enableGnomeKeyring = true;
 
+  # Autostart from TTY1
+  home-manager.users.waltmck.programs.zsh.initExtraFirst = ''
+    if [ -z "$DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then
+      ${pkgs.systemd}/bin/systemctl start --user hyprland
+    fi
+  '';
+
   systemd.user.services.hyprland = {
     description = "Hyprland Window Manager";
     documentation = ["https://wiki.hyprland.org"];
-    after = ["systemd-user-sessions.service" "plymouth-quit-wait.service" "getty@tty1.service" "graphical-session-pre.target"];
+    # after = ["systemd-user-sessions.service" "plymouth-quit-wait.service" "getty@tty1.service" "graphical-session-pre.target"];
 
     /*
     TODO figure out how to get this to automatically start at boot

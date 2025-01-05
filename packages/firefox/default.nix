@@ -158,6 +158,7 @@ in {
           user_pref("browser.search.suggest.enabled", true);
           user_pref("browser.search.suggest.enabled.private", true);
           user_pref("browser.urlbar.suggest.searches", true);
+          user_pref("permissions.default.geo", 0);
         ''
       ];
 
@@ -216,7 +217,12 @@ in {
         "beacon.enabled" = false; # No bluetooth location BS in my webbrowser please
         "device.sensors.enabled" = false; # This isn't a phone
         "browser.search.geoip.url" = ""; # Disable geoip lookup on first start
-        "geo.enabled" = false; # Disable geolocation alltogether
+
+        # Exclusively use geoclue2 for location services
+        "geo.enabled" = true; # Disable geolocation alltogether
+        "geo.provider.network.url" = "";
+        "geo.provider.testing" = false;
+        "geo.provider.use_geoclue" = true;
 
         # ESNI is deprecated ECH is recommended
         "network.dns.echconfig.enabled" = true;

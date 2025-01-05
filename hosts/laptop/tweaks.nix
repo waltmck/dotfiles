@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   home-manager.users.waltmck.wayland.windowManager.hyprland.settings = {
     monitor = [
       # "eDP-1, 1920x1080, 0x0, 1"
@@ -41,4 +41,21 @@
     "mousewheel.default.delta_multiplier_y" = 40;
     "mousewheel.default.delta_multiplier_x" = 20;
   };
+
+  # Dynamically set timezone since we are a laptop
+
+  services.automatic-timezoned.enable = true;
+
+  services.geoclue2 = {
+    enable = true;
+    enableDemoAgent = true;
+
+    # MLS was shut down, so we need to use this. nixpkgs will probably make this its new default.
+    geoProviderUrl = "https://api.positon.xyz/v1/geolocate?key=56aba903-ae67-4f26-919b-15288b44bda9"; #"https://api.beacondb.net/v1/geolocate";
+  };
+
+  services.avahi.enable = true;
+
+  # If we don't know where we are, default to east coast
+  time.timeZone = lib.mkDefault "America/New_York";
 }

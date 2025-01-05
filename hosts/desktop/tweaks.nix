@@ -40,4 +40,31 @@
 
   # Don't like hyprsunset on my monitor
   systemd.user.services.hyprsunset.enable = false;
+
+  # Set static time zone and location since we are a desktop
+  time.timeZone = "America/New_York";
+
+  services.geoclue2 = {
+    enable = true;
+    enableDemoAgent = true;
+
+    geoProviderUrl = "";
+  };
+
+  location.latitude = 42.365518;
+  location.longitude = -71.108455;
+  location.provider = "manual";
+
+  environment.etc = {
+    "geolocation".text = ''
+      42.365518   # latitude
+      -71.108455  # longitude
+      16           # altitude
+      1.83         # accuracy radius
+    '';
+    "geoclue/conf.d/00-config.conf".text = ''
+      [static-source]
+      enable=true
+    '';
+  };
 }

@@ -99,6 +99,29 @@
             system = "x86_64-linux";
           };
 
+          patchedPkgs =
+            import (
+              (import inputs.nixpkgs {
+                inherit system;
+                allowUnfree = true;
+              })
+              .applyPatches
+              {
+                name = "patchedPkgs";
+                src = inputs.nixpkgs;
+                patches = [
+                  # Muvm
+                  (builtins.fetchurl {
+                    url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/347792.patch";
+                    sha256 = "sha256:0i8ff59s5cyb5gvinji09awzblhagshmrrisnibdcqp7w7dvrn6g";
+                  })
+                ];
+              }
+            ) {
+              inherit system;
+              allowUnfree = true;
+            };
+
           # Look at gcc docs plus https://gpages.juszkiewicz.com.pl/arm-socs-table/arm-socs.html to find arch
           march = "armv8.6-a+fp16+fp16fml+aes+sha2+sha3+bf16+i8mm+nosve+nosve2+nomemtag+nosm4+nof32mm+nof64mm";
           native = false; # Build everything from source
