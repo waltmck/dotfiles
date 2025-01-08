@@ -15,6 +15,16 @@
     zoom-us
 
     slack
+
+    mathematica
+  ];
+
+  # Following https://gitlab.com/doronbehar/nix-matlab
+  # TODO get this working correctly
+  home-manager.sharedModules = [
+    {
+      xdg.configFile."matlab/nix.sh".text = "INSTALL_DIR=/games/matlab";
+    }
   ];
 
   programs.steam.enable = true;

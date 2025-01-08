@@ -93,5 +93,7 @@
 
   environment.systemPackages = with pkgs; [git vim busybox];
 
+  hardware.cpu.amd.updateMicrocode = true;
+
   system.stateVersion = "24.11";
 }

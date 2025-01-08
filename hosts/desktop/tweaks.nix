@@ -30,10 +30,30 @@
 
   hardware.graphics.extraPackages = with pkgs; [
     amdvlk
+
+    # OpenCL
+    rocmPackages.clr.icd
   ];
 
   boot.initrd.availableKernelModules = ["amdgpu" "radeon"];
   services.xserver.videoDrivers = ["amdgpu"];
+
+  services.ollama = {
+    loadModels = [
+      "llama3.3"
+    ];
+    environmentVariables = {
+      HCC_AMDGPU_TARGET = "gfx1100"; # used to be necessary, but doesn't seem to anymore
+    };
+    rocmOverrideGfx = "11.0.0";
+
+    models = "/games/ollama";
+
+    acceleration = "rocm";
+
+    user = "ollama";
+    group = "ollama";
+  };
 
   # Vulkan renderer is buggy
   environment.sessionVariables.GSK_RENDERER = "ngl";

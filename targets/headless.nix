@@ -66,7 +66,6 @@
     unzip
     glib
     powertop
-    systemctl-tui
     yt-dlp
 
     # Audio tools
@@ -78,5 +77,9 @@
     # Nix tools
     nix-tree
     hydra-check
+
+    # Management tools
+    sysz
+    systemctl-tui
   ];
 }

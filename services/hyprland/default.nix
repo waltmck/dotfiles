@@ -323,9 +323,9 @@ in {
 
           "SUPER SHIFT, Q, execr, ${termPopup}" # Kitty popup
           "SUPER CTRL SHIFT, Q, execr, ${termPopupSession}" # Kitty popup in session.slice
-          "SUPER, S, exec, ${musicPopup}"
-          "SUPER, G, exec, ${popup_rules_loose} ${systemd-run} ${pkgs.nautilus}/bin/nautilus"
-          "SUPER, T, exec, ${opPopup}"
+          "SUPER, S, exec, ${systemd-run} ${pkgs.g4music}/bin/g4music"
+          "SUPER, G, exec, ${systemd-run} ${pkgs.nautilus}/bin/nautilus"
+          "SUPER, T, exec, ${systemd-run} ${pkgs._1password-gui}/bin/1password"
 
           "SUPER SHIFT, W, execr, ${topPopup}" # "task manager" menu
 
