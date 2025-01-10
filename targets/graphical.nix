@@ -143,6 +143,12 @@ assert !headless; {
     "Notepad"
   ];
 
+  # For libreoffice
+  fonts.packages = [
+    pkgs.corefonts
+    pkgs.vistafonts
+  ];
+
   # Autologin on TTY1
   systemd.services."getty@tty1" = {
     overrideStrategy = "asDropin";
