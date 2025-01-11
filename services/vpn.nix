@@ -36,6 +36,8 @@
   };
   */
 
+  networking.firewall.trustedInterfaces = ["ztklh2jwcc"];
+
   networking.extraHosts = ''
     10.144.0.1 walt-desktop
     10.144.0.2 walt-phone

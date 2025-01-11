@@ -146,6 +146,7 @@
           inherit inputs;
           inherit system;
           hostname = "walt-cloud";
+          ip = "10.144.0.4";
           builder = true;
 
           native = false;
