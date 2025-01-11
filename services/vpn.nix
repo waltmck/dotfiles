@@ -40,6 +40,15 @@
     joinNetworks = ["6ab565387ac1e038"];
   };
 
+  environment.persistence."/nix/state" = {
+    directories = [
+      {
+        directory = "/var/lib/zerotier-one";
+        mode = "0700";
+      }
+    ];
+  };
+
   services.nginx = {
     enable = true;
 
