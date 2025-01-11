@@ -12,20 +12,6 @@
     ./aria2.nix
   ];
 
-  users.groups."data" = {
-    gid = 791;
-    name = "data";
-  };
-
-  users.users."data" = {
-    name = "data";
-    group = "data";
-    isSystemUser = true;
-    uid = 791;
-
-    createHome = false;
-  };
-
   /*
   # Later: replace this with a mounted volume
   environment.persistence."/nix/state" = {

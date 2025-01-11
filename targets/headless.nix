@@ -38,6 +38,7 @@
     coreutils-full
     toybox
     busybox
+    pssh
 
     dig.dnsutils
     unrar
@@ -82,4 +83,18 @@
     sysz
     systemctl-tui
   ];
+
+  users.groups."data" = {
+    gid = 791;
+    name = "data";
+  };
+
+  users.users."data" = {
+    name = "data";
+    group = "data";
+    isSystemUser = true;
+    uid = 791;
+
+    createHome = false;
+  };
 }

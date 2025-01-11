@@ -20,6 +20,8 @@
     ../../targets/graphical.nix
     # ../../services/cloud
     ../../services/zfs.nix
+
+    ../../services/cloud/stash.nix
   ];
 
   # TODO why is this needed??
