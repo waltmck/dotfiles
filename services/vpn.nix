@@ -42,6 +42,7 @@
     10.144.0.1 walt-desktop
     10.144.0.2 walt-phone
     10.144.0.3 walt-laptop
+    10.144.0.4 walt-cloud
   '';
 
   services.zerotierone = {
