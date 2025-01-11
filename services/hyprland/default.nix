@@ -258,7 +258,7 @@ in {
         (f "org.telegram.desktop")
         (f "im.dino.Dino")
         (f "vesktop")
-        (f "whatsapp-for-linux")
+        (f "wasistlos")
 
         # Float launchers (steam, lutris)
         (f "steam")

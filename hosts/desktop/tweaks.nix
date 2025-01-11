@@ -26,6 +26,10 @@
     # AMD gpu tuning
     corectrl
     lact
+
+    # Razer
+    polychromatic
+    openrazer-daemon
   ];
 
   hardware.graphics.extraPackages = with pkgs; [
@@ -87,4 +91,14 @@
       enable=true
     '';
   };
+
+  # Razer mouse. For now, openrazer does not support the mouse dock pro
+  # See https://github.com/openrazer/openrazer/issues/2060
+  hardware.openrazer = {
+    enable = true;
+    users = ["waltmck"];
+  };
+
+  users.groups.plugdev = {};
+  users.users.waltmck.extraGroups = ["plugdev"];
 }
