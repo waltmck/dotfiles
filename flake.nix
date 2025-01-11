@@ -93,6 +93,7 @@
           inherit inputs;
           inherit system;
           hostname = "walt-laptop";
+          ip = "10.144.0.3";
           builder = false;
           pkgs86 = import inputs.nixpkgs {
             allowUnfree = true;
@@ -165,6 +166,7 @@
           inherit inputs;
           inherit system;
           hostname = "walt-desktop";
+          ip = "10.144.0.1";
           builder = true;
 
           native = false;

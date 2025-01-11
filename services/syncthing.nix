@@ -5,6 +5,7 @@
   inputs,
   headless,
   hostname,
+  ip,
   ...
 }: let
   # TODO figure out why quic is broken
@@ -84,12 +85,13 @@ in {
         extraConfig =
           if headless
           then ''
-            allow 100.64.0.0/24;
+            allow 10.144.0.0/16;
             allow 127.0.0.0/8;
             allow ::1/128;
             deny  all;
           ''
           else ''
+            allow ${ip};
             allow 127.0.0.0/8;
             allow ::1/128;
             deny  all;
