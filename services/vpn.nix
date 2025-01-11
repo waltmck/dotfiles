@@ -38,6 +38,12 @@
   services.zerotierone = {
     enable = true;
     joinNetworks = ["6ab565387ac1e038"];
+
+    localConf = {
+      settings = {
+        primaryPort = 9993;
+      };
+    };
   };
 
   environment.persistence."/nix/state" = {
@@ -55,9 +61,9 @@
     virtualHosts = {
       # Intranet
       "${hostname}" = {
-        # Restrict to tailscale
+        # Restrict to zerotier
         extraConfig = ''
-          allow 100.64.0.0/24;
+          allow 10.144.0.0/16;
           allow 127.0.0.0/8;
           allow ::1/128;
           deny  all;
