@@ -7,6 +7,7 @@
   hostname,
   ...
 }: {
+  /*
   environment.systemPackages = [pkgs.tailscale];
 
   services.tailscale = {
@@ -31,6 +32,12 @@
 
   networking.hosts = {
     "127.0.0.1" = [hostname];
+  };
+  */
+
+  services.zerotierone = {
+    enable = true;
+    joinNetworks = ["6ab565387ac1e038"];
   };
 
   services.nginx = {

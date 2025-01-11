@@ -25,7 +25,7 @@
     ../packages/aria2.nix
 
     ../services/nixos
-    ../services/tailscale.nix
+    ../services/vpn.nix
     ../services/syncthing.nix
     ../services/iperf3.nix
     ../services/resources.nix
