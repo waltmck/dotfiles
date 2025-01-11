@@ -255,6 +255,7 @@ in {
         (f "de.schmidhuberj.Flare")
         (f "signal")
         (f "app.drey.PaperPlane")
+        (f "org.telegram.desktop")
         (f "im.dino.Dino")
         (f "vesktop")
         (f "whatsapp-for-linux")
