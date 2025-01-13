@@ -63,6 +63,7 @@
       "Videos"
       "Pictures"
       "Music"
+      "Notes"
       "src"
       ".local/share/keyrings"
       ".config/evolution" # Persist calendars
