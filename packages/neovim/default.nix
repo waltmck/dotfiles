@@ -174,7 +174,6 @@ in {
       vim.keymap.set(${empty}, 'j', "(v:count == 0 ? 'gj' : 'j')", expr)
       vim.keymap.set(${empty}, 'k', "(v:count == 0 ? 'gk' : 'k')", expr)
 
-      vim.keymap.set("n", "<Space>", "<Nop>", { silent = true, remap = false })
       vim.g.mapleader = " "
       vim.g.maplocalleader = " "
     '';
@@ -389,7 +388,12 @@ in {
               __empty = null;
             };
           };
-          "core.latex.renderer" = {};
+          "core.latex.renderer" = {
+            config = {
+              render_on_enter = true;
+              conceal = true;
+            };
+          };
           "core.completion" = {
             config = {
               engine = "nvim-cmp";
@@ -413,10 +417,29 @@ in {
                 author = "Walter McKelvie";
               };
             };
+            "core.itero" = {
+              config = {
+                __empty = null;
+              };
+            };
+            "core.looking-glass" = {
+              config = {
+                __empty = null;
+              };
+            };
+            "core.clipboard.code-blocks".config.__empty = null;
           };
         };
         settings.logger.level = "warn";
         telescopeIntegration.enable = true;
+      };
+
+      image = {
+        enable = true;
+
+        integrations.neorg = {
+          enabled = true;
+        };
       };
 
       /*
