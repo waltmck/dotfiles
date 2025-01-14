@@ -13,6 +13,7 @@ export const substitutes = {
     "neovide-symbolic": "io.neovim.nvim-symbolic",
     "com.rtosta.zapzap-symbolic": "whatsapp-symbolic",
     "org.pwmt.zathura-symbolic": "emblem-documents-symbolic",
+    "zotero": "zotero-symbolic",
 }
 
 export default {

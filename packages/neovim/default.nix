@@ -213,14 +213,33 @@ in {
         enable = true;
         nixvimInjections = true;
 
-        grammarPackages = pkgs.vimPlugins.nvim-treesitter.passthru.allGrammars;
+        grammarPackages =
+          pkgs.vimPlugins.nvim-treesitter.passthru.allGrammars
+          ++ [
+            # Grammar for nvim-meta, see https://github.com/nix-community/nixvim/issues/2345
+            (pkgs.tree-sitter.buildGrammar
+              {
+                language = "norg-meta";
+                version = "0.1.0";
+                src = pkgs.fetchFromGitHub {
+                  owner = "nvim-neorg";
+                  repo = "tree-sitter-norg-meta";
+                  rev = "refs/tags/v0.1.0";
+                  hash = "sha256-8qSdwHlfnjFuQF4zNdLtU2/tzDRhDZbo9K54Xxgn5+8=";
+                };
+                fixupPhase = ''
+                  mkdir -p $out/queries/norg-meta
+                  mv $out/queries/*.scm $out/queries/norg-meta/
+                '';
+                meta.homepage = "https://github.com/nvim-neorg/tree-sitter-norg-meta";
+              })
+          ];
 
         folding = true;
 
         settings = {
-          indent = {
-            enable = true;
-          };
+          indent.enable = true;
+          highlight.enable = true;
         };
       };
 
@@ -313,6 +332,7 @@ in {
             {name = "path";}
             {name = "buffer";}
             {name = "luasnip";}
+            {name = "neorg";}
           ];
 
           mapping = {
@@ -359,24 +379,44 @@ in {
       web-devicons.enable = true;
 
       neorg = {
-        enable = false;
-        /*
+        enable = true;
         modules = {
           "core.defaults" = {
             __empty = null;
           };
-          "core.concealer" = {};
+          "core.concealer" = {
+            config = {
+              __empty = null;
+            };
+          };
           "core.latex.renderer" = {};
-          "core.completion" = {};
+          "core.completion" = {
+            config = {
+              engine = "nvim-cmp";
+              name = "[Norg]";
+            };
+          };
+          "core.integrations.nvim-cmp" = {
+            config = {
+              __empty = null;
+            };
+          };
           "core.dirman" = {
             config = {
               workspaces = {
                 notes = "~/Notes";
               };
             };
+            "core.norg.esupports.metagen" = {
+              config = {
+                type = "auto";
+                author = "Walter McKelvie";
+              };
+            };
           };
         };
-        */
+        settings.logger.level = "warn";
+        telescopeIntegration.enable = true;
       };
 
       /*

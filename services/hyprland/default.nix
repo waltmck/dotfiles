@@ -259,6 +259,7 @@ in {
         (f "im.dino.Dino")
         (f "vesktop")
         (f "wasistlos")
+        (f "Slack")
 
         # Float launchers (steam, lutris)
         (f "steam")

@@ -43,6 +43,8 @@
     10.144.0.2 walt-phone
     10.144.0.3 walt-laptop
     10.144.0.4 walt-cloud
+    10.144.0.5 walt-vr
+    10.144.0.6 walt-reader
   '';
 
   services.zerotierone = {
@@ -84,6 +86,8 @@
         # Listen for traffic from zerotier
         listenAddresses = [
           "${ip}"
+          "127.0.0.1"
+          "127.0.0.2"
         ];
       };
     };

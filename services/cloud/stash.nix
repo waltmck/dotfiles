@@ -5,6 +5,7 @@
   inputs,
   headless,
   hostname,
+  ip,
   ...
 }: {
   systemd.services.stash = {
@@ -58,7 +59,7 @@
       ports = ["127.0.0.1:5000:5000"];
 
       environment = {
-        API_URL = "http://${hostname}:9999/graphql";
+        API_URL = "http://${ip}:9999/graphql";
       };
 
       extraOptions = [

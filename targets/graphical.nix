@@ -130,6 +130,9 @@ assert !headless; {
     deja-dup
 
     impression # For flashing USB drives
+
+    # Reddit client?
+    headlines
   ];
 
   environment.persistence."/nix/state".users.waltmck.directories = [
