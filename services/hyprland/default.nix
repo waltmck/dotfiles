@@ -383,7 +383,13 @@ in {
       ];
 
       bindl = [
-        ",XF86Calculator,   exec, ${playerctl} play-pause" # For desktop keyboard
+        # Implement media keys for desktop keyboard
+        ",Print,            exec,  ${playerctl} previous"
+        ",Scroll_Lock,      exec,  ${playerctl} play-pause"
+        ",Pause,            exec,  ${playerctl} next"
+        ",XF86Calculator,   exec,  ${playerctl} stop"
+
+        # Regular media keys
         ",XF86AudioPlay,    exec, ${playerctl} play-pause"
         ",XF86AudioStop,    exec, ${playerctl} pause"
         ",XF86AudioPause,   exec, ${playerctl} pause"
