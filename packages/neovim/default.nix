@@ -388,12 +388,16 @@ in {
               __empty = null;
             };
           };
+
+          # This breaks neovide. Track via https://github.com/neovide/neovide/issues/2088
+          /*
           "core.latex.renderer" = {
             config = {
               render_on_enter = true;
               conceal = true;
             };
           };
+          */
           "core.completion" = {
             config = {
               engine = "nvim-cmp";
@@ -411,29 +415,25 @@ in {
                 notes = "~/Notes";
               };
             };
-            "core.norg.esupports.metagen" = {
-              config = {
-                type = "auto";
-                author = "Walter McKelvie";
-              };
-            };
-            "core.itero" = {
-              config = {
-                __empty = null;
-              };
-            };
-            "core.looking-glass" = {
-              config = {
-                __empty = null;
-              };
-            };
-            "core.clipboard.code-blocks".config.__empty = null;
           };
+          "core.itero" = {
+            config = {
+              __empty = null;
+            };
+          };
+          "core.looking-glass" = {
+            config = {
+              __empty = null;
+            };
+          };
+          "core.clipboard.code-blocks".config.__empty = null;
         };
-        settings.logger.level = "warn";
+        # settings.logger.level = "warn"; # For debugging
         telescopeIntegration.enable = true;
       };
 
+      # This breaks neovide. Track via https://github.com/neovide/neovide/issues/2088
+      /*
       image = {
         enable = true;
 
@@ -441,6 +441,7 @@ in {
           enabled = true;
         };
       };
+      */
 
       /*
       copilot-lua = {

@@ -52,6 +52,17 @@
       ConditionEnvironment = "WAYLAND_DISPLAY";
     };
 
+    serviceConfig = {
+      PassEnvironment = [
+        "BROWSER"
+        "XDG_CONFIG_DIRS"
+        "XDG_BACKEND"
+        "XCURSOR_SIZE"
+        "XDG_SESSION_TYPE"
+        "XDG_CURRENT_DESKTOP"
+      ];
+    };
+
     # Running through `zsh` so that it respects my user environment variables. This is not "best practice" but it is actually the easiest way to get this to work.
     script = ''
       ${pkgs.zsh}/bin/zsh -lc "${pkgs.whatsapp-for-linux}/bin/wasistlos --gapplication-service"

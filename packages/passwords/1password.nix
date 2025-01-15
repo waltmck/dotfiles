@@ -43,13 +43,23 @@
     wants = ["graphical-session.target"];
     after = ["graphical-session.target"];
 
-    script = ''
-      ${pkgs._1password-gui.override {polkitPolicyOwners = ["waltmck"];}}/bin/1password --silent --ozone-platform-hint=wayland
-    '';
+    serviceConfig = {
+      Environment = [
+        "GDK_SCALE=${config.services.scaling.factor}"
+      ];
+      PassEnvironment = [
+        "BROWSER"
+        "XDG_CONFIG_DIRS"
+        "XDG_BACKEND"
+        "XCURSOR_SIZE"
+        "XDG_SESSION_TYPE"
+        "XDG_CURRENT_DESKTOP"
+      ];
+    };
 
-    serviceConfig.Environment = [
-      "ELECTRON_OZONE_PLATFORM_HINT=wayland"
-    ];
+    script = ''
+      ${pkgs._1password-gui.override {polkitPolicyOwners = ["waltmck"];}}/bin/1password --silent
+    '';
   };
 
   environment.sessionVariables = {

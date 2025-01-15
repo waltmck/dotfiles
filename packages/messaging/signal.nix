@@ -20,7 +20,18 @@
     wants = ["graphical-session.target"];
     after = ["graphical-session.target"];
 
-    serviceConfig.Environment = ["PATH=${lib.makeBinPath [pkgs.signal-desktop]}:/run/current-system/sw/bin/"];
+    serviceConfig = {
+      Environment = ["PATH=${lib.makeBinPath [pkgs.signal-desktop]}:/run/current-system/sw/bin/"];
+
+      PassEnvironment = [
+        "BROWSER"
+        "XDG_CONFIG_DIRS"
+        "XDG_BACKEND"
+        "XCURSOR_SIZE"
+        "XDG_SESSION_TYPE"
+        "XDG_CURRENT_DESKTOP"
+      ];
+    };
 
     # Running through `zsh` so that it respects my user environment variables. This is not "best practice" but it is actually the easiest way to get this to work.
     script = ''

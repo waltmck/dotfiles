@@ -302,7 +302,9 @@ in {
         "extensions.autoDisableScopes" = 0; # Don't auto disable extensions
 
         # Disable "this connection is not secure" warning
+        # Sadly this no longer works due to https://bugzilla.mozilla.org/show_bug.cgi?id=1773047
         "security.insecure_field_warning.contextual.enabled" = false;
+        "security.insecure_password.ui.enabled" = false;
 
         # REMOVE EVEN MORE CRUD
 

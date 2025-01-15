@@ -6,20 +6,27 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    paper-plane
-    telegram-desktop
+    slack
   ];
 
   # Start in background
-  systemd.user.services.telegram = {
+  systemd.user.services.slack = {
     enable = true;
-    description = "Telegram Background Service";
+    description = "Slack Background Service";
     wantedBy = ["graphical-session.target"];
     wants = ["graphical-session.target"];
     after = ["graphical-session.target"];
 
     serviceConfig = {
-      Environment = ["PATH=${lib.makeBinPath [pkgs.telegram-desktop]}:/run/current-system/sw/bin/"];
+      Environment = [
+        "PATH=${lib.makeBinPath [pkgs.slack]}:/run/current-system/sw/bin/"
+
+        "ELECTRON_OZONE_PLATFORM_HINT=wayland" # Launch apps in wayland
+        "NIXOS_OZONE_WL=1"
+        "MOZ_ENABLE_WAYLAND=1"
+        "XDG_BACKEND=wayland"
+        "XDG_SESSION_TYPE=wayland"
+      ];
 
       PassEnvironment = [
         "BROWSER"
@@ -33,14 +40,11 @@
 
     # Running through `zsh` so that it respects my user environment variables. This is not "best practice" but it is actually the easiest way to get this to work.
     script = ''
-      telegram-desktop -startintray
+      ${pkgs.slack}/bin/slack -u
     '';
   };
 
-  environment.persistence."/nix/state".users.waltmck = {
-    directories = [
-      ".local/share/paper-plane"
-      ".local/share/TelegramDesktop"
-    ];
-  };
+  home-manager.users.waltmck.wayland.windowManager.hyprland.settings.windowrule = [
+    "size 940 703, class:Slack"
+  ];
 }

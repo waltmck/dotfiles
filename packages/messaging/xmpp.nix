@@ -26,6 +26,17 @@
     wants = ["graphical-session.target"];
     after = ["graphical-session.target"];
 
+    serviceConfig = {
+      PassEnvironment = [
+        "BROWSER"
+        "XDG_CONFIG_DIRS"
+        "XDG_BACKEND"
+        "XCURSOR_SIZE"
+        "XDG_SESSION_TYPE"
+        "XDG_CURRENT_DESKTOP"
+      ];
+    };
+
     # Running through `zsh` so that it respects my user environment variables. This is not "best practice" but it is actually the easiest way to get this to work.
     script = ''
       ${pkgs.zsh}/bin/zsh -lc "${pkgs.dino}/bin/dino --gapplication-service"

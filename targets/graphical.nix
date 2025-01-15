@@ -31,6 +31,8 @@ assert !headless; {
     ../services/bluetooth
     ../services/audio
     ../services/internet
+
+    ../modules/scaling.nix
   ];
 
   # -- System Packages --
@@ -102,7 +104,6 @@ assert !headless; {
     loupe # Image viewe
 
     shortwave # Internate radio
-    wike # wikipedia reader
     gnome-podcasts # Podcasts
     gpodder
 

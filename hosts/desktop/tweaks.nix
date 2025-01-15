@@ -13,7 +13,8 @@
   };
 
   # Scale X11 apps
-  environment.sessionVariables.GDK_SCALE = "1.5";
+  # environment.sessionVariables.GDK_SCALE = "1.5";
+  services.scaling.factor = "1.5";
 
   home-manager.users.waltmck.programs.firefox.profiles.default.settings = {
     "mousewheel.default.delta_multiplier_y" = 160;
