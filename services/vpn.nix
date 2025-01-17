@@ -92,4 +92,10 @@
       };
     };
   };
+
+  # nginx will initially fail to start if zerotier isn't running since it cannot bind to the ip address yet.
+  systemd.services.nginx = {
+    after = ["zerotierone.service"];
+    requires = ["zerotierone.service"];
+  };
 }
