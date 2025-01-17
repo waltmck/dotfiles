@@ -28,6 +28,12 @@
     };
   };
   */
+
+  home-manager.users.waltmck.wayland.windowManager.hyprland.settings.windowrulev2 = [
+    "float, class:(org.gnome.Fractal), title:(Fractal)"
+    "float, class:(Element), title:(Element)"
+  ];
+
   environment.persistence."/nix/state".users.waltmck = {
     directories = [".local/share/fractal" ".config/Element"];
   };

@@ -60,10 +60,6 @@
     '';
   };
 
-  home-manager.users.waltmck.wayland.windowManager.hyprland.settings.windowrulev2 = [
-    "center, floating:1, class:1Password, title:1Password"
-  ];
-
   environment.sessionVariables = {
     SSH_AUTH_SOCK = "/home/waltmck/.1password/agent.sock";
   };

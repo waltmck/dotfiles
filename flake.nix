@@ -79,6 +79,11 @@
       url = "github:camillemndn/zotero-nix";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    robotnix = {
+      url = "github:danielfullmer/robotnix";
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {self, ...} @ inputs: {
@@ -177,6 +182,13 @@
         };
       };
     };
+
+    robotnixConfigurations."walt-phone" = inputs.robotnix.lib.robotnixSystem ./hosts/phone;
+
+    # This provides a convenient output which allows you to build the image by
+    # simply running "nix build" on this flake.
+    # Build other outputs with (for example): "nix build .#robotnixConfigurations.dailydriver.ota"
+    defaultPackage.x86_64-linux = self.robotnixConfigurations."dailydriver".img;
 
     deploy = {
       sshUser = "root";

@@ -14,7 +14,10 @@
 
   # Scale X11 apps
   # environment.sessionVariables.GDK_SCALE = "1.5";
-  services.scaling.factor = "1.5";
+  services.scaling = {
+    enable = true;
+    factor = "1.5";
+  };
 
   home-manager.users.waltmck.programs.firefox.profiles.default.settings = {
     "mousewheel.default.delta_multiplier_y" = 160;
@@ -102,4 +105,7 @@
 
   users.groups.plugdev = {};
   users.users.waltmck.extraGroups = ["plugdev"];
+
+  # Let's rip some threads
+  nix.settings.max-jobs = 48;
 }

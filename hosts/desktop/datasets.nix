@@ -115,4 +115,10 @@
       };
     };
   };
+
+  /*
+  TODO (next reinstall):
+    * Switch to fast dedup implementation
+    * Make a dataset for /var/cache
+  */
 }

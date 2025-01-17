@@ -283,7 +283,5 @@
     builders-use-substitutes = true
   '';
 
-  # time.timeZone = "America/New_York";
-
-  services.timesyncd.enable = true;
+  programs.ccache.enable = true;
 }
