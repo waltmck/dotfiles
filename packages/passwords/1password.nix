@@ -44,9 +44,6 @@
     after = ["graphical-session.target"];
 
     serviceConfig = {
-      Environment = [
-        "GDK_SCALE=${config.services.scaling.factor}"
-      ];
       PassEnvironment = [
         "BROWSER"
         "XDG_CONFIG_DIRS"
@@ -57,10 +54,15 @@
       ];
     };
 
+    # 1password does not respect GDK_SCALE and copy/paste does not work on Wayland. This is the workaround
     script = ''
-      ${pkgs._1password-gui.override {polkitPolicyOwners = ["waltmck"];}}/bin/1password --silent
+      ${pkgs._1password-gui.override {polkitPolicyOwners = ["waltmck"];}}/bin/1password --silent --enable-features=WebRTCPipeWireCapturer --ozone-platform-hint=x11 --high-dpi-support=1 --force-device-scale-factor=${config.services.scaling.factor}
     '';
   };
+
+  home-manager.users.waltmck.wayland.windowManager.hyprland.settings.windowrulev2 = [
+    "center, floating:1, class:1Password, title:1Password"
+  ];
 
   environment.sessionVariables = {
     SSH_AUTH_SOCK = "/home/waltmck/.1password/agent.sock";
