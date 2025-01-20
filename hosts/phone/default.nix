@@ -7,7 +7,8 @@
 
   # These two are required options
   device = "lynx";
-  flavor = "vanilla";
+  flavor = "lineageos";
+  androidVersion = 15;
 
   # buildDateTime is set by default by the flavor, and is updated when those flavors have new releases.
   # If you make new changes to your build that you want to be pushed by the OTA updater, you should set this yourself.

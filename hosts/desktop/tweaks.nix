@@ -108,4 +108,9 @@
 
   # Let's rip some threads
   nix.settings.max-jobs = 48;
+
+  # s2idle doesn't work (only deep) for some reason
+  boot.kernelParams = [
+    "mem_sleep_default=deep"
+  ];
 }
