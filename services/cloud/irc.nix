@@ -80,6 +80,7 @@
             "#asahi" = default;
             "#asahi-alt" = default;
             "#asahi-gpu" = default;
+            "#kernelnewbies" = default;
           };
         };
 

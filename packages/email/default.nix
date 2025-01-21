@@ -11,7 +11,7 @@
     programs.mbsync.enable = true;
     programs.msmtp.enable = true;
     programs.astroid = {
-      enable = true;
+      enable = false;
       extraConfig = {
         thread_view.open_html_part_external = false;
         poll.interval = 0;
@@ -41,7 +41,7 @@
         };
         msmtp.enable = true;
         notmuch.enable = true;
-        astroid.enable = true;
+        astroid.enable = false;
         aerc.enable = true;
         neomutt.enable = true;
 

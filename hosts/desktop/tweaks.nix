@@ -109,8 +109,11 @@
   # Let's rip some threads
   nix.settings.max-jobs = 48;
 
-  # s2idle doesn't work (only deep) for some reason
+  # For debugging
   boot.kernelParams = [
     "mem_sleep_default=deep"
+    # "kernel.sysrq=1"
   ];
+
+  boot.crashDump.enable = true;
 }
