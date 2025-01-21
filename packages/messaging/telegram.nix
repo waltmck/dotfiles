@@ -6,7 +6,7 @@
   ...
 }: {
   environment.systemPackages = with pkgs; [
-    paper-plane
+    # paper-plane
     telegram-desktop
   ];
 
@@ -19,7 +19,10 @@
     after = ["graphical-session.target"];
 
     serviceConfig = {
-      Environment = ["PATH=${lib.makeBinPath [pkgs.telegram-desktop]}:/run/current-system/sw/bin/"];
+      Environment = [
+        "PATH=${lib.makeBinPath [pkgs.telegram-desktop]}:/run/current-system/sw/bin/"
+        "XDG_CURRENT_DESKTOP=gnome" # Use gnome file chooser
+      ];
 
       PassEnvironment = [
         "BROWSER"
@@ -27,7 +30,6 @@
         "XDG_BACKEND"
         "XCURSOR_SIZE"
         "XDG_SESSION_TYPE"
-        "XDG_CURRENT_DESKTOP"
       ];
     };
 
@@ -36,6 +38,10 @@
       telegram-desktop -startintray
     '';
   };
+
+  home-manager.users.waltmck.wayland.windowManager.hyprland.settings.windowrulev2 = [
+    "float, title:(Choose Files)"
+  ];
 
   environment.persistence."/nix/state".users.waltmck = {
     directories = [
