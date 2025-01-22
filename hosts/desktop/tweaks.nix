@@ -30,6 +30,7 @@
     # AMD gpu tuning
     corectrl
     lact
+    amdgpu_top
 
     # Razer
     polychromatic
