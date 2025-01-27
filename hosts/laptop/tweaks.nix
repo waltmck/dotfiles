@@ -61,4 +61,7 @@
 
   # If we don't know where we are, default to east coast
   time.timeZone = lib.mkDefault "America/New_York";
+
+  # Don't shut down on power key, show the menu
+  services.logind.powerKey = "ignore";
 }

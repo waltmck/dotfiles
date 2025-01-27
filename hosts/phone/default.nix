@@ -6,7 +6,7 @@
   # This is a robotnix config to build an AOSP image
 
   # These two are required options
-  device = "lynx";
+  device = "cheeseburger";
   flavor = "lineageos";
   androidVersion = 15;
 
@@ -18,5 +18,5 @@
   # signing.keyStorePath = "/var/secrets/android-keys"; # A _string_ of the path for the key store.
 
   # Build with ccache
-  ccache.enable = true;
+  # ccache.enable = true;
 }

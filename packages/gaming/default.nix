@@ -20,7 +20,12 @@
   environment.systemPackages = with pkgs; [
     prismlauncher
     ares
+    glfw-wayland-minecraft
+    glm
+    assimp
   ];
+
+  programs.java.enable = true;
 
   nixpkgs.config.allowUnsupportedSystem = true;
 

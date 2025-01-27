@@ -122,7 +122,11 @@ assert !headless; {
     slack-term # Slack client
     headlines
 
-    inputs.zotero-nix.packages.${system}.default
+    (
+      if system == "aarch64-linux"
+      then inputs.zotero-nix.packages.${system}.default
+      else pkgs.zotero
+    )
 
     # cozy # Audiobooks
 
