@@ -7,7 +7,10 @@
   hostname,
   ip,
   ...
-}: {
+}: let
+  interface = "ztklh2jwcc";
+  network = "6ab565387ac1e038";
+in {
   /*
   environment.systemPackages = [pkgs.tailscale];
 
@@ -36,7 +39,7 @@
   };
   */
 
-  networking.firewall.trustedInterfaces = ["ztklh2jwcc"];
+  networking.firewall.trustedInterfaces = [interface];
 
   networking.extraHosts = ''
     10.144.0.1 walt-desktop
@@ -49,7 +52,7 @@
 
   services.zerotierone = {
     enable = true;
-    joinNetworks = ["6ab565387ac1e038"];
+    joinNetworks = [network];
 
     localConf = {
       settings = {
@@ -95,7 +98,7 @@
 
   # nginx will initially fail to start if zerotier isn't running since it cannot bind to the ip address yet.
   systemd.services.nginx = {
-    after = ["zerotierone.service"];
-    requires = ["zerotierone.service"];
+    bindsTo = ["sys-devices-virtual-net-${interface}.device"];
+    after = ["sys-devices-virtual-net-${interface}.device"];
   };
 }

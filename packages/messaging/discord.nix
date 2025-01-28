@@ -6,8 +6,8 @@
   ...
 }: {
   environment.systemPackages = [
-    pkgs.legcord
-    pkgs.dissent
+    # pkgs.legcord
+    # pkgs.dissent
     pkgs.vesktop
   ];
 

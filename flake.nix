@@ -116,10 +116,10 @@
                 name = "patchedPkgs";
                 src = inputs.nixpkgs;
                 patches = [
-                  # Muvm
+                  # Slacky
                   (builtins.fetchurl {
-                    url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/347792.patch";
-                    sha256 = "sha256:0i8ff59s5cyb5gvinji09awzblhagshmrrisnibdcqp7w7dvrn6g";
+                    url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/375653.patch";
+                    sha256 = "sha256:1iicvk4ca7cjhacp3vajbv40m1i0irjr2cnys67plhr594hjwawq";
                   })
                 ];
               }

@@ -5,7 +5,10 @@
   ...
 }: {
   environment.systemPackages = [
-    patchedPkgs.muvm
-    pkgs86.steam
+    patchedPkgs.slacky
   ];
+
+  environment.persistence."/nix/state".users.waltmck = {
+    directories = [".config/slacky"];
+  };
 }
