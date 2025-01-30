@@ -112,8 +112,24 @@
 
   # For debugging
   boot.kernelParams = [
+    # Threadrippers do not support s2idle
     "mem_sleep_default=deep"
-    # "kernel.sysrq=1"
+
+    # Increase queue size for networking since we have a lot of memory and a 10Gb card
+    "net.core.netdev_max_backlog = 16384"
+
+    "splash"
+    "nowatchdog" # For power efficiency, should only do this if you have a physical power button
+
+    # Only critical notifications during boot
+    "quiet"
+    "loglevel=3"
+    "rd.udev.log_level=3"
+    "systemd.show_status=auto"
+    "rd.systemd.show_status=auto"
+
+    # Performance
+    "init_on_alloc=0"
   ];
 
   boot.crashDump.enable = true;

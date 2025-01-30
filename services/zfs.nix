@@ -56,4 +56,9 @@
       })
       datasets);
   };
+
+  # See https://github.com/openzfs/zfs/issues/9910
+  boot.kernelParams = [
+    "init_on_alloc=0"
+  ];
 }

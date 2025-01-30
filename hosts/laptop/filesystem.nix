@@ -54,6 +54,8 @@
       "rd.udev.log_level=3"
       "systemd.show_status=auto"
       "rd.systemd.show_status=auto"
+
+      "init_on_alloc=0"
     ];
   };
 

@@ -118,7 +118,13 @@
 
   /*
   TODO (next reinstall):
+    Datasets:
     * Switch to fast dedup implementation
     * Make a dataset for /var/cache
+    * 1M recordsize for nix store
+    * Make games directory use casesensitivity=insensitive (speeds up WINE)
+
+    Pool:
+    * Make sure SSDs are formatted for 8K sectors as shown here: https://openzfs.github.io/openzfs-docs/Performance%20and%20Tuning/Hardware.html#nvme-low-level-formatting
   */
 }
