@@ -12,7 +12,7 @@
     enable = true;
     description = "NewsFlash Background Service";
     wantedBy = ["graphical-session.target"];
-    wants = ["graphical-session.target"];
+    partOf = ["graphical-session.target"];
     after = ["graphical-session.target"];
 
     # Running through `zsh` so that it respects my user environment variables. This is not "best practice" but it is actually the easiest way to get this to work.

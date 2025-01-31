@@ -23,7 +23,7 @@
     enable = true;
     description = "Dino XMPP Background Service";
     wantedBy = ["graphical-session.target"];
-    wants = ["graphical-session.target"];
+    partOf = ["graphical-session.target"];
     after = ["graphical-session.target"];
 
     serviceConfig = {

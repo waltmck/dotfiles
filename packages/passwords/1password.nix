@@ -40,7 +40,7 @@
   systemd.user.services._1Password = {
     description = "_1Password";
     wantedBy = ["graphical-session.target"];
-    wants = ["graphical-session.target"];
+    partOf = ["graphical-session.target"];
     after = ["graphical-session.target"];
 
     serviceConfig = {

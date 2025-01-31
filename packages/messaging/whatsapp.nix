@@ -14,7 +14,7 @@
     enable = true;
     description = "ZapZap Background Service";
     wantedBy = ["graphical-session.target"];
-    wants = ["graphical-session.target"];
+    partOf = ["graphical-session.target"];
     after = ["graphical-session.target"];
 
     unitConfig = {
@@ -45,7 +45,7 @@
     enable = true;
     description = "WhatsApp Background Service";
     wantedBy = ["graphical-session.target"];
-    wants = ["graphical-session.target"];
+    partOf = ["graphical-session.target"];
     after = ["graphical-session.target"];
 
     unitConfig = {

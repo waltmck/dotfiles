@@ -66,7 +66,7 @@
     enable = true;
     description = "Geary Background Service";
     wantedBy = ["graphical-session.target"];
-    wants = ["graphical-session.target"];
+    partOf = ["graphical-session.target"];
     after = ["graphical-session.target"];
 
     serviceConfig.PassEnvironment = [

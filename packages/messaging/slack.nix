@@ -14,7 +14,7 @@
     enable = true;
     description = "Slack Background Service";
     wantedBy = ["graphical-session.target"];
-    wants = ["graphical-session.target"];
+    partOf = ["graphical-session.target"];
     after = ["graphical-session.target"];
 
     serviceConfig = {

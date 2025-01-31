@@ -214,8 +214,9 @@ in {
         disable_hyprland_logo = true;
       };
 
-      render = {
-        explicit_sync = false;
+      ecosystem = {
+        no_donation_nag = true;
+        no_update_news = true;
       };
 
       input = {
@@ -288,16 +289,17 @@ in {
 
         popup_script = cmd: name:
           pkgs.writeShellScript "${name}-popup-script" ''
-            if ${hyprctl} activewindow | ${pkgs.gnused}/bin/sed '/pinned: 1/q1' --quiet; then # If no window pinned, run normally
-              ${hyprctl} dispatch exec "${popup_rules} ${cmd}"; exit 0;
-            fi
+            # For debugging
+                      if ${hyprctl} activewindow | ${pkgs.gnused}/bin/sed '/pinned: 1/q1' --quiet; then # If no window pinned, run normally
+                        ${hyprctl} dispatch exec "${popup_rules} ${cmd}"; exit 0;
+                      fi
 
-            if ${hyprctl} activewindow | ${pkgs.gnused}/bin/sed '/${name}/q1' --quiet; then # If window other than ours is pinned
-              ${hyprctl} dispatch killactive;
-              ${hyprctl} dispatch exec "${popup_rules} ${cmd}"; exit 0; # Replace the pinned window with ours
-            else
-              ${hyprctl} dispatch killactive; # If our window is pinned, get rid of it
-            fi;
+                      if ${hyprctl} activewindow | ${pkgs.gnused}/bin/sed '/${name}/q1' --quiet; then # If window other than ours is pinned
+                        ${hyprctl} dispatch killactive;
+                        ${hyprctl} dispatch exec "${popup_rules} ${cmd}"; exit 0; # Replace the pinned window with ours
+                      else
+                        ${hyprctl} dispatch killactive; # If our window is pinned, get rid of it
+                      fi;
           '';
 
         popup_rules_loose = "[float; size 65%; center]";

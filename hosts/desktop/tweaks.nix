@@ -9,6 +9,12 @@
 
     misc.vrr = 1;
 
+    experimental = {
+      wide_color_gamut = true;
+      # hdr = true;
+      xx_color_management_v4 = true;
+    };
+
     xwayland.force_zero_scaling = true;
   };
 
@@ -58,7 +64,8 @@
 
     models = "/games/ollama";
 
-    acceleration = "rocm";
+    # TODO re-enable after https://nixpk.gs/pr-tracker.html?pr=377629 hits unstable
+    # acceleration = "rocm";
 
     user = "ollama";
     group = "ollama";
@@ -110,13 +117,12 @@
   # Let's rip some threads
   nix.settings.max-jobs = 48;
 
-  # For debugging
   boot.kernelParams = [
     # Threadrippers do not support s2idle
     "mem_sleep_default=deep"
 
     # Increase queue size for networking since we have a lot of memory and a 10Gb card
-    "net.core.netdev_max_backlog = 16384"
+    "net.core.netdev_max_backlog=16384"
 
     "splash"
     "nowatchdog" # For power efficiency, should only do this if you have a physical power button

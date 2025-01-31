@@ -17,6 +17,11 @@
     slack
 
     mathematica
+
+    wine-wayland
+    gamescope
+    mangohud
+    gamemode
   ];
 
   # Following https://gitlab.com/doronbehar/nix-matlab
