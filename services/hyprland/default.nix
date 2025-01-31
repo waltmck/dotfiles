@@ -267,7 +267,7 @@ in {
 
         # Float launchers (steam, lutris)
         (f "steam")
-        (f "lutris")
+        (f "net.lutris.Lutris")
 
         "stayfocused,class:^(1Password)$"
         "pin,class:^(com.github.neithern.g4music)$"
