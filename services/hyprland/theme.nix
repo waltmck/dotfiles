@@ -40,6 +40,7 @@ in {
   # kvantum qt theme engine, which can be configured with kvantummanager
   environment.systemPackages = [
     pkgs.libsForQt5.qtstyleplugin-kvantum
+    pkgs.xdg-desktop-portal-gtk
   ];
 
   fonts = {
@@ -106,6 +107,10 @@ in {
           border-radius: 0;
         }
       '';
+    };
+
+    dconf.settings = {
+      "org/gnome/desktop/interface".color-scheme = "prefer-dark";
     };
 
     /*

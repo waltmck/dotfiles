@@ -37,6 +37,7 @@ in {
   environment.sessionVariables = {
     ELECTRON_OZONE_PLATFORM_HINT = "wayland";
     NIXOS_OZONE_WL = "1";
+    GTK_THEME = "adw-gtk3-dark";
   };
 
   services.xserver.displayManager.startx.enable = true;
@@ -137,6 +138,8 @@ in {
         "XCURSOR_SIZE=24"
         "HYPRCURSOR_SIZE=24"
         "XCURSOR_THEME=Qogir"
+
+        "GTK_THEME=adw-gtk3-dark"
         # END CURSOR STUFF
 
         # "WAYLAND_DISPLAY=wayland-1"

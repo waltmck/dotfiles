@@ -18,6 +18,7 @@
     "dark-theme" = true;
     "grid-mode" = false;
     "library-path" = ["album"];
+    "library-uri" = "library://album";
     "replay-gain" = 2; # Normalize volume by album
     "monitor-changes" = false;
     "play-background" = true;

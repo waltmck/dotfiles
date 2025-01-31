@@ -53,6 +53,12 @@
 
       # Temporary fix for GTK4 cursor bug, see https://bbs.archlinux.org/viewtopic.php?id=299624
       "org/gnome/desktop/interface".cursor-size = 32;
+
+      # Stop asking me every time I open contacts
+      "org/gnome/Contacts".did-initial-setup = true;
+
+      # Don't show dconf editor warning
+      "ca/desrt/dconf-editor".show-warning = false;
     };
   };
 
@@ -101,6 +107,8 @@
     # Enable to use google or nextcloud
     # gnome-online-accounts.enable = true;
     sushi.enable = true;
+
+    gnome-settings-daemon.enable = true;
   };
 
   # Use faster dbus-broker implementation of dbus
