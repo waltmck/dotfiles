@@ -120,7 +120,6 @@ assert !headless; {
     varia # Download manager, wraps aria2
 
     slack-term # Slack client
-    headlines
 
     (
       if system == "aarch64-linux"
@@ -137,7 +136,7 @@ assert !headless; {
     impression # For flashing USB drives
 
     # Reddit client?
-    headlines
+    # headlines
   ];
 
   environment.persistence."/nix/state".users.waltmck.directories = [
