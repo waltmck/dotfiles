@@ -64,4 +64,8 @@
 
   # Don't shut down on power key, show the menu
   services.logind.powerKey = "ignore";
+
+  boot.kernelParams = [
+    "nvme_apple.flush_interval=1000"
+  ];
 }

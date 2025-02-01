@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: {
   home-manager.users.waltmck.wayland.windowManager.hyprland.settings = {
     monitor = [
       # "eDP-1, 1920x1080, 0x0, 1"
@@ -31,6 +36,7 @@
   };
 
   services.fwupd.enable = true;
+  hardware.enableRedistributableFirmware = true;
 
   environment.systemPackages = with pkgs; [
     # AMD gpu tuning
@@ -52,6 +58,15 @@
 
   boot.initrd.availableKernelModules = ["amdgpu" "radeon"];
   services.xserver.videoDrivers = ["amdgpu"];
+
+  hardware.amdgpu = {
+    initrd.enable = true;
+    opencl.enable = true;
+    amdvlk = {
+      enable = true;
+      support32Bit.enable = true;
+    };
+  };
 
   services.ollama = {
     loadModels = [
@@ -104,6 +119,12 @@
     '';
   };
 
+  # Disable unused connectivity
+  hardware.bluetooth.enable = lib.mkForce false;
+  networking.wireless.iwd.enable = lib.mkForce false;
+  networking.networkmanager.enable = lib.mkForce false;
+  programs.nm-applet.enable = lib.mkForce false;
+
   # Razer mouse. For now, openrazer does not support the mouse dock pro
   # See https://github.com/openrazer/openrazer/issues/2060
   hardware.openrazer = {
@@ -137,6 +158,21 @@
     # Performance
     "init_on_alloc=0"
   ];
+
+  # AMD pstate for frequency scaling
+  # TODO check that these work
+  services.auto-epp = {
+    enable = true;
+    settings.Settings = {
+      epp_state_for_AC = "performance";
+      epp_state_for_BAT = "performance";
+    };
+  };
+
+  # Use zenpower sensor
+  boot.blacklistedKernelModules = ["k10temp"];
+  boot.extraModulePackages = [config.boot.kernelPackages.zenpower];
+  boot.kernelModules = ["zenpower"];
 
   boot.crashDump.enable = true;
 }

@@ -27,7 +27,10 @@
     }
   ];
 
-  environment.systemPackages = with pkgs; [alpaca];
+  environment.systemPackages = with pkgs; [
+    alpaca
+    llama-cpp
+  ];
 
   environment.persistence."/nix/state".users.waltmck.directories = [
     ".local/share/com.jeffser.Alpaca"

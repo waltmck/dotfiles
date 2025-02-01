@@ -72,7 +72,7 @@
           ];
         in {
           Gaming = {
-            img = "docker.io/library/fedora:latest";
+            img = "docker.io/library/fedora:rawhide";
             inherit exec;
             symlinks =
               symlinks
@@ -80,7 +80,7 @@
                 ".steam"
                 ".local/share/Steam"
               ];
-
+            /*
             init = ''
               # echo "test";
               dnf install -y "dnf-command(copr)";
@@ -88,6 +88,7 @@
               dnf copr enable -y @asahi/mesa;
               # sudo dnf install -y steam;
             '';
+            */
           };
           Alpine = {
             inherit exec symlinks;
