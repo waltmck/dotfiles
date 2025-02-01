@@ -254,6 +254,10 @@ in {
 
         (f "com.github.neithern.g4music")
         (f "1Password")
+        (f "io.github.giantpinkrobots.varia")
+        (f "com.jeffser.Alpaca")
+        (f "page.kramo.Cartridges")
+        (f "org.prismlauncher.PrismLauncher")
 
         # Float messaging apps
         (f "de.schmidhuberj.Flare")

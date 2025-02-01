@@ -9,7 +9,7 @@
       # "eDP-1, 1920x1080, 0x0, 1"
       # "HDMI-A-1, 2560x1440, 1920x0, 1"
       # ",preferred,auto,1.5"
-      "DP-1, 3840x2160@120, 0x0, 1.5, bitdepth, 10"
+      "DP-1, 3840x2160@240, 0x0, 1.5, bitdepth, 10"
     ];
 
     misc.vrr = 1;
@@ -56,7 +56,7 @@
     rocmPackages.clr.icd
   ];
 
-  boot.initrd.availableKernelModules = ["amdgpu" "radeon"];
+  boot.initrd.availableKernelModules = ["amdgpu"];
   services.xserver.videoDrivers = ["amdgpu"];
 
   hardware.amdgpu = {
@@ -175,4 +175,25 @@
   boot.kernelModules = ["zenpower"];
 
   boot.crashDump.enable = true;
+
+  # Fix G80SD EDID mess
+  hardware.display = {
+    edid.packages = [
+      (pkgs.runCommand "edid-custom" {} ''
+        mkdir -p "$out/lib/firmware/edid"
+        base64 -d > "$out/lib/firmware/edid/edid-cru.bin" <<'EOF'
+        AP///////wAAAAAAAAAAAAAAAQSwQCQAHwAAAAAAAAAAAAAlzwBxT4HAgQCBgJUAqcCzANHATdAA
+        oPBwPoAwIDUAwBwyAAAaAAAA/Qww8P//6gEKICAgICAgAAAA/ABEZWZhdWx0CiAgICAgAAAAEAAA
+        AAAAAAAAAAAAAAAAAjQCAzpAR2FfED8EA3YjCQcHgwEAAOMFwwDmBgUBYEsD5QGLhJA5dBoAAAMH
+        MPAAoGACSwLwAAAAAAAAVl4AoKCgKVAwIDUAgGghAAAab8IAoKCgVVAwIDUAgGghAAAaAjqAGHE4
+        LUBYLEUA4A4RAAAeAAAAAAAAAAAAAAAAAAAADXAgeQAAIgAUv5QjAP8OnwAvgB8AbwgMAQIABAAq
+        ABIB/w5vCO8B/wmfBe8Bfwc3BO8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALqQ
+        EOF
+      '')
+    ];
+
+    outputs."DP-1".edid = "edid-cru.bin";
+    outputs."DP-1".mode = "3840x2160@240";
+  };
 }

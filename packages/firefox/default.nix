@@ -126,6 +126,7 @@ in {
         zotero-connector
         rsshub-radar
         surfingkeys
+        aria2-integration
         # mullvad
         # fx_cast # TODO debug no arm64 support
       ];

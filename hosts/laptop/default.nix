@@ -21,6 +21,8 @@
     ../../targets/graphical.nix
 
     ../../modules/optimize.nix
+
+    ../../services/bluetooth
   ];
 
   boot.binfmt.emulatedSystems = [

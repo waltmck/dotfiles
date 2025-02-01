@@ -64,6 +64,7 @@
     libnotify
     killall
     zip
+    ripunzip
     unzip
     glib
     powertop

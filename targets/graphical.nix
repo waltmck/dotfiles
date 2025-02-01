@@ -28,7 +28,6 @@ assert !headless; {
     ../services/gnome
     ../services/hyprland
     ../services/ags
-    ../services/bluetooth
     ../services/audio
     ../services/internet
 
