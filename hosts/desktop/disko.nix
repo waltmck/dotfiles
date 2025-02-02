@@ -65,6 +65,4 @@
       };
     };
   };
-
-  boot.kernelParams = ["elevator=none"];
 }
