@@ -169,8 +169,19 @@
     };
   };
 
-  # Use zenpower sensor
-  boot.blacklistedKernelModules = ["k10temp"];
+  boot.blacklistedKernelModules = [
+    # To use zenpower sensor instead
+    "k10temp"
+
+    # Disable bluetooth
+    "bluetooth"
+
+    # Disable wifi
+    "mt7921e"
+
+    # Disable 2.5GbE port
+    "r8169"
+  ];
   boot.extraModulePackages = [config.boot.kernelPackages.zenpower];
   boot.kernelModules = ["zenpower"];
 
