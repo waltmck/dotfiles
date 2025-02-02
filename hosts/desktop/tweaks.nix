@@ -119,12 +119,6 @@
     '';
   };
 
-  # Disable unused connectivity
-  hardware.bluetooth.enable = lib.mkForce false;
-  networking.wireless.iwd.enable = lib.mkForce false;
-  networking.networkmanager.enable = lib.mkForce false;
-  programs.nm-applet.enable = lib.mkForce false;
-
   # Razer mouse. For now, openrazer does not support the mouse dock pro
   # See https://github.com/openrazer/openrazer/issues/2060
   hardware.openrazer = {
@@ -206,5 +200,37 @@
 
     outputs."DP-1".edid = "edid-cru.bin";
     outputs."DP-1".mode = "3840x2160@240";
+  };
+
+  # systemd in initrd
+  boot.initrd = {
+    kernelModules = [
+      "atlantic"
+    ];
+
+    systemd = {
+      enable = true;
+
+      contents = {
+        "/etc/machine-id".source = /etc/machine-id;
+      };
+      dbus.enable = true;
+
+      network = {
+        enable = true;
+        wait-online.enable = true;
+
+        networks = config.systemd.network.networks;
+      };
+    };
+
+    network.ssh = {
+      enable = true;
+      port = 22;
+      hostKeys = [
+        "/nix/secrets/initrd/ssh_host_ed25519_key"
+      ];
+      authorizedKeys = config.users.users.waltmck.openssh.authorizedKeys.keys;
+    };
   };
 }

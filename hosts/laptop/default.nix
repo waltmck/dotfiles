@@ -23,6 +23,7 @@
     ../../modules/optimize.nix
 
     ../../services/bluetooth
+    ../../services/internet/wifi.nix
   ];
 
   boot.binfmt.emulatedSystems = [

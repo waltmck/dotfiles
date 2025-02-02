@@ -69,4 +69,6 @@
       ];
     };
   };
+
+  systemd.services.podman-stash-vr-companion.after = ["network-online.target"];
 }

@@ -21,10 +21,53 @@
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
+  networking.useDHCP = true;
   # networking.interfaces.enp65s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp70s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp69s0.useDHCP = lib.mkDefault true;
+
+  /*
+  networking.interfaces.enp65s0 = {
+    ipv4.addresses = [
+      {
+        address = "192.168.0.225";
+        prefixLength = 24;
+      }
+    ];
+    useDHCP = true;
+  };
+  */
+
+  systemd.network = {
+    enable = true;
+
+    #  Consider yourself online when any interface is
+    wait-online.anyInterface = true;
+
+    wait-online.enable = true;
+
+    networks."10-lan" = {
+      # match the interface by name
+      matchConfig.Name = "en65s0";
+      /*
+      address = [
+        # configure address including subnet mask
+        "192.168.0.225/24"
+      ];
+      routes = [
+        # create default route for IPv4
+        {Gateway = "192.168.0.1";}
+      ];
+      */
+
+      networkConfig = {
+        DHCP = "yes";
+      };
+
+      # make the routes on this interface a dependency for network-online.target
+      linkConfig.RequiredForOnline = "routable";
+    };
+  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

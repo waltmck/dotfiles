@@ -15,7 +15,11 @@
     description = "Slack Background Service";
     wantedBy = ["graphical-session.target"];
     partOf = ["graphical-session.target"];
-    after = ["graphical-session.target"];
+    after = ["graphical-session.target" "ags.service"];
+
+    unitConfig = {
+      ConditionEnvironment = "WAYLAND_DISPLAY";
+    };
 
     serviceConfig = {
       Environment = [
@@ -40,7 +44,7 @@
 
     # Running through `zsh` so that it respects my user environment variables. This is not "best practice" but it is actually the easiest way to get this to work.
     script = ''
-      ${pkgs.slack}/bin/slack -u
+      ${pkgs.slack}/bin/slack -u -g 'error'
     '';
   };
 

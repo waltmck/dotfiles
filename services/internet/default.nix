@@ -12,25 +12,6 @@
     "${inputs.impermanence}/nixos.nix"
   ];
 
-  networking = {
-    hostName = hostname;
-    wireless.iwd = {
-      enable = true;
-      settings.General.EnableNetworkConfiguration = false;
-    };
-
-    networkmanager = {
-      enable = true;
-
-      wifi.backend = "iwd";
-    };
-  };
-
-  programs.nm-applet = {
-    enable = !headless;
-    indicator = true;
-  };
-
   # Use CloudFlare's DNS. Needed because wifi DNS was
   # broken for a Riad Dar Naai in Marrakech.
 
@@ -53,9 +34,4 @@
   };
   users.users.waltmck.extraGroups = [config.services.kubo.group];
   */
-
-  environment.persistence."/nix/state".directories = [
-    "/var/lib/iwd"
-    "/etc/NetworkManager/system-connections"
-  ];
 }
