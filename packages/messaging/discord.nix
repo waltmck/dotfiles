@@ -8,7 +8,8 @@
   environment.systemPackages = [
     # pkgs.legcord
     # pkgs.dissent
-    pkgs.vesktop
+    (pkgs.vesktop.override {withSystemVencord = true;})
+    pkgs.vencord
   ];
 
   environment.persistence."/nix/state".users.waltmck = {

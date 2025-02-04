@@ -9,12 +9,31 @@
 
   boot = {
     initrd = {
-      systemd.enable = true;
       kernelModules = ["usb_storage" "usbhid" "dm-crypt" "xts" "encrypted_keys" "ext4" "dm-snapshot"];
 
       luks.devices."encrypted" = {
         bypassWorkqueues = true;
         allowDiscards = true;
+      };
+
+      systemd = {
+        enable = true;
+
+        contents = {
+          "/etc/machine-id".source = /etc/machine-id;
+        };
+
+        dbus.enable = true;
+        network.enable = true;
+      };
+
+      network.ssh = {
+        enable = true;
+        port = 22;
+        hostKeys = [
+          "/nix/secrets/initrd/ssh_host_ed25519_key"
+        ];
+        authorizedKeys = config.users.users.waltmck.openssh.authorizedKeys.keys;
       };
     };
 

@@ -336,6 +336,7 @@ in {
           "SUPER, S, exec, ${systemd-run} ${pkgs.g4music}/bin/g4music"
           "SUPER, G, exec, ${systemd-run} ${pkgs.nautilus}/bin/nautilus"
           "SUPER, T, exec, ${systemd-run} ${pkgs._1password-gui}/bin/1password"
+          "SUPER SHIFT, E, exec, ${pkgs.telegram-desktop}/bin/telegram-desktop"
 
           "SUPER SHIFT, W, execr, ${topPopup}" # "task manager" menu
 
@@ -348,7 +349,7 @@ in {
           "SUPER, D, killactive"
           "SUPER, F, togglefloating"
           "SUPER SHIFT, A, fullscreen"
-          "SUPER, A, fullscreenstate"
+          "SUPER, A, fullscreen, 1"
           "SUPER, V, togglesplit"
           "SUPER, C, swapsplit"
 

@@ -55,7 +55,28 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
+  networking.useNetworkd = true;
   # networking.interfaces.wlan0.useDHCP = lib.mkDefault true;
+
+  systemd.network = {
+    enable = true;
+
+    #  Consider yourself online when any interface is
+    wait-online.anyInterface = true;
+
+    wait-online.enable = true;
+
+    networks."10-wan" = {
+      # match the interface by name
+      matchConfig.Name = "wlan0";
+
+      networkConfig = {
+        DHCP = "yes";
+      };
+
+      linkConfig.RequiredForOnline = "routable";
+    };
+  };
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
 }
