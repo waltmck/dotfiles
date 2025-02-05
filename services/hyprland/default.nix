@@ -248,6 +248,7 @@ in {
         (f "Color Picker")
         (f "xdg-desktop-portal")
         (f "xdg-desktop-portal-gnome")
+        (f "Open Files")
         (f "xdg-desktop-portal-gtk")
         (f "transmission-remote-gtk")
         (f "com.github.Aylur.ags")
