@@ -79,8 +79,7 @@
 
     models = "/games/ollama";
 
-    # TODO re-enable after https://nixpk.gs/pr-tracker.html?pr=377629 hits unstable
-    # acceleration = "rocm";
+    acceleration = "rocm";
 
     user = "ollama";
     group = "ollama";
