@@ -22,6 +22,7 @@
           touch_scroll_multiplier = "2.0";
 
           clipboard_control = "write-clipboard read-clipboard";
+          cursor_trail = 3;
         };
 
         font = {

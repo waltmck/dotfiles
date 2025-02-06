@@ -70,6 +70,7 @@
       "Pictures"
       "Music"
       "Notes"
+      "Scans"
       "src"
       ".local/share/keyrings"
       ".config/evolution" # Persist calendars

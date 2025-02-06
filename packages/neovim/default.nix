@@ -2,9 +2,31 @@
   pkgs,
   inputs,
   headless,
+  stdenv,
   ...
 }: let
-  texlive = pkgs.texlive.combined.scheme-full.withPackages (ps: with ps; [bbm]);
+  tex-pkgs = pkgs.stdenv.mkDerivation rec {
+    name = "tex-pkgs";
+    src = ./tex-pkgs;
+    installPhase = ''
+      mkdir -p $out/tex/latex
+      cp * $out/tex/latex
+    '';
+    pname = name;
+    tlType = "run";
+  };
+  /*
+  texlive = pkgs.texlive.combined.scheme-full.withPackages (ps:
+    with ps; [
+      bbm
+    ]);
+  */
+  texlive = pkgs.texlive.combine {
+    inherit (pkgs.texlive) scheme-full bbm;
+    tex-pkgs = {
+      pkgs = [tex-pkgs];
+    };
+  };
 in {
   imports = [
     inputs.nixvim.nixosModules.nixvim
@@ -238,7 +260,13 @@ in {
 
         settings = {
           indent.enable = true;
-          highlight.enable = true;
+          highlight = {
+            enable = true;
+            # vimtex will handle latex highlighting
+            # See https://github.com/lervag/vimtex/issues/2469
+            disable = ["latex"];
+            additional_vim_regex_highlighting = ["latex" "markdown"];
+          };
         };
       };
 

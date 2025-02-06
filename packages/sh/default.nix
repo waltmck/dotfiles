@@ -11,14 +11,14 @@
       "tree" = "eza --tree";
       "nv" = "nvim";
       "nvd" = "neovide";
+      "nd" = "neovide";
 
       "ll" = "${pkgs.lsd}/bin/lsd -la";
       "l" = "${pkgs.lsd}/bin/lsd";
 
       "cat" = "${pkgs.bat}/bin/bat";
-      "find" = "${pkgs.fd}/bin/fd";
       "ping" = "${pkgs.gping}/bin/gping";
-      "fetch" = "${pkgs.neofetch}/bin/neofetch";
+      "fetch" = "${pkgs.fastfetch}/bin/fastfetch";
       "sudo" = "sudo "; # This is so that other aliases will work with sudo
 
       ":q" = "exit";
@@ -170,4 +170,13 @@
       # ".zcompdump" TODO figure out how to persist this
     ];
   };
+
+  programs.direnv = {
+    enable = true;
+    silent = true;
+  };
+
+  environment.systemPackages = with pkgs; [
+    devenv
+  ];
 }
