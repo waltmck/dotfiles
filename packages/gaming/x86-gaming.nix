@@ -22,7 +22,10 @@
     gamescope
     mangohud
     gamemode
+    ledger-live-desktop
   ];
+
+  hardware.ledger.enable = true;
 
   # Following https://gitlab.com/doronbehar/nix-matlab
   # TODO get this working correctly

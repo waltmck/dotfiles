@@ -39,9 +39,13 @@
     toybox
     busybox
     pssh
+    rustc
+    cargo
 
     dig.dnsutils
     unrar
+    tor
+    torsocks
 
     git
     wget
