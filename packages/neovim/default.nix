@@ -32,6 +32,9 @@ in {
     inputs.nixvim.nixosModules.nixvim
   ];
 
+  home-manager.sharedModules = [
+  ];
+
   environment.systemPackages =
     [
       pkgs.alejandra
@@ -198,6 +201,11 @@ in {
 
       vim.g.mapleader = " "
       vim.g.maplocalleader = " "
+
+      -- Store tex aux files in /tmp when building with vimtex
+      vim.g.vimtex_compiler_latexmk = {
+        aux_dir = "/tmp",
+      }
     '';
 
     plugins = {

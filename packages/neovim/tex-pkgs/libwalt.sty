@@ -53,7 +53,6 @@
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
 
-\newcommand{\p}{\partial}
 \newcommand{\dd}{\mathop{}\!\mathrm{d}}
 \newcommand{\pd}{\mathop{}\!\mathrm{\partial}}
 \newcommand{\dv}[3][]{\frac{\dd^{#1} #2}{\dd #3^{#1}}}
@@ -68,7 +67,8 @@
 \newcommand{\psmat}[1]{\begin{psmallmatrix} #1 \end{psmallmatrix}}
 
 \newcommand{\E}[1]{\operatorname{\mathbb{E}}\left[#1\right]}
-\newcommand{\P}[1]{\operatorname{\mathbb{P}}\left[#1\right]}
+% TODO figure out how to override \P
+\newcommand{\p}[1]{\operatorname{\mathbb{P}}\left[#1\right]}
 \newcommand{\Var}[1]{\operatorname{\mathbf{Var}}\left[#1\right]}
 \newcommand{\Cov}[1]{\operatorname{\mathbf{Cov}}\left[#1\right]}
 
