@@ -233,7 +233,28 @@ in {
         };
         */
       };
-      lualine.enable = true;
+
+      lualine = {
+        enable = true;
+        settings = {
+          options = {
+            ignore_focus = [
+              "neo-tree"
+              "nvim-tree"
+              "mini-files"
+            ];
+            section_separators = {
+              left = "";
+              right = "";
+            };
+            component_separators = {
+              left = "";
+              right = "";
+            };
+            theme = "vscode";
+          };
+        };
+      };
       gitsigns.enable = true;
 
       # trouble.enable = true;
