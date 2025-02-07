@@ -23,6 +23,16 @@
     xwayland.force_zero_scaling = true;
   };
 
+  home-manager.sharedModules = [
+    {
+      # Decrease milliseconds between repaint so we can take advantage of 240hz monitor
+      programs.kitty.settings = {
+        repaint_delay = 4;
+        input_delay = 2;
+      };
+    }
+  ];
+
   # Scale X11 apps
   # environment.sessionVariables.GDK_SCALE = "1.5";
   services.scaling = {

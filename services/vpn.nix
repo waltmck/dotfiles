@@ -97,8 +97,11 @@ in {
   };
 
   # nginx will initially fail to start if zerotier isn't running since it cannot bind to the ip address yet.
-  systemd.services.nginx = {
-    bindsTo = ["sys-devices-virtual-net-${interface}.device"];
-    after = ["sys-devices-virtual-net-${interface}.device"];
-  };
+  systemd.services.nginx =
+    if hostname == "walt-cloud"
+    then {}
+    else {
+      bindsTo = ["sys-devices-virtual-net-${interface}.device"];
+      after = ["sys-devices-virtual-net-${interface}.device"];
+    };
 }

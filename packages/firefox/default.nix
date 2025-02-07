@@ -290,7 +290,12 @@ in {
         "browser.sessionstore.resume_from_crash" = false; # Disable resuming from crash which requires frequent writes to disk
 
         # Use xdg desktop portal file picker (for GTK4)
-        "widget.use-xdg-desktop-portal.file-picker" = 1;
+        # Currently fails with:
+        # Feb 06 17:15:08 walt-desktop Hyprland[110205]: [Parent 110205, Main Thread] WARNING: Server is missing xdg_foreign support: 'glib warning', file /build/firefox-134.0.2/toolkit/xre/nsSigHandlers.cpp:201
+        # Feb 06 17:15:08 walt-desktop Hyprland[110205]: [Parent 110205, Main Thread] WARNING: Failed to export handle, could not set transient for: 'glib warning', file /build/firefox-134.0.2/toolkit/xre/nsSigHandlers.cpp:201
+        # Feb 06 17:15:08 walt-desktop .firefox-wrappe[110205]: Server is missing xdg_foreign support
+        # Feb 06 17:15:08 walt-desktop .firefox-wrappe[110205]: Failed to export handle, could not set transient for
+        "widget.use-xdg-desktop-portal.file-picker" = 0;
 
         # Cache to memory, disable cache to disk
         "browser.cache.memory.enable" = true;

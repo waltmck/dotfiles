@@ -328,7 +328,12 @@ in {
           };
 
           ruff.enable = true;
-          rust_analyzer.enable = true;
+
+          rust_analyzer = {
+            enable = true;
+            installRustc = true;
+            installCargo = true;
+          };
         };
 
         keymaps = {
@@ -499,10 +504,6 @@ in {
           quickfix_mode = 0;
           complete_enabled = false; # Use vimtex for completion
         };
-      };
-
-      rust-tools = {
-        enable = true;
       };
     };
 

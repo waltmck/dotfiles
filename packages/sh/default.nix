@@ -33,6 +33,7 @@
       "fs" = "${pkgs.ncdu}/bin/ncdu -x /";
 
       "vimdiff" = "nvim -d";
+      "diff" = "${pkgs.colordiff}/bin/colordiff";
 
       "y" = "${pkgs.kitty}/bin/kitten clipboard";
       "p" = "${pkgs.kitty}/bin/kitten clipboard -g";
@@ -180,4 +181,10 @@
   environment.systemPackages = with pkgs; [
     devenv
   ];
+
+  environment.variables = {
+    # do not put in sessionVariables, breaks boot installation script
+    SYSTEMD_COLORS = "1";
+    ZFS_COLOR = "1";
+  };
 }

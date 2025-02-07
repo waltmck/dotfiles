@@ -23,6 +23,16 @@
 
           clipboard_control = "write-clipboard read-clipboard";
           cursor_trail = 3;
+
+          click_interval = 0.1;
+
+          remember_window_size = "no";
+
+          hide_window_decorations = "yes";
+          placement_strategy = "center";
+
+          # Disable input message extension to speed up inputs
+          wayland_enable_ime = "no";
         };
 
         font = {

@@ -8,7 +8,12 @@
   nur,
   ...
 }: {
-  services.flaresolverr.enable = true;
+  /*
+  Disabled pending https://github.com/NixOS/nixpkgs/issues/332776
+  services.flaresolverr = {
+    enable = true;
+  };
+  */
 
   services.prowlarr = {
     enable = true;
