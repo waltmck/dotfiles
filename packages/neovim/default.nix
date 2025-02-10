@@ -2,7 +2,7 @@
   pkgs,
   inputs,
   headless,
-  stdenv,
+  lib,
   ...
 }: let
   tex-pkgs = pkgs.stdenv.mkDerivation rec {
@@ -39,6 +39,8 @@ in {
     [
       pkgs.alejandra
       texlive
+
+      pkgs.typst
     ]
     ++ (
       if !headless
@@ -340,6 +342,17 @@ in {
               };
 
               formatterLineLength = 0;
+            };
+          };
+
+          # Typst
+          tinymist = {
+            enable = true;
+
+            settings = {
+              exportPdf = "onType"; # Can change to onType
+
+              formatterMode = "typstyle";
             };
           };
 

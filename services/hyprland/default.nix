@@ -269,6 +269,7 @@ in {
         (f "vesktop")
         (f "wasistlos")
         (f "Slack")
+        (f "Element")
 
         # Float launchers (steam, lutris)
         (f "steam")
