@@ -6,6 +6,7 @@
 }: {
   environment.systemPackages = [
     patchedPkgs.slacky
+    patchedPkgs.obsidian
   ];
 
   environment.persistence."/nix/state".users.waltmck = {
