@@ -38,6 +38,7 @@
       "y" = "${pkgs.kitty}/bin/kitten clipboard";
       "p" = "${pkgs.kitty}/bin/kitten clipboard -g";
       "latex-init" = "cp -n --no-preserve=all ${./template.tex} ./main.tex";
+      "typst-init-pset" = "cp -n --no-preserve=all ${./template-pset.typ} ./main.typ";
     };
   in [
     {
