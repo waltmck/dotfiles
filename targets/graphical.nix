@@ -67,7 +67,6 @@ assert !headless; {
     # gnome-software # for flatpak
 
     # gui
-    obsidian
     (mpv.override {scripts = [mpvScripts.mpris];})
     libreoffice
     # caprine
