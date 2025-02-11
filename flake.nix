@@ -121,13 +121,12 @@
                     url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/375653.patch";
                     sha256 = "sha256:0ix0vcy1p9fcfs3cdjvrjgilg3r4h8mywfvdpj8wqd0hhfxsjh0j";
                   })
-                  /*
-                  # Try obsidian patch
+                  # Obsidian patch
                   (builtins.fetchurl {
                     url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/380617.patch";
                     sha256 = "sha256:06lqmpjxyb3i1h3116wlhdav0xs41vi6dk8k5slnds8ac38igiin";
                   })
-                  */
+                  ./patches/fix-vesktop.patch
                 ];
               }
             ) {

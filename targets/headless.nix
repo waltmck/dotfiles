@@ -23,6 +23,7 @@
     ../packages/neovim
     ../packages/lf
     ../packages/aria2.nix
+    ../packages/typst
 
     ../services/nixos
     ../services/vpn.nix

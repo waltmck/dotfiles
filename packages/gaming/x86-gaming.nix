@@ -23,6 +23,11 @@
     mangohud
     gamemode
     ledger-live-desktop
+
+    # Maintaining arch-specific patches
+    vencord
+    vesktop
+    obsidian
   ];
 
   hardware.ledger.enable = true;

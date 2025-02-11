@@ -1,0 +1,7 @@
+[package]
+name = "pset"
+version = "1.0.0"
+entrypoint = "template.typ"
+authors = ["waltmck"]
+license = "GPL 3"
+description = "Personal template"

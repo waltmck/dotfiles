@@ -1,0 +1,15 @@
+diff --git a/pkgs/top-level/all-packages.nix b/pkgs/top-level/all-packages.nix
+index 6cdb7c778357..e5026e169a8f 100644
+--- a/pkgs/top-level/all-packages.nix
++++ b/pkgs/top-level/all-packages.nix
+@@ -15443,6 +15443,10 @@ with pkgs;
+     inherit (darwin.apple_sdk_11_0.frameworks) Carbon CoreServices OpenCL;
+   };
+ 
++  vesktop = callPackage ../by-name/ve/vesktop/package.nix {
++    electron = electron_33;
++  };
++
+   veusz = libsForQt5.callPackage ../applications/graphics/veusz { };
+ 
+   vim = vimUtils.makeCustomizable (callPackage ../applications/editors/vim {

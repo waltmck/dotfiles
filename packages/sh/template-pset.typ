@@ -1,5 +1,6 @@
-#import "@preview/problemst:0.1.1": pset
+#import "@waltmck/pset:1.0.0": *
 
+#show: custom
 #show: pset.with(
   class: "",
   student: "Walter McKelvie",
