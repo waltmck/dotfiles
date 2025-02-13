@@ -242,4 +242,9 @@
       authorizedKeys = config.users.users.waltmck.openssh.authorizedKeys.keys;
     };
   };
+
+  # Robotnix
+  imports = [
+    ../phone/build-config.nix
+  ];
 }

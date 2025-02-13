@@ -6,7 +6,7 @@
   # This is a robotnix config to build an AOSP image
 
   # These two are required options
-  device = "cheeseburger";
+  device = "lynx";
   flavor = "lineageos";
   androidVersion = 15;
 

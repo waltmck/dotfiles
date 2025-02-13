@@ -1,4 +1,5 @@
 #import "@preview/problemst:0.1.1": pset
+#import "@preview/lemmify:0.1.7": *
 
 // Macros
 #let eps = sym.epsilon
@@ -7,6 +8,19 @@
 #let infty = sym.oo
 #let subseteq = sym.subset.eq
 #let supseteq = sym.supset.eq
+
+#let codeblock(filename) = raw(read(filename), block: true, lang: filename.split(".").at(-1))
+
+#let (
+  theorem,
+  lemma,
+  corollary,
+  remark,
+  proposition,
+  example,
+  proof,
+  rules: thm-rules,
+) = default-theorems("thm-group", lang: "en")
 
 // Custom config
 #let custom(doc) = [
@@ -20,6 +34,8 @@
       it
     }
   }
+
+  #show: thm-rules
 
   #doc
 ]
