@@ -338,7 +338,8 @@ in {
           "SUPER, S, exec, ${systemd-run} ${pkgs.g4music}/bin/g4music"
           "SUPER, G, exec, ${systemd-run} ${pkgs.nautilus}/bin/nautilus"
           "SUPER, T, exec, ${systemd-run} ${pkgs._1password-gui}/bin/1password"
-          "SUPER SHIFT, E, exec, ${pkgs.telegram-desktop}/bin/telegram-desktop"
+          "SUPER SHIFT, E, exec, ${systemd-run} ${pkgs.telegram-desktop}/bin/telegram-desktop"
+          "SUPER SHIFT, T, exec, ${systemd-run} ${pkgs.transmission-remote-gtk}/bin/transmission-remote-gtk"
 
           "SUPER SHIFT, W, execr, ${topPopup}" # "task manager" menu
 
